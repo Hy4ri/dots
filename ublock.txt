@@ -1,0 +1,62 @@
+! Download
+www.youtube.com##ytd-download-button-renderer.ytd-menu-renderer.style-scope
+! Thanks
+www.youtube.com###flexible-item-buttons > yt-button-view-model.ytd-menu-renderer.style-scope:nth-of-type(1)
+! Join
+www.youtube.com###sponsor-button
+! Remove empty spaces in grid
+www.youtube.com##ytd-rich-grid-row,#contents.ytd-rich-grid-row:style(display: contents !important)
+! Hide all videos containing the phrase "#shorts"
+www.youtube.com##ytd-grid-video-renderer:has(#video-title:has-text(/(^| )#Shorts?( |$)/i))
+www.youtube.com##ytd-rich-item-renderer:has(#video-title:has-text(/(^| )#Shorts?( |$)/i))
+! Hide all videos with the shorts indicator on the thumbnail
+www.youtube.com##ytd-grid-video-renderer:has([overlay-style="SHORTS"])
+www.youtube.com##ytd-rich-item-renderer:has([overlay-style="SHORTS"])
+www.youtube.com##ytd-video-renderer:has([overlay-style="SHORTS"])
+www.youtube.com##ytd-item-section-renderer.ytd-section-list-renderer[page-subtype="subscriptions"]:has(ytd-video-renderer:has([overlay-style="SHORTS"]))
+! Hide shorts button in sidebar
+www.youtube.com##ytd-guide-entry-renderer:has(yt-formatted-string:has-text(/^Shorts$/i))
+! Tablet resolution
+www.youtube.com##ytd-mini-guide-entry-renderer:has(.title:has-text(/^Shorts$/i))
+! Hide shorts section on homepage
+www.youtube.com##ytd-rich-section-renderer:has(#title:has-text(/(^| )Shorts( |$)/i))
+www.youtube.com##ytd-reel-shelf-renderer:has(.ytd-reel-shelf-renderer:has-text(/(^| )Shorts( |$)/i))
+! Hide shorts tab on channel pages`
+! Old style
+www.youtube.com##tp-yt-paper-tab:has(.tp-yt-paper-tab:has-text(Shorts))
+! New style (2023-10)
+www.youtube.com##yt-tab-shape:has-text(/^Shorts$/)
+! Hide short remixes in video descriptions
+www.youtube.com##ytd-reel-shelf-renderer.ytd-structured-description-content-renderer:has-text(/^Shorts remixing this video$/i)
+! Hide shorts category on homepage and search pages
+www.youtube.com##yt-chip-cloud-chip-renderer:has(yt-formatted-string:has-text(/^Shorts$/i))
+
+
+! Anilist
+anilist.co##.recent-threads
+anilist.co##.recent-reviews
+anilist.co##a.link:nth-of-type(5)
+anilist.co##.mobile-nav-hidden.filter-group
+
+! flixhq
+||flixhq.bz/assets/_bnx/anix_7xx.gif$image
+flixhq.bz##.site-content > .text-center.mb-3
+
+
+! anime4up.cam
+! Pinned 
+anime4up.cam##div.page-content-container.content:nth-of-type(4) > .container
+! Espace
+anime4up.cam##.content.space
+anime4up.cam##div:nth-of-type(5)
+anime4up.cam##div.page-content-container.content
+! Top page
+anime4up.cam##section.text-white.text-center.anime4up-blue:nth-of-type(1)
+anime4up.cam##[href="https://halacima.media/"]
+anime4up.cam##[href="https://3isq.cam/"]
+
+
+! 2024-04-13 https://aniwave.to
+||aniwave.to/assets/_bnx/mangafire_7xx.gif$image
+||aniwave.to/assets/_bnx/mangafire_7xx.gif$image
+
