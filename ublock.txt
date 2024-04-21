@@ -48,7 +48,6 @@ flixhq.bz##.site-content > .text-center.mb-3
 anime4up.cam##div.page-content-container.content:nth-of-type(4) > .container
 ! Espace
 anime4up.cam##.content.space
-anime4up.cam##div:nth-of-type(5)
 anime4up.cam##div.page-content-container.content
 ! Top page
 anime4up.cam##section.text-white.text-center.anime4up-blue:nth-of-type(1)
@@ -56,7 +55,7 @@ anime4up.cam##[href="https://halacima.media/"]
 anime4up.cam##[href="https://3isq.cam/"]
 
 
-! aniwave.to
+! 2024-04-13 https://aniwave.to
 ||aniwave.to/assets/_bnx/mangafire_7xx.gif$image
 ||aniwave.to/assets/_bnx/mangafire_7xx.gif$image
 
