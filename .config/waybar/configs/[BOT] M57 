@@ -21,28 +21,27 @@
 	"custom/separator#line",
 	"hyprland/workspaces#4",
 	"custom/separator#line",
-	"custom/weather",
-	"custom/separator#line",
 	"custom/prayers", 
+	"custom/separator#dot",
+	"custom/playerctl",
     ],
 
 "modules-center": [
-	"hyprland/window"
+	"hyprland/window",
 	], 
 
 "modules-right": [
+	"custom/separator#dot",
 	"idle_inhibitor",
-	"custom/separator#dot-line", 
+	"custom/separator#line", 
 	"tray",
-	"custom/separator#line",
-	"pulseaudio",
 	"custom/separator#line", 
 	"battery",
 	"custom/separator#line",
-	"custom/keyboard",
+	"custom/weather",
 	"custom/separator#line",
 	"clock",
-	"custom/separator#dot-line",
+	"custom/separator#dot",
 	"custom/swaync",
 	],
 }

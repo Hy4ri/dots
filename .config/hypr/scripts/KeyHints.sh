@@ -40,6 +40,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " enter" "Terminal" "(kitty)" \
 " SHIFT Enter" "Sys Monitor" "(Btop)" \
 " Z" "App Launcher" "(rofi)" \
+" S" "Google Search" "(rofi)" \
 " T" "Open File Manager" "(Thunar)" \
 " Q" "close active window" "(not kill)" \
 " Shift Q " "closes a specified window" "(window)" \

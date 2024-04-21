@@ -526,12 +526,12 @@
 },
   
 "custom/playerctl": {
-    "format": "<span>{}</span>",
+    "format": "{}",
     "return-type": "json",
     "max-length": 35,
-    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} ~ {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-    "on-click-middle": "playerctl play-pause",
-    "on-click": "playerctl previous",
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} :{{artist}} ~ {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click-middle": "playerctl previous",
+    "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
     "scroll-step": 5.0,
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
