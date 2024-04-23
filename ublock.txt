@@ -55,7 +55,14 @@ anime4up.cam##[href="https://halacima.media/"]
 anime4up.cam##[href="https://3isq.cam/"]
 
 
-! 2024-04-13 https://aniwave.to
+! aniwave.to
 ||aniwave.to/assets/_bnx/mangafire_7xx.gif$image
 ||aniwave.to/assets/_bnx/mangafire_7xx.gif$image
+
+! twitch.tv
+www.twitch.tv##.cpXVwB.Layout-sc-1xcs6mc-0
+www.twitch.tv##.hPfSAv.Layout-sc-1xcs6mc-0 > .kBtJDm.InjectLayout-sc-1i43xsx-0 > .gmCwLG.bTXTVH.ScCoreButtonPrimary-sc-ocjdkq-1.ScCoreButton-sc-ocjdkq-0
+www.twitch.tv##.prime-offers.cwtKyw.Layout-sc-1xcs6mc-0 > .hatIYF.Layout-sc-1xcs6mc-0 .kBtJDm.InjectLayout-sc-1i43xsx-0 .eSFFfM.ScButtonIcon-sc-9yap0r-0.bTXTVH.ScCoreButton-sc-ocjdkq-0
+www.twitch.tv##div.czRfnU.Layout-sc-1xcs6mc-0:nth-of-type(5)
+www.twitch.tv##div.czRfnU.Layout-sc-1xcs6mc-0:nth-of-type(6)
 
