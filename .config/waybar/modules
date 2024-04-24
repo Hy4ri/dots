@@ -110,10 +110,11 @@
     //"format": " {icon} ",
     "show-special": false,
     "on-click": "activate",
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
     "all-outputs": true,
     "sort-by-number": true,
+    "active-only": false,
     "format-icons": {
       "1": "󰬺",
       "2": "󰬻",
@@ -286,9 +287,13 @@
           "(.*) - Vivaldi": "󰖟  $1",
           "(.*) - Brave": "󰖟  $1",
           "(.*) - YouTube - (.*)": "  $1",
-          "(.*) - Thunar": " $1",
+          "(.*) - Thunar": "  $1",
           "(.*) - fish": "> [$1]",
           "(.*) - mpv": "  $1",
+          "(.*) - Visual Studio Code": "󰨞  $1",
+          "(.*)Visual Studio Code": "󰨞  Code",
+          "(.*)Spotify": "󰓇  Spotify",
+          "(.*)Steam": "󰓓  Steam",
       "(.*) - zsh": "> [$1]",
       "(.*) - kitty": "> [$1]",
     },
@@ -298,7 +303,7 @@
     "format": "{icon}",
     "format-icons": {
       "activated": "󰥔 ",
-      "deactivated": " ",
+      "deactivated": " "
                     }
 },
     

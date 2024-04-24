@@ -7,7 +7,9 @@
 /*"mode": "dock",*/
 "exclusive": true,
 "passthrough": false,
+"gtk-layer-shell": true,
 "position": "top",
+"reload_style_on_change": true,
 "spacing": 1,
 "fixed-center": true,
 "ipc": true,
