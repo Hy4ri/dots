@@ -12,15 +12,13 @@
 @define-color accent5 #7da6ff;
 @define-color accent6 #0db9d7;
 
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Translucent */
 
 * {
 font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
 min-height: 0;
 /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 97%;
+font-size: 98%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 1px;
 }
@@ -79,15 +77,19 @@ tooltip label{
     color: #cd3244;
     padding-left: 5px;
     padding-right: 5px;
+    font-size: 1.2rem;
+    font-weight: bolder;
    /* animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);*/
 }
 
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
-	color: @accent3;
+	color: pink;
     padding-left: 5px;
     padding-right: 5px;
+    font-size: 1.1rem;
+    font-weight: bolder;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -95,7 +97,7 @@ tooltip label{
 #workspaces button.focused {
     background-color: #bbccdd;
     color: #9f2635;
-    /* box-shadow: inset 0 -3px #ffffff; */
+    box-shadow: inset 0 -3px #ffffff; 
 }
 
 #workspaces button.urgent {
@@ -177,10 +179,10 @@ tooltip label{
     color: rgb(177, 255, 20);
 }
 
-/* #battery.charging {
+#battery.charging {
     color: #ffffff;
-    background-color: #26A65B;
-} */
+    background-color: rgba(38, 166, 91,0.2);
+} 
 
 @keyframes blink {
     to {
@@ -233,7 +235,7 @@ label:focus {
 }
 
 #pulseaudio {
-    color: #00f1fe ;
+    color: rgba(255, 255, 255 ,0.7) ;
 }
 
 #pulseaudio-muted {

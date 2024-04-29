@@ -390,7 +390,7 @@
 },
       
 "pulseaudio": {
-    "format": "{icon} {volume}",
+    "format": "{icon}",
     "format-bluetooth": "{icon} 󰂰 {volume}%",
     "format-muted": "",
     "format-icons": {
@@ -415,10 +415,10 @@
       
 "pulseaudio#microphone": {
     "format": "{format_source}",
-    "format-source": " {volume}%",
+    "format-source": "",
     "format-source-muted": "",
     "on-click": "~/.config/hypr/scripts/Volume.sh --toggle-mic",
-    "on-click-right": "pavucontrol -t 4",
+    "on-click-right": "pavucontrol -t 1",
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --mic-inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --mic-dec",
 	"tooltip-format": "{source_desc} | {source_volume}%",
@@ -534,7 +534,7 @@
     "format": "{}",
     "return-type": "json",
     "max-length": 35,
-    "exec": "playerctl -a metadata --format '{\"text\": \"{{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} :{{artist}} ~ {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{markup_escape(title)}}\", \"tooltip\": \"{{artist}} ~ {{playerName}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
     "on-click-middle": "playerctl previous",
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
@@ -555,7 +555,7 @@
 
 "custom/swaync": {
     "tooltip":true,     
-    "format": "{icon} {}",
+    "format": "{icon}",
     "format-icons": {
       "notification": "<span foreground='red'><sup></sup></span>",
       "none": "",
