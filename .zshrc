@@ -36,7 +36,7 @@ alias mkdir='mkdir -p'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
 
 #update spicetify
-alias spupdate='spicetify update && spicetify restore backup apply'
+alias spicetifyupdate='spicetify update && spicetify restore backup apply'
 
 #ARCHIVE EXTRACT
 ex ()
