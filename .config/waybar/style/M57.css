@@ -14,7 +14,7 @@
 
 
 * {
-font-family: "JetBrainsMono Nerd Font";
+font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
 font-weight: bold;
 min-height: 0;
 /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
@@ -49,14 +49,14 @@ window#waybar.empty #window {
 tooltip {
     background: #1e1e1e;
     opacity: 0.8;
-    border-radius: 2px;
-    border-width: 3px;
+    border-radius: 3px;
+    border-width: 1px;
     border-style: solid;
-    border-color: #11111b;
+    border-color: #cd3244;
 }
 
 tooltip label{
-    color: #ffffff;
+    color: #f3f4f5;
 }
 
 #workspaces button {
@@ -130,6 +130,7 @@ tooltip label{
 #window,
 #wireplumber,
 #workspaces,
+#custom/playerctl,
 #custom-prayers,
 #custom-backlight,
 #custom-cycle_wall,
