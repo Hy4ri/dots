@@ -52,10 +52,11 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " ALT B" "Choose waybar layout" "(waybar layout)" \
 " ALT R" "Reload Waybar swaync Rofi" "CHECK NOTIFICATION FIRST!!!" \
 " SHIFT N" "Launch Notification Panel" "swaync Notification Center" \
-" Print" "screenshot" "(grim)" \
-" Shift S" "screenshot region" "(grim + slurp)" \
-" Shift Print" "screenshot region" "(swappy)" \
-"ALT Print" "Screenshot active window" "active window only" \
+"Print" "screenshot"\
+" Shift S" "screenshot region"\
+" Print" "Screenshot active window"\
+"Ctrl Print" "Screenshot in 5sec"\
+"ALT Print" "Screenshot in 10sec"\
 "CTRL ALT P" "power-menu" "(wlogout)" \
 "CTRL ALT L" "screen lock" "(swaylock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
