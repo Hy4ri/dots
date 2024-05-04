@@ -33,7 +33,7 @@ mainbox {
     spacing:                     0em;
     padding:                     0em;
     orientation:                 vertical;
-    children:                    [ "listbox" , "inputmode" ];
+    children:                    [ "listbox"];
     background-color:            transparent;
 }
 
@@ -51,7 +51,7 @@ listview {
     padding:                     0.5em;
     spacing:                     0.2em;
     enabled:                     true;
-    columns:                     2;
+    columns:                     3;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
