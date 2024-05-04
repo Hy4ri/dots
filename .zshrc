@@ -65,4 +65,4 @@ ex ()
 }
 
 eval "$(zoxide init zsh)"
-neofetch
+fastfetch --logo small --color-keys red --logo-color-1 red
