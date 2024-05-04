@@ -475,7 +475,7 @@
     "tooltip": true,
 },
       
-"custom/keybinds": {
+"custom/hint": {
     "format":"󰺁 HINT!",
     "exec": "echo ; echo  Key Hints SUPER H",
     "on-click": "~/.config/hypr/scripts/KeyHints.sh",
