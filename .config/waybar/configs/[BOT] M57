@@ -26,6 +26,7 @@
 		], 
 	
 	"modules-right": [
+		"custom/gammastep",
 		"custom/separator#dot",
 		"idle_inhibitor",
 		"custom/separator#line", 

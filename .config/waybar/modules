@@ -116,21 +116,21 @@
     "sort-by-number": true,
     "active-only": false,
     "format-icons": {
-      "1": "󰬺",
-      "2": "󰬻",
-      "3": "󰬼",
-      "4": "󰬽",
-      "5": "󰬾",
-      "6": "󰬿",
-      "7": "󰭀",
-      "8": "󰭁",
-      "9": "󰭂",
-      "10":"󰿩",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10":"",
       "focused": "",
       "default": "",
     },
 },
- 
+
 // GROUP
   
 "group/motherboard": {
@@ -243,7 +243,22 @@
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down"
 },
-   
+"clock#1": {
+    "format": " {:%a}",
+    "tooltip": false,
+    "on-click": "gsimplecal"
+},
+"clock#2": {
+    "format": " {:%d-%h-%Y}",
+    "tooltip": false,
+    "on-click": "gsimplecal"
+},
+"clock#3": {
+    "format": " {:%I:%M:%S %p}",
+    "tooltip": false,
+    "on-click": "gsimplecal"
+},
+
 "cpu": {
     "format": "{usage}% 󰍛",  
     "interval": 1,
@@ -252,7 +267,7 @@
     "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "on-click-right": "gnome-system-monitor",
 },
-    
+
 "disk": {
     "interval": 30,
     //"format": "󰋊",
@@ -465,7 +480,21 @@
           "rofi",  
                    ]
 },
-      
+
+"custom/gammastep": {
+    "format": "{}",
+    "interval": 5,
+    "on-update": "",
+    "exec": "sleep 0.05; /usr/bin/gammastep.sh",
+    "on-click": "/usr/bin/gammastep.sh toggle"
+},
+
+"custom/terminal": {
+    "format": "",
+    "on-click": "kitty",
+    "on-click-middle": "pkill -9 kitty"
+},
+
 "custom/cycle_wall":{
     "format":" ",
     "exec": "echo ; echo 󰸉 wallpaper select",
