@@ -31,7 +31,6 @@ mainbox {
 
 // Inputs //
 inputbar {
-    height:                       1em;
     enabled:                     true;
     padding:                     0.5em;
     children:                    [ "entry" ];

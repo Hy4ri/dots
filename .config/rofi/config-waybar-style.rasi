@@ -1,15 +1,8 @@
 // Config //
 configuration {
-    modi:                        "drun,filebrowser";
+    modi:                        "drun";
     show-icons:                  false;
-    display-drun:                "";
-    display-run:                 "";
-    display-filebrowser:         "";
-    display-window:              "";
-    drun-display-format:         "{name}";
-    window-format:               "{w}{t}";
-    font:                        "JetBrainsMono Nerd Font 10";
-    icon-theme:                  "Tela-circle-dracula";
+    font:                        "JetBrainsMono Nerd Font 15";
 }
 
 @theme "~/.config/rofi/themes/theme.rasi"
@@ -69,7 +62,7 @@ inputmode {
     padding:                     0em;
     spacing:                     0em;
     orientation:                 horizontal;
-    children:                    [ "inputbar" , "mode-switcher" ];
+    children:                    [ "inputbar"];
     background-color:            transparent;
 }
 inputbar {
@@ -90,31 +83,6 @@ entry {
     text-color:                  @main-tc;
     background-color:            @main-bg;
 }
-
-
-// Modes //
-mode-switcher {
-    width:                       13em;
-    orientation:                 horizontal;
-    enabled:                     true;
-    padding:                     1.5em 2.5em 1.5em 0em;
-    spacing:                     1em;
-    background-color:            transparent;
-}
-button {
-    cursor:                      pointer;
-    vertical-align:              0.50;
-    horizontal-align:            0.45;
-    padding:                     0em;
-    border-radius:               3em;
-    background-color:            @main-bg;
-    text-color:                  @main-fg;
-}
-button selected {
-    background-color:            @main-fg;
-    text-color:                  @main-bg;
-}
-
 
 // Elements //
 element {
