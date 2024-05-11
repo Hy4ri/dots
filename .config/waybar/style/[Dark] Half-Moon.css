@@ -42,7 +42,7 @@ window#waybar {
   border-radius: 15px;
   border: 0px;
   color: #ffffff;
-  background: linear-gradient(45deg, #000000, #1e2e3e);
+  background: linear-gradient(45deg, #1b2630, #1e2e3e);
   opacity: 1.0;
   min-width: 40px;
   transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
@@ -51,10 +51,16 @@ window#waybar {
 #workspaces button:hover {
   border-radius: 15px;
   color: pink;
-  background: linear-gradient(45deg, #1e2e3e, #000000);
+  background: linear-gradient(45deg, #1e2e3e, #1b2630);
   opacity: 0.8;
   transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 
+}
+
+#workspaces button.urgent {
+	background: linear-gradient(45deg, rgb(34, 100, 34), #1b2630);
+	transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+	opacity: 0.8;
 }
 @keyframes gradient_horizontal {
 0% {
@@ -301,6 +307,12 @@ color: #F3F4F5;
 #custom-playerctl{
   color:#FFFFFF;
   background: #0F1419;
+	border-radius: 50px 50px;
+	margin: 2px;
+	padding: 2px 15px;
+}
+#custom-gammastep {
+	background: #0F1419;
 	border-radius: 50px 50px;
 	margin: 2px;
 	padding: 2px 15px;

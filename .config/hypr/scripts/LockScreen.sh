@@ -1,3 +1,3 @@
 #!/bin/bash
 
-hyprlock
+hyprlock -q --immediate

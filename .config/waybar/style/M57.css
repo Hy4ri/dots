@@ -138,6 +138,7 @@ tooltip label{
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
+#custom-gammastep,
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
@@ -384,3 +385,4 @@ label:focus {
 #custom-prayers{
     color:  rgb(177, 255, 20);;
 }
+

@@ -26,9 +26,9 @@
 	], 
 
 "modules-right": [
-	"custom/gammastep",
-	"custom/separator#dot",
-	"idle_inhibitor",
+    "custom/separator#dot",
+    "idle_inhibitor",
+    "custom/gammastep",
 	"custom/separator#line", 
 	"tray",
 	"pulseaudio#microphone",
