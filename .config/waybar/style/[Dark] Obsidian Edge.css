@@ -1,7 +1,7 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
 /* Dark - Obsidian Edge */
 
-@import '../../.cache/wal/colors-waybar.css';
+@import '../../.config/waybar/wallust/colors-waybar.css';
 
 * {
 font-family: "JetBrainsMono Nerd Font";
@@ -74,7 +74,7 @@ tooltip label {
 }
 
 #workspaces button {
-    color: @color2;
+    color: @color12;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;

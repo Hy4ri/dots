@@ -1,5 +1,5 @@
 @define-color noti-border-color rgba(159 , 38 , 53 , 0.8);
-@define-color noti-bg rgba(0, 0, 0, 0.3);
+@define-color noti-bg rgba(0, 0, 0, 0.8);
 @define-color noti-bg-alt rgba(0, 0, 0, 0.8);
 @define-color noti-bg-hover rgba(159 , 38 , 53 , 0.8);
 @define-color text-color rgba(255 ,255, 255, 0.8);

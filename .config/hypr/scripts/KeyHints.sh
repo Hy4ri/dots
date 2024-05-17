@@ -52,13 +52,13 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " ALT B" "Choose waybar layout" "(waybar layout)" \
 " ALT R" "Reload Waybar swaync Rofi" "CHECK NOTIFICATION FIRST!!!" \
 " SHIFT N" "Launch Notification Panel" "swaync Notification Center" \
-"Print" "screenshot"\
-" Shift S" "screenshot region"\
-" Print" "Screenshot active window"\
-"Ctrl Print" "Screenshot in 5sec"\
-"ALT Print" "Screenshot in 10sec"\
+"Print" "screenshot" "sc" \
+" Shift S" "screenshot region" "sc" \
+" Print" "Screenshot active window" "sc" \
+"Ctrl Print" "Screenshot in 5sec" "sc" \
+"ALT Print" "Screenshot in 10sec" "sc" \
 "CTRL ALT P" "power-menu" "(wlogout)" \
-"CTRL ALT L" "screen lock" "(swaylock)" \
+"CTRL ALT L" "screen lock" "(hyprlock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
 " F" "Fullscreen" "Toggles to full screen" \
 " ALT L" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
@@ -66,7 +66,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 " ALT F" "Toggle all windows to float" "all windows" \
 " Shift B" "Toggle Blur" "normal or less blur" \
 " SHIFT G" "Gamemode! All animations OFF or ON" "toggle" \
-" E" "View or EDIT Keybinds, Settings, Monitor" "" \
+" E" "EDIT Settings" "rofi-nvim" \
 " V" "Open Browser" "Vivaldi" \
 " G" "Open GamesLancher" "Cartridges" \
 " D" "Open Discord" "Vesktop" \

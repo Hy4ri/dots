@@ -104,8 +104,8 @@
     }
 },
   
-//  NUMBERS and ICONS style
-"hyprland/workspaces#4": {
+//  NUMBERS style
+"hyprland/workspaces#No": {
     "format": "{name}",
     //"format": " {icon} ",
     "show-special": false,
@@ -131,6 +131,32 @@
     },
 },
 
+//  NUMBERS and ICONS style
+"hyprland/workspaces#4": {
+    "format": "{name}",
+    "format": " {name} {icon} ",
+    //"format": " {icon} ",
+    "show-special": false,
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "all-outputs": true,
+    "sort-by-number": true,
+    "format-icons": {
+      "1": " ",
+      "2": " ",
+      "3": " ",
+      "4": " ",
+      "5": " ",
+      "6": " ",
+      "7": "",
+      "8": " ",
+      "9": "",
+      "10": "10",
+      "focused": "",
+      "default": "",
+    },
+},
 // GROUP
   
 "group/motherboard": {
@@ -201,8 +227,8 @@
     "format-time": "{H}h {M}min",
     "tooltip": true,
     "tooltip-format": "{timeTo} {power}w",
-    "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
     "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
+    "on-click-middle": "~/.config/hypr/UserScripts/RefreshRateChange.sh",
 },
       
 "bluetooth": {
@@ -292,11 +318,12 @@
 },
     
 "hyprland/window": {
-    "format": "{}",
+    "format": "{title}",
     "max-length": 120,
     "separate-outputs": true,
     "offscreen-css" : true,
     "offscreen-css-text": "(inactive)",
+    "icon":"true",
      "rewrite": {
           "(.*) — Mozilla Firefox": "  $1",
           "(.*) - Vivaldi": "$1",
@@ -310,7 +337,7 @@
           "(.*)Spotify": "󰓇  - Spotify",
           "(.*)Steam": "󰓓  - Steam",
       "(.*) - zsh": "> [$1]",
-      "(.*) - kitty": "> [$1]",
+      "(.*) - $term": "> [$1]",
     },
 },
   
@@ -347,9 +374,8 @@
 },
 
 "mpris": {
-    "interval": 10,
-	"format": "{player_icon} ",
-	"format-paused": "{status_icon} <i>{dynamic}</i>",
+    "interval": 1,
+	"format": "{title}",
 	"on-click": "playerctl play-pause",
     "on-click-middle": "playerctl previous",
     "on-click-right": "playerctl next",
@@ -372,7 +398,7 @@
         "playing": "",
         "stopped": "",
 	},
-	//"ignored-players": ["firefox"],
+	"ignored-players": ["chromium"],
 	"max-length": 30,
 },
       
@@ -498,8 +524,8 @@
 "custom/cycle_wall":{
     "format":" ",
     "exec": "echo ; echo 󰸉 wallpaper select",
-    "on-click": "~/.config/hypr/scripts/WallpaperSelect.sh",
-    "on-click-right": "~/.config/hypr/scripts/Wallpaper.sh",
+    "on-click": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
+        "on-click-right": "~/.config/hypr/UserScripts/WallpaperRandom.sh",
     "on-click-middle": "~/.config/hypr/scripts/WaybarStyles.sh",
     "interval" : 86400, // once every day
     "tooltip": true,
@@ -544,15 +570,15 @@
     "interval" : 86400, // once every day
     "tooltip": true,
     "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser,window",
-    "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",
+    "on-click-middle": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
     "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
 },
 "custom/prayers": {
+    "format": "{}",
     "interval": 60,
     "return-type": "json",
     "exec": "$HOME/.local/bin/prayer-times status",
-    "on-click": "$HOME/.local/bin/prayer-times yad",
-    "format": "󱠧  {}",
+    "on-click": "$HOME/.local/bin/prayer-times yad"
 },
 // This is a custom cava visualizer
 "custom/cava_mviz": {
@@ -608,9 +634,8 @@
 "custom/updater":{
     "format": " {}",
     "exec": "checkupdates | wc -l",
-    "exec-if": "[[ $(checkupdates | wc -l) ]]",
-    "interval": 15,
-    "on-click": "kitty -T update paru -Syu || yay -Syu && notify-send 'The system has been updated'",
+    "interval": 86400,
+    "on-click": "kitty -T update paru -Syyu && notify-send 'The system has been updated'",
 },
     
 "custom/weather": {

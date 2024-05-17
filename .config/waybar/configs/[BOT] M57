@@ -14,11 +14,12 @@
 	"margin-right": 0,
 	
 	"modules-left": [
-		"hyprland/workspaces#4",
+		"custom/updater",
+		"hyprland/workspaces#No",
 		"custom/separator#line",
 		"custom/prayers", 
 		"custom/separator#dot",
-		"custom/playerctl"
+		"mpris"
 		],
 	
 	"modules-center": [

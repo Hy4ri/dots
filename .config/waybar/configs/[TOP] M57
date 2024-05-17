@@ -14,11 +14,11 @@
 "margin-right": 0,
 
 "modules-left": [
-	"hyprland/workspaces#4",
+	"hyprland/workspaces#No",
 	"custom/separator#line",
 	"custom/prayers", 
 	"custom/separator#dot",
-	"custom/playerctl"
+	"mpris"
     ],
 
 "modules-center": [
@@ -31,11 +31,12 @@
     "custom/gammastep",
 	"custom/separator#line", 
 	"tray",
+	"custom/updater",
 	"pulseaudio#microphone",
 	"custom/separator#line", 
-	"battery",
-	"custom/separator#line",
 	"custom/weather",
+	"custom/separator#line",
+	"battery",
 	"custom/separator#line",
 	"clock",
 	"custom/separator#dot",
