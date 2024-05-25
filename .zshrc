@@ -28,18 +28,16 @@ alias parus='paru -S'
 alias clock='tty-clock -c -C7 -b -t -n'
 alias paruclean='paru -Sc' # remove unused cache
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-
-# Always mkdir a path (this doesn't inhibit functionality to make a single dir)
+alias fastfetch='fastfetch --logo small --color-keys red --logo-color-1 red'
 alias mkdir='mkdir -p'
-
-#Weather in As-Salt
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
-
-#update spicetify
-alias spicetifyupdate='spicetify update && spicetify restore backup apply'
-
+alias spupdate='pkill spotify && spicetify update ; curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh ; spicetify restore backup apply'
+alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
+alias 2x='upscayl'
+alias wayon='waydroid show-full-ui '
+alias wayoff='waydroid session stop'
 #ARCHIVE EXTRACT
-ex ()
+unzip ()
 {
     if [ -f $1 ] ; then
       case $1 in
