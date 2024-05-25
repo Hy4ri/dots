@@ -157,6 +157,42 @@
       "default": "",
     },
 },
+
+// NUMBERS and ICONS style with window rewrite
+"hyprland/workspaces#rw": {
+	"disable-scroll": true,
+	"all-outputs": true,
+	"warp-on-scroll": false,
+	"sort-by-number": true,
+	"show-special": true,
+	"on-click": "activate",
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"format": "{icon} {windows}",
+	"format-window-separator": " ",
+	"window-rewrite-default": " ",
+	"window-rewrite": {
+		"title<.*youtube.*>": " ",
+		"title<.*amazon.*>": " ",
+		"title<.*reddit.*>": " ",
+		"title<.*Picture-in-Picture.*>": " ",
+		"class<firefox>": " ",
+		"class<kitty>": " ",
+		"class<konsole>": " ",
+		"class<thunar>": "󰝰 ",
+		"class<discord>": " ",
+		"class<subl>": "󰅳 ",
+		"class<celluloid>": " ",
+		"class<Cider>": "󰎆 ",
+		"class<code-oss>": "󰨞 ",
+		"class<codium|codium-url-handler|VSCodium>": "󰨞 ",
+		"class<codeblocks>": "󰅩 ",
+		"class<mousepad>": " ",
+		"class<libreoffice-writer>": " ",
+		"class<libreoffice-startcenter>": "󰏆 "
+		}   
+},
+
 // GROUP
   
 "group/motherboard": {
@@ -168,9 +204,24 @@
       "disk",
       ]	
 },
-  
+
+"group/mobo_drawer": {
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 500,
+		"children-class": "cpu",
+		"transition-left-to-right": true
+        },
+	"modules": [
+		"temperature",		
+		"cpu",	
+		"memory",
+		"disk",
+	]
+},
+
 "group/laptop": {
-    "orientation": "horizontal",
+    "orientation": "inherit",
     "modules": [
       "backlight",
       "battery",
@@ -178,13 +229,42 @@
 },
   
 "group/audio": {
-    "orientation": "horizontal",
+    "orientation": "inherit",
+	"drawer": {
+		"transition-duration": 1000,
+		"children-class": "pulseaudio#microphone",
+        },
     "modules": [
-      "pulseaudio",
       "pulseaudio#microphone",
+      "pulseaudio"
       ]	
 },
  
+"group/connections": {
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 500,
+		"children-class": "bluetooth",
+		"transition-left-to-right": true
+        },
+	"modules": [
+		"network",
+		"bluetooth",
+	]
+},
+"group/power": {
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 1000,
+        },
+	"modules": [
+        "battery",
+		"power-profiles-daemon",
+        "backlight",
+        "custom/gammastep"
+	]
+},
+
 "backlight": {
     "interval": 2,
     "align": 0,
@@ -205,7 +285,7 @@
 },
       
 "battery": {
-    //"interval": 5,
+    "interval": 5,
     "align": 0,
     "rotate": 0,
     //"bat": "BAT1",
@@ -275,6 +355,13 @@
     "on-click": "gsimplecal"
 },
 "clock#2": {
+	// "timezone": "America/New_York",
+	"format": " {:%I:%M %p}", // AM PM format
+	//"format": "  {:%H:%M}",
+    "format-alt": "{:%A  |  %H:%M  |  %e %B}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+},
+"clock#4": {
     "format": " {:%d-%h-%Y}",
     "tooltip": false,
     "on-click": "gsimplecal"
@@ -347,7 +434,7 @@
       "activated": "󰥔 ",
       "deactivated": " "
                     },
-    "on-click-right" : "hyprlock"                
+    "on-click-right" : "/home/m57/.config/hypr/scripts/LockScreen.sh"                
 },
     
 "keyboard-state": {
@@ -430,7 +517,19 @@
     "max-length": 50,
     "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"]
 },
-      
+
+"power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },   
+     
 "pulseaudio": {
     "format": "{icon}",
     "format-bluetooth": "{icon} 󰂰 {volume}%",

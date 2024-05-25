@@ -12,6 +12,7 @@ declare -A online_music=(
   ["Rain 🌧️ "]="https://soundcloud.com/relaxing-white-noise/rain-ocean-waves-storm-sounds-for-sleep-75-minutes"
   ["WaterFall 🌊"]="https://soundcloud.com/relaxing-white-noise/relaxing-waterfall-sounds-for"
   ["AfroBeatz 2024 🎧"]="https://www.youtube.com/watch?v=7uB-Eh9XVZQ"
+  ["AfroBeatz 2024 🎧"]="https://www.youtube.com/watch?v=7uB-Eh9XVZQ"
   ["Lofi Girl ☕️🎶"]="https://play.streamafrica.net/lofiradio"
   ["Easy Rock 96.3 FM 📻🎶"]="https://radio-stations-philippines.com/easy-rock"
   ["Wish 107.5 FM 📻🎶"]="https://radio-stations-philippines.com/dwnu-1075-wish"
@@ -66,7 +67,6 @@ play_local_music() {
   mpv --shuffle --vid=no "$file"
 }
 
-
 # Main function for playing online music
 play_online_music() {
   choice=$(printf "%s\n" "${!online_music[@]}" | rofi -i -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi -p "Online Music")
@@ -87,7 +87,7 @@ play_online_music() {
 pkill mpv && notify-send -u low -i "$iDIR/music.png" "Online Music stopped" || {
 
 # Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Music Folder\nPlay from Online Stations" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
+user_choice=$(printf "Play from Online Stations\nPlay from Music Folder" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
 
   case "$user_choice" in
     "Play from Music Folder")

@@ -58,7 +58,7 @@ yad --width=$dynamic_width --height=$dynamic_height \
 "Ctrl Print" "Screenshot in 5sec" "sc" \
 "ALT Print" "Screenshot in 10sec" "sc" \
 "CTRL ALT P" "power-menu" "(wlogout)" \
-"CTRL ALT L" "screen lock" "(hyprlock)" \
+" L" "screen lock" "(hyprlock)" \
 "CTRL ALT Del" "Hyprland Exit" "(SAVE YOUR WORK!!!)" \
 " F" "Fullscreen" "Toggles to full screen" \
 " ALT L" "Toggle Dwindle | Master Layout" "Hyprland Layout" \
