@@ -14,12 +14,12 @@
 	"margin-right": 0,
 	
 	"modules-left": [
-		"custom/updater",
 		"hyprland/workspaces#No",
 		"custom/separator#line",
 		"custom/prayers", 
 		"custom/separator#dot",
-		"mpris"
+		"mpris",
+		"custom/cava_mviz"
 		],
 	
 	"modules-center": [
@@ -28,15 +28,15 @@
 	
 	"modules-right": [
 		"custom/separator#dot",
-	  "idle_inhibitor",
-	  "custom/gammastep",
+		"custom/timer",
 		"custom/separator#line", 
 		"tray",
-		"pulseaudio#microphone",
+		"custom/updater",
+		"group/audio",
 		"custom/separator#line", 
-		"battery",
-		"custom/separator#line",
 		"custom/weather",
+		"custom/separator#line",
+		"group/power",
 		"custom/separator#line",
 		"clock",
 		"custom/separator#dot",

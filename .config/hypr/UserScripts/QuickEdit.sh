@@ -21,34 +21,34 @@ main() {
     choice=$(menu | rofi -i -dmenu -config ~/.config/rofi/config-confedit.rasi | cut -d. -f1)
     case $choice in
         1)
-            kitty -e nvim "$UserConfigs/ENVariables.conf"
+            foot -e nvim "$UserConfigs/ENVariables.conf"
             ;;
         2)
-            kitty -e nvim "$UserConfigs/WindowRules.conf"
+            foot -e nvim "$UserConfigs/WindowRules.conf"
             ;;
         3)
-            kitty -e nvim "$UserConfigs/Startup_Apps.conf"
+            foot -e nvim "$UserConfigs/Startup_Apps.conf"
             ;;
         4)
-            kitty -e nvim "$UserConfigs/UserKeybinds.conf"
+            foot -e nvim "$UserConfigs/UserKeybinds.conf"
             ;;
         5)
-            kitty -e nvim "$UserConfigs/Monitors.conf"
+            foot -e nvim "$UserConfigs/Monitors.conf"
             ;;
         6)
-            kitty -e nvim "$UserConfigs/Laptops.conf"
+            foot -e nvim "$UserConfigs/Laptops.conf"
             ;;
         7)
-            kitty -e nvim "$UserConfigs/UserSettings.conf"
+            foot -e nvim "$UserConfigs/UserSettings.conf"
             ;;
         8)
-            kitty -e nvim "$configs/Settings.conf"
+            foot -e nvim "$configs/Settings.conf"
             ;;
         9)
-            kitty -e nvim "$configs/Keybinds.conf"
+            foot -e nvim "$configs/Keybinds.conf"
             ;;
         10)
-            kitty -e nvim "$UserConfigs/LaptopDisplay.conf"
+            foot -e nvim "$UserConfigs/LaptopDisplay.conf"
             ;;    
         *)
             ;;

@@ -1,11 +1,5 @@
-//* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-//* ............................................*/
-//* .............CAMELLIA.......................*/
-//* ............................................*/
-//* --- 👍 designed by https://github.com/Krautt  👍 --- */
 
 {
- 
 "include": "~/.config/waybar/modules",
 "layer": "top",
 //"mode": "dock",
@@ -26,7 +20,6 @@
 	"mpris",
 	"custom/swaync", 
 	"tray#cam", 
-	"wlr/taskbar"
 	],
 
 "modules-center": ["hyprland/window#cam"], 
@@ -38,7 +31,6 @@
 	"pulseaudio/slider",
 	"battery#cam",
 	"clock#cam", 
-	"network#cam"
 	],
 
 // Additional modules //
@@ -73,7 +65,7 @@
 },
 
 "hyprland/window#cam": {
-	"format": " {title}",
+	"format": "{title}",
 	"max-length": 50,
 	"rewrite": {
 		"(.*) — Mozilla Firefox": " $1",

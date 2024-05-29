@@ -17,8 +17,8 @@ configuration {
 
 // Main //
 window {
-    height:                      20em;
-    width:                       38em;
+    height:                      15em;
+    width:                       15em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -51,7 +51,7 @@ listview {
     padding:                     0.5em;
     spacing:                     0.2em;
     enabled:                     true;
-    columns:                     3;
+    columns:                     1;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;

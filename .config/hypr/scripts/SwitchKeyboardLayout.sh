@@ -74,5 +74,5 @@ if ! change_layout; then
     exit 1
 else
     # Notification for the new keyboard layout
-	  notify-send -u low -i "$notif" "new KB_Layout: $new_layout"
+	  notify-send -u low -i "$notif" " $new_layout"
 fi
