@@ -1,2 +1,2 @@
 #!/bin/bash
-hyprlock -q --immediate
+pidof hyprlock || hyprlock -q

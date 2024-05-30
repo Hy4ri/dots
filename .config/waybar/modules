@@ -199,8 +199,6 @@
 	"orientation": "inherit",
 	"drawer": {
 		"transition-duration": 500,
-		"children-class": "clock",
-		"transition-left-to-right": true
         },
 	"modules": [
         "clock",
@@ -332,7 +330,7 @@
     "tooltip": true,
     "tooltip-format": "{timeTo} {power}w",
     "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
-    "on-click-middle": "~/.config/hypr/UserScripts/RefreshRateChange.sh",
+    "on-click-middle": "~/.config/hypr/UserScripts/Battery-Saving-mode.sh",
 },
       
 "bluetooth": {
@@ -712,13 +710,6 @@
     "on-click-middle": "$HOME/.config/waybar/Scripts/timer stop",
     "interval": 1
 },
-/*"custom/timerpy": {
-    "exec": "$HOME/.config/waybar/Scripts/timer.py check",
-    "interval": 1,
-    "on-click": "$HOME/.config/waybar/Scripts/timer.py set",
-    "on-click-right": "$HOME/.config/waybar/Scripts/timer.py stop",
-    "tooltip": true
-},*/
 // This is a custom cava visualizer
 "custom/cava_mviz": {
     "exec": "~/.config/hypr/scripts/WaybarCava.sh",
