@@ -17,7 +17,7 @@
 font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
 font-weight: bold;
 min-height: 0;
-font-size: 100%;
+font-size: 99%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
@@ -386,6 +386,11 @@ label:focus {
     color:  rgb(177, 255, 20);;
 }
 #custom-clipboard{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: pink;
+    padding-right:3px ;
+}
+#custom-chatgpt{
+    font-size: 1.1rem;
+    padding-right:3px ;
 }

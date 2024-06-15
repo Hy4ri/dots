@@ -15,11 +15,10 @@
 	
 	"modules-left": [
 		"hyprland/workspaces#No",
-		"custom/separator#line",
+		"custom/separator#dot",
 		"custom/prayers", 
 		"custom/separator#dot",
-		"mpris",
-		"custom/cava_mviz"
+		"mpris"
 		],
 	
 	"modules-center": [
@@ -28,17 +27,13 @@
 	
 	"modules-right": [
 		"custom/separator#dot",
-		"custom/timer",
-		"custom/separator#line", 
-		"tray",
-		"custom/updater",
-		"group/audio",
-		"custom/separator#line", 
+		"group/tray",
+		"custom/separator#dot", 
 		"custom/weather",
-		"custom/separator#line",
+		"custom/separator#dot",
 		"group/power",
-		"custom/separator#line",
-		"clock",
+		"custom/separator#dot",
+		"group/clock",
 		"custom/separator#dot",
 		"custom/swaync"
 		]

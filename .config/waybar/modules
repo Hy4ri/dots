@@ -196,9 +196,10 @@
 // GROUP
 
 "group/clock": {
-	"orientation": "inherit",
+	"orientation": "horizontal",
 	"drawer": {
 		"transition-duration": 500,
+        "transition-left-to-right": true
         },
 	"modules": [
         "clock",
@@ -212,7 +213,7 @@
       "cpu",
       "memory",
       "temperature",
-      "disk",
+      "disk"
       ]	
 },
 
@@ -242,10 +243,21 @@
 "group/tray": {
     "orientation": "inherit",
     "modules": [
+        "group/applets",
+        "group/audio"
+      ]	
+},
+
+"group/applets":{
+    "orientation": "horizontal",
+    "drawer": {
+		"transition-duration": 500
+        },
+    "modules": [
         "tray",
+        "custom/chatgpt",
         "custom/clipboard",
-        "custom/updater",
-        "group/audio",
+        "custom/updater"
       ]	
 },
 
@@ -253,12 +265,12 @@
     "orientation": "inherit",
 	"drawer": {
 		"transition-duration": 500,
-		"children-class": "pulseaudio#microphone",
+		"children-class": "pulseaudio",
         "transition-left-to-right": true
         },
     "modules": [
-      "pulseaudio#microphone",
-      "pulseaudio"
+      "pulseaudio",
+      "pulseaudio#microphone"
       ]	
 },
  
@@ -628,7 +640,12 @@
           "foot-dropterm"  
                    ]
 },
-
+// ChatGPT Launcher
+"custom/chatgpt": {
+    "format": "🤖",
+    "on-click": "vivaldi --app=https://chat.openai.com",
+    "tooltip-format": "Open ChatGPT"
+},
 "custom/gammastep": {
     "format": "{}",
     "interval": 5,
@@ -696,9 +713,9 @@
 },
 "custom/prayers": {
     "format": "{}",
-    "interval": 60,
+    "interval": 15,
     "return-type": "json",
-    "exec": "$HOME/.local/bin/prayer-times status",
+    "exec": "/home/m57/.config/waybar/Scripts/prayer-notify.sh ; $HOME/.local/bin/prayer-times status",
     "on-click": "$HOME/.local/bin/prayer-times yad"
 },
 "custom/timer": {
@@ -717,7 +734,7 @@
 },
 
 "custom/clipboard": {
-    "format": "󱃔 ",
+    "format": " ",
     "tooltip": false,
     "on-click": "~/.config/hypr/scripts/ClipManager.sh",
     "on-click-right": "~/.config/hypr/scripts/ClipManager.sh",

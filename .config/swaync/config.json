@@ -72,7 +72,7 @@
                 },
                 {
                     "label": "󰌾",
-                    "command": "~/.config/hypr/scripts/LockScreen.sh"
+                    "command": "hyprlock -q --immediate"
                 },
                 {
                     "label": "󰍃",

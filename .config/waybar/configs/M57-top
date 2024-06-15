@@ -18,8 +18,7 @@
 	"custom/separator#dot",
 	"custom/prayers", 
 	"custom/separator#dot",
-	"mpris",
-	"custom/cava_mviz"
+	"mpris"
     ],
 
 "modules-center": [
