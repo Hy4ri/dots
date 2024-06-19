@@ -7,7 +7,7 @@ export PATH=$PATH:/home/m57/.spicetify
 
 ZSH_THEME="nanotech"
 
-plugins=(git archlinux zsh-autosuggestions colorize zsh-syntax-highlighting)
+plugins=(aliases colored-man-pages extract safe-paste sudo zsh-autosuggestions colorize zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 
 #pacman
@@ -16,28 +16,44 @@ alias spss='sudo pacman -Ss'
 alias spsyyu='sudo pacman -Syyu'
 alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
-alias sprs='sudo pacman -Rs'
-alias sprdd='sudo pacman -Rdd'
-alias spqo='sudo pacman -Qo'
-alias spsii='sudo pacman -Sii'
+
+#paru
+alias parusc='paru -Sc' # remove unused cache
+alias parus='paru -S'
+alias parusyyu='paru -Syyu'
+
+#eza
+alias ls='eza --color=always --group-directories-first' # better ls
+alias la='eza -a --color=always --group-directories-first'  # all files and dirs
+alias ll='eza -al --color=always --group-directories-first'  # long format
+alias lt='eza -aT --color=always --group-directories-first' # tree listing
 
 #aliases
 alias snvim='sudo nvim'
-alias parupdate='paru -Syyu'
-alias parus='paru -S'
 alias clock='tty-clock -c -C7 -b -t -n'
-alias paruclean='paru -Sc' # remove unused cache
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-alias fastfetch='fastfetch --logo small --color-keys red --logo-color-1 red'
-alias mkdir='mkdir -p'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
-alias spupdate='pkill spotify && spicetify update ; curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh ; spicetify restore backup apply'
+alias music='bash ~/.config/hypr/UserScripts/spotify-update.sh'
 alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
 alias 2x='upscayl'
+alias vdl='cd ~/Videos && yt-dlp'
+alias fm='joshuto'
+alias img2txt='ascii-image-converter'
+alias cd='z'
+alias vim='nvim'
+alias nano='nvim'
+
+#waydroid
 alias wayon='waydroid show-full-ui '
 alias wayoff='waydroid session stop'
+alias waypatch='git clone https://github.com/casualsnek/waydroid_script
+cd waydroid_script
+python3 -m venv venv
+venv/bin/pip install -r requirements.txt
+sudo venv/bin/python3 main.py'
+
 #ARCHIVE EXTRACT
-unzip ()
+extract ()
 {
     if [ -f $1 ] ; then
       case $1 in
@@ -61,6 +77,5 @@ unzip ()
     echo "'$1' is not a valid file"
   fi
 }
-
 eval "$(zoxide init zsh)"
 fastfetch --logo small --color-keys red --logo-color-1 red

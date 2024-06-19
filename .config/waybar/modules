@@ -256,9 +256,8 @@
     "modules": [
         "tray",
         "custom/chatgpt",
-        "custom/clipboard",
-        "custom/updater"
-      ]	
+        "custom/clipboard"     
+     ]	
 },
 
 "group/audio": {
@@ -643,7 +642,7 @@
 // ChatGPT Launcher
 "custom/chatgpt": {
     "format": "🤖",
-    "on-click": "vivaldi --app=https://chat.openai.com",
+    "on-click": "flatpak run com.brave.Browser --app=https://chat.openai.com",
     "tooltip-format": "Open ChatGPT"
 },
 "custom/gammastep": {
@@ -800,12 +799,17 @@
    "interval": 3600,
     "return-type": "json",
     //"exec": "~/.config/hypr/UserScripts/Weather.sh",
-    "exec": "~/.config/hypr/UserScripts/Weather.py",
-    //"exec": "~/.config/hypr/UserScripts/Weather-wttr.py",
-    //"exec-if": "ping wttr.in -c1",
+    "exec": "~/.config/hypr/UserScripts/Weather-wttr.py",
+    "exec-if": "ping wttr.in -c1",
     "tooltip" : true,
 },
-  
+"custom/weather2": {
+    "exec": "python ~/.config/hypr/UserScripts/Weather.py",
+    "restart-interval": 300,
+    "return-type": "json",
+    "on-click": "xdg-open https://weather.com/ar-JO/weather/today/l/b9c4bcc7a420f01261a519b340fd9aee0eccef5d335124ecdbb931e7afcb3aa0"
+    // "format-alt": "{alt}",
+},
 // Separators
 "custom/separator#dot": {
     "format": " ",
