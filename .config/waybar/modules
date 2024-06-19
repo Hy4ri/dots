@@ -195,18 +195,6 @@
 
 // GROUP
 
-"group/clock": {
-	"orientation": "horizontal",
-	"drawer": {
-		"transition-duration": 500,
-        "transition-left-to-right": true
-        },
-	"modules": [
-        "clock",
-		"custom/timer"
-	]
-},
-
 "group/motherboard": {
     "orientation": "horizontal",
     "modules": [
@@ -244,7 +232,7 @@
     "orientation": "inherit",
     "modules": [
         "group/applets",
-        "group/audio"
+        
       ]	
 },
 
@@ -256,7 +244,11 @@
     "modules": [
         "tray",
         "custom/chatgpt",
-        "custom/clipboard"     
+        "custom/clipboard",
+        "group/audio",
+        "battery",
+		"power-profiles-daemon",
+        "custom/gammastep"
      ]	
 },
 
@@ -283,18 +275,6 @@
 	"modules": [
 		"network",
 		"bluetooth",
-	]
-},
-"group/power": {
-	"orientation": "inherit",
-	"drawer": {
-		"transition-duration": 500,
-        "transition-left-to-right": true
-        },
-	"modules": [
-        "battery",
-		"power-profiles-daemon",
-        "custom/gammastep"
 	]
 },
 
@@ -557,8 +537,8 @@
     "format-icons": {
       "default": "",
       "performance": "",
-      "balanced": "",
-      "power-saver": ""
+      "balanced": " ",
+      "power-saver": " "
     }
   },   
      
@@ -641,7 +621,7 @@
 },
 // ChatGPT Launcher
 "custom/chatgpt": {
-    "format": "🤖",
+    "format": "󰚩 ",
     "on-click": "flatpak run com.brave.Browser --app=https://chat.openai.com",
     "tooltip-format": "Open ChatGPT"
 },

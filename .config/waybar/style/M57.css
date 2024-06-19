@@ -169,7 +169,7 @@ tooltip label{
 }
 
 #clock {
-    color: rgb(246, 255, 0);
+    color: #cd3244;
 }
 
 #custom-updater {
@@ -181,7 +181,7 @@ tooltip label{
 }
 
 #battery.charging {
-    color: #ffffff;
+    color: #e5f903;
 } 
 
 @keyframes blink {
@@ -289,6 +289,7 @@ label:focus {
 
 #tray {
     /*background-color: rgb(28, 28, 28);*/ 
+	padding-right: 2px;
 }
 
 #idle_inhibitor {
@@ -382,36 +383,27 @@ label:focus {
 	min-width: 10px;
 	border-radius: 5px;
 }
+
 #custom-prayers{
-    color:  rgb(177, 255, 20);;
+    color:  whitesmoke;
 }
+
+#custom-weather2{
+    color:  whitesmoke;
+}
+
 #custom-clipboard{
     font-size: 1.1rem;
-    color: pink;
+    color: #cd3244;
     padding-right:3px ;
 }
+
 #custom-chatgpt{
     font-size: 1.1rem;
+    color: #cd3244;
     padding-right:3px ;
 }
-#custom-weather2.severe {
-    color: #eb937d;
-}
-#custom-weather2.sunnyDay {
-    color: #c2ca76;
-}
-#custom-weather2.clearNight {
-    color: #2b2b2a;
-}
-#custom-weather2.cloudyFoggyDay, #custom-weather.cloudyFoggyNight {
-    color: #c2ddda;
-}
-#custom-weather2.rainyDay, #custom-weather.rainyNight {
-    color: #5aaca5;
-}
-#custom-weather2.showyIcyDay, #custom-weather.snowyIcyNight {
-    color: #d6e7e5;
-}
-#custom-weather2.default {
-    color: #dbd9d8;
+
+#window{
+    color: #cd3244;
 }

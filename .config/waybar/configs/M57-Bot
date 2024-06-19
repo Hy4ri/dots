@@ -26,14 +26,11 @@
 		], 
 	
 	"modules-right": [
-		"custom/separator#dot",
 		"group/tray",
 		"custom/separator#dot", 
-		"custom/weather",
+		"custom/weather2",
 		"custom/separator#dot",
-		"group/power",
-		"custom/separator#dot",
-		"group/clock",
+		"clock",
 		"custom/separator#dot",
 		"custom/swaync"
 		]
