@@ -1,0 +1,21 @@
+#!/bin/bash
+
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+INTERVAL=1800 # 30 minutes in seconds
+PREVIOUS_WALLPAPER=""
+
+change_wallpaper() {
+    while true; do
+        RANDOM_WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+        hyprctl hyprpaper preload "$RANDOM_WALLPAPER"
+        hyprctl hyprpaper wallpaper "eDP-1,$RANDOM_WALLPAPER"
+        if [ -n "$PREVIOUS_WALLPAPER" ]; then
+            hyprctl hyprpaper deload "$PREVIOUS_WALLPAPER"
+        fi
+        PREVIOUS_WALLPAPER="$RANDOM_WALLPAPER"
+        sleep $INTERVAL
+    done
+}
+
+change_wallpaper
+

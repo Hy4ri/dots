@@ -45,8 +45,8 @@ window#waybar.empty #window {
 }
 
 tooltip {
-    background: #1e1e1e;
-    opacity: 0.8;
+    background: black;
+    opacity: 0.9;
     border-radius: 3px;
     border-width: 1px;
     border-style: solid;
@@ -54,7 +54,7 @@ tooltip {
 }
 
 tooltip label{
-    color: #f3f4f5;
+    color: rgba(243, 244, 245, 0.9);
 }
 
 #workspaces button {
@@ -138,6 +138,7 @@ tooltip label{
 #custom-light_dark,
 #custom-lock,
 #custom-gammastep,
+#custom-hyprshade,
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
@@ -154,8 +155,8 @@ tooltip label{
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 	padding-right: 6px;
 	padding-left: 6px;
 }
@@ -170,6 +171,7 @@ tooltip label{
 
 #clock {
     color: #cd3244;
+    font-size: 1.1rem;
 }
 
 #custom-updater {
@@ -394,7 +396,7 @@ label:focus {
 
 #custom-clipboard{
     font-size: 1.1rem;
-    color: #cd3244;
+    color: pink;
     padding-right:3px ;
 }
 
@@ -405,5 +407,8 @@ label:focus {
 }
 
 #window{
+    color: whitesmoke;
+}
+#mpris{
     color: #cd3244;
 }

@@ -22,14 +22,15 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
+# Relaunch ags
 ags -q
 
 sleep 0.3
+
 # Relaunch waybar
 waybar &
 
 # relaunch ags
 ags &
-
 
 exit 0
