@@ -21,7 +21,7 @@ set guioptions ""
 set window-title-page 1
 
 # zathurarc-dark
-set recolor  "true"
+set recolor  "false"
 set render-loading "false"
 set scroll-step 50
 unmap f
@@ -56,35 +56,94 @@ set selection-clipboard "clipboard"
 
 # Dracula color theme
 
-set notification-error-bg       rgba(255,85,85,1)     # Red
-set notification-error-fg       rgba(248,248,242,1)   # Foreground
-set notification-warning-bg     rgba(255,184,108,1)   # Orange
-set notification-warning-fg     rgba(68,71,90,1)      # Selection
-set notification-bg             rgba(40,42,54,1)      # Background
-set notification-fg             rgba(248,248,242,1)   # Foreground
-set completion-bg               rgba(40,42,54,1)      # Background
-set completion-fg               rgba(98,114,164,1)    # Comment
-set completion-group-bg         rgba(40,42,54,1)      # Background
-set completion-group-fg         rgba(98,114,164,1)    # Comment
-set completion-highlight-bg     rgba(68,71,90,1)      # Selection
-set completion-highlight-fg     rgba(248,248,242,1)   # Foreground
-set index-bg                    rgba(40,42,54,1)      # Background
-set index-fg                    rgba(248,248,242,1)   # Foreground
-set index-active-bg             rgba(68,71,90,1)      # Current Line
-set index-active-fg             rgba(248,248,242,1)   # Foreground
-set inputbar-bg                 rgba(40,42,54,1)      # Background
-set inputbar-fg                 rgba(248,248,242,1)   # Foreground
-set statusbar-bg                rgba(40,42,54,1)      # Background
-set statusbar-fg                rgba(248,248,242,1)   # Foreground
-set highlight-color             rgba(255,184,108,0.5) # Orange
-set highlight-active-color      rgba(255,121,198,0.5) # Pink
-set default-bg                  rgba(40,42,54,1)      # Background
-set default-fg                  rgba(248,248,242,1)   # Foreground
-set render-loading              true
-set render-loading-fg           rgba(40,42,54,1)      # Background
-set render-loading-bg           rgba(248,248,242,1)   # Foreground
-set recolor-lightcolor          rgba(40,42,54,1)      # Background
-set recolor-darkcolor           rgba(248,248,242,1)   # Foreground
+#set notification-error-bg       rgba(255,85,85,1)     # Red
+#set notification-error-fg       rgba(248,248,242,1)   # Foreground
+#set notification-warning-bg     rgba(255,184,108,1)   # Orange
+#set notification-warning-fg     rgba(68,71,90,1)      # Selection
+#set notification-bg             rgba(40,42,54,1)      # Background
+#set notification-fg             rgba(248,248,242,1)   # Foreground
+#set completion-bg               rgba(40,42,54,1)      # Background
+#set completion-fg               rgba(98,114,164,1)    # Comment
+#set completion-group-bg         rgba(40,42,54,1)      # Background
+#set completion-group-fg         rgba(98,114,164,1)    # Comment
+#set completion-highlight-bg     rgba(68,71,90,1)      # Selection
+#set completion-highlight-fg     rgba(248,248,242,1)   # Foreground
+#set index-bg                    rgba(40,42,54,1)      # Background
+#set index-fg                    rgba(248,248,242,1)   # Foreground
+#set index-active-bg             rgba(68,71,90,1)      # Current Line
+#set index-active-fg             rgba(248,248,242,1)   # Foreground
+#set inputbar-bg                 rgba(40,42,54,1)      # Background
+#set inputbar-fg                 rgba(248,248,242,1)   # Foreground
+#set statusbar-bg                rgba(40,42,54,1)      # Background
+#set statusbar-fg                rgba(248,248,242,1)   # Foreground
+#set highlight-color             rgba(255,184,108,0.5) # Orange
+#set highlight-active-color      rgba(255,121,198,0.5) # Pink
+#set default-bg                  rgba(40,42,54,1)      # Background
+#set default-fg                  rgba(248,248,242,1)   # Foreground
+#set render-loading              true
+#set render-loading-fg           rgba(40,42,54,1)      # Background
+#set render-loading-bg           rgba(248,248,242,1)   # Foreground
+#set recolor-lightcolor          rgba(40,42,54,1)      # Background
+#set recolor-darkcolor           rgba(248,248,242,1)   # Foreground
 
+#rose pine
+set default-bg                  "#191724"
+set default-fg                  "#e0def4"
+set statusbar-fg                "#e0def4"
+set statusbar-bg                "#555169"
+set inputbar-bg                 "#6e6a86"
+set inputbar-fg                 "#ebbcba"
+set notification-bg             "#e0def4"
+set notification-fg             "#555169"
+set notification-error-bg       "#f6c177"
+set notification-error-fg       "#555169"
+set notification-warning-bg     "#ebbcba"
+set notification-warning-fg     "#555169"
+set highlight-color             "#ebbcba"
+set highlight-active-color      "#eb6f92"
+set completion-bg               "#6e6a86"
+set completion-fg               "#ebbcba"
+set completion-highlight-fg     "#26233a"
+set completion-highlight-bg     "#ebbcba"
+set recolor-lightcolor          "#191724"
+set recolor-darkcolor           "#e0def4"
 
-
+#mine
+## Core Colors
+#set default-bg         "#121212"   # Primary Background Color
+#set default-fg         "#FFFFFF"   # Primary Text Color
+#
+## Extended Colors
+#set completion-bg      "#1A1A1A"   # Lighter Background
+#set completion-fg      "#FFFFFF"   # Text Color
+#set completion-group-bg "#0E0E0E"  # Darker Background
+#set completion-group-fg "#CD3244"  # Accent Color
+#set completion-highlight-bg "#CD3244" # Accent Color
+#set completion-highlight-fg "#FFFFFF" # Text Color
+#
+## Status Bar
+#set statusbar-bg       "#121212"   # Primary Background Color
+#set statusbar-fg       "#FFFFFF"   # Primary Text Color
+#set statusbar-progress-bg "#CD3244" # Accent Color
+#
+## Notification
+#set notification-bg    "#198754"   # Success Background
+#set notification-fg    "#FFFFFF"   # Success Text
+#
+## Input Bar
+#set inputbar-bg        "#1E1E1E"   # Input Background
+#set inputbar-fg        "#FFFFFF"   # Input Text
+#set inputbar-border    "#2E2E2E"   # Input Border
+#
+## Recoloring (if you want to invert document colors)
+#set recolor            "true"      # Enable Recoloring
+#set recolor-lightcolor "#FFFFFF"   # Text Color
+#set recolor-darkcolor  "#121212"   # Primary Background Color
+#
+## Additional Configurations
+#set highlight-color    "#CD3244"   # Accent Color
+#set index-color        "#E84B5C"   # Light Accent Color
+#
+## Scroll Bar
+#set scrollbar-bg       "#1A1A1A"   # Lighter Background
+#set scrollbar-fg       "#CD3244"   # Accent Color

@@ -54,7 +54,7 @@ pdf = [
   { run = 'zathura "$@"', orphan = true, for = "unix"}
 ]
 image = [
-  { run = 'nomacs "$@"',  orphan = true, for = "unix"}
+  { run = 'qview "$@"',  orphan = true, for = "unix"}
 ]
 
 [open]

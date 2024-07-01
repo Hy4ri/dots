@@ -7,7 +7,7 @@
 @define-color text-color-disabled rgba(20, 19, 19, 0.7);
 
 * {
-    font-family: FiraCode;
+    font-family: JetBrainsMono Nerd Font;
     font-weight: Bolder;
 }
 
@@ -15,7 +15,7 @@
 .control-center .notification-row:hover {
     opacity: 1;
     background: @noti-bg;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .notification-row {
@@ -24,14 +24,14 @@
 }
 
 .notification {
-	border-radius: 10px;
+	border-radius: 7px;
 }
 
 .notification-content{
 	color: @text-color;
     background: @noti-bg;
     padding: 3px 10px 3px 6px;
-    border-radius: 10px;
+    border-radius: 7px;
     border: 2px solid @noti-border-color;
     margin: 0px;
 }
@@ -39,7 +39,7 @@
 .notification-default-action {
     margin: 0;
     padding: 0;
-    border-radius: 10px;
+    border-radius: 7px;
 }
 
 .close-button {
@@ -74,7 +74,7 @@
 }
 
 .notification-default-action {
-    border-radius: 10px;
+    border-radius: 7px;
     margin: 5px;
 }
 
@@ -222,12 +222,12 @@
 
 .widget-dnd>switch slider {
     background: rgba(20, 19, 19, 1);
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .widget-dnd>switch:checked slider {
     background: rgba(20, 19, 19, 1);
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .widget-label {
