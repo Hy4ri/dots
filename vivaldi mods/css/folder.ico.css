@@ -1,0 +1,8 @@
+/* CHANGING COLORS */
+svg.folder-icon svg path {
+fill: #cd3244 !important;
+fill-opacity: 1 !important;
+/*stroke: rgb(0, 0, 0) !important; /* OUTLINE */
+stroke-width: 1.0 !important;
+stroke-opacity: 1 !important;
+}

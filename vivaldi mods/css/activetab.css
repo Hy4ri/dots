@@ -1,0 +1,7 @@
+.tab-position     [id*= "tab"].tab.active
+{
+background-color:#202020 !important;
+border-bottom: 1px var(--colorHighlightBg) solid !important;
+color: var(--colorHighlightBg) !important;
+}
+
