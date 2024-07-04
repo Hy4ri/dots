@@ -143,14 +143,14 @@
 /* URL */
 .UrlFragment-Wrapper, .UrlFragment--Lowlight:first-of-type { color: var(--colorFgFaded); }
 
-/* URL Base-domain  */
-.UrlFragment-HostFragment-Basedomain, .UrlFragment-HostFragment-TLD {
+/* URL Sub-domain  */
+.UrlFragment-HostFragment-Subdomain, .UrlFragment-HostFragment-TLD {
   color: var(--colorFgIntense) !important;
   font-weight: 600;
 }
 
-/* URL Sub-domain */
-.UrlFragment-HostFragment-Subdomain {
+/* URL Base-domain */
+.UrlFragment-HostFragment-Basedomain {
   color: var(--colorHighlightBg) !important;
   font-weight: 600;
 }
@@ -352,11 +352,21 @@ button.button-on path.bookmark-outline { fill: var(--colorHighlightBg) !importan
 
 #modal-bg > div > div > form > footer > input[type=button]:nth-child(2) { width: 40%; }
 
-/* =====================================
+/* ====================================
    clock
-  ===================================== */
+   ==================================== 
   button[name="Clock"]{
     color: var(--colorHighlightBg) !important;
+}
+*/
+/* =================================================
+   Extensions icon ++ the extendable bar background
+   ================================================= */
+  button[name="Extensions"]{
+    color: var(--colorHighlightBg) !important;
+}
+button[class="ToolbarButton-Button"]{
+  background-color: var(--colorBg) !important;
 }
 
 /* =====================================
@@ -365,3 +375,15 @@ button.button-on path.bookmark-outline { fill: var(--colorHighlightBg) !importan
   button[name="Home"]{
     color: var(--colorHighlightBg) !important;
 }
+/* =====================================
+   Previous Page
+  ===================================== */
+  button[name="Back"]{
+  color: var(--colorHighlightBg) !important;
+}
+/* =====================================
+   Private Browsing Window
+  ===================================== */
+  div[title="Private Browsing Window"]{
+    color: var(--colorHighlightBg) !important;
+  }
