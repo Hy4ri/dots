@@ -77,7 +77,7 @@ if command -v paru &> /dev/null
 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 cat <<"EOF"
 
@@ -90,68 +90,7 @@ cat <<"EOF"
                                                                  
 
 EOF
-####FUNCTIONS
-
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-
-ISAUR=$(command -v yay || command -v paru)
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
-# Function for uninstalling packages
-uninstall_package() {
-  # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
-    fi
-  fi
-}
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # add packages wanted here
 Extra=(
     bitwarden
@@ -281,7 +220,7 @@ done
 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 cat <<"EOF"
 
@@ -293,68 +232,7 @@ cat <<"EOF"
 ╚═╝     ╚═╝╚═╝     ╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝  ╚═╝╚══════╝
                                                         
 EOF
-####FUNCTIONS
-
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-
-ISAUR=$(command -v yay || command -v paru)
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
-# Function for uninstalling packages
-uninstall_package() {
-  # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
-    fi
-  fi
-}
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 ###### Install pipewire and pipewire-audio
 execute_script "pipewire.sh"
@@ -392,7 +270,7 @@ systemctl --user enable --now pipewire.service
 
 clear
 sleep
-cd ~/
+cd ~/dots
 
 cat <<"EOF"
 
@@ -404,68 +282,7 @@ cat <<"EOF"
 ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   
                                     
 EOF
-####FUNCTIONS
-
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-
-ISAUR=$(command -v yay || command -v paru)
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
-# Function for uninstalling packages
-uninstall_package() {
-  # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
-    fi
-  fi
-}
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 
 fonts=(
@@ -491,7 +308,7 @@ done
 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 cat <<"EOF"
 
@@ -504,68 +321,7 @@ cat <<"EOF"
                                                                    
 EOF
 
-####FUNCTIONS
-
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-
-ISAUR=$(command -v yay || command -v paru)
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
-# Function for uninstalling packages
-uninstall_package() {
-  # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
-    fi
-  fi
-}
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 hypr=(
 hyprland
@@ -592,7 +348,7 @@ done
 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 cat <<"EOF"
 
@@ -605,68 +361,7 @@ cat <<"EOF"
                                          
 EOF
 
-####FUNCTIONS
-
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-
-ISAUR=$(command -v yay || command -v paru)
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
-# Function for uninstalling packages
-uninstall_package() {
-  # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
-    fi
-  fi
-}
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 nvidia_pkg=(
   nvidia-dkms
@@ -752,7 +447,7 @@ fi
 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 cat <<"EOF"
 
@@ -764,68 +459,7 @@ cat <<"EOF"
 ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ╚═╝  ╚═╝                                                                           
 EOF
 
-####FUNCTIONS
-
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-
-ISAUR=$(command -v yay || command -v paru)
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
-# Function for uninstalling packages
-uninstall_package() {
-  # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
-    fi
-  fi
-}
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 blue=(
 bluez
@@ -844,7 +478,7 @@ printf " Activating Bluetooth Services...\n"
 sudo systemctl enable --now bluetooth.service 2>&1 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 cat <<"EOF"
 
@@ -857,68 +491,7 @@ cat <<"EOF"
                                    
 EOF
 
-####FUNCTIONS
-
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-
-ISAUR=$(command -v yay || command -v paru)
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
-# Function for uninstalling packages
-uninstall_package() {
-  # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
-    fi
-  fi
-}
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 sddm=(
   qt6-5compat 
@@ -992,7 +565,7 @@ done
 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 cat <<"EOF"
 
@@ -1005,68 +578,7 @@ cat <<"EOF"
                         
 EOF
 
-####FUNCTIONS
-
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    sudo pacman -S --noconfirm "$1" 
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
-      echo -e "${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "${ERROR} $1 failed to install. Please check the $LOG. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-
-ISAUR=$(command -v yay || command -v paru)
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $ISAUR -Q "$1" &>> /dev/null ; then
-    echo -e "${OK} $1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $ISAUR -S --noconfirm "$1" 
-    # Making sure package is installed
-    if $ISAUR -Q "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
-      exit 1
-    fi
-  fi
-}
-
-# Function for uninstalling packages
-uninstall_package() {
-  # Checking if package is installed
-  if pacman -Qi "$1" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $1 ..."
-    sudo pacman -Rns --noconfirm "$1" 
-    # Making sure package is uninstalled
-    if ! pacman -Qi "$1" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $1 was uninstalled."
-    else
-      # Something went wrong, exiting to review log
-      echo -e "\e[1A\e[K${ERROR} $1 failed to uninstall. Please check the log."
-      exit 1
-    fi
-  fi
-}
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 zsh=(
 zsh
@@ -1116,7 +628,7 @@ fi
 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 # input profile
 
@@ -1157,7 +669,7 @@ done
 
 clear
 sleep 1
-cd ~/
+cd ~/dots
 
 ### Dotfiles
 
