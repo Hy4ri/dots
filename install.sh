@@ -63,6 +63,8 @@ cat <<"EOF"
                                  
 EOF
 
+cd ~/
+
 if command -v paru &> /dev/null
     then
         git clone https://aur.archlinux.org/paru.git
