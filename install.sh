@@ -92,7 +92,7 @@ cat <<"EOF"
                                                                  
 
 EOF
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
+
 # add packages wanted here
 Extra=(
     bitwarden
@@ -199,6 +199,7 @@ uninstall=(
   mako
 )
 
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Installation of main components
 printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
 
@@ -234,10 +235,6 @@ cat <<"EOF"
 ╚═╝     ╚═╝╚═╝     ╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝  ╚═╝╚══════╝
                                                         
 EOF
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
-
-###### Install pipewire and pipewire-audio
-execute_script "pipewire.sh"
 
 pipewire=(
     pipewire
@@ -248,7 +245,7 @@ pipewire=(
 )
 
 ISAUR=$(command -v yay || command -v paru)
-
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Removal of pulseaudio
 printf "${YELLOW}Removing pulseaudio stuff...${RESET}\n"
 for pulseaudio in pulseaudio pulseaudio-alsa pulseaudio-bluetooth; do
@@ -284,8 +281,6 @@ cat <<"EOF"
 ╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   
                                     
 EOF
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
-
 
 fonts=(
 adobe-source-code-pro-fonts 
@@ -297,6 +292,7 @@ ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd 
 )
 
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Installation of main components
 printf "\n%s - Installing necessary fonts.... \n" "${NOTE}"
 
@@ -323,8 +319,6 @@ cat <<"EOF"
                                                                    
 EOF
 
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
-
 hypr=(
 hyprland
 hyprcursor
@@ -332,6 +326,7 @@ xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 )
 
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Removing other Hyprland to avoid conflict
 printf "${YELLOW} Checking for other hyprland packages and remove if any..${RESET}\n"
 if pacman -Qs hyprland > /dev/null; then
@@ -363,7 +358,6 @@ cat <<"EOF"
                                          
 EOF
 
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 nvidia_pkg=(
   nvidia-dkms
@@ -373,6 +367,7 @@ nvidia_pkg=(
   libva-nvidia-driver-git
 )
 
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Install additional Nvidia packages
 printf "${YELLOW} Installing addition Nvidia packages...\n"
 for krnl in $(cat /usr/lib/modules/*/pkgbase); do
@@ -461,7 +456,6 @@ cat <<"EOF"
 ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ╚═╝  ╚═╝                                                                           
 EOF
 
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 blue=(
 bluez
@@ -469,6 +463,7 @@ bluez-utils
 blueman
 )
 
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Bluetooth
 printf "${NOTE} Installing Bluetooth Packages...\n"
  for BLUE in "${blue[@]}"; do
@@ -493,7 +488,6 @@ cat <<"EOF"
                                    
 EOF
 
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 sddm=(
   qt6-5compat 
@@ -502,6 +496,7 @@ sddm=(
   sddm
 )
 
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Install SDDM and SDDM theme
 printf "${NOTE} Installing sddm and dependencies........\n"
   for package in "${sddm[@]}"; do
@@ -580,7 +575,6 @@ cat <<"EOF"
                         
 EOF
 
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 zsh=(
 zsh
@@ -588,6 +582,7 @@ zsh-completions
 fzf
 )
 
+source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 # Installing zsh packages
 printf "${NOTE} Installing core zsh packages...${RESET}\n"
 for ZSH in "${zsh[@]}"; do
