@@ -36,12 +36,18 @@ alias weather='curl https://wttr.in/As%20Salt\?format=3'
 alias music='bash ~/.config/hypr/UserScripts/spotify-update.sh'
 alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
 alias 2x='upscayl'
-alias vdl='cd ~/Videos && yt-dlp'
-alias fm='joshuto'
+alias vdl='yt-dlp'
+alias fm='yazi'
 alias img2txt='ascii-image-converter'
 alias cd='z'
 alias vim='nvim'
 alias nano='nvim'
+alias grep='rg'
+alias prop='hyprprop'
+alias cat='bat'
+alias cp='cp -i'
+alias c+x='chmod +x'
+
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -77,5 +83,10 @@ extract ()
     echo "'$1' is not a valid file"
   fi
 }
+
+#Zoxide
 eval "$(zoxide init zsh)"
+#fzf
+source <(fzf --zsh)
+#ff
 fastfetch --logo small --color-keys red --logo-color-1 red
