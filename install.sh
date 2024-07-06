@@ -133,9 +133,9 @@ uninstall_package() {
 }
 
 ###### Hyprland install
-echo"##hyprland"
+echo"hyprland"
 #### pkgs
-echo"#hyprland pkgs"
+echo"hyprland pkgs"
 
 # add packages wanted here
 Extra=(
@@ -242,8 +242,6 @@ uninstall=(
   dunst
   mako
 )
-
-source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
 
 # Installation of main components
 printf "\n%s - Installing hyprland packages.... \n" "${NOTE}"
@@ -661,14 +659,14 @@ cp .zshrc ~/
 cp .zprofile ~/
 
 ###done 
-
+cat <<"EOF"
 ██████╗  ██████╗ ███╗   ██╗███████╗
 ██╔══██╗██╔═══██╗████╗  ██║██╔════╝
 ██║  ██║██║   ██║██╔██╗ ██║█████╗  
 ██║  ██║██║   ██║██║╚██╗██║██╔══╝  
 ██████╔╝╚██████╔╝██║ ╚████║███████╗
 ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
-                                   
+EOF                                   
 # echo "Reboot in 10s"
 sleep 10 
 
