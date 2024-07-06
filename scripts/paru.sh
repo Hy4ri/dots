@@ -25,6 +25,5 @@ check_paru_installed() {
 }
 check_paru_installed
 
-clear
 sleep 1
 cd ~/dots
