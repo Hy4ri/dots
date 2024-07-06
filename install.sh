@@ -79,6 +79,8 @@ clear
 sleep 1
 cd ~/dots
 
+chmod +x ~/dots/Global_functions.sh 
+
 cat <<"EOF"
 
 ██████╗  █████╗  ██████╗██╗  ██╗ █████╗  ██████╗ ███████╗███████╗
