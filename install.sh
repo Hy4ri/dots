@@ -64,7 +64,7 @@ sleep 1
 sleep 1
 ~/dots/scripts/./nvidia.sh
 sleep 1
-~/dots/scripts/./bluetooth.sh
+~/dots/scripts/./Bluetooth.sh
 sleep 1
 ~/dots/scripts/./sddm.sh
 sleep 1
@@ -114,8 +114,7 @@ cd ~/dots
 ### Dotfiles
 
 # عمل نسخة احتياطية لملفاتك الاصلية
-mkdir -p ~/config-old
-mv ~/.config ~/config-old
+sudo mv ~/.config ~/config-backup
 
 sleep 0.5
 
@@ -123,8 +122,8 @@ cd ~/dots
 cp -r .config ~/.config
 cp -r .icons ~/.icons
 cp -r .local ~/.local
-cp -r themes ~/.themes
-mv /wallpapers ~/Pictures/
+cp -r .themes ~/.themes
+mv ~/dots/wallpapers ~/Pictures/
 cp .zshrc ~/
 cp .zprofile ~/
 
@@ -136,6 +135,7 @@ cat <<"EOF"
 ██║  ██║██║   ██║██║╚██╗██║██╔══╝  
 ██████╔╝╚██████╔╝██║ ╚████║███████╗
 ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+
 EOF   
 
 echo "Reboot in 10s"
