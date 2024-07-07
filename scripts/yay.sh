@@ -12,7 +12,7 @@ EOF
 
 cd ~/
 
-check_paru_installed() {
+check_yay_installed() {
     if command -v yay &> /dev/null
     then
         yay -Syu --noconfirm
@@ -24,7 +24,7 @@ check_paru_installed() {
         yay -Syu --noconfirm
     fi
 }
-check_paru_installed
+check_yay_installed
 
 sleep 1
 cd ~/dots

@@ -11,7 +11,7 @@ EOF
 paru -S --noconfirm bluez bluez-utils blueman
 
 printf " Activating Bluetooth Services...\n"
-sudo systemctl enable --now bluetooth.service 
+systemctl enable --now bluetooth.service 
 
 clear
 sleep 1

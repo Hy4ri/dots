@@ -9,7 +9,7 @@ cat <<"EOF"
                                                         
 EOF
 
-sparu -R --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
+paru -R --noconfirm pulseaudio pulseaudio-alsa pulseaudio-bluetooth
 
 systemctl --user disable --now pulseaudio.socket pulseaudio.service 
 
