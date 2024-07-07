@@ -52,23 +52,23 @@ sudo pacman -Sy
 clear
 sleep 1
 
-~/dot.scripts/./paru.sh
+~/dots/scripts/./paru.sh
 sleep 1
-~/dot.scripts/./pipewire.sh
+~/dots/scripts/./pipewire.sh
 sleep 1
-~/dot.scripts/./fonts.sh
+~/dots/scripts/./fonts.sh
 sleep 1
-~/dot.scripts/./packages.sh
+~/dots/scripts/./packages.sh
 sleep 1
-~/dot.scripts/./hyprland.sh
+~/dots/scripts/./hyprland.sh
 sleep 1
-~/dot.scripts/./nvidia.sh
+~/dots/scripts/./nvidia.sh
 sleep 1
-~/dot.scripts/./bluetooth.sh
+~/dots/scripts/./bluetooth.sh
 sleep 1
-~/dot.scripts/./sddm.sh
+~/dots/scripts/./sddm.sh
 sleep 1
-~/dot.scripts/./zsh.sh
+~/dots/scripts/./zsh.sh
 sleep 1
 
 # input profile
