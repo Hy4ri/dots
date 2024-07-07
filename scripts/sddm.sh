@@ -19,7 +19,7 @@ if [[ $1 == "current" ]]; then
   sed -i 's/Current=.*/Current=where_is_my_sddm_theme/' /etc/sddm.conf.d/kde_settings.conf
 fi
 
-sudo systemctl enable sddm.service --now
+systemctl enable sddm.service --now
 
 clear
 sleep 1
