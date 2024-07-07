@@ -136,8 +136,9 @@ cat <<"EOF"
 ██║  ██║██║   ██║██║╚██╗██║██╔══╝  
 ██████╔╝╚██████╔╝██║ ╚████║███████╗
 ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
-EOF                                   
-# echo "Reboot in 10s"
+EOF   
+
+echo "Reboot in 10s"
 sleep 10 
 
 systemctl reboot
