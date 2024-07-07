@@ -20,7 +20,7 @@ paru -S --noconfirm aylurs-gtk-shell cliphist curl grim gvfs gvfs-mtp hypridle h
 
 sleep 2 
 
-paru -S --noconfirm brightnessctl btop cava fastfetch vlc mpv mpv-mpris nvtop nwg-look pacman-contrib vim yt-dlp
+paru -S --noconfirm brightnessctl btop cava eza fastfetch vlc mpv mpv-mpris nvtop nwg-look pacman-contrib vim yt-dlp
 
 sleep 2 
 
