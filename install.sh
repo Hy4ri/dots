@@ -121,11 +121,13 @@ sleep 0.5
 cd ~/dots
 cp -r .config ~/.config
 cp -r .icons ~/.icons
-cp -r .local ~/.local
+cp -r .local ~/
 cp -r .themes ~/.themes
 mv ~/dots/wallpapers ~/Pictures/wallpapers
 cp -r .zshrc ~/
 cp -r .zprofile ~/
+
+systemctl --user enable --now prayer-times.service
 
 ###done 
 
