@@ -123,11 +123,12 @@ cp -r .config ~/.config
 cp -r .icons ~/.icons
 cp -r .local ~/.local
 cp -r .themes ~/.themes
-mv ~/dots/wallpapers ~/Pictures/
-cp .zshrc ~/
-cp .zprofile ~/
+mv ~/dots/wallpapers ~/Pictures/wallpapers
+cp -r .zshrc ~/
+cp -r .zprofile ~/
 
 ###done 
+
 bat <<"EOF"
 ██████╗  ██████╗ ███╗   ██╗███████╗
 ██╔══██╗██╔═══██╗████╗  ██║██╔════╝
@@ -136,6 +137,7 @@ bat <<"EOF"
 ██████╔╝╚██████╔╝██║ ╚████║███████╗
 ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 EOF
+
 
 echo "Reboot in 10s"
 sleep 10 
