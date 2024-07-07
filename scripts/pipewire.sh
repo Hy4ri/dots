@@ -20,5 +20,5 @@ systemctl --user enable --now pipewire.service
 
 
 clear
-sleep
+sleep 1
 cd ~/dots
