@@ -68,7 +68,7 @@ sleep 1
 sleep 1
 ~/dots/scripts/./sddm.sh
 sleep 1
-~/dots/scripts/./zsh.sh
+~/dots/scripts/./Zsh.sh
 sleep 1
 
 # input profile
