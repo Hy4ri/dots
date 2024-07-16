@@ -241,7 +241,7 @@
     "modules": [
         "tray",
         "custom/chatgpt",
-        "custom/clipboard",
+        "custom/todoist",
         "group/audio",
         "battery",
 		"power-profiles-daemon",
@@ -625,6 +625,12 @@
     "tooltip-format": "Open ChatGPT"
 },
 
+"custom/todoist": {
+    "format": " ",
+    "on-click": "flatpak run com.brave.Browser --app=https://app.todoist.com/app/today",
+    "tooltip-format": "Open Todoist"
+},
+
 "custom/gammastep": {
     "format": "{}",
     "interval": 5,
@@ -773,15 +779,7 @@
 },
     
 // NOTE:! This is only for Arch and Arch Based Distros  
-"custom/updater":{
-    "format": " {}",
-    "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" | column -t |tr '\n' '\r'", // # of updates and tooltip details
-    "exec-if": "exit 0", // always run; consider advanced run conditions
-    "interval": 86400,
-    "on-click": "foot -T update paru -Syyu && notify-send 'The system has been updated'",
-},
-
-"custom/updater-improved": {
+"custom/updater": {
     "format": "   {}",
     "exec": "checkupdates | wc -l",
     "exec-if": "[[ $(checkupdates | wc -l) ]]",

@@ -1,7 +1,11 @@
 .tab-position     [id*= "tab"].tab.active
 {
-background-color:#202020 !important;
+background-color:#151515 !important;
 border-bottom: 1px var(--colorHighlightBg) solid !important;
 color: var(--colorHighlightBg) !important;
 }
 
+span.favicon.jstest-favicon-image {
+    filter: none !important;
+    
+}

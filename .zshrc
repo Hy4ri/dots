@@ -47,7 +47,8 @@ alias prop='hyprprop'
 alias cat='bat'
 alias cp='cp -i'
 alias c+x='chmod +x'
-
+alias manga='mangal'
+alias anime='jerry'
 
 #waydroid
 alias wayon='waydroid show-full-ui '

@@ -1,0 +1,81 @@
+[anilist]
+code = 'def50200c0bf0b649df950a3bc26f2025e5f334aec40c6135e864f5f9b8420670ea7a8c73b4e76b91527f4d1121f65f57eed7d7cad343de35908ff2904f147b2744f82abc1ef35f3250be009f1408efaf182f12d02a12f5c8d03b01ef10d1de6d9fdb9e8d578a731ac49e83788bfc2943926c5929bcbf6cee6d1267ad01af3213f52b432f3115455e00992d0a3578cdc194fd0c673c984e2d31b8573c84a52e176606f4b6e162604840143650dec374ad6e4c76fbf0b9c02746af0efed484ff9caf43f96cb1438f210fde52a96986ed885083f92d11955e7db1109cfd248152196890b87ac16dac0ca4df3f219697dbdd506e0b5c54e718978ee4a70d398a9d0e8fdf4b4968890b6a199827b6c825ac5aec78bc15f169d0816c6a73aabfa7aba3cc5af5e3c2ea1e237111cf26472435c9b0b13affaf3622f9415e45dbc49f70dfdd0e24ab030795d1792799208bf84b80254568fd01887ad929b002b0335d21df04b4fd55bd58ba875ce9ef66b65747c19'
+enable = true
+id = '19479'
+link_on_manga_select = true
+secret = '8qAKZMTYXBljsETu7pDExWgWi2TT2WKjrpcrdmII'
+
+[cli]
+colored = true
+
+[downloader]
+async = true
+chapter_name_template = '[{padded-index}] {chapter}'
+create_manga_dir = true
+create_volume_dir = false
+default_sources = []
+download_cover = true
+path = '.'
+read_downloaded = true
+redownload_existing = false
+stop_on_error = false
+
+[formats]
+skip_unsupported_images = true
+use = 'pdf'
+
+[gen]
+author = ''
+
+[history]
+save_on_download = false
+save_on_read = true
+
+[icons]
+variant = 'plain'
+
+[installer]
+branch = 'main'
+repo = 'mangal-scrapers'
+user = 'metafates'
+
+[logs]
+json = false
+level = 'info'
+write = false
+
+[mangadex]
+language = 'en'
+nsfw = false
+show_unavailable_chapters = false
+
+[metadata]
+comic_info_xml = true
+comic_info_xml_add_date = true
+comic_info_xml_alternative_date = false
+comic_info_xml_tag_relevance_threshold = 60
+fetch_anilist = true
+series_json = true
+
+[mini]
+search_limit = 20
+
+[reader]
+browser = ''
+cbz = ''
+folder = ''
+pdf = ''
+plain = ''
+read_in_browser = false
+zip = ''
+
+[search]
+show_query_suggestions = true
+
+[tui]
+item_spacing = 1
+read_on_enter = true
+reverse_chapters = false
+search_prompt = '> '
+show_downloaded_path = true
+show_urls = true
