@@ -2,7 +2,7 @@
 code = ''
 id = '19479'
 link_on_manga_select = true
-secret = '8qAKZMTYXBljsETu7pDExWgWi2TT2WKjrpcrdmII'
+secret = ''
 
 [cli]
 colored = true
