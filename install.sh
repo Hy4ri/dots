@@ -9,7 +9,7 @@ cat <<"EOF"
 ██╔████╔██║███████╗    ██╔╝    ██║  ██║██║   ██║   ██║    █████╗  ██║██║     █████╗  ███████╗
 ██║╚██╔╝██║╚════██║   ██╔╝     ██║  ██║██║   ██║   ██║    ██╔══╝  ██║██║     ██╔══╝  ╚════██║
 ██║ ╚═╝ ██║███████║   ██║      ██████╔╝╚██████╔╝   ██║    ██║     ██║███████╗███████╗███████║
-╚═╝     ╚═╝╚══════╝   ╚═╝      ╚═════╝  ╚═════╝    ╚═╝    ╚═╝     ╚═╝╚══════╝╚══════╝╚══════                                                                
+╚═╝     ╚═╝╚══════╝   ╚═╝      ╚═════╝  ╚═════╝    ╚═╝    ╚═╝     ╚═╝╚══════╝╚══════╝╚══════
 EOF
 
 
@@ -30,21 +30,21 @@ lines_to_edit=(
 for line in "${lines_to_edit[@]}"; do
     if grep -q "^#$line" "$pacman_conf"; then
         sudo sed -i "s/^#$line/$line/" "$pacman_conf"
-        echo -e "${CAT} Uncommented: $line ${RESET}" 
+        echo -e "${CAT} Uncommented: $line ${RESET}"
     else
-        echo -e "${CAT} $line is already uncommented. ${RESET}" 
+        echo -e "${CAT} $line is already uncommented. ${RESET}"
     fi
 done
 
 # Add "ILoveCandy" below ParallelDownloads if it doesn't exist
 if grep -q "^ParallelDownloads" "$pacman_conf" && ! grep -q "^ILoveCandy" "$pacman_conf"; then
     sudo sed -i "/^ParallelDownloads/a ILoveCandy" "$pacman_conf"
-    echo -e "${CAT} Added ILoveCandy below ParallelDownloads. ${RESET}" 
+    echo -e "${CAT} Added ILoveCandy below ParallelDownloads. ${RESET}"
 else
-    echo -e "${CAT} ILoveCandy already exists ${RESET}" 
+    echo -e "${CAT} ILoveCandy already exists ${RESET}"
 fi
 
-echo -e "${CAT} Pacman.conf spicing up completed ${RESET}" 
+echo -e "${CAT} Pacman.conf spicing up completed ${RESET}"
 
 # updating pacman.conf
 sudo pacman -Sy
@@ -60,6 +60,8 @@ sleep 1
 sleep 1
 ~/dots/scripts/./packages.sh
 sleep 1
+~/dots/scripts/./packages.sh
+sleep 1
 ~/dots/scripts/./hyprland.sh
 sleep 1
 ~/dots/scripts/./nvidia.sh
@@ -67,6 +69,8 @@ sleep 1
 ~/dots/scripts/./Bluetooth.sh
 sleep 1
 ~/dots/scripts/./sddm.sh
+sleep 1
+~/dots/scripts/./Printer.sh
 sleep 1
 ~/dots/scripts/./Zsh.sh
 sleep 1
@@ -89,7 +93,7 @@ while true; do
             sudo groupadd input
 
             # Log the creation of the 'input' group
-            echo "'input' group created" 
+            echo "'input' group created"
         fi
 
         # Add the user to the input group
@@ -97,7 +101,7 @@ while true; do
         echo "${OK} User added to the 'input' group. Changes will take effect after you log out and log back in."
 
         # Log the addition of the user to the 'input' group
-        echo "User added to 'input' group" 
+        echo "User added to 'input' group"
         break  # Break out of the loop if 'yes' is chosen
     elif [[ $input_group_choid == "n" || $input_group_choid == "N" ]]; then
         echo "${NOTE} No changes made. Exiting the script."
@@ -113,7 +117,7 @@ cd ~/dots
 
 ### Dotfiles
 
-# عمل نسخة احتياطية لملفاتك الاصلية
+# Backup
 sudo mv ~/.config ~/config-backup
 
 sleep 0.5
@@ -129,19 +133,19 @@ cp -r .zprofile ~/
 
 systemctl --user enable --now prayer-times.service
 
-###done 
+###done
 
 bat <<"EOF"
 ██████╗  ██████╗ ███╗   ██╗███████╗
 ██╔══██╗██╔═══██╗████╗  ██║██╔════╝
-██║  ██║██║   ██║██╔██╗ ██║█████╗  
-██║  ██║██║   ██║██║╚██╗██║██╔══╝  
+██║  ██║██║   ██║██╔██╗ ██║█████╗
+██║  ██║██║   ██║██║╚██╗██║██╔══╝
 ██████╔╝╚██████╔╝██║ ╚████║███████╗
 ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 EOF
 
 
 echo "Reboot in 10s"
-sleep 10 
+sleep 10
 
 systemctl reboot

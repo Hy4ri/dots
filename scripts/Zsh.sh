@@ -7,10 +7,10 @@ cat <<"EOF"
  ███╔╝  ╚════██║██╔══██║
 ███████╗███████║██║  ██║
 ╚══════╝╚══════╝╚═╝  ╚═╝
-                        
+
 EOF
 
-paru -S --noconfirm zsh zsh-completions fzf
+paru -Sy --noconfirm --needed zsh zsh-completions fzf
 
 # Install Oh My Zsh, plugins, and set zsh as default shell
 if command -v zsh >/dev/null; then
@@ -32,7 +32,7 @@ if command -v zsh >/dev/null; then
 	else
     	echo "Directory zsh-syntax-highlighting already exists. Skipping cloning." 2>&1 | tee -a "$LOG"
 	fi
-	
+
     printf "${NOTE} Changing default shell to zsh...\n"
 
 	while ! chsh -s $(which zsh); do
