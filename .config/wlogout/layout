@@ -6,31 +6,31 @@
 }
 {
     "label" : "reboot",
-    "action" : "sleep 1; systemctl reboot",
+    "action" : "sleep 1; reboot",
     "text" : "Reboot",
     "keybind" : "r"
 }
 {
     "label" : "shutdown",
-    "action" : "sleep 1; systemctl poweroff",
+    "action" : "sleep 1; shutdown",
     "text" : "Shutdown",
     "keybind" : "s"
 }
 {
     "label" : "logout",
-    "action" : "loginctl kill-session $XDG_SESSION_ID",
+    "action" : "sleep 1; logout",
     "text" : "Logout",
     "keybind" : "g"
 }
 {
     "label" : "suspend",
-    "action" : "sleep 1; systemctl suspend",
+    "action" : "sleep 1;  suspend",
     "text" : "Suspend",
     "keybind" : "p"
 }
 {
     "label" : "hibernate",
-    "action" : "sleep 1; systemctl hibernate",
+    "action" : "sleep 1;  hibernate",
     "text" : "Hibernate",
     "keybind" : "h"
 }
