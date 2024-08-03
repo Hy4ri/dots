@@ -16,6 +16,7 @@ alias spss='sudo pacman -Ss'
 alias spsyyu='sudo pacman -Syyu'
 alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
+alias spruns='sudo pacman -Runs'
 
 #paru
 alias parusc='paru -Sc' # remove unused cache
@@ -90,4 +91,4 @@ eval "$(zoxide init zsh)"
 #fzf
 source <(fzf --zsh)
 #ff
-fastfetch --logo small --color-keys red --logo-color-1 red
+fastfetch --logo small --color-keys red --logo-color-1 red --logo-color-2 red
