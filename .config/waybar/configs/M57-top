@@ -13,18 +13,18 @@
 "modules-left": [
 	"hyprland/workspaces#NO",
 	"custom/separator#dot",
-	"custom/prayers", 
+	"custom/prayers",
 	"custom/separator#dot",
 	"mpris"
     ],
 
 "modules-center": [
 	"hyprland/window"
-	], 
+	],
 
 "modules-right": [
 	"group/tray",
-	"custom/separator#dot", 
+	"custom/separator#dot",
 	"custom/weather2",
 	"custom/separator#dot",
 	"clock",

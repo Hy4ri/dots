@@ -3,7 +3,7 @@
 // CIRCLES Style
 "hyprland/workspaces": {
 	"active-only": false,
-    "all-outputs": true, 
+    "all-outputs": true,
     "format": "{icon}",
     "show-special": false,
     "on-click": "activate",
@@ -19,7 +19,7 @@
     "format-icons": {
       "active": "",
       "default": "",
-	},  
+	},
 },
 
 // ROMAN Numerals style
@@ -49,7 +49,7 @@
       "8": "VIII",
       "9": "IX",
       "10": "X",
-      
+
     },
 },
 
@@ -76,7 +76,7 @@
       "persistent":"󰊠",
     },
 },
-  
+
 "hyprland/workspaces#kanji": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -188,7 +188,7 @@
 		"class<mousepad>": " ",
 		"class<libreoffice-writer>": " ",
 		"class<libreoffice-startcenter>": "󰏆 "
-		}   
+		}
 },
 
 // GROUP
@@ -200,7 +200,7 @@
       "memory",
       "temperature",
       "disk"
-      ]	
+      ]
 },
 
 "group/mobo_drawer": {
@@ -211,8 +211,8 @@
 		"transition-left-to-right": true
         },
 	"modules": [
-		"temperature",		
-		"cpu",	
+		"temperature",
+		"cpu",
 		"memory",
 		"disk",
 	]
@@ -223,14 +223,14 @@
     "modules": [
       "backlight",
       "battery",
-      ]	
+      ]
 },
 
 "group/tray": {
     "orientation": "inherit",
     "modules": [
         "group/applets",
-      ]	
+      ]
 },
 
 "group/applets":{
@@ -246,7 +246,7 @@
         "battery",
 		"power-profiles-daemon",
         "custom/gammastep"
-     ]	
+     ]
 },
 
 "group/audio": {
@@ -259,9 +259,9 @@
     "modules": [
       "pulseaudio",
       "pulseaudio#microphone"
-      ]	
+      ]
 },
- 
+
 "group/connections": {
 	"orientation": "inherit",
 	"drawer": {
@@ -293,7 +293,7 @@
     "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
     "smooth-scrolling-threshold": 1,
 },
-      
+
 "battery": {
     "interval": 5,
     "align": 0,
@@ -322,7 +322,7 @@
     "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
 },
-      
+
 "bluetooth": {
     "format": "",
     "format-disabled": "󰂳",
@@ -352,7 +352,7 @@
       "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
                 }
                 }
-    },              
+    },
     "actions":  {
       "on-click-right": "mode",
       "on-click-forward": "tz_up",
@@ -384,7 +384,7 @@
 },
 
 "cpu": {
-    "format": "{usage}% 󰍛",  
+    "format": "{usage}% 󰍛",
     "interval": 1,
     "format-alt-click": "click",
     "format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
@@ -401,7 +401,7 @@
     //"tooltip": true,
     "tooltip-format": "{used} used out of {total} on {path} ({percentage_used}%)",
 },
-    
+
 "hyprland/language": {
     "format": "Lang: {}",
     "format-en": "US",
@@ -409,24 +409,21 @@
     "keyboard-name": "at-translated-set-2-keyboard",
     "on-click": "hyprctl switchxkblayout $SET_KB next"
 },
-    
+
 "hyprland/submap": {
     "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
     "tooltip": false,
 },
-    
+
 "hyprland/window": {
     "format": "{title}",
     "max-length": 120,
     "separate-outputs": true,
-    "offscreen-css" : true,
-    "offscreen-css-text": "(inactive)",
     "icon":"true",
      "rewrite": {
           "(.*) — Mozilla Firefox": "  $1",
           "(.*) - Vivaldi": " $1",
           "(.*) - Brave": "󰖟 $1",
-          "(.*) - YouTube - (.*)": "  $1",
           "(.*) - Thunar": "  $1",
           "(.*) - fish": "> [$1]",
           "(.*) - mpv": "  $1",
@@ -438,29 +435,29 @@
       "(.*) - $term": "> [$1]",
     },
 },
-  
+
 "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "󰥔 ",
       "deactivated": " "
                     },
-    "on-click-right" : "/home/m57/.config/hypr/scripts/LockScreen.sh"                
+    "on-click-right" : "/home/m57/.config/hypr/scripts/LockScreen.sh"
 },
-    
+
 "keyboard-state": {
     //"numlock": true,
     "capslock": true,
     "format": {
       "numlock": "N {icon}",
     "capslock":"󰪛 {icon}",
-        }, 
+        },
     "format-icons": {
       "locked": "",
       "unlocked": ""
               },
 },
-    
+
 "memory": {
     "interval": 10,
     "format": "{used:0.1f}G 󰾆",
@@ -499,12 +496,12 @@
 	"ignored-players": ["chromium", "mpv" , "brave", "firefox"],
 	"max-length": 30,
 },
-      
+
 "network": {
     "format": "{ifname}",
     "format-wifi": "{icon}",
     "format-ethernet": "󰌘",
-    "format-disconnected": "󰌙", 
+    "format-disconnected": "󰌙",
     "tooltip-format": "{ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
     "format-linked": "󰈁 {ifname} (No IP)",
     "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
@@ -513,13 +510,13 @@
     "max-length": 50,
     "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"]
 },
-  
+
 "network#speed": {
     "interval": 1,
     "format": "{ifname}",
     "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
     "format-ethernet": "󰌘   {bandwidthUpBytes}  {bandwidthDownBytes}",
-    "format-disconnected": "󰌙", 
+    "format-disconnected": "󰌙",
     "tooltip-format": "{ipaddr}",
     "format-linked": "󰈁 {ifname} (No IP)",
     "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
@@ -539,8 +536,8 @@
       "balanced": " ",
       "power-saver": " "
     }
-  },   
-     
+  },
+
 "pulseaudio": {
     "format": "{icon}",
     "format-bluetooth": "{icon} 󰂰 {volume}%",
@@ -564,7 +561,7 @@
 	"tooltip-format": "{icon} {desc} | {volume}%",
     "smooth-scrolling-threshold": 1,
 },
-      
+
 "pulseaudio#microphone": {
     "format": "{format_source}",
     "format-source": "",
@@ -576,7 +573,7 @@
 	"tooltip-format": "{source_desc} | {source_volume}%",
     "scroll-step": 5,
 },
-    
+
 "temperature": {
     "interval": 10,
     "tooltip": true,
@@ -588,12 +585,12 @@
     "format-icons": ["󰈸"],
     "on-click-right": "kitty --title nvtop sh -c 'nvtop'"
 },
-      
+
 "tray": {
     "icon-size": 15,
     "spacing": 5,
 },
-      
+
 "wireplumber": {
     "format": "{icon} {volume} %",
     "format-muted": " Mute",
@@ -601,9 +598,9 @@
     "on-click-right": "pavucontrol -t 3",
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
-    "format-icons": ["", "", "󰕾", ""], 
+    "format-icons": ["", "", "󰕾", ""],
 },
-      
+
 "wlr/taskbar": {
     "format": "{icon}",
     "icon-size": 15,
@@ -615,7 +612,7 @@
           "wofi",
           "rofi",
           "foot",
-          "foot-dropterm"  
+          "foot-dropterm"
                    ]
 },
 
@@ -662,7 +659,7 @@
     "interval" : 86400, // once every day
     "tooltip": true,
 },
-      
+
 "custom/hint": {
     "format":"󰺁 HINT!",
     "exec": "echo ; echo  Key Hints SUPER H",
@@ -677,7 +674,7 @@
     "format": "{}",
     "on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
     },
-    
+
 "custom/light_dark": {
     "format": "{}",
     "exec": "echo ; echo 󰔎 Dark-Light switcher",
@@ -687,7 +684,7 @@
     "interval" : 86400, // once every day
     "tooltip": true
 },
-      
+
 "custom/lock": {
     "format": "󰌾{}",
     "exec": "echo ; echo 󰷛  screen lock",
@@ -695,7 +692,7 @@
     "tooltip": true,
     "on-click": "~/.config/hypr/scripts/LockScreen.sh",
 },
-    
+
 "custom/menu": {
     "format": " ",
     "exec": "echo ; echo 󱓟 app launcher",
@@ -758,7 +755,7 @@
 },
 
 "custom/swaync": {
-    "tooltip":true,     
+    "tooltip":true,
     "format": "{icon}",
     "format-icons": {
       "notification": "<span foreground='red'><sup></sup></span>",
@@ -777,8 +774,8 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true,
 },
-    
-// NOTE:! This is only for Arch and Arch Based Distros  
+
+// NOTE:! This is only for Arch and Arch Based Distros
 "custom/updater": {
     "format": "   {}",
     "exec": "checkupdates | wc -l",
@@ -811,25 +808,25 @@
     "interval": "once",
     "tooltip": false
 },
-  
+
 "custom/separator#dot-line": {
     "format": "",
     "interval": "once",
     "tooltip": false
 },
-  
+
 "custom/separator#line": {
     "format": "|",
     "interval": "once",
     "tooltip": false
 },
-  
+
 "custom/separator#blank": {
     "format": " ",
     "interval": "once",
     "tooltip": false
 },
-  
+
 "custom/separator#blank_2": {
 	"format": "  ",
     "interval": "once",
@@ -843,7 +840,7 @@
 },
 
 // Modules below are for vertical layout
-  
+
 "backlight#vertical": {
 	"interval": 2,
     "align": 0.35,
@@ -860,7 +857,7 @@
     "smooth-scrolling-threshold": 1,
 	"tooltip-format": "{percent}%",
 },
-  
+
 "clock#vertical": {
 	"format": "{:\n%H\n%M\n%S\n\n \n%d\n%m\n%y}",
 	"interval": 1,
@@ -877,11 +874,11 @@
 },
 
 "cpu#vertical": {
-    "format": "󰍛\n{usage}%",  
+    "format": "󰍛\n{usage}%",
     "interval": 1,
     "on-click-right": "gnome-system-monitor",
 },
-  
+
 "memory#vertical": {
     "interval": 10,
     "format": "󰾆\n{percentage}%",
@@ -891,7 +888,7 @@
     "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
     "on-click-right": "kitty --title btop sh -c 'btop'",
 },
-  
+
 "pulseaudio#vertical": {
     "format": "{icon}",
     "format-bluetooth": "󰂰",
@@ -904,7 +901,7 @@
         "portable": "",
         "car": "",
     "default": ["", "", "󰕾", ""],
-	"tooltip-format": "{icon} {desc} | {volume}%", 
+	"tooltip-format": "{icon} {desc} | {volume}%",
     "ignored-sinks": ["Easy Effects Sink"],
 	},
     "scroll-step": 5.0,
@@ -915,7 +912,7 @@
 	"tooltip-format": "{icon} {desc} | {volume}%",
     "smooth-scrolling-threshold": 1,
 },
-  
+
 "pulseaudio#microphone_vertical": {
     "format": "{format_source}",
     "format-source": "󰍬",
@@ -928,7 +925,7 @@
     "tooltip": true,
 	"tooltip-format": "{source_desc} | {source_volume}%",
 },
-  
+
 "temperature#vertical": {
     "interval": 10,
     "tooltip": true,
@@ -940,7 +937,7 @@
     "format-icons": ["󰈸"],
     "on-click-right": "kitty --title nvtop sh -c 'nvtop'"
 },
-  
+
 "custom/power_vertical": {
     "format": "⏻",
     "exec": "echo ; echo 󰟡 power // blur",
@@ -950,7 +947,3 @@
     "tooltip": true,
 }
 }
- 
-
-
-  

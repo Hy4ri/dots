@@ -4,3 +4,6 @@ div#tabs-container.top{
 button[title="Synced Tabs"]{
     color: var(--colorHighlightBg) !important;
 }
+div.stack-counter{
+    color: var(--colorHighlightBg) !important;
+}
