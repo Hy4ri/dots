@@ -1,5 +1,4 @@
 export ZSH="$HOME/.oh-my-zsh"
-export BROWSER="vivaldi"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export CSCOPE_EDITOR="nvim"
@@ -50,6 +49,7 @@ alias cp='cp -i'
 alias c+x='chmod +x'
 alias manga='mangal'
 alias anime='jerry'
+alias storage='dua i'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
