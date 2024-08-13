@@ -12,7 +12,7 @@ EOF
 
 cd ~/
 
-paru -Sy --noconfirm --needed bitwarden bat cartridges flatpak gammastep gamemode gparted heroic-games-launcher-bin hyprprop-git hyprshade-git lutris mangal-bin man-db man-pages openrgb papirus-folders-git papirus-icon-theme power-profiles-daemon qview scrcpy spotify-launcher spicetify-cli timeshift thunar thunar-volman tumbler ffmpegthumbnailer file-roller thunar-archive-plugin vivaldi vivaldi-ffmpeg-codecs vivaldi-update-ffmpeg-hook vivaldi-widevine vesktop wev xwaylandvideobridge waypaper zathura zathura-cb zathura-djvu zathura-language-server zathura-pdf-mupdf zathura-ps zoxide
+paru -Sy --noconfirm --needed bitwarden bat cartridges flatpak gammastep gamemode gparted heroic-games-launcher-bin hyprprop-git hyprshade-git lutris mangal-bin man-db man-pages normcap openrgb papirus-folders-git papirus-icon-theme power-profiles-daemon qview scrcpy spotify-launcher spicetify-cli timeshift thunar thunar-volman tumbler ffmpegthumbnailer file-roller thunar-archive-plugin vesktop wev xwaylandvideobridge waypaper xorg-host zathura zathura-cb zathura-djvu zathura-language-server zathura-pdf-mupdf zathura-ps zoxide
 
 sleep 2
 
