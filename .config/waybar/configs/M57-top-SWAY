@@ -1,0 +1,34 @@
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+"exclusive": true,
+"passthrough": false,
+"gtk-layer-shell": true,
+"position": "top",
+"reload_style_on_change": true,
+"spacing": 1,
+"fixed-center": true,
+"ipc": true,
+
+"modules-left": [
+	"sway/workspaces",
+	"custom/separator#dot",
+	"custom/prayers",
+	"custom/separator#dot",
+	"mpris"
+    ],
+
+"modules-center": [
+	"sway/window"
+	],
+
+"modules-right": [
+	"group/tray",
+	"custom/separator#dot",
+	"custom/weather2",
+	"custom/separator#dot",
+	"clock",
+	"custom/separator#dot",
+	"custom/swaync"
+	]
+}

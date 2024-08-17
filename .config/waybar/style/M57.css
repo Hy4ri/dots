@@ -26,7 +26,8 @@ window#waybar {
     transition-property: background-color;
     transition-duration: 0.5s;
     border-radius: 0px;
-}
+    opacity: 1;
+  }
 
 window#waybar.hidden {
     opacity: 0.1;
@@ -34,6 +35,7 @@ window#waybar.hidden {
 
 window#waybar.empty {
     background-color: #121212;
+    opacity: 0.8;
 }
 
 window#waybar.empty #window {

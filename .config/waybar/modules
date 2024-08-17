@@ -244,8 +244,7 @@
         "custom/todoist",
         "group/audio",
         "battery",
-		"power-profiles-daemon",
-        "custom/gammastep"
+		    "power-profiles-daemon",
      ]
 },
 
