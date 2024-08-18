@@ -29,7 +29,7 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/wallpapers/roseCenterPink.png fill
+#output * bg ~/Pictures/wallpapers/roseCenterPink.png fill
 #
 # Example configuration:
 #
@@ -57,18 +57,19 @@ output * bg ~/Pictures/wallpapers/roseCenterPink.png fill
   }
 
 #Startup
-
-  exec waybar
+  exec swww-daemon
+  exec_always autotiling -l 2 -sr 1.60
+  exec waybar -c ~/.config/waybar/configs/M57-top-SWAY -s ~/.config/waybar/style/M57-sway.css
   exec swaync
-  exec np-applet --indicator
+  exec nm-applet --indicator
   exec_always gammastep
-  exec blumean-applet
+  exec blumean-manager
   exec hypridle
   exec foor --server
   exec ~/.config/hypr/UserScripts/openrgb.sh
   exec wl-paste --type text --watch cliphist store 
   exec wl-paste --type image --watch cliphist store
-
+  exec_always ~/.config/hypr/UserScripts/WallpaperRandom-sway.sh
 #Setting
   mouse_warping container
   smart_borders on 
@@ -169,6 +170,7 @@ output * bg ~/Pictures/wallpapers/roseCenterPink.png fill
 #
 #MY keyBinds
 #
+    bindsym Ctrl+Alt+w exec ~/.config/hypr/UserScripts/WallpaperRandom-sway.sh
     bindsym $mod+alt+v exec ~/.config/hypr/scripts/ClipManager.sh
     bindsym $mod+alt+r exec $scriptsDir/Refresh.sh
     bindsym $mod+B exec killall -SIGUSR1 waybar # Toggle hide/show waybar    bindsym CTRL+ALT+A exec $UserScripts/openrgb.sh
@@ -185,6 +187,8 @@ output * bg ~/Pictures/wallpapers/roseCenterPink.png fill
     bindsym  xf86audiolowervolume exec $scriptsDir/Volume.sh --dec #volume down
     bindsym  SHIFT+xf86audioraisevolume exec $scriptsDir/Brightness.sh --inc #Brightness up
     bindsym  SHIFT+xf86audiolowervolume exec $scriptsDir/Brightness.sh --dec #Brightness down
+    bindsym  XF86MonBrightnessUP exec $scriptsDir/Brightness.sh --inc #Brightness UP
+    bindsym  XF86MonBrightnessDown exec $scriptsDir/Brightness.sh --dec #Brightness down
     bindsym  xf86Search exec $scriptsDir/Volume.sh --toggle-mic #mute mic
     bindsym  xf86audiomute exec $scriptsDir/Volume.sh --toggle
     bindsym  xf86Sleep exec systemctl suspend  # sleep button 
