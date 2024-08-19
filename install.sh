@@ -52,27 +52,49 @@ sudo pacman -Sy
 clear
 sleep 1
 
-~/dots/scripts/./paru.sh
+echo -n "Which aur helper do you want to install? yay - paru - both - none? "
+read helper
+echo -n "installing $helper"
+
+case "$helper" in
+  yay) 
+    ~/dots/scripts/./yay.sh
+  ;;
+  paru)
+    ~/dots/scripts/./paru.sh
+  ;;
+  both)    
+    ~/dots/scripts/./yay.sh
+    sleep 1
+    ~/dots/scripts/./paru.sh
+  ;;
+  none)
+  ;;
+esac
+
+sudo cp "$(pwd)" -r ~/m57-dots-install
+
+
 sleep 1
-~/dots/scripts/./pipewire.sh
+~/m57-dots-install/scripts/./pipewire.sh
 sleep 1
-~/dots/scripts/./fonts.sh
+~/m57-dots-install/scripts/./fonts.sh
 sleep 1
-~/dots/scripts/./packages.sh
+~/m57-dots-install/scripts/./packages.sh
 sleep 1
-~/dots/scripts/./packages.sh
+~/m57-dots-install/scripts/./packages.sh
 sleep 1
-~/dots/scripts/./hyprland.sh
+~/m57-dots-install/scripts/./hyprland.sh
 sleep 1
-~/dots/scripts/./nvidia.sh
+~/m57-dots-install/scripts/./nvidia.sh
 sleep 1
-~/dots/scripts/./Bluetooth.sh
+~/m57-dots-install/scripts/./Bluetooth.sh
 sleep 1
-~/dots/scripts/./sddm.sh
+~/m57-dots-install/scripts/./sddm.sh
 sleep 1
-~/dots/scripts/./Printer.sh
+~/m57-dots-install/scripts/./Printer.sh
 sleep 1
-~/dots/scripts/./Zsh.sh
+~/m57-dots-install/scripts/./Zsh.sh
 sleep 1
 
 # input profile
@@ -132,6 +154,8 @@ cp -r .zshrc ~/
 cp -r .zprofile ~/
 
 systemctl --user enable --now prayer-times.service
+
+sudo rm -r ~/m57-dots-install
 
 ###done
 

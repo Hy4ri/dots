@@ -2,8 +2,8 @@
 
 # ----- Parameters ------ #
 # Coordinates: https://www.mapcoordinates.net/en
-lat='32.0333332'
-long='35.7333304'
+lat='31.9461222'
+long='35.923844'
 # Calculation Method: https://api.aladhan.com/v1/methods
 method='23'
 # ----------------------- #
