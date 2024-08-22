@@ -210,17 +210,20 @@ case "$DisMan" in
   sddm | SDDM | Sddm)
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm sddm
-    systemctl enable --now sddm.service
+    systemctl start sddm.service
+    systemctl enable sddm.service
   ;;
   gdm | GDM | Gdm )
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm gdm
-    systemctl enable --now gdm.service
+    systemctl start gdm.service
+    systemctl enable gdm.service
   ;;
   ly | Ly | LY)
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm ly
-    systemctl enable --now ly.service
+    systemctl start ly.service
+    systemctl enable ly.service
   ;;
   * | none)
   ;;
