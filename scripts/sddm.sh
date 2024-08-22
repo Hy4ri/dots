@@ -9,7 +9,7 @@ cat <<"EOF"
 
 EOF
 
-paru -Sy --noconfirm --needed sddm
+$helper -Sy --noconfirm --needed sddm
 
 git clone https://github.com/stepanzubkov/where-is-my-sddm-theme
 cd where-is-my-sddm-theme

@@ -7,8 +7,8 @@ cat <<"EOF"
 ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═╝
 
 EOF
-paru -Sy --noconfirm --needed linux-headers linux-zen-headers
-paru -Sy --noconfirm --needed nvidia-dkms nvidia-settings nvidia-utils libva libva-nvidia-driver-git
+$helper -Sy --noconfirm --needed linux-headers
+$helper -Sy --noconfirm --needed nvidia-dkms nvidia-settings nvidia-utils libva libva-nvidia-driver-git
 
 # Check if the Nvidia modules are already added in mkinitcpio.conf and add if not
 if grep -qE '^MODULES=.*nvidia. *nvidia_modeset.*nvidia_uvm.*nvidia_drm' /etc/mkinitcpio.conf; then

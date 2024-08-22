@@ -12,23 +12,23 @@ EOF
 
 cd ~/
 
-paru -Sy --noconfirm --needed bitwarden bat cartridges flatpak gammastep gamemode gparted heroic-games-launcher-bin hyprprop-git hyprshade-git lutris mangal-bin man-db man-pages normcap openrgb papirus-folders-git papirus-icon-theme power-profiles-daemon qview scrcpy spotify-launcher spicetify-cli timeshift thunar thunar-volman tumbler tty-clock termdown ffmpegthumbnailer file-roller thunar-archive-plugin vesktop wev xwaylandvideobridge waypaper xorg-host zathura zathura-cb zathura-djvu zathura-language-server zathura-pdf-mupdf zathura-ps zoxide
+$helper -Sy --noconfirm --needed bitwarden bat cartridges flatpak gammastep gamemode gparted heroic-games-launcher-bin hyprprop-git hyprshade-git lutris mangal-bin man-db man-pages normcap openrgb papirus-folders-git papirus-icon-theme power-profiles-daemon qview scrcpy spotify-launcher spicetify-cli timeshift thunar thunar-volman tumbler tty-clock termdown ffmpegthumbnailer file-roller thunar-archive-plugin vesktop wev xwaylandvideobridge waypaper xorg-host zathura zathura-cb zathura-djvu zathura-language-server zathura-pdf-mupdf zathura-ps zoxide
 
 sleep 2
 
-paru -Sy --noconfirm --needed aylurs-gtk-shell cliphist curl grim gvfs gvfs-mtp hypridle hyprlock hyprpaper imagemagick inxi jq foot kvantum nvim network-manager-applet pamixer pavucontrol pipewire-alsa playerctl polkit-gnome python-requests python-pyquery pyprland qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync wallust-git waybar wget wl-clipboard wlogout xdg-user-dirs xdg-utils yad
+$helper -Sy --noconfirm --needed aylurs-gtk-shell cliphist curl grim gvfs gvfs-mtp hypridle hyprlock hyprpaper imagemagick inxi jq foot kvantum nvim network-manager-applet pamixer pavucontrol pipewire-alsa playerctl polkit-gnome python-requests python-pyquery pyprland qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync wallust-git waybar wget wl-clipboard wlogout xdg-user-dirs xdg-utils yad
 
 sleep 2
 
-paru -Sy --noconfirm --needed upscayl-git brightnessctl btop cava eza fastfetch vlc mpv mpv-mpris nvtop nwg-look pacman-contrib vim yt-dlp wlogout
+$helper -Sy --noconfirm --needed brightnessctl btop cava eza fastfetch vlc mpv mpv-mpris nvtop nwg-look pacman-contrib vim yt-dlp wlogout
 
 sleep 2
 
-paru -Sy --noconfirm --needed ds4drv game-devices-udev dualsensectl xone-dkms
+$helper -Sy --noconfirm --needed ds4drv game-devices-udev dualsensectl xone-dkms
 
 sleep 2
 
-paru -R --noconfirm dunst mako
+$helper -R --noconfirm dunst mako
 
 sudo curl -sL github.com/justchokingaround/jerry/raw/main/jerry.sh -o /usr/local/bin/jerry &&
 sudo chmod +x /usr/local/bin/jerry

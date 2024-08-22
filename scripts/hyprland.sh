@@ -9,7 +9,7 @@ cat <<"EOF"
 
 EOF
 
-paru -Sy --noconfirm --needed hyprland hyprcursor xdg-desktop-portal-hyprland
+$helper -Sy --noconfirm --needed hyprland hyprcursor xdg-desktop-portal-hyprland
 
 
 clear

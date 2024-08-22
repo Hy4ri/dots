@@ -10,7 +10,7 @@ cat <<"EOF"
 
 EOF
 
-paru -Sy --noconfirm --needed zsh zsh-completions fzf
+$helper -Sy --noconfirm --needed zsh zsh-completions fzf
 
 # Install Oh My Zsh, plugins, and set zsh as default shell
 if command -v zsh >/dev/null; then
