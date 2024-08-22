@@ -286,7 +286,7 @@ read Backup
 
 case "$Backup" in
   yes | Yes | y | Y)
-    mv ~/ -r ~/old-config
+    mv ~/ ~/old-config
   ;;
   No | no | n | N)
   ;;
