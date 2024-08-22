@@ -1,12 +1,5 @@
-cat <<"EOF"
-███╗   ██╗██╗   ██╗██╗██████╗ ██╗ █████╗
-████╗  ██║██║   ██║██║██╔══██╗██║██╔══██╗
-██╔██╗ ██║██║   ██║██║██║  ██║██║███████║
-██║╚██╗██║╚██╗ ██╔╝██║██║  ██║██║██╔══██║
-██║ ╚████║ ╚████╔╝ ██║██████╔╝██║██║  ██║
-╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═╝
+#!/bin/bash
 
-EOF
 $helper -Sy --noconfirm --needed linux-headers
 $helper -Sy --noconfirm --needed nvidia-dkms nvidia-settings nvidia-utils libva libva-nvidia-driver-git
 

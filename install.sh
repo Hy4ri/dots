@@ -55,9 +55,18 @@ clear
 sleep 1
 
 #aur helper
+cat <<"EOF"
 
+ █████╗ ██╗   ██╗██████╗     ██╗  ██╗███████╗██╗     ██████╗ ███████╗██████╗
+██╔══██╗██║   ██║██╔══██╗    ██║  ██║██╔════╝██║     ██╔══██╗██╔════╝██╔══██╗
+███████║██║   ██║██████╔╝    ███████║█████╗  ██║     ██████╔╝█████╗  ██████╔╝
+██╔══██║██║   ██║██╔══██╗    ██╔══██║██╔══╝  ██║     ██╔═══╝ ██╔══╝  ██╔══██╗
+██║  ██║╚██████╔╝██║  ██║    ██║  ██║███████╗███████╗██║     ███████╗██║  ██║
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝
+
+EOF
 while true; do
-  echo "Choose a package manager to install: yay, paru, or both"
+  echo "Choose a package manager to install: yay, paru, or both:  "
   read -r helper
 
   case "$helper" in
@@ -93,7 +102,20 @@ done
 sleep 1
 
 #pipewire
-echo -n "Install pipewire? y/n"
+
+cat <<"EOF"
+
+██████╗ ██╗██████╗ ███████╗██╗    ██╗██╗██████╗ ███████╗
+██╔══██╗██║██╔══██╗██╔════╝██║    ██║██║██╔══██╗██╔════╝
+██████╔╝██║██████╔╝█████╗  ██║ █╗ ██║██║██████╔╝█████╗
+██╔═══╝ ██║██╔═══╝ ██╔══╝  ██║███╗██║██║██╔══██╗██╔══╝
+██║     ██║██║     ███████╗╚███╔███╔╝██║██║  ██║███████╗
+╚═╝     ╚═╝╚═╝     ╚══════╝ ╚══╝╚══╝ ╚═╝╚═╝  ╚═╝╚══════╝
+
+EOF
+
+
+echo -n "Install pipewire? y/n:  "
 read pipewire
 
 case "$pipewire" in
@@ -110,7 +132,19 @@ esac
 sleep 1
 
 #Fonts
-echo -n "Install required fonts? y/n"
+
+cat <<"EOF"
+
+███████╗ ██████╗ ███╗   ██╗████████╗
+██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝
+█████╗  ██║   ██║██╔██╗ ██║   ██║
+██╔══╝  ██║   ██║██║╚██╗██║   ██║
+██║     ╚██████╔╝██║ ╚████║   ██║
+╚═╝      ╚═════╝ ╚═╝  ╚═══╝   ╚═╝
+
+EOF
+
+echo -n "Install required fonts? y/n:  "
 read font
 
 case "$font" in
@@ -127,7 +161,20 @@ esac
 sleep 1
 
 #hyprland
-echo -n "Install hyprland? y/n"
+
+cat <<"EOF"
+
+██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗      █████╗ ███╗   ██╗██████╗
+██║  ██║╚██╗ ██╔╝██╔══██╗██╔══██╗██║     ██╔══██╗████╗  ██║██╔══██╗
+███████║ ╚████╔╝ ██████╔╝██████╔╝██║     ███████║██╔██╗ ██║██║  ██║
+██╔══██║  ╚██╔╝  ██╔═══╝ ██╔══██╗██║     ██╔══██║██║╚██╗██║██║  ██║
+██║  ██║   ██║   ██║     ██║  ██║███████╗██║  ██║██║ ╚████║██████╔╝
+╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝
+
+EOF
+
+
+echo -n "Install hyprland? y/n:  "
 read hyprland
 
 case "$hyprland" in
@@ -143,8 +190,60 @@ esac
 
 sleep 1
 
+#Display manager
+
+cat <<"EOF"
+
+██████╗ ██╗███████╗██████╗ ██╗      █████╗ ██╗   ██╗    ███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗
+██╔══██╗██║██╔════╝██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝    ████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗
+██║  ██║██║███████╗██████╔╝██║     ███████║ ╚████╔╝     ██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝
+██║  ██║██║╚════██║██╔═══╝ ██║     ██╔══██║  ╚██╔╝      ██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗
+██████╔╝██║███████║██║     ███████╗██║  ██║   ██║       ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║
+╚═════╝ ╚═╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝       ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
+
+EOF
+
+echo -n "Chose a display manager? sddm,gdm,ly or none:  "
+read DisMan
+
+case "$DisMan" in
+  sddm | SDDM | Sddm)
+    echo -n "installing $DisMan"
+    $helper -Sy --needed --noconfirm sddm
+    systemctl enable --now sddm.service
+  ;;
+  gdm | GDM | Gdm )
+    echo -n "installing $DisMan"
+    $helper -Sy --needed --noconfirm gdm
+    systemctl enable --now gdm.service
+  ;;
+  ly | Ly | LY)
+    echo -n "installing $DisMan"
+    $helper -Sy --needed --noconfirm ly
+    systemctl enable --now ly.service
+  ;;
+  * | none)
+  ;;
+esac
+
+sleep 1
+
 #packages
-echo -n "Install required packages? y/n"
+
+cat <<"EOF"
+
+██████╗  █████╗  ██████╗██╗  ██╗ █████╗  ██████╗ ███████╗███████╗
+██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔════╝ ██╔════╝██╔════╝
+██████╔╝███████║██║     █████╔╝ ███████║██║  ███╗█████╗  ███████╗
+██╔═══╝ ██╔══██║██║     ██╔═██╗ ██╔══██║██║   ██║██╔══╝  ╚════██║
+██║     ██║  ██║╚██████╗██║  ██╗██║  ██║╚██████╔╝███████╗███████║
+╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝
+
+
+EOF
+
+
+echo -n "Install packages? y/n:  "
 read packages
 
 case "$packages" in
@@ -161,7 +260,18 @@ esac
 sleep 1
 
 #nvidia
-echo -n "Install NVIDIA's required packages? y/n"
+
+cat <<"EOF"
+███╗   ██╗██╗   ██╗██╗██████╗ ██╗ █████╗
+████╗  ██║██║   ██║██║██╔══██╗██║██╔══██╗
+██╔██╗ ██║██║   ██║██║██║  ██║██║███████║
+██║╚██╗██║╚██╗ ██╔╝██║██║  ██║██║██╔══██║
+██║ ╚████║ ╚████╔╝ ██║██████╔╝██║██║  ██║
+╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═╝
+
+EOF
+
+echo -n "Install NVIDIA's required packages? y/n:  "
 read NVIDIA
 
 case "$NVIDIA" in
@@ -178,24 +288,18 @@ esac
 sleep 1
 
 #Bluetooth
-echo -n "Install Bluetooth? y/n"
-read Bluetooth
 
-case "$Bluetooth" in
-  yes | Yes | y | Y)
-    echo -n "installing Bluetooth"
-    ~/m57-dots-install/scripts/./Bluetooth.sh
-  ;;
-  No | no | n | N)
-  ;;
-  *)
-  ;;
-esac
+cat <<"EOF"
 
-sleep 1
+██████╗ ██╗     ██╗   ██╗███████╗████████╗ ██████╗  ██████╗ ████████╗██╗  ██╗
+██╔══██╗██║     ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗██╔═══██╗╚══██╔══╝██║  ██║
+██████╔╝██║     ██║   ██║█████╗     ██║   ██║   ██║██║   ██║   ██║   ███████║
+██╔══██╗██║     ██║   ██║██╔══╝     ██║   ██║   ██║██║   ██║   ██║   ██╔══██║
+██████╔╝███████╗╚██████╔╝███████╗   ██║   ╚██████╔╝╚██████╔╝   ██║   ██║  ██║
+╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ╚═╝  ╚═╝
+EOF
 
-#Bluetooth
-echo -n "Install Bluetooth? y/n"
+echo -n "Install Bluetooth? y/n:  "
 read Bluetooth
 
 case "$Bluetooth" in
@@ -210,7 +314,17 @@ case "$Bluetooth" in
 esac
 
 #Printer
-echo -n "Install Printers support? y/n"
+
+cat <<"EOF"
+██████╗ ██████╗ ██╗███╗   ██╗████████╗███████╗██████╗
+██╔══██╗██╔══██╗██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗
+██████╔╝██████╔╝██║██╔██╗ ██║   ██║   █████╗  ██████╔╝
+██╔═══╝ ██╔══██╗██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗
+██║     ██║  ██║██║██║ ╚████║   ██║   ███████╗██║  ██║
+╚═╝     ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
+EOF
+
+echo -n "Install Printers support? y/n:  "
 read Printers
 
 case "$Printers" in
@@ -227,7 +341,20 @@ esac
 sleep 1
 
 #Zsh
-echo -n "Install Zsh? y/n"
+
+cat <<"EOF"
+
+███████╗███████╗██╗  ██╗
+╚══███╔╝██╔════╝██║  ██║
+  ███╔╝ ███████╗███████║
+ ███╔╝  ╚════██║██╔══██║
+███████╗███████║██║  ██║
+╚══════╝╚══════╝╚═╝  ╚═╝
+
+EOF
+
+
+echo -n "Install Zsh? y/n:  "
 read Printers
 
 case "$Zsh" in
@@ -243,41 +370,9 @@ esac
 
 sleep 1
 
+
 # input profile
-while true; do
-    echo "${WARN} This script will add your user to the 'input' group."
-    echo "${NOTE} Please note that adding yourself to the 'input' group might be necessary for waybar keyboard-state functionality."
-
-    if [[ -z $input_group_choid ]]; then
-      read -p "${YELLOW}Do you want to proceed? (y/n): ${RESET}" input_group_choid
-    fi
-
-    if [[ $input_group_choid == "y" || $input_group_choid == "Y" ]]; then
-        # Check if the 'input' group exists
-        if grep -q '^input:' /etc/group; then
-            echo "${OK} 'input' group exists."
-        else
-            echo "${NOTE} 'input' group doesn't exist. Creating 'input' group..."
-            sudo groupadd input
-
-            # Log the creation of the 'input' group
-            echo "'input' group created"
-        fi
-
-        # Add the user to the input group
-        sudo usermod -aG input "$(whoami)"
-        echo "${OK} User added to the 'input' group. Changes will take effect after you log out and log back in."
-
-        # Log the addition of the user to the 'input' group
-        echo "User added to 'input' group"
-        break  # Break out of the loop if 'yes' is chosen
-    elif [[ $input_group_choid == "n" || $input_group_choid == "N" ]]; then
-        echo "${NOTE} No changes made. Exiting the script."
-        break  # Break out of the loop if 'no' is chosen
-    else
-        echo "${ERROR} Invalid choice. Please enter 'y' for yes or 'n' for no."
-    fi
-done
+~/m57-dots-install/scripts/./input-profile.sh
 
 clear
 sleep 1
@@ -286,7 +381,7 @@ cd ~/dots
 ### Dotfiles
 
 # Backup
-echo -n "Backup home? y/n"
+echo -n "Backup /home? y/n:  "
 read Backup
 
 case "$Backup" in
@@ -303,11 +398,11 @@ sleep 1
 
 sleep 0.5
 
-cd ~/dots
-cp -r .config ~/.config
-cp -r .icons ~/.icons
+cd ~/m57-dots-install
+cp -r .config ~/
+cp -r .icons ~/
 cp -r .local ~/
-cp -r .themes ~/.themes
+cp -r .themes ~/
 cd ~/Pictures
 git clone https://github.com/hy4ri/wallpapers
 cd ~/m57-dots-install

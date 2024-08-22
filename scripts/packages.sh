@@ -1,14 +1,4 @@
-cat <<"EOF"
-
-██████╗  █████╗  ██████╗██╗  ██╗ █████╗  ██████╗ ███████╗███████╗
-██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔════╝ ██╔════╝██╔════╝
-██████╔╝███████║██║     █████╔╝ ███████║██║  ███╗█████╗  ███████╗
-██╔═══╝ ██╔══██║██║     ██╔═██╗ ██╔══██║██║   ██║██╔══╝  ╚════██║
-██║     ██║  ██║╚██████╗██║  ██╗██║  ██║╚██████╔╝███████╗███████║
-╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝
-
-
-EOF
+#!/bin/bash
 
 cd ~/
 
@@ -16,7 +6,7 @@ $helper -Sy --noconfirm --needed bitwarden bat cartridges flatpak gammastep game
 
 sleep 2
 
-$helper -Sy --noconfirm --needed aylurs-gtk-shell cliphist curl grim gvfs gvfs-mtp hypridle hyprlock hyprpaper imagemagick inxi jq foot kvantum nvim network-manager-applet pamixer pavucontrol pipewire-alsa playerctl polkit-gnome python-requests python-pyquery pyprland qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync wallust-git waybar wget wl-clipboard wlogout xdg-user-dirs xdg-utils yad
+$helper -Sy --noconfirm --needed aylurs-gtk-shell cliphist curl grim gvfs gvfs-mtp hypridle hyprlock hyprpaper imagemagick inxi jq foot kvantum nvim network-manager-applet pamixer pavucontrol pipewire-alsa playerctl polkit-gnome python-requests python-pyquery pyprland qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync waybar wget wl-clipboard wlogout xdg-user-dirs xdg-utils yad
 
 sleep 2
 
