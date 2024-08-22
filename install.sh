@@ -308,7 +308,9 @@ cp -r .config ~/.config
 cp -r .icons ~/.icons
 cp -r .local ~/
 cp -r .themes ~/.themes
-mv ~/dots/wallpapers ~/Pictures
+cd ~/Pictures
+git clone https://github.com/hy4ri/wallpapers
+cd ~/m57-dots-install
 cp -r .zshrc ~/
 cp -r .zprofile ~/
 
@@ -327,7 +329,6 @@ bat <<"EOF"
 ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 EOF
 
-unset $helper
 echo "Reboot in 10s"
 sleep 10
 
