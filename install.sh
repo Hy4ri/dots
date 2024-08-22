@@ -14,8 +14,8 @@ EOF
 
 
 sudo cp "$(pwd)" -r ~/m57-dots-install
+cd ~/m57-dots-install
 
-######etc/pacman.conf
 echo "edit pacman.conf"
 
 pacman_conf="/etc/pacman.conf"
