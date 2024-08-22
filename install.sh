@@ -61,12 +61,12 @@ while true; do
   read -r helper
 
   case "$helper" in
-    yay)
+    yay| Yay)
       echo -n "installing $helper"
       ~/m57-dots-install/scripts/./yay.sh
       break
     ;;
-    paru)
+    paru | Paru)
       echo -n "installing $helper"
       ~/m57-dots-install/scripts/./paru.sh
       break
