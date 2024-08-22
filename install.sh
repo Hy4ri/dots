@@ -65,7 +65,7 @@ case "$helper" in
   ;;
   paru)
      echo -n "installing $helper"
-    ~/dotm57-dots-installs/scripts/./paru.sh
+    ~/m57-dots-install/scripts/./paru.sh
   ;;
   both)
     echo -n "installing yay"
