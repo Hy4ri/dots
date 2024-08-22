@@ -130,7 +130,7 @@ sleep 1
 echo -n "Install hyprland? y/n"
 read hyprland
 
-case "$packhyprlandages" in
+case "$hyprland" in
   yes | Yes | y | Y)
     echo -n "installing hyprland"
     ~/m57-dots-install/scripts/./hyprland.sh
