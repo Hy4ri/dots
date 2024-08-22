@@ -13,4 +13,4 @@ paru -Sy --noconfirm --needed adobe-source-code-pro-fonts noto-fonts-emoji otf-f
 
 clear
 sleep 1
-cd ~/dots
+cd ~/m57-dots-install

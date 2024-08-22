@@ -45,4 +45,4 @@ fi
 
 clear
 sleep 1
-cd ~/dots
+cd ~/m57-dots-install

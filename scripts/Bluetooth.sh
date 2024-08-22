@@ -16,4 +16,4 @@ systemctl enable --now bluetooth.service
 
 clear
 sleep 3
-cd ~/dots
+cd ~/m57-dots-install

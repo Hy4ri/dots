@@ -17,4 +17,4 @@ sudo groupadd lp && sudo groupadd cups and sudo usermod -aG sys,lp,cups "$(whoam
 
 clear
 sleep 1
-cd ~/dots
+cd ~/m57-dots-install

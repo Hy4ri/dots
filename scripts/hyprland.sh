@@ -14,4 +14,4 @@ paru -Sy --noconfirm --needed hyprland hyprcursor xdg-desktop-portal-hyprland xd
 
 clear
 sleep 1
-cd ~/dots
+cd ~/m57-dots-install

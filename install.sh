@@ -13,6 +13,8 @@ cat <<"EOF"
 EOF
 
 
+sudo cp "$(pwd)" -r ~/m57-dots-install
+
 ######etc/pacman.conf
 echo "edit pacman.conf"
 
@@ -52,49 +54,183 @@ sudo pacman -Sy
 clear
 sleep 1
 
+#aur helper
+
 echo -n "Which aur helper do you want to install? yay - paru - both - none? "
 read helper
-echo -n "installing $helper"
-
 case "$helper" in
-  yay) 
-    ~/dots/scripts/./yay.sh
+  yay)
+    echo -n "installing $helper"
+    ~/m57-dots-install/scripts/./yay.sh
   ;;
   paru)
-    ~/dots/scripts/./paru.sh
+     echo -n "installing $helper"
+    ~/dotm57-dots-installs/scripts/./paru.sh
   ;;
-  both)    
-    ~/dots/scripts/./yay.sh
+  both)
+    echo -n "installing yay"
+    ~/m57-dots-install/scripts/./yay.sh
     sleep 1
-    ~/dots/scripts/./paru.sh
+    echo -n "installing paru"
+    ~/m57-dots-install/scripts/./paru.sh
   ;;
   none)
   ;;
+  *)
+  ;;
 esac
 
-sudo cp "$(pwd)" -r ~/m57-dots-install
+sleep 1
 
+#pipewire
+echo -n "Install pipewire? y/n"
+read pipewire
+
+case "$pipewire" in
+  yes | Yes | y | Y)
+    echo -n "installing pipewire"
+    ~/m57-dots-install/scripts/./pipewire.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
 
 sleep 1
-~/m57-dots-install/scripts/./pipewire.sh
+
+#Fonts
+echo -n "Install required fonts? y/n"
+read font
+
+case "$font" in
+  yes | Yes | y | Y)
+    echo -n "installing the fonts"
+    ~/m57-dots-install/scripts/./fonts.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
 sleep 1
-~/m57-dots-install/scripts/./fonts.sh
+
+#hyprland
+echo -n "Install hyprland? y/n"
+read hyprland
+
+case "$packhyprlandages" in
+  yes | Yes | y | Y)
+    echo -n "installing hyprland"
+    ~/m57-dots-install/scripts/./hyprland.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
 sleep 1
-~/m57-dots-install/scripts/./packages.sh
+
+#packages
+echo -n "Install required packages? y/n"
+read packages
+
+case "$packages" in
+  yes | Yes | y | Y)
+    echo -n "installing the packages"
+    ~/m57-dots-install/scripts/./packages.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
 sleep 1
-~/m57-dots-install/scripts/./packages.sh
+
+#nvidia
+echo -n "Install NVIDIA's required packages? y/n"
+read NVIDIA
+
+case "$NVIDIA" in
+  yes | Yes | y | Y)
+    echo -n "installing NVIDIA's required packages"
+    ~/m57-dots-install/scripts/./nvidia.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
 sleep 1
-~/m57-dots-install/scripts/./hyprland.sh
+
+#Bluetooth
+echo -n "Install Bluetooth? y/n"
+read Bluetooth
+
+case "$Bluetooth" in
+  yes | Yes | y | Y)
+    echo -n "installing Bluetooth"
+    ~/m57-dots-install/scripts/./Bluetooth.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
 sleep 1
-~/m57-dots-install/scripts/./nvidia.sh
+
+#Bluetooth
+echo -n "Install Bluetooth? y/n"
+read Bluetooth
+
+case "$Bluetooth" in
+  yes | Yes | y | Y)
+    echo -n "installing Bluetooth"
+    ~/m57-dots-install/scripts/./Bluetooth.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
+#Printer
+echo -n "Install Printers support? y/n"
+read Printers
+
+case "$Printers" in
+  yes | Yes | y | Y)
+    echo -n "installing Printers support"
+    ~/m57-dots-install/scripts/./Printer.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
 sleep 1
-~/m57-dots-install/scripts/./Bluetooth.sh
-sleep 1
-~/m57-dots-install/scripts/./sddm.sh
-sleep 1
-~/m57-dots-install/scripts/./Printer.sh
-sleep 1
-~/m57-dots-install/scripts/./Zsh.sh
+
+#Zsh
+echo -n "Install Zsh? y/n"
+read Printers
+
+case "$Zsh" in
+  yes | Yes | y | Y)
+    echo -n "installing Zsh"
+    ~/m57-dots-install/scripts/./Zsh.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
 sleep 1
 
 # input profile
@@ -140,7 +276,20 @@ cd ~/dots
 ### Dotfiles
 
 # Backup
-sudo mv ~/.config ~/config-backup
+echo -n "Backup home? y/n"
+read Backup
+
+case "$Backup" in
+  yes | Yes | y | Y)
+    mv ~/ -r ~/old-config
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
+sleep 1
 
 sleep 0.5
 
@@ -149,7 +298,7 @@ cp -r .config ~/.config
 cp -r .icons ~/.icons
 cp -r .local ~/
 cp -r .themes ~/.themes
-mv ~/dots/wallpapers ~/Pictures/wallpapers
+mv ~/dots/wallpapers ~/Pictures
 cp -r .zshrc ~/
 cp -r .zprofile ~/
 

@@ -21,4 +21,4 @@ systemctl --user enable --now pipewire.service
 
 clear
 sleep 1
-cd ~/dots
+cd ~/m57-dots-install
