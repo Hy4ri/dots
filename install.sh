@@ -56,29 +56,34 @@ sleep 1
 
 #aur helper
 
-echo -n "Which aur helper do you want to install? yay - paru - both - none? "
-read helper
-case "$helper" in
-  yay)
-    echo -n "installing $helper"
-    ~/m57-dots-install/scripts/./yay.sh
-  ;;
-  paru)
-     echo -n "installing $helper"
-    ~/m57-dots-install/scripts/./paru.sh
-  ;;
-  both)
-    echo -n "installing yay"
-    ~/m57-dots-install/scripts/./yay.sh
-    sleep 1
-    echo -n "installing paru"
-    ~/m57-dots-install/scripts/./paru.sh
-  ;;
-  none)
-  ;;
-  *)
-  ;;
-esac
+while true; do
+  echo "Choose a package manager to install: yay, paru, or both"
+  read -r helper
+
+  case "$helper" in
+    yay)
+      echo -n "installing $helper"
+      ~/m57-dots-install/scripts/./yay.sh
+      break
+    ;;
+    paru)
+      echo -n "installing $helper"
+      ~/m57-dots-install/scripts/./paru.sh
+      break
+    ;;
+    both)
+      echo -n "installing yay"
+      ~/m57-dots-install/scripts/./yay.sh
+      sleep 1
+      echo -n "installing paru"
+      ~/m57-dots-install/scripts/./paru.sh
+      break
+    ;;
+    *)
+      echo "Invalid option. Please choose either 'yay', 'paru', or 'both'."
+    ;;
+  esac
+done
 
 sleep 1
 
