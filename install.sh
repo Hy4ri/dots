@@ -210,19 +210,16 @@ case "$DisMan" in
   sddm | SDDM | Sddm)
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm sddm
-    systemctl start sddm.service
     systemctl enable sddm.service
   ;;
   gdm | GDM | Gdm )
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm gdm
-    systemctl start gdm.service
     systemctl enable gdm.service
   ;;
   ly | Ly | LY)
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm ly
-    systemctl start ly.service
     systemctl enable ly.service
   ;;
   * | none)
@@ -406,6 +403,7 @@ cp -r .config ~/
 cp -r .icons ~/
 cp -r .local ~/
 cp -r .themes ~/
+mkdir -p ~/Pictures
 cd ~/Pictures
 git clone https://github.com/hy4ri/wallpapers
 cd ~/m57-dots-install

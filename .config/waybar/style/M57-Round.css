@@ -1,0 +1,138 @@
+@define-color font-color #e2e2e2;
+@define-color background-color #121212;
+@define-color accent #cd3244;
+
+* {
+    font-family: JetBrainsMono Nerd Font;
+    font-weight: 700;
+    min-height: 0;
+    font-size: 100%;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    }
+
+    #window{
+        background-color: @background-color;
+        color: @font-color;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
+    }
+
+    window#waybar {
+        background-color: transparent;
+      }
+
+      window#waybar.empty #window {
+        background:none;
+       }
+
+    tooltip {
+        background: @background-color;
+        opacity: 0.9;
+        border-radius: 0px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: @accent;
+    }
+
+    tooltip label{
+        color: rgba(243, 244, 245, 0.9);
+    }
+
+    #workspaces{
+        background-color: @background-color;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
+    }
+
+    #workspaces button {
+        background-color: @background-color;
+        color: @font-color;
+    }
+
+    #workspaces button.active {
+        color: @accent;
+    }
+
+    #workspaces button:hover {
+        color: @background-color;
+        background-color: @font-color;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
+    }
+
+    #workspaces button.urgent {
+        background-color: red;
+        color: white;
+    }
+
+    #custom-swaync{
+        color: @font-color;
+        background-color: @background-color;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
+    }
+
+    #clock {
+        color: @accent;
+        background-color: @background-color;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
+    }
+
+    #custom-weather2 {
+        color: @font-color;
+        background-color: @background-color;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
+    }
+
+    #tray{
+        background-color: @background-color;
+        color: @font-color;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 7px;
+    }
+
+    #mpris{
+        background-color: @background-color;
+        color: @accent;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
+    }
+
+    #custom-prayers{
+        background-color: @background-color;
+        color: @font-color;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
+    }
+
+    #custom-hyprshade{
+        padding-left: 5px;
+        padding-right: 12px;
+        color: yellow;
+    }
+    #pulseaudio,
+    #pulseaudio-micorphone{
+        padding-left: 5px;
+        padding-right: 12px;
+    }
+
+    #battery{
+        padding-left: 5px;
+        padding-right: 12px;
+        color: greenyellow;
+    }
+
+    #battery.critical:not(.charging) {
+        color: @accent;
+    }

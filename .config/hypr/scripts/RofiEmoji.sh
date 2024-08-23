@@ -2,8 +2,8 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Rofi Emoticons. Not my own. Cant remember the source
 
-sed '1,/^# # DATA # #$/d' $0 | 
-rofi -dmenu -config ~/.config/rofi/config-emoji.rasi| 
+sed '1,/^# # DATA # #$/d' $0 |
+rofi -dmenu -theme $HOME/.config/rofi/launchers/type-3/style-5.rasi |
 cut -d ' ' -f 1 | tr -d '\n' | wl-copy
 
 exit

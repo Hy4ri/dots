@@ -11,7 +11,7 @@
 "ipc": true,
 
 "modules-left": [
-	"hyprland/workspaces#NO",
+	"sway/workspaces",
 	"custom/separator#dot",
 	"custom/prayers",
 	"custom/separator#dot",
@@ -19,7 +19,7 @@
     ],
 
 "modules-center": [
-	"hyprland/window"
+	"sway/window"
 	],
 
 "modules-right": [

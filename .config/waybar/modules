@@ -239,9 +239,8 @@
 		"transition-duration": 500
         },
     "modules": [
-        "tray",
-        "custom/chatgpt",
-        "custom/todoist",
+        "tray", 
+        "custom/hyprshade",
         "group/audio",
         "battery",
 		    "power-profiles-daemon",

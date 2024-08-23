@@ -11,7 +11,7 @@ while true; do
         rofi -dmenu \
             -kb-custom-1 "Control-Delete" \
             -kb-custom-2 "Alt-Delete" \
-            -config ~/.config/rofi/config-clipboard.rasi < <(cliphist list)
+            -theme $HOME/.config/rofi/launchers/type-3/style-5.rasi < <(cliphist list)
     )
 
     case "$?" in
@@ -37,4 +37,3 @@ while true; do
             ;;
     esac
 done
-

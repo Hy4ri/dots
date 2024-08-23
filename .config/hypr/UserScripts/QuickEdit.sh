@@ -14,11 +14,11 @@ menu(){
   printf "7. view User-Settings\n"
   printf "8. view Default-Settings\n"
   printf "9. view Default-Keybinds\n"
-  printf "10. view laptop-Monitor\n" 
+  printf "10. view laptop-Monitor\n"
 }
 
 main() {
-    choice=$(menu | rofi -i -dmenu -config ~/.config/rofi/config-confedit.rasi | cut -d. -f1)
+    choice=$(menu | rofi -i -dmenu -theme $HOME/.config/rofi/launchers/type-3/style-5.rasi | cut -d. -f1)
     case $choice in
         1)
             foot -e nvim "$UserConfigs/ENVariables.conf"
@@ -49,7 +49,7 @@ main() {
             ;;
         10)
             foot -e nvim "$UserConfigs/LaptopDisplay.conf"
-            ;;    
+            ;;
         *)
             ;;
     esac

@@ -47,7 +47,7 @@ play_local_music() {
   populate_local_music
 
   # Prompt the user to select a song
-  choice=$(printf "%s\n" "${filenames[@]}" | rofi -i -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi -p "Local Music")
+  choice=$(printf "%s\n" "${filenames[@]}" | rofi -i -dmenu "rofi -dmenu -theme $HOME/.config/rofi/launchers/type-3/style-5.rasi -p "Local Music")
 
   if [ -z "$choice" ]; then
     exit 1
@@ -78,7 +78,7 @@ play_online_music() {
   link="${online_music[$choice]}"
 
   notification "$choice"
-  
+
   # Play the selected online music using mpv
   mpv --shuffle --vid=no "$link"
 }

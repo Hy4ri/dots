@@ -3,7 +3,7 @@
 # Script for Random Wallpaper (CTRL ALT W)
 
 wallDIR="$HOME/Pictures/wallpapers"
-scriptsDir="$HOME/.config/hypr/scripts"  # Updated for Sway
+scriptsDir="$HOME/.config/hypr/scripts"
 
 # Get the focused output (monitor) in Sway
 focused_monitor=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
