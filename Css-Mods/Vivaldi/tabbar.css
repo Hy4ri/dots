@@ -7,3 +7,6 @@ button[title="Synced Tabs"]{
 div.stack-counter{
     color: var(--colorHighlightBg) !important;
 }
+button[title="Workspaces"]{
+    color: var(--colorHighlightBg) !important;
+}

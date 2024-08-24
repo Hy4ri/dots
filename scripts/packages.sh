@@ -1,24 +1,18 @@
 #!/bin/bash
 
-cd ~/
-
-$helper -Sy --noconfirm --needed bitwarden bat cartridges flatpak gammastep gamemode gparted heroic-games-launcher-bin hyprprop-git hyprshade-git lutris mangal-bin man-db man-pages normcap openrgb papirus-folders-git papirus-icon-theme power-profiles-daemon qview scrcpy spotify-launcher spicetify-cli timeshift thunar thunar-volman tumbler tty-clock termdown ffmpegthumbnailer file-roller thunar-archive-plugin vesktop wev xwaylandvideobridge waypaper xorg-host zathura zathura-cb zathura-djvu zathura-language-server zathura-pdf-mupdf zathura-ps zoxide
-
-sleep 2
-
-$helper -Sy --noconfirm --needed aylurs-gtk-shell cliphist curl grim gvfs gvfs-mtp hypridle hyprlock hyprpaper imagemagick inxi jq foot kvantum nvim network-manager-applet pamixer pavucontrol pipewire-alsa playerctl polkit-gnome python-requests python-pyquery pyprland qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync waybar wget wl-clipboard wlogout xdg-user-dirs xdg-utils yad
-
-sleep 2
-
-$helper -Sy --noconfirm --needed brightnessctl btop cava eza fastfetch vlc mpv mpv-mpris nvtop nwg-look pacman-contrib vim yt-dlp wlogout
-
-sleep 2
+$helper -Sy --noconfirm --needed alacritty bitwarden bat flatpak gammastep gamemode gparted lutris man-db man-pages openrgb \
+papirus-icon-theme feh power-profiles-daemon scrcpy spotify-launcher timeshift thunar thunar-volman tumbler termdown \
+ffmpegthumbnailer file-roller thunar-archive-plugin wev xwaylandvideobridge xorg-host zathura zathura-cb zathura-djvu \
+zathura-language-server zathura-pdf-mupdf zathura-ps zoxide cliphist curl grim gvfs gvfs-mtp gvfs-google hypridle \
+hyprlock hyprpaper inxi jq foot kvantum nvim network-manager-applet pamixer pavucontrol pipewire-alsa playerctl \
+qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync waybar wget wl-clipboard xdg-user-dirs xdg-utils yad brightnessctl \
+btop eza fastfetch vlc mpv mpv-mpris nvtop pacman-contrib neovim yt-dlp bash-completion bc bash-completion dua-cli duf \
+egl-wayland fish fish-autopair fish-pure-prompt fisher hwinfo intel-ucode lshw nano-syntax-highlighting obs-studio openssh \
+w3m
 
 $helper -Sy --noconfirm --needed ds4drv game-devices-udev dualsensectl xone-dkms
 
 sleep 2
-
-$helper -R --noconfirm dunst mako
 
 sudo curl -sL github.com/justchokingaround/jerry/raw/main/jerry.sh -o /usr/local/bin/jerry &&
 sudo chmod +x /usr/local/bin/jerry

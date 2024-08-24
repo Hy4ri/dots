@@ -1,7 +1,6 @@
 #!/bin/bash
 
-$helper -Sy --noconfirm --needed hyprland hyprcursor xdg-desktop-portal-hyprland \
-hyprpaper hypridle hyprlock hyprlang hyprutils hyprwayland-scanner xwaylandvideobridge
+$helper -Sy --noconfirm --needed wayfire wayfire-plugins-extra wcm wf-config wf-shell xwaylandvideobridge
 
 $helper -Sy --noconfirm --needed kitty kitty-shell-integration kitty-terminfo foot thunar file-roller rofi-wayland waybar \
 firefox network-manager-applet swaync swww gammastep blueman wl-clipboard mousepad lxapperance \
