@@ -99,6 +99,36 @@ done
 
 sleep 1
 
+#Zsh
+
+cat <<"EOF"
+
+███████╗███████╗██╗  ██╗
+╚══███╔╝██╔════╝██║  ██║
+  ███╔╝ ███████╗███████║
+ ███╔╝  ╚════██║██╔══██║
+███████╗███████║██║  ██║
+╚══════╝╚══════╝╚═╝  ╚═╝
+
+EOF
+
+
+echo -n "Install Zsh? y/n: "
+read Printers
+
+case "$Zsh" in
+  yes | Yes | y | Y)
+    echo -n "installing Zsh"
+    ~/m57-dots-install/scripts/./Zsh.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
+sleep 1
+
 #pipewire
 
 cat <<"EOF"
@@ -387,37 +417,6 @@ esac
 
 sleep 1
 
-#Zsh
-
-cat <<"EOF"
-
-███████╗███████╗██╗  ██╗
-╚══███╔╝██╔════╝██║  ██║
-  ███╔╝ ███████╗███████║
- ███╔╝  ╚════██║██╔══██║
-███████╗███████║██║  ██║
-╚══════╝╚══════╝╚═╝  ╚═╝
-
-EOF
-
-
-echo -n "Install Zsh? y/n: "
-read Printers
-
-case "$Zsh" in
-  yes | Yes | y | Y)
-    echo -n "installing Zsh"
-    ~/m57-dots-install/scripts/./Zsh.sh
-  ;;
-  No | no | n | N)
-  ;;
-  *)
-  ;;
-esac
-
-sleep 1
-
-
 # input profile
 ~/m57-dots-install/scripts/./input-profile.sh
 
@@ -447,8 +446,14 @@ sleep 0.5
 cd ~/m57-dots-install
 cp -r .config ~/
 cp -r .icons ~/
+cd ~/.icons
+cd ~/dots
+extract Bibata-Modern-Ice.tar.gz
 cp -r .local ~/
 cp -r .themes ~/
+cd ~/.themes
+extract M57.tar.gz
+cd ~/dots
 mkdir -p ~/Pictures
 cd ~/Pictures
 git clone https://github.com/hy4ri/wallpapers
@@ -464,7 +469,7 @@ bat <<"EOF"
 ██████╗  ██████╗ ███╗   ██╗███████╗
 ██╔══██╗██╔═══██╗████╗  ██║██╔════╝
 ██║  ██║██║   ██║██╔██╗ ██║█████╗
-██║  ██║██║   ██║██║╚██╗██║██╔══╝
+██║  ██║██║   ██║██║╚██╗██║██╔══╝E
 ██████╔╝╚██████╔╝██║ ╚████║███████╗
 ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 EOF
