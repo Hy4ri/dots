@@ -71,13 +71,13 @@ while true; do
 
   case "$helper" in
     yay)
-      sudo export helper
+      export helper
       echo -n "installing $helper"
       ~/m57-dots-install/scripts/./yay.sh
       break
     ;;
     paru)
-      sudo export helper
+      export helper
       echo -n "installing $helper"
       ~/m57-dots-install/scripts/./paru.sh
       break
@@ -86,7 +86,7 @@ while true; do
       echo -n "installing yay"
       ~/m57-dots-install/scripts/./yay.sh
       sleep 1
-      sudo export helper="paru"
+      export helper="paru"
       echo -n "installing paru"
       ~/m57-dots-install/scripts/./paru.sh
       break
