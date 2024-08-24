@@ -66,7 +66,7 @@ cat <<"EOF"
 
 EOF
 while true; do
-  echo "Choose a package manager to install: yay, paru, or both:  "
+  echo "Choose a package manager to install: yay, paru, or both: "
   read -r helper
 
   case "$helper" in
@@ -115,7 +115,7 @@ cat <<"EOF"
 EOF
 
 
-echo -n "Install pipewire? y/n:  "
+echo -n "Install pipewire? y/n: "
 read pipewire
 
 case "$pipewire" in
@@ -144,7 +144,7 @@ cat <<"EOF"
 
 EOF
 
-echo -n "Install required fonts? y/n:  "
+echo -n "Install required fonts? y/n: "
 read font
 
 case "$font" in
@@ -164,29 +164,49 @@ sleep 1
 
 cat <<"EOF"
 
-██╗  ██╗██╗   ██╗██████╗ ██████╗ ██╗      █████╗ ███╗   ██╗██████╗
-██║  ██║╚██╗ ██╔╝██╔══██╗██╔══██╗██║     ██╔══██╗████╗  ██║██╔══██╗
-███████║ ╚████╔╝ ██████╔╝██████╔╝██║     ███████║██╔██╗ ██║██║  ██║
-██╔══██║  ╚██╔╝  ██╔═══╝ ██╔══██╗██║     ██╔══██║██║╚██╗██║██║  ██║
-██║  ██║   ██║   ██║     ██║  ██║███████╗██║  ██║██║ ╚████║██████╔╝
-╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝
+██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗
+██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗
+██║ █╗ ██║██║██╔██╗ ██║██║  ██║██║   ██║██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝
+██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗
+╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║
+ ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
 
 EOF
 
-
-echo -n "Install hyprland? y/n:  "
-read hyprland
-
-case "$hyprland" in
-  yes | Yes | y | Y)
-    echo -n "installing hyprland"
-    ~/m57-dots-install/scripts/./hyprland.sh
-  ;;
-  No | no | n | N)
-  ;;
-  *)
-  ;;
-esac
+while true; do
+  echo -n "chose a Windomanager:Hyprland, sway, wayfire or all: "
+  read Wm
+  case "$Wm" in
+    hyprland | Hyprland)
+      echo -n "installing $Wm"
+      ~/m57-dots-install/scripts/./hyprland.sh
+      break
+    ;;
+    sway | Sway)
+      echo -n "installing $Wm"
+      ~/m57-dots-install/scripts/./sway.sh
+      break
+    ;;
+    Wayfire | wayfire)
+      echo -n "installing $Wm"
+      ~/m57-dots-install/scripts/./wayfire.sh
+      break
+    all | All)
+      echo -n "installing sway"
+      ~/m57-dots-install/scripts/./sway.sh
+      sleep 1
+      echo -n "installing wayfire"
+      ~/m57-dots-install/scripts/./wayfire.sh
+      sleep 1
+      echo -n "installing hyprland"
+      ~/m57-dots-install/scripts/./hyprland.sh
+      break
+    ;;
+    *)
+      echo "Invalid option. Please choose either 'hyprland', 'wayfire', 'sway' or 'all'."
+    ;;
+  esac
+done
 
 sleep 1
 
@@ -203,7 +223,7 @@ cat <<"EOF"
 
 EOF
 
-echo -n "Chose a display manager? sddm,gdm,ly or none:  "
+echo -n "Chose a display manager? sddm,gdm,ly or none: "
 read DisMan
 
 case "$DisMan" in
@@ -243,7 +263,7 @@ cat <<"EOF"
 EOF
 
 
-echo -n "Install packages? y/n:  "
+echo -n "Install packages? y/n: "
 read packages
 
 case "$packages" in
@@ -271,7 +291,7 @@ cat <<"EOF"
 
 EOF
 
-echo -n "Install NVIDIA's required packages? y/n:  "
+echo -n "Install NVIDIA's required packages? y/n: "
 read NVIDIA
 
 case "$NVIDIA" in
@@ -299,7 +319,7 @@ cat <<"EOF"
 ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ╚═╝  ╚═╝
 EOF
 
-echo -n "Install Bluetooth? y/n:  "
+echo -n "Install Bluetooth? y/n: "
 read Bluetooth
 
 case "$Bluetooth" in
@@ -324,7 +344,7 @@ cat <<"EOF"
 ╚═╝     ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
 EOF
 
-echo -n "Install Printers support? y/n:  "
+echo -n "Install Printers support? y/n: "
 read Printers
 
 case "$Printers" in
@@ -354,7 +374,7 @@ cat <<"EOF"
 EOF
 
 
-echo -n "Install Zsh? y/n:  "
+echo -n "Install Zsh? y/n: "
 read Printers
 
 case "$Zsh" in
@@ -409,8 +429,6 @@ git clone https://github.com/hy4ri/wallpapers
 cd ~/m57-dots-install
 cp -r .zshrc ~/
 cp -r .zprofile ~/
-
-systemctl --user enable --now prayer-times.service
 
 sudo rm -r ~/m57-dots-install
 
