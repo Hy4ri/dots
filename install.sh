@@ -469,7 +469,5 @@ bat <<"EOF"
 ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 EOF
 
-echo "Reboot in 10s"
-sleep 10
-
-systemctl reboot
+echo "Rebooting in 10s"
+sleep 10 && systemctl reboot
