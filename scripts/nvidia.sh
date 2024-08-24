@@ -69,6 +69,5 @@ else
   printf "${NOTE} Skipping nouveau blacklisting.\n"
 fi
 
-clear
 sleep 1
 cd ~/m57-dots-install

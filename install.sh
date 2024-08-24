@@ -51,7 +51,6 @@ echo -e "${CAT} Pacman.conf spicing up completed ${RESET}"
 # updating pacman.conf
 sudo pacman -Sy
 
-clear
 sleep 1
 
 #aur helper
@@ -394,7 +393,6 @@ sleep 1
 # input profile
 ~/m57-dots-install/scripts/./input-profile.sh
 
-clear
 sleep 1
 cd ~/dots
 

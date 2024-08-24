@@ -4,6 +4,6 @@ $helper -Sy --needed --noconfirm hplip print-manager ghostscript gsfonts cups cu
 sudo systemctl enable --now avahi-daemon cups.socket
 sudo groupadd lp && sudo groupadd cups and sudo usermod -aG sys,lp,cups "$(whoami)"
 
-clear
+
 sleep 1
 cd ~/m57-dots-install

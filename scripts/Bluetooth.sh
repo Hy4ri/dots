@@ -9,6 +9,5 @@ bluez-deprecated-tools
 printf " Activating Bluetooth Services...\n"
 systemctl enable --now bluetooth.service
 
-clear
 sleep 3
 cd ~/m57-dots-install

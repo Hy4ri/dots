@@ -10,6 +10,5 @@ systemctl --user enable --now pipewire.socket pipewire-pulse.socket wireplumber.
 systemctl --user enable --now pipewire.service
 
 
-clear
 sleep 1
 cd ~/m57-dots-install

@@ -34,3 +34,6 @@ while true; do
         echo "${ERROR} Invalid choice. Please enter 'y' for yes or 'n' for no."
     fi
 done
+
+sleep 1
+cd ~/m57-dots-install

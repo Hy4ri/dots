@@ -33,6 +33,5 @@ if command -v zsh >/dev/null; then
 
 fi
 
-clear
 sleep 1
 cd ~/m57-dots-install

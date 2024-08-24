@@ -9,6 +9,5 @@ network-manager-applet btop cliphist bat eza fastfetc galculato networkmanage ne
 papirus-icon-theme pavucontrol power-profiles-daemon ripgrep qview qt6ct kvantum thunar-archive-plugin \
 thunar-volman waypaper wev wireplumber zoxide fzf wlr-randr swappy grim slurp
 
-clear
 sleep 1
 cd ~/m57-dots-install
