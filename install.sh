@@ -190,6 +190,7 @@ while true; do
       echo -n "installing $Wm"
       ~/m57-dots-install/scripts/./wayfire.sh
       break
+    ;;
     all | All)
       echo -n "installing sway"
       ~/m57-dots-install/scripts/./sway.sh
