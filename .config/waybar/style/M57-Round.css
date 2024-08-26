@@ -1,7 +1,7 @@
 @define-color font-color #e2e2e2;
 @define-color background-color #121212;
 @define-color accent #cd3244;
-
+@define-color urgent blue;
 * {
     font-family: JetBrainsMono Nerd Font;
     font-weight: 700;
@@ -47,12 +47,21 @@
     }
 
     #workspaces button {
-        background-color: @background-color;
-        color: @font-color;
+        background-color: #222222;
+        color: @font-color ;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 10px;
     }
 
-    #workspaces button.active {
-        color: @accent;
+    #workspaces button.active,
+    #workspaces button.focused {
+        color: @font-color ;
+        background-color:@accent;
+        /*border: 2px solid @accent;*/
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 20px;
     }
 
     #workspaces button:hover {
@@ -64,8 +73,11 @@
     }
 
     #workspaces button.urgent {
-        background-color: red;
+        background-color: @urgent;
         color: white;
+        border-radius: 50px 50px;
+        margin: 3px;
+	    padding: 3px 15px;
     }
 
     #custom-swaync{
@@ -110,7 +122,7 @@
 
     #custom-prayers{
         background-color: @background-color;
-        color: @font-color;
+        color:@font-color ;
         border-radius: 50px 50px;
         margin: 3px;
 	    padding: 3px 15px;
@@ -135,4 +147,8 @@
 
     #battery.critical:not(.charging) {
         color: @accent;
+    }
+
+    #custom-separator{
+        color: transparent;
     }

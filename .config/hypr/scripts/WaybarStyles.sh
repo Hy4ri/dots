@@ -9,7 +9,7 @@ IFS=$'\n\t'
 waybar_styles="$HOME/.config/waybar/style"
 waybar_style="$HOME/.config/waybar/style.css"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
-rofi_config="$HOME/.config/rofi/config-waybar-style.rasi"
+rofi_theme="$HOME/.config/rofi/launchers/type-3/style-5.rasi"
 
 # Function to display menu options
 menu() {
@@ -19,7 +19,7 @@ menu() {
             options+=("$(basename "$file" .css)")
         fi
     done < <(find "$waybar_styles" -maxdepth 1 -type f -name '*.css' -exec basename {} \; | sort)
-    
+
     printf '%s\n' "${options[@]}"
 }
 
@@ -40,7 +40,7 @@ restart_waybar_if_needed() {
 
 # Main function
 main() {
-    choice=$(menu | rofi -dmenu -config "$rofi_config")
+    choice=$(menu | rofi -dmenu -theme "$rofi_theme")
 
     if [[ -z "$choice" ]]; then
         echo "No option selected. Exiting."

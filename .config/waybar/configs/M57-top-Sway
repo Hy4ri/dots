@@ -11,19 +11,24 @@
 "ipc": true,
 
 "modules-left": [
-	"hyprland/workspaces#No",
+	"sway/workspaces",
+	"custom/separator#dot",
 	"custom/prayers",
+	"custom/separator#dot",
 	"mpris"
     ],
 
 "modules-center": [
-	"hyprland/window"
+	"sway/window"
 	],
 
 "modules-right": [
 	"group/tray",
+	"custom/separator#dot",
 	"custom/weather2",
+	"custom/separator#dot",
 	"clock",
+	"custom/separator#dot",
 	"custom/swaync"
 	]
 }

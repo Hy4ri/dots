@@ -11,7 +11,7 @@
 
 # Current Theme
 dir="$HOME/.config/rofi/powermenu/type-1"
-theme='style-3'
+theme='style-1'
 
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
@@ -86,7 +86,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		hyprlock
+		swaylock
         ;;
     $suspend)
 		run_cmd --suspend
