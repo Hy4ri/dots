@@ -6,12 +6,13 @@
 "gtk-layer-shell": true,
 "position": "top",
 "reload_style_on_change": true,
-"spacing": 1,
+"spacing": 0,
 "fixed-center": true,
 "ipc": true,
 
 "modules-left": [
 	"hyprland/workspaces#NO",
+    /*"wlr/taskbar",*/
 	"custom/prayers",
 	"mpris"
     ],
@@ -21,7 +22,9 @@
 	],
 
 "modules-right": [
-  "group/tray",
+    "privacy",
+    "tray",
+    "group/sys",
 	"custom/weather2",
 	"clock",
 	"custom/swaync"

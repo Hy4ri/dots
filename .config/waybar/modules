@@ -226,7 +226,7 @@
       ]
 },
 
-"group/tray": {
+"group/sys": {
     "orientation": "inherit",
     "modules": [
         "group/applets",
@@ -239,11 +239,10 @@
 		"transition-duration": 500
         },
     "modules": [
-        "tray",
         "custom/hyprshade",
         "group/audio",
         "battery",
-		    "power-profiles-daemon",
+		"power-profiles-daemon",
      ]
 },
 
@@ -468,7 +467,7 @@
 
 "mpris": {
     "interval": 1,
-	"format": "{title}",
+	"format": "{player_icon}  {title}",
 	"on-click": "playerctl play-pause",
     "on-click-middle": "playerctl previous",
     "on-click-right": "playerctl next",
@@ -526,6 +525,7 @@
 
 "power-profiles-daemon": {
     "format": "{icon}",
+    "icon-size": 15,
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
     "tooltip": true,
     "format-icons": {
@@ -535,7 +535,23 @@
       "power-saver": " "
     }
   },
-
+"privacy": {
+	"icon-spacing": 5,
+	"icon-size": 15,
+	"transition-duration": 250,
+	"modules": [
+		{
+			"type": "screenshare",
+			"tooltip": true,
+			"tooltip-icon-size": 24
+		},
+		{
+			"type": "audio-in",
+			"tooltip": true,
+			"tooltip-icon-size": 24
+		}
+	]
+},
 "pulseaudio": {
     "format": "{icon}",
     "format-bluetooth": "{icon} 󰂰 {volume}%",
@@ -586,7 +602,7 @@
 
 "tray": {
     "icon-size": 15,
-    "spacing": 5,
+    "spacing": 10,
 },
 
 "wireplumber": {
@@ -610,7 +626,8 @@
           "wofi",
           "rofi",
           "foot",
-          "foot-dropterm"
+          "kitty-dropterm",
+          "kitty"
                    ]
 },
 
@@ -635,7 +652,7 @@
 },
 
 "custom/hyprshade":{
-    "format":"",
+    "format":"  ",
     "on-click": "~/.config/hypr/UserScripts/shader.sh",
     "on-click-right": "hyprshade on vibrance",
     "on-click-middle": "hyprshade on grayscale",

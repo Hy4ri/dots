@@ -7,18 +7,93 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "telemetry": {
-    "metrics": false,
-    "diagnostics": false
-  },
-  "font_family": "JetBrainsMonoNLNFP-Regular",
-  "ui_font_family": "JetBrainsMonoNLNFP-Regular",
-  "buffer_font_family": "JetBrainsMonoNLNFP-Regular",
-  "ui_font_size": 16,
-  "buffer_font_size": 20,
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Andromeda"
-  }
-}
+    "telemetry": {
+        "metrics": false,
+        "diagnostics": false
+    },
+    "font_family": "JetBrainsMonoNL Nerd Font",
+    "ui_font_family": "JetBrainsMonoNL Nerd Font",
+    "buffer_font_family": "JetBrainsMonoNL Nerd Font",
+    "ui_font_size": 16,
+    "buffer_font_size": 20,
+    "theme": {
+        "mode": "dark",
+        "light": "M57 Light",
+        "dark": "M57 Dark"
+    },
+    "current_line_highlight": "none",
+    "scrollbar": {
+        "show": "auto",
+        "cursors": true,
+        "git_diff": true,
+        "search_results": true,
+        "selected_symbol": true,
+        "diagnostics": true
+    },
+    "tab_bar": {
+        "show": true,
+        "show_nav_history_buttons": false
+    },
+    "tabs": {
+        "close_position": "right",
+        "file_icons": true,
+        "git_status": true
+    },
+    "toolbar": {
+        "breadcrumbs": false,
+        "quick_actions": false
+    },
+    "format_on_save": "on",
+    "use_autoclose": true,
+    "tab_size": 4,
+    "terminal": {
+        "alternate_scroll": "off",
+        "blinking": "on",
+        "copy_on_select": false,
+        "dock": "right",
+        "button": false,
+        "toolbar": {
+            "title": false
+        },
+        "working_directory": "current_project_directory"
+    },
+    "vim_mode": false,
+    "project_panel": {
+        "button": false,
+        "default_width": 240,
+        "dock": "right",
+        "file_icons": true,
+        "folder_icons": true,
+        "git_status": true,
+        "indent_size": 20,
+        "auto_reveal_entries": true,
+        "auto_fold_dirs": true,
+        "scrollbar": {
+            "show": "always"
+        }
+    },
+    "assistant": {
+        "default_model": {
+            "provider": "openai",
+            "model": "gpt-4o"
+        },
+        "enabled": false,
+        "button": false,
+        "dock": "right",
+        "default_width": 640,
+        "default_height": 320,
+        "provider": "ollama",
+        "version": "2"
+    },
+    "outline_panel": {
+        "button": false,
+        "default_width": 240,
+        "dock": "left",
+        "file_icons": true,
+        "folder_icons": true,
+        "git_status": true,
+        "indent_size": 20,
+        "auto_reveal_entries": true,
+        "auto_fold_dirs": true
+    }
+} //end
