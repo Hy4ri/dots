@@ -1,6 +1,6 @@
 [%General]
-author=Saeed, based on Midnight by Rokin
-comment=Midnight-Bright-Red
+author=m57
+comment=dark theme
 respect_DE=true
 x11drag=menubar_and_primary_toolbar
 alt_mnemonic=true
@@ -70,28 +70,40 @@ button_icon_size=16
 toolbar_icon_size=22
 fill_rubberband=false
 dark_titlebar=true
+click_behavior=0
+contrast=1.00
+dialog_button_layout=0
+drag_from_buttons=false
+hide_combo_checkboxes=false
+intensity=1.00
+menu_blur_radius=0
+no_inactiveness=false
+reduce_menu_opacity=0
+saturation=1.00
+shadowless_popup=false
+tooltip_blur_radius=0
 
 
 [GeneralColors]
-window.color=#1a1d22
-base.color=#1a1d22
-alt.base.color=#1c1f24
+window.color=#121212
+base.color=#121212
+alt.base.color=#121212
 mid.light.color=#00000033
 light.color=#aa000033
 dark.color=#0000004c
-mid.color=#18181e
-highlight.color=#272c34
-button.color=#202126
+mid.color=#cd3244
+highlight.color=#cd3244
+button.color=#cd3244
 tooltip.base.color=#202126
-inactive.highlight.color=#202126
-disabled.text.color=#f9f9f97f
-highlight.text.color=#ffffffd7
-text.color=#f9f9f9
-window.text.color=#a5a8b8
-tooltip.text.color=#f9f9f9
+inactive.highlight.color=#cd3244
+disabled.text.color=#e2e2e27f
+highlight.text.color=#ffffff
+text.color=#e2e2e2
+window.text.color=#ffffff
+tooltip.text.color=#e2e2e2
 progress.indicator.text.color=#0000007f
 progress.inactive.indicator.text.color=#0000007f
-button.text.color=#f9f9f9
+button.text.color=#e2e2e2
 link.color=#326be6
 link.visited.color=#326be6
 #inactive.window.color=#ff5500
@@ -99,13 +111,13 @@ link.visited.color=#326be6
 #inactive.text.color=#ff5500
 #inactive.window.text.color=#ff5500
 #inactive.highlight.text.color=#ff5500
-#shadow.color=#ff5500
+shadow.color=#111111
 
 
 [Hacks]
-transparent_dolphin_view=false
+transparent_dolphin_view=true
 transparent_pcmanfm_sidepane=true
-transparent_pcmanfm_view=false
+transparent_pcmanfm_view=true
 blur_konsole=false
 transparent_ktitle_label=true
 transparent_menutitle=true
@@ -121,6 +133,13 @@ transparent_arrow_button=true
 iconless_menu=false
 single_top_toolbar=true
 middle_click_scroll=false
+blur_only_active_window=false
+blur_translucent=false
+centered_forms=false
+kinetic_scrolling=false
+lxqtmainmenu_iconsize=0
+noninteger_translucency=false
+style_vertical_toolbars=false
 
 
 [PanelButtonCommand]
@@ -146,16 +165,16 @@ text.shadow.yshift=1
 text.shadow.color=#000000c8
 text.shadow.alpha=127
 text.shadow.depth=1
-text.normal.color=#f9f9f9
-text.press.color=#f9f9f9
-text.toggle.color=#f9f9f9
-text.focus.color=#f9f9f9
+text.normal.color=#e2e2e2
+text.press.color=#e2e2e2
+text.toggle.color=#e2e2e2
+text.focus.color=#e2e2e2
 min_width=+0.3font
 min_height=+0.3font
 
 [PanelButtonTool]
 inherits=PanelButtonCommand
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.bold=true
 text.shadow=1
 text.shadow.xshift=0
@@ -168,7 +187,7 @@ text.shadow.depth=1
 inherits=PanelButtonCommand
 frame=false
 interior=false
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 
 [DockTitle]
 inherits=PanelButtonCommand
@@ -179,8 +198,8 @@ text.margin.top=2
 text.margin.bottom=2
 text.margin.left=3
 text.margin.right=3
-text.normal.color=#cfd8dcc8
-text.focus.color=#cfd8dc
+text.normal.color=#e2e2e2c8
+text.focus.color=#e2e2e2
 text.bold=false
 
 [IndicatorSpinBox]
@@ -198,7 +217,7 @@ text.margin.top=2
 text.margin.bottom=2
 text.margin.left=2
 text.margin.right=2
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 
 [RadioButton]
 inherits=PanelButtonCommand
@@ -207,8 +226,8 @@ text.margin.top=2
 text.margin.bottom=2
 text.margin.left=3
 text.margin.right=3
-text.normal.color=#f9f9f9
-text.focus.color=#f9f9f9
+text.normal.color=#e2e2e2
+text.focus.color=#e2e2e2
 min_width=+0.3font
 min_height=+0.3font
 
@@ -219,8 +238,8 @@ text.margin.top=2
 text.margin.bottom=2
 text.margin.left=3
 text.margin.right=3
-text.normal.color=#f9f9f9
-text.focus.color=#f9f9f9
+text.normal.color=#e2e2e2
+text.focus.color=#e2e2e2
 min_width=+0.3font
 min_height=+0.3font
 
@@ -274,7 +293,7 @@ indicator.size=9
 
 [ToolboxTab]
 inherits=PanelButtonCommand
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.focus.color=#ffffffc8
 text.press.color=#ffffffc8
 text.toggle.color=#ffffff
@@ -292,7 +311,7 @@ frame.top=2
 frame.bottom=2
 frame.left=2
 frame.right=2
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.focus.color=#ffffffc8
 text.press.color=#ffffffc8
 text.toggle.color=#ffffff
@@ -321,7 +340,7 @@ frame.top=2
 frame.bottom=2
 frame.left=2
 frame.right=2
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.focus.color=#ffffffc8
 text.press.color=#ffffffc8
 text.toggle.color=#ffffff
@@ -348,7 +367,7 @@ indicator.size=5
 frame.element=tbutton
 interior.element=tbutton
 indicator.element=toolbar-arrow
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.focus.color=#ffffffc8
 text.press.color=#ffffffc8
 text.toggle.color=#ffffff
@@ -376,10 +395,10 @@ frame.top=1
 frame.bottom=1
 frame.left=1
 frame.right=1
-text.normal.color=#f9f9f9
-text.press.color=#f9f9f9
-text.focus.color=#f9f9f9
-text.toggle.color=#f9f9f9
+text.normal.color=#e2e2e2
+text.press.color=#e2e2e2
+text.focus.color=#e2e2e2
+text.toggle.color=#e2e2e2
 text.bold=false
 
 [ProgressbarContents]
@@ -400,7 +419,7 @@ text.margin.top=2
 text.margin.bottom=2
 text.margin.left=4
 text.margin.right=2
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.focus.color=#ffffffc8
 text.press.color=#ffffffc8
 text.toggle.color=#ffffff
@@ -451,7 +470,7 @@ text.margin.top=1
 text.margin.bottom=1
 text.margin.left=8
 text.margin.right=6
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.focus.color=#ffffffc8
 text.press.color=#ffffff
 text.toggle.color=#ffffff
@@ -482,7 +501,7 @@ text.margin.top=0
 text.margin.bottom=0
 text.margin.left=4
 text.margin.right=4
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.focus.color=#ffffffc8
 text.press.color=#ffffffc8
 text.toggle.color=#ffffff
@@ -500,8 +519,8 @@ text.margin.top=2
 text.margin.bottom=2
 text.margin.left=2
 text.margin.right=2
-text.normal.color=#cfd8dcc8
-text.focus.color=#cfd8dc
+text.normal.color=#e2e2e2c8
+text.focus.color=#e2e2e2
 text.bold=false
 
 [ComboBox]
@@ -517,9 +536,9 @@ text.margin.top=2
 text.margin.bottom=2
 text.margin.left=2
 text.margin.right=2
-text.focus.color=#f9f9f9
-text.press.color=#f9f9f9
-text.toggle.color=#f9f9f9
+text.focus.color=#e2e2e2
+text.press.color=#e2e2e2
+text.toggle.color=#e2e2e2
 frame.expansion=0
 
 [ToolbarComboBox]
@@ -534,7 +553,7 @@ frame.left=1
 frame.right=1
 frame.element=menu
 interior.element=menu
-text.normal.color=#f9f9f9
+text.normal.color=#e2e2e2
 text.shadow=false
 
 [GroupBox]
@@ -549,8 +568,8 @@ frame.top=2
 frame.bottom=2
 frame.left=2
 frame.right=2
-text.normal.color=#f9f9f9
-text.focus.color=#f9f9f9
+text.normal.color=#e2e2e2
+text.focus.color=#e2e2e2
 
 [TabBarFrame]
 inherits=GenericFrame

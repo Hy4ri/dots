@@ -1,12 +1,18 @@
-div#tabs-container.top{
+div#tabs-container.top {
     padding: 0px 0px 0px 0px !important;
 }
-button[title="Synced Tabs"]{
+button[title="Synced Tabs"] {
     color: var(--colorHighlightBg) !important;
 }
-div.stack-counter{
+div.stack-counter {
+    color: var(--colorHighlightBg) !important;
+    background-color: var(--colorAccentBg) !important;
+    border-radius: 5px !important;
+}
+button[title="Workspaces"] {
     color: var(--colorHighlightBg) !important;
 }
-button[title="Workspaces"]{
-    color: var(--colorHighlightBg) !important;
+div.tab {
+    background-color: var(--colorBg) !important;
+    border-radius: 5px !important;
 }

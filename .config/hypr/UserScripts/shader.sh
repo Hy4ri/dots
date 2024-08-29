@@ -5,9 +5,9 @@ shader=$(hyprshade current)
 
 # Change the active shader
 if [ "$shader" = "blue-light-filter" ] ; then
-  hyprshade toggle
+  hyprshade off
   echo " "
 else
-    hyprshade auto
+    hyprshade on blue-light-filter
     echo " "
 fi

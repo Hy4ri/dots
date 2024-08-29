@@ -3,10 +3,18 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export CSCOPE_EDITOR="nvim"
 export PATH=$PATH:/home/m57/.spicetify
+export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
+export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+export FZF_BASE=/usr/share/fzf
+
+
+DISABLE_MAGIC_FUNCTIONS="true"
+COMPLETION_WAITING_DOTS="true"
 
 ZSH_THEME="nanotech"
 
-plugins=(aliases colored-man-pages extract safe-paste sudo zsh-autosuggestions colorize zsh-syntax-highlighting )
+plugins=(git fzf aliases colored-man-pages extract safe-paste sudo zsh-autosuggestions colorize zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 
 #pacman
@@ -20,6 +28,7 @@ alias spruns='sudo pacman -Runs'
 #paru
 alias parusc='paru -Sc' # remove unused cache
 alias parus='paru -S'
+alias paruss='paru -Ss'
 alias parusyyu='paru -Syyu'
 
 #eza
@@ -50,6 +59,8 @@ alias c+x='chmod +x'
 alias manga='mangal'
 alias anime='jerry'
 alias storage='dua i'
+alias termdown='termdown -f roman'
+alias sway='sway --unsupported-gpu'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -60,6 +71,8 @@ python3 -m venv venv
 venv/bin/pip install -r requirements.txt
 sudo venv/bin/python3 main.py'
 
+
+##FUNCTIONS
 #ARCHIVE EXTRACT
 extract ()
 {
@@ -85,10 +98,16 @@ extract ()
     echo "'$1' is not a valid file"
   fi
 }
+#git
+gitup() {
+  git add -A
+  git commit -m "$1"
+  git push
+}
 
 #Zoxide
 eval "$(zoxide init zsh)"
 #fzf
 source <(fzf --zsh)
 #ff
-fastfetch --logo small --color-keys red --logo-color-1 red --logo-color-2 red
+fastfetch --logo arch_small --color-keys red --logo-color-1 red --logo-color-2 red
