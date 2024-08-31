@@ -12,9 +12,7 @@
 
 "modules-left": [
 	"sway/workspaces",
-	"custom/separator#dot",
 	"custom/prayers",
-	"custom/separator#dot",
 	"mpris"
     ],
 
@@ -23,12 +21,11 @@
 	],
 
 "modules-right": [
-	"group/tray",
-	"custom/separator#dot",
+	"privacy",
+    "tray",
+    "group/sys",
 	"custom/weather2",
-	"custom/separator#dot",
 	"clock",
-	"custom/separator#dot",
 	"custom/swaync"
 	]
 }

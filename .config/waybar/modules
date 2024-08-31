@@ -467,7 +467,8 @@
 
 "mpris": {
     "interval": 1,
-	"format": "{player_icon}  {title}",
+	"format": "{title}",
+	"tooltip-format": "{artist} [{position}/{length}]",
 	"on-click": "playerctl play-pause",
     "on-click-middle": "playerctl previous",
     "on-click-right": "playerctl next",
@@ -476,14 +477,14 @@
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
     "smooth-scrolling-threshold": 1,
 	"player-icons": {
-        "chromium": "",
-		"default": "",
-        "firefox": "",
-        "kdeconnect": "",
-        "mopidy": "",
-		"mpv": "󰐹",
-        "spotify": "",
-		"vlc": "󰕼",
+        "chromium": " ",
+		"default": " ",
+        "firefox": " ",
+        "kdeconnect": " ",
+        "mopidy": " ",
+		"mpv": "󰐹 ",
+        "spotify": " ",
+		"vlc": " ",
 	},
 	"status-icons": {
 		"paused": "󰐎",

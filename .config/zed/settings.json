@@ -59,7 +59,7 @@
     },
     "vim_mode": false,
     "project_panel": {
-        "button": false,
+        "button": true,
         "default_width": 240,
         "dock": "right",
         "file_icons": true,

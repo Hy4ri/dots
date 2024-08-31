@@ -1,7 +1,6 @@
 @define-color font-color #e2e2e2;
 @define-color background-color #121212;
 @define-color accent #cd3244;
-@define-color urgent blue;
 @define-color shadow #111111;
 * {
     font-family: JetBrainsMono Nerd Font;
@@ -9,207 +8,207 @@
     min-height: 0;
     font-size: 100%;
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-    }
+}
 
-    #window{
-        background-color: @background-color;
-        color: @font-color;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#window {
+    background-color: @background-color;
+    color: @font-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    window#waybar {
-        background-color: transparent;
-      }
+window#waybar {
+    background-color: transparent;
+}
 
-      window#waybar.empty #window {
-        background-color: transparent;
-        box-shadow: none;
-       }
+window#waybar.empty #window {
+    background-color: transparent;
+    box-shadow: none;
+}
 
-    tooltip {
-        background: @background-color;
-        opacity: 0.9;
-        border-radius: 0px;
-        border-width: 2px;
-        border-style: solid;
-        border-color: @accent;
-    }
+tooltip {
+    background: @background-color;
+    opacity: 0.9;
+    border-radius: 0px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: @accent;
+}
 
-    tooltip label{
-        color: rgba(243, 244, 245, 0.9);
-    }
+tooltip label {
+    color: rgba(243, 244, 245, 0.9);
+}
 
-    #workspaces{
-        background-color: @background-color;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#workspaces {
+    background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    #workspaces button {
-        background-color: #222222;
-        color: @font-color ;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 10px;
-    }
+#workspaces button {
+    background-color: #222222;
+    color: @font-color;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 10px;
+}
 
-    #workspaces button.active,
-    #workspaces button.focused {
-        color: @background-color ;
-        background-color:@accent;
-        /*border: 2px solid @accent;*/
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 20px;
-    }
+#workspaces button.active,
+#workspaces button.focused {
+    color: @font-color;
+    background-color: @accent;
+    /*border: 2px solid @accent;*/
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 20px;
+}
 
-    #workspaces button:hover {
-        color: @background-color;
-        background-color: @font-color;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#workspaces button:hover {
+    color: @background-color;
+    background-color: @font-color;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 20px;
+}
 
-    #workspaces button.urgent {
-        color: white;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-        animation: flash 1s infinite;
-    }
+#workspaces button.urgent {
+    color: white;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+    animation: flash 1s infinite;
+}
 
-    @keyframes flash {
-        0% {
-          background-color: #FF0000;
-        }
-        50% {
-          background-color: #0000FF;
-        }
-        100% {
-          background-color: #FF0000;
-        }
-      }
+@keyframes flash {
+    0% {
+        background-color: #990000;
+    }
+    50% {
+        background-color: #ff0000;
+    }
+    100% {
+        background-color: #990000;
+    }
+}
 
-    #custom-swaync{
-        color: @font-color;
-        background-color: @background-color;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#custom-swaync {
+    color: @font-color;
+    background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    #clock {
-        color: @accent;
-        background-color: @background-color;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#clock {
+    color: @accent;
+    background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    #custom-weather2 {
-        color: @font-color;
-        background-color: @background-color;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#custom-weather2 {
+    color: @font-color;
+    background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    #tray{
-        background-color: @background-color;
-        color: @font-color;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        border-radius: 50px 0px 0px 50px;
-        margin-top: 3px;
-        margin-left: 3px;
-        margin-bottom: 3px;
-	    padding-top: 3px;
-        padding-bottom: 3px;
-        padding-left:15px;
-    }
+#tray {
+    background-color: @background-color;
+    color: @font-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    border-radius: 50px 0px 0px 50px;
+    margin-top: 3px;
+    margin-left: 3px;
+    margin-bottom: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+}
 
-    #sys{
-        background-color: @background-color;
-        border-radius: 0px 50px 50px 0px;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        margin-top: 3px;
-        margin-right: 3px;
-        margin-bottom: 3px;
-	    padding-top: 3px;
-        padding-bottom: 3px;
-        padding-right:15px;
-        padding-left:2px;
-    }
-    #mpris{
-        background-color: @background-color;
-        color: @accent;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#sys {
+    background-color: @background-color;
+    border-radius: 0px 50px 50px 0px;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 15px;
+    padding-left: 2px;
+}
+#mpris {
+    background-color: @background-color;
+    color: @accent;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    #custom-prayers{
-        background-color: @background-color;
-        color:@font-color ;
-        box-shadow: @shadow 2px 2px 2px 1px;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#custom-prayers {
+    background-color: @background-color;
+    color: @font-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    #custom-hyprshade{
-        color: yellow;
-    }
-    #pulseaudio,
-    #pulseaudio-micorphone{
-        padding-left: 5px;
-        padding-right: 12px;
-    }
+#custom-hyprshade {
+    color: yellow;
+}
+#pulseaudio,
+#pulseaudio-micorphone {
+    padding-left: 5px;
+    padding-right: 12px;
+}
 
-    #battery{
-        padding-left: 5px;
-        padding-right: 12px;
-        color: greenyellow;
-    }
+#battery {
+    padding-left: 5px;
+    padding-right: 12px;
+    color: greenyellow;
+}
 
-    #power-profiles-daemon{
-        padding-left: 5px;
-        padding-right: 5px;
-        color: @font-color;
-    }
+#power-profiles-daemon {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: @font-color;
+}
 
-    #battery.critical:not(.charging) {
-        color: @accent;
-    }
+#battery.critical:not(.charging) {
+    color: @accent;
+}
 
-    #custom-separator{
-        color: transparent;
-    }
+#custom-separator {
+    color: transparent;
+}
 
-    #taskbar{
-        background-color: @background-color;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#taskbar {
+    background-color: @background-color;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    #privacy{
-        color: @font-color;
-        background-color: @background-color;
-        border-radius: 50px 50px;
-        margin: 3px;
-	    padding: 3px 15px;
-    }
+#privacy {
+    color: @font-color;
+    background-color: @background-color;
+    border-radius: 50px 50px;
+    margin: 3px;
+    padding: 3px 15px;
+}
 
-    #privacy-item.screenshare{
-        color: @accent;
-    }
+#privacy-item.screenshare {
+    color: @accent;
+}

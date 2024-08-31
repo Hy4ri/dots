@@ -18,7 +18,7 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu pkill rofi || rofi -show drun -modi drun,filebrowser,run,window
+set $menu pkill rofi || ~/.config/rofi/launchers/type-3/launcher.sh
 
 #DIR
 set $scriptsDir $HOME/.config/hypr/scripts
@@ -59,7 +59,7 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
 #Startup
   exec swww-daemon
   exec_always autotiling -l 2 -sr 1.60
-  exec waybar -c ~/.config/waybar/configs/M57-top-SWAY -s ~/.config/waybar/style/M57-sway.css
+  exec waybar -c ~/.config/waybar/configs/M57-top-Sway -s ~/.config/waybar/style/M57-Round.css
   exec swaync
   exec nm-applet --indicator
   exec_always gammastep
@@ -67,15 +67,15 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
   exec hypridle
   exec foor --server
   exec ~/.config/hypr/UserScripts/openrgb.sh
-  exec wl-paste --type text --watch cliphist store 
+  exec wl-paste --type text --watch cliphist store
   exec wl-paste --type image --watch cliphist store
   exec_always ~/.config/hypr/UserScripts/WallpaperRandom-sway.sh
 #Setting
   mouse_warping container
-  smart_borders on 
+  smart_borders on
   default_border pixel 2
   default_floating_border pixel 2
-  client.focused  #cd3422  #cd3422 #cd3422 #cd3422 
+  client.focused  #cd3422  #cd3422 #cd3422 #cd3422
   font pongo:JetBrainsMono Nerd Font 11
   # Disable the laptop screen when the lid is closed.
   bindswitch --reload --locked lid:on output eDP-1 disable
@@ -155,8 +155,8 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+Shift+b splith
-    bindsym $mod+Shift+v splitv
+    #bindsym $mod+Shift+b splith
+    #bindsym $mod+Shift+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+k layout tabbed
@@ -173,8 +173,9 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
     bindsym Ctrl+Alt+w exec ~/.config/hypr/UserScripts/WallpaperRandom-sway.sh
     bindsym $mod+alt+v exec ~/.config/hypr/scripts/ClipManager.sh
     bindsym $mod+alt+r exec $scriptsDir/Refresh.sh
-    bindsym $mod+B exec killall -SIGUSR1 waybar # Toggle hide/show waybar    bindsym CTRL+ALT+A exec $UserScripts/openrgb.sh
-    bindsym $mod+p exec $scriptsDir/Wlogout.sh
+    bindsym $mod+B exec killall -SIGUSR1 waybar # Toggle hide/show waybar
+    bindsym CTRL+ALT+A exec $UserScripts/openrgb.sh
+    bindsym $mod+p exec ~/.config/rofi/powermenu/type-1/powermenu.sh
     bindsym Ctrl+SHIFT+B exec $UserScripts/bluetooth.sh # bluetooth on/off
     #SceenShot
     bindsym Print exec $scriptsDir/ScreenShot.sh --now
@@ -191,7 +192,7 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
     bindsym  XF86MonBrightnessDown exec $scriptsDir/Brightness.sh --dec #Brightness down
     bindsym  xf86Search exec $scriptsDir/Volume.sh --toggle-mic #mute mic
     bindsym  xf86audiomute exec $scriptsDir/Volume.sh --toggle
-    bindsym  xf86Sleep exec systemctl suspend  # sleep button 
+    bindsym  xf86Sleep exec systemctl suspend  # sleep button
     bindsym  xf86Rfkill exec $scriptsDir/AirplaneMode.sh #Airplane mode
     bindsym  xf86AudioPause exec $scriptsDir/MediaCtrl.sh --pause
     bindsym  xf86AudioPlay exec $scriptsDir/MediaCtrl.sh --pause
@@ -199,13 +200,14 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
     bindsym  xf86AudioPrev exec $scriptsDir/MediaCtrl.sh --prv
     bindsym  xf86audiostop exec $scriptsDir/MediaCtrl.sh --stop
 #apps
-    bindsym $mod+v exec com.vivaldi.Vivaldi
+    bindsym $mod+v exec vivaldi
     bindsym $mod+alt+s exec spotify-launcher
     bindsym $mod+SHIFT+C exec $UserScripts/colorpicker
     bindsym $mod+S exec normcap
     bindsym $mod+d exec flatpak run dev.vencord.Vesktop
     bindsym $mod+g exec cartridges
     bindsym $mod+e exec thunar
+    bindsym $mod+SHIFT+v exec zeditor
     #Rofi
     bindsym $mod+Ctrl+b exec $scriptsDir/WaybarStyles.sh
     bindsym $mod+alt+b exec $scriptsDir/WaybarLayout.sh
@@ -223,21 +225,69 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
     bindsym $mod+minus scratchpad show
 
 #
-#windowRules 
+#windowRules
 #
-  for_window [app_id="vivaldi-stable"] move to workspace 1
-  for_window [class="Code"] move to workspace 2
-  for_window [app_id="thunar"] move to workspace 3
-  for_window [app_id="vesktop"] move to workspace 4
-  for_window [app_id="page.kramo.Cartridges"] move to workspace 5
-  for_window [class="Gimp-2.10"] move to workspace 6
-  #for_window [app_id=""] move to workspace 7
-  #for_window [app_id=""] move to workspace 8
-  #for_window [app_id=""] move to workspace 9
-  for_window [class="Spotify"] move to workspace 10
-  for_window [app_id="pavucontrol"] floating enable
+# Floating Rules
+    for_window [app_id="Thunar" title="^File Operation Progress$"] floating enable
+    for_window [app_id="Thunar" title="^Confirm to replace files$"] floating enable
+    for_window [app_id="xdg-desktop-portal-gtk"] floating enable
+    for_window [app_id="org.gnome.Calculator" title="^Calculator$"] floating enable
+    for_window [app_id="(codium|codium-url-handler|VSCodium)" title="^Add Folder to Workspace$"] floating enable
+    for_window [app_id="(pavucontrol|org.pulseaudio.pavucontrol)"] floating enable
+    for_window [title="^chat.openai.com_/"] floating enable
+    for_window [title="^app.todoist.com_/app/today$"] floating enable
+    for_window [app_id="waypaper"] floating enable
+    for_window [title="^Open File.*$"] floating enable
+    for_window [title="^Select a File.*$"] floating enable
+    for_window [title="^Choose wallpaper.*$"] floating enable
+    for_window [title="^Open Folder.*$"] floating enable
+    for_window [title="^Save As.*$"] floating enable
+    for_window [title="^Library.*$"] floating enable
+    for_window [title="^File Upload.*$"] floating enable
+    for_window [app_id="it.mijorus.smile"] floating enable
+    for_window [app_id="(galculator|qalculate-gtk)"] floating enable
+    for_window [app_id="(nm-connection-editor|blueman-manager)"] floating enable
+    for_window [app_id="pavucontrol"] floating enable
+    for_window [app_id="(nwg-look|qt5ct|qt6ct)"] floating enable
+    for_window [app_id="yad"] floating enable
+    for_window [app_id="wihotspot-gui"] floating enable
+    for_window [app_id="(file-roller|org.gnome.FileRoller)"] floating enable
+    for_window [title="^Picture-in-Picture$"] floating enable
 
+# Tiling Rules
+    for_window [app_id="ONLYOFFICE Desktop Editors"] floating disable
+    for_window [app_id="dev.warp.Warp"] floating disable
 
+# Center Rules
+    for_window [app_id="(pavucontrol|org.pulseaudio.pavucontrol)"] move position center
+    for_window [app_id="Whatsapp-for-linux"] move position center
+    for_window [app_id="Ferdium"] move position center
+    for_window [app_id="Thunar" title="^File Operation Progress$"] move position center
+    for_window [app_id="Thunar" title="^Confirm to replace files$"] move position center
 
+# Workspace Rules
+    for_window [class="(Vivaldi-stable|zen-alpha)"] move to workspace 1
+    for_window [app_id="dev.zed.Zed"] move to workspace 2
+    for_window [app_id="Thunar"] move to workspace 3
+    for_window [app_id="vesktop"] move to workspace 4
+    for_window [app_id="(page.kramo.Cartridges|steam)"] move to workspace 5
+    for_window [class="Gimp-2.10"] move to workspace 6
+    for_window [app_id="org.kde.kdenlive"] move to workspace 7
+    for_window [app_id="virt-manager"] move to workspace 8
+    for_window [class="Spotify"] move to workspace 10
+
+# Pinning (Sticky) Rules
+    for_window [app_id="org.pulseaudio.pavucontrol"] sticky enable
+    for_window [title="^Picture-in-Picture$"] sticky enable
+    for_window [title="^Choose a color$"] sticky enable
+
+# Size Rules
+    for_window [title="^Picture-in-Picture$"] resize set 25 ppt 25 ppt
+    for_window [title="^chat.openai.com_/"] resize set width 500px height 800px
+    for_window [title="^app.todoist.com_/app/today$"] resize set width 500px height 800px
+    for_window [app_id="org.pulseaudio.pavucontrol"] resize set width 1129px height 508px
+
+# Move Rules
+    for_window [title="^Picture-in-Picture$"] move position 72 ppt 7 ppt
 
 include /etc/sway/config.d/*

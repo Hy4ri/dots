@@ -21,7 +21,9 @@
 	],
 
 "modules-right": [
-	"group/tray",
+	"privacy",
+    "tray",
+    "group/sys",
 	"custom/weather2",
 	"clock",
 	"custom/swaync"
