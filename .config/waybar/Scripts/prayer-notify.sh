@@ -3,6 +3,9 @@
 # Store the path to the prayer-times script
 script="/home/m57/.local/bin/prayer-times"
 
+#sync
+$script check
+
 # Get the current prayer
 current=$($script current)
 

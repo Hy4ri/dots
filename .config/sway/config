@@ -218,11 +218,11 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+Shift+grave move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym $mod+grave scratchpad show
 
 #
 #windowRules
@@ -289,5 +289,70 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
 
 # Move Rules
     for_window [title="^Picture-in-Picture$"] move position 72 ppt 7 ppt
+
+
+
+
+###  SWAYFX ###
+    blur enable
+    blur_xray disable
+    blur_passes 4
+    blur_radius 4
+    layer_effects "waybar" blur enable; shadows disable;
+    layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 13
+    layer_effects "wofi" blur enable; shadows enable; corner_radius 13
+    layer_effects "avizo" blur enable; corner_radius 15
+    smart_corner_radius enable
+    corner_radius 5
+    shadows enable
+    shadows_on_csd enable
+    shadow_blur_radius 20
+   
+
+#vivaldi
+for_window [class="Vivaldi-stable"] opacity 0.9
+# Rofi
+for_window [app_id="rofi"] opacity 0.9
+
+# Brave Browser (beta, dev)
+for_window [class="Brave-browser(-beta|-dev)"] opacity 0.9
+
+# Vivaldi and Zen Alpha
+for_window [app_id="zen-alpha"] opacity 0.9
+
+# Firefox
+for_window [class="(?i)^firefox$"] opacity 0.9
+
+# Thunar
+for_window [app_id="thunar"] opacity 0.9
+
+# Foot terminal
+for_window [app_id="foot"] opacity 0.8
+
+# Visual Studio Code and related apps
+for_window [class="(?i)^VSCodium|codium-url-handler|Visual-Studio-Code|Code$"] opacity 0.9
+
+# Zed editor
+for_window [app_id="dev.zed.Zed"] opacity 0.9
+
+# OBS Studio
+for_window [app_id="com.obsproject.Studio"] opacity 0.9
+
+# Discord and Vesktop (assuming "vesktop" was intended)
+for_window [class="discord|vesktop"] opacity 0.8
+
+# Spotify
+for_window [class="Spotify"] opacity 0.8
+
+# Kramo's Cartridges app
+for_window [app_id="page.kramo.Cartridges"] opacity 0.8
+
+# Zathura PDF reader
+for_window [app_id="org.pwmt.zathura"] opacity 0.9
+
+# Picture-in-Picture windows (specific title match)
+for_window [title="(?i)^Picture-in-Picture$"] opacity 0.95 0.75
+
+
 
 include /etc/sway/config.d/*
