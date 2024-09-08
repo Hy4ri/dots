@@ -443,6 +443,7 @@ sleep 1
 
 sleep 0.5
 
+papirus-folders -C carmine --theme Papirus-Dark
 cd ~/m57-dots-install
 cp -r .config ~/
 cp -r .icons ~/
