@@ -1,54 +1,41 @@
 #!/bin/bash
 # Rofi menu for Quick Edit / View of Settings (SUPER E)
 
-configs="$HOME/.config/hypr/configs"
-UserConfigs="$HOME/.config/hypr/UserConfigs"
+Configs="$HOME/.config/hypr/Configs"
 
 menu(){
-  printf "1. view Env-variables\n"
+  printf "1. view Hyprland-Settings\n"
   printf "2. view Window-Rules\n"
-  printf "3. view Startup_Apps\n"
-  printf "4. view User-Keybinds\n"
-  printf "5. view Monitors\n"
-  printf "6. view Laptop-Keybinds\n"
-  printf "7. view User-Settings\n"
-  printf "8. view Default-Settings\n"
-  printf "9. view Default-Keybinds\n"
-  printf "10. view laptop-Monitor\n"
+  printf "3. view Keybinds\n"
+  printf "4. view Startup_Apps\n"
+  printf "5. view Env-variables\n"
+  printf "6. view Monitors\n"
+  printf "7. view Laptop-Settings\n"
 }
 
 main() {
     choice=$(menu | rofi -i -dmenu -theme $HOME/.config/rofi/launchers/type-3/style-5.rasi | cut -d. -f1)
     case $choice in
         1)
-            foot -e nvim "$UserConfigs/ENVariables.conf"
+            foot -e nvim "$Configs/UserSettings.conf"
             ;;
         2)
-            foot -e nvim "$UserConfigs/WindowRules.conf"
+            foot -e nvim "$Configs/WindowRules.conf"
             ;;
         3)
-            foot -e nvim "$UserConfigs/Startup_Apps.conf"
+            foot -e nvim "$Configs/Keybinds.conf"
             ;;
         4)
-            foot -e nvim "$UserConfigs/UserKeybinds.conf"
+            foot -e nvim "$Configs/Startup_Apps.conf"
             ;;
         5)
-            foot -e nvim "$UserConfigs/Monitors.conf"
+            foot -e nvim "$Configs/ENVariables.conf"
             ;;
         6)
-            foot -e nvim "$UserConfigs/Laptops.conf"
+            foot -e nvim "$Configs/Monitors.conf"
             ;;
         7)
-            foot -e nvim "$UserConfigs/UserSettings.conf"
-            ;;
-        8)
-            foot -e nvim "$configs/Settings.conf"
-            ;;
-        9)
-            foot -e nvim "$configs/Keybinds.conf"
-            ;;
-        10)
-            foot -e nvim "$UserConfigs/LaptopDisplay.conf"
+            foot -e nvim "$Configs/Laptops.conf"
             ;;
         *)
             ;;

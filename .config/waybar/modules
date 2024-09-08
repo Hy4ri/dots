@@ -333,6 +333,7 @@
 "clock": {
     "interval": 1,
     "format": "{:%I:%M %p}", // AM PM format
+    "timezone": "Asia/Amman",
     //"format": " {:%H:%M:%S}",
     "format-alt": "{:%I:%M:%p   %Y, %d %B, %A}",
     "tooltip-format": "<tt>{calendar}</tt>",
@@ -363,7 +364,6 @@
     "on-click": "gsimplecal"
 },
 "clock#2": {
-	// "timezone": "America/New_York",
 	"format": " {:%I:%M %p}", // AM PM format
 	//"format": "  {:%H:%M}",
     "format-alt": "{:%A  |  %H:%M  |  %e %B}",
