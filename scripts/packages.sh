@@ -10,8 +10,6 @@ btop eza fastfetch vlc mpv mpv-mpris nvtop pacman-contrib neovim yt-dlp bash-com
 egl-wayland fish fish-autopair fish-pure-prompt fisher hwinfo intel-ucode lshw nano-syntax-highlighting obs-studio openssh \
 w3m nwg-look
 
-$helper -Sy --noconfirm --needed ds4drv game-devices-udev dualsensectl xone-dkms
-
 sleep 2
 
 sudo curl -sL github.com/justchokingaround/jerry/raw/main/jerry.sh -o /usr/local/bin/jerry &&
