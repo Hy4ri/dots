@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pacman -Sy --noconfirm --needed zsh zsh-completions fzf curl
+$helper -Sy --noconfirm --needed zsh zsh-completions fzf curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Install Oh My Zsh, plugins, and set zsh as default shell

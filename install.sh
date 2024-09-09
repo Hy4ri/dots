@@ -461,15 +461,15 @@ read Backup
 
 case "$Backup" in
   yes | Yes | y | Y)
-    mv ~/ ~/old-config
+    mv ~/.config/ ~/old-config/
+    mv ~/.icons/ ~/old-config/
+    mv ~/.themes/ ~/old-config/
   ;;
   No | no | n | N)
   ;;
   *)
   ;;
 esac
-
-sleep 1
 
 sleep 0.5
 
@@ -478,7 +478,6 @@ cd ~/m57-dots-install
 cp -r .config ~/
 cp -r .icons ~/
 cd ~/.icons
-cd ~/dots
 extract Bibata-Modern-Ice.tar.gz
 cp -r .local ~/
 cp -r .themes ~/
