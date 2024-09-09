@@ -1,6 +1,6 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Scripts for refreshing waybar, rofi, swaync, wallust colors
+# Scripts for refreshing ags waybar, rofi, swaync, wallust
 
 SCRIPTSDIR=$HOME/.config/hypr/scripts
 UserScripts=$HOME/.config/hypr/UserScripts
@@ -15,22 +15,26 @@ file_exists() {
 }
 
 # Kill already running processes
-_ps=(rofi waybar ags)
+_ps=(waybar rofi swaync ags)
 for _prs in "${_ps[@]}"; do
     if pidof "${_prs}" >/dev/null; then
         pkill "${_prs}"
     fi
 done
 
-# Relaunch ags
+# quit ags
 ags -q
 
 sleep 0.3
-
-# Relaunch waybar
+#Restart waybar
 waybar &
+
+# relaunch swaync
+sleep 0.5
+swaync > /dev/null 2>&1 &
 
 # relaunch ags
 ags &
+
 
 exit 0

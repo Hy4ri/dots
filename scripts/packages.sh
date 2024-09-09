@@ -1,7 +1,7 @@
 #!/bin/bash
 
 $helper -Sy --noconfirm --needed alacritty bitwarden bat flatpak gammastep gamemode gparted lutris man-db man-pages openrgb \
-papirus-icon-theme feh power-profiles-daemon scrcpy spotify-launcher timeshift thunar thunar-volman tumbler termdown \
+papirus-icon-theme feh power-profiles-daemon scrcpy timeshift thunar thunar-volman tumbler termdown \
 ffmpegthumbnailer file-roller thunar-archive-plugin wev xwaylandvideobridge xorg-host zathura zathura-cb zathura-djvu \
 zathura-language-server zathura-pdf-mupdf zathura-ps zoxide cliphist curl grim gvfs gvfs-mtp gvfs-google hypridle \
 hyprlock hyprpaper inxi jq foot kvantum network-manager-applet pamixer pavucontrol pipewire-alsa playerctl \

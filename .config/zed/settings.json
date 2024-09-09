@@ -43,7 +43,7 @@
         "breadcrumbs": false,
         "quick_actions": false
     },
-    "format_on_save": "on",
+    "format_on_save": "off",
     "use_autoclose": true,
     "tab_size": 4,
     "terminal": {
