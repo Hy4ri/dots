@@ -112,9 +112,8 @@ cat <<"EOF"
 
 EOF
 
-
 echo -n "Install Zsh? y/n: "
-read Printers
+read Zsh
 
 case "$Zsh" in
   yes | Yes | y | Y)
