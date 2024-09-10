@@ -4,6 +4,7 @@
 
 # Define the path to the swww cache directory
 cache_dir="$HOME/.cache/swww/"
+SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
 # Get a list of monitor outputs
 monitor_outputs=($(ls "$cache_dir"))
@@ -37,3 +38,6 @@ if [ "$ln_success" = true ]; then
     # execute wallust skipping tty and terminal changes
     wallust run "$wallpaper_path" &
 fi
+
+sleep 0.2
+${SCRIPTSDIR}/Refresh.sh

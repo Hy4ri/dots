@@ -2,9 +2,6 @@
 
 active_pid=$(hyprctl activewindow | grep -o 'pid: [0-9]*' | cut -d' ' -f2)
 
-
-
-
 # Close active window
 
-kill $active_pid
+kill -9 $active_pid

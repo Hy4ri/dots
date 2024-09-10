@@ -9,7 +9,7 @@
 }
 
 #window {
-    background-color: @background;
+    background: @background;
     color: @foreground;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
@@ -18,11 +18,11 @@
 }
 
 window#waybar {
-    background-color: transparent;
+    background: transparent;
 }
 
 window#waybar.empty #window {
-    background-color: transparent;
+    background: transparent;
     box-shadow: none;
 }
 
@@ -40,7 +40,7 @@ tooltip label {
 }
 
 #workspaces {
-    background-color: @background;
+    background: @background;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
@@ -48,7 +48,7 @@ tooltip label {
 }
 
 #workspaces button {
-    background-color: @background;
+    background: #222222;
     color: @foreground;
     border-radius: 50px 50px;
     margin: 3px;
@@ -57,8 +57,8 @@ tooltip label {
 
 #workspaces button.active,
 #workspaces button.focused {
-    color: @foreground;
-    background-color: @color1;
+    color: @color1;
+    background: @color14;
     /*border: 2px solid @color14;*/
     border-radius: 50px 50px;
     margin: 3px;
@@ -66,15 +66,15 @@ tooltip label {
 }
 
 #workspaces button:hover {
-    color: @color3;
-    background-color: @color14;
+    color: @color14;
+    background: @foreground;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 20px;
 }
 
 #workspaces button.urgent {
-    color: white;
+    color: @foreground;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
@@ -83,19 +83,19 @@ tooltip label {
 
 @keyframes flash {
     0% {
-        background-color: #990000;
+        background: #990000;
     }
     50% {
-        background-color: #ff0000;
+        background: #ff0000;
     }
     100% {
-        background-color: #990000;
+        background: #990000;
     }
 }
 
 #custom-swaync {
-    color: @color10;
-    background-color: @background;
+    color: @foreground;
+    background: @background;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
@@ -104,7 +104,7 @@ tooltip label {
 
 #clock {
     color: @color14;
-    background-color: @background;
+    background: @background;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
@@ -112,8 +112,8 @@ tooltip label {
 }
 
 #custom-weather2 {
-    color: @color12;
-    background-color: @background;
+    color: @foreground;
+    background: @background;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
@@ -121,7 +121,7 @@ tooltip label {
 }
 
 #tray {
-    background-color: @background;
+    background: @background;
     color: @foreground;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 0px 0px 50px;
@@ -134,7 +134,7 @@ tooltip label {
 }
 
 #sys {
-    background-color: @background;
+    background: @background;
     border-radius: 0px 50px 50px 0px;
     box-shadow: @color0 2px 2px 2px 1px;
     margin-top: 3px;
@@ -146,8 +146,8 @@ tooltip label {
     padding-left: 2px;
 }
 #mpris {
-    background-color: @background;
-    color: @color6;
+    background: @background;
+    color: @color14;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
@@ -155,8 +155,8 @@ tooltip label {
 }
 
 #custom-prayers {
-    background-color: @background;
-    color: @color11;
+    background: @background;
+    color: @foreground;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
@@ -164,7 +164,7 @@ tooltip label {
 }
 
 #custom-hyprshade {
-    color: @color4;
+    color: @color7;
 }
 #pulseaudio,
 #pulseaudio-micorphone {
@@ -175,13 +175,13 @@ tooltip label {
 #battery {
     padding-left: 5px;
     padding-right: 12px;
-    color: greenyellow;
+    color: @color6;
 }
 
 #power-profiles-daemon {
     padding-left: 5px;
     padding-right: 5px;
-    color: @color5;
+    color: @foreground;
 }
 
 #battery.critical:not(.charging) {
@@ -193,15 +193,15 @@ tooltip label {
 }
 
 #taskbar {
-    background-color: @background;
+    background: @background;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #privacy {
-    color: @color2;
-    background-color: @background;
+    color: @foreground;
+    background: @background;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
