@@ -1,4 +1,4 @@
-@import "../../.config/waybar/wallust/colors-waybar.css";
+@import "../../.config/waybar/wal/colors-waybar.css";
 
 * {
     font-family: JetBrainsMono Nerd Font;
@@ -32,7 +32,7 @@ tooltip {
     border-radius: 0px;
     border-width: 2px;
     border-style: solid;
-    border-color: @color14;
+    border-color: @color11;
 }
 
 tooltip label {
@@ -48,7 +48,7 @@ tooltip label {
 }
 
 #workspaces button {
-    background: #222222;
+    background: @color11;
     color: @foreground;
     border-radius: 50px 50px;
     margin: 3px;
@@ -57,16 +57,16 @@ tooltip label {
 
 #workspaces button.active,
 #workspaces button.focused {
-    color: @color1;
-    background: @color14;
-    /*border: 2px solid @color14;*/
+    color: @foreground;
+    background: @color9;
+    /*border: 2px solid @color11;*/
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 20px;
 }
 
 #workspaces button:hover {
-    color: @color14;
+    color: @color11;
     background: @foreground;
     border-radius: 50px 50px;
     margin: 3px;
@@ -103,7 +103,7 @@ tooltip label {
 }
 
 #clock {
-    color: @color14;
+    color: @color11;
     background: @background;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
@@ -147,7 +147,7 @@ tooltip label {
 }
 #mpris {
     background: @background;
-    color: @color14;
+    color: @color11;
     box-shadow: @color0 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
@@ -185,7 +185,7 @@ tooltip label {
 }
 
 #battery.critical:not(.charging) {
-    color: @color14;
+    color: @color11;
 }
 
 #custom-separator {
@@ -208,5 +208,5 @@ tooltip label {
 }
 
 #privacy-item.screenshare {
-    color: @color14;
+    color: @color11;
 }

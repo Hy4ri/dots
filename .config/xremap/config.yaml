@@ -1,0 +1,4 @@
+modmap:
+  - name: main remap
+    remap:
+      CapsLock: esc
