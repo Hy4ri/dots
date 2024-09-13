@@ -8,7 +8,7 @@ change_wallpaper() {
         sleep 3
         ~/.config/hypr/scripts/WalSwww.sh
         sleep $INTERVAL
-        hyprctl hyprpaper unload unused
+        #hyprctl hyprpaper unload unused
     done
 }
 

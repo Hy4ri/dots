@@ -10,8 +10,8 @@
 
 #window {
     background: @background;
-    color: @foreground;
-    box-shadow: @color0 2px 2px 2px 1px;
+    color: @color15;
+    box-shadow: @color1 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
@@ -41,15 +41,15 @@ tooltip label {
 
 #workspaces {
     background: @background;
-    box-shadow: @color0 2px 2px 2px 1px;
+    box-shadow: @color1 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #workspaces button {
-    background: @color11;
-    color: @foreground;
+    background: @color1;
+    color: @color0;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 10px;
@@ -58,7 +58,7 @@ tooltip label {
 #workspaces button.active,
 #workspaces button.focused {
     color: @foreground;
-    background: @color9;
+    background: @color12;
     /*border: 2px solid @color11;*/
     border-radius: 50px 50px;
     margin: 3px;
@@ -66,15 +66,15 @@ tooltip label {
 }
 
 #workspaces button:hover {
-    color: @color11;
-    background: @foreground;
+    color: @color10;
+    background: @color15;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 20px;
 }
 
 #workspaces button.urgent {
-    color: @foreground;
+    color: @color13;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
@@ -83,38 +83,38 @@ tooltip label {
 
 @keyframes flash {
     0% {
-        background: #990000;
+        background: @color14;
     }
     50% {
-        background: #ff0000;
+        background: @color7;
     }
     100% {
-        background: #990000;
+        background: @color14;
     }
 }
 
 #custom-swaync {
-    color: @foreground;
+    color: @color11;
     background: @background;
-    box-shadow: @color0 2px 2px 2px 1px;
+    box-shadow: @color1 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #clock {
-    color: @color11;
+    color: @color6;
     background: @background;
-    box-shadow: @color0 2px 2px 2px 1px;
+    box-shadow: @color1 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #custom-weather2 {
-    color: @foreground;
+    color: @color10;
     background: @background;
-    box-shadow: @color0 2px 2px 2px 1px;
+    box-shadow: @color1 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
@@ -122,8 +122,8 @@ tooltip label {
 
 #tray {
     background: @background;
-    color: @foreground;
-    box-shadow: @color0 2px 2px 2px 1px;
+    color: @color15;
+    box-shadow: @color1 2px 2px 2px 1px;
     border-radius: 50px 0px 0px 50px;
     margin-top: 3px;
     margin-left: 3px;
@@ -136,7 +136,7 @@ tooltip label {
 #sys {
     background: @background;
     border-radius: 0px 50px 50px 0px;
-    box-shadow: @color0 2px 2px 2px 1px;
+    box-shadow: @color1 2px 2px 2px 1px;
     margin-top: 3px;
     margin-right: 3px;
     margin-bottom: 3px;
@@ -147,8 +147,8 @@ tooltip label {
 }
 #mpris {
     background: @background;
-    color: @color11;
-    box-shadow: @color0 2px 2px 2px 1px;
+    color: @color1;
+    box-shadow: @color1 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
@@ -156,32 +156,33 @@ tooltip label {
 
 #custom-prayers {
     background: @background;
-    color: @foreground;
-    box-shadow: @color0 2px 2px 2px 1px;
+    color: @color13;
+    box-shadow: @color1 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #custom-hyprshade {
-    color: @color7;
+    color: @color13;
 }
 #pulseaudio,
 #pulseaudio-micorphone {
+    color: @color12;
     padding-left: 5px;
-    padding-right: 12px;
+    padding-right: 5px;
 }
 
 #battery {
+    color: @color2;
     padding-left: 5px;
     padding-right: 12px;
-    color: @color6;
 }
 
 #power-profiles-daemon {
+    color: @color11;
     padding-left: 5px;
     padding-right: 5px;
-    color: @foreground;
 }
 
 #battery.critical:not(.charging) {
@@ -200,7 +201,7 @@ tooltip label {
 }
 
 #privacy {
-    color: @foreground;
+    color: @color15;
     background: @background;
     border-radius: 50px 50px;
     margin: 3px;
@@ -208,5 +209,9 @@ tooltip label {
 }
 
 #privacy-item.screenshare {
-    color: @color11;
+    color: @color9;
+}
+#custom-RandomWallpaper{
+    color: @color5;
+    padding-right: 5px;
 }

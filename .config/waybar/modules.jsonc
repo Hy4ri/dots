@@ -241,6 +241,7 @@
     "modules": [
         "custom/hyprshade",
         "group/audio",
+        "custom/RandomWallpaper",
         "battery",
 		"power-profiles-daemon",
      ]
@@ -605,6 +606,12 @@
 "tray": {
     "icon-size": 15,
     "spacing": 10,
+},
+
+"custom/RandomWallpaper":{
+    "format":"  ",
+    "on-click": "~/.config/hypr/UserScripts/waypaperRandom",
+    "tooltip-format": "Random Wallpaper"
 },
 
 "wireplumber": {

@@ -1,5 +1,5 @@
 {
-	"include": "~/.config/waybar/modules",
+	"include": "~/.config/waybar/modules.jsonc",
 	"layer": "top",
 	"exclusive": true,
 	"passthrough": false,
@@ -12,22 +12,22 @@
 	"margin-top": 0,
 	"margin-left": 0,
 	"margin-right": 0,
-	
+
 	"modules-left": [
 		"hyprland/workspaces#No",
 		"custom/separator#dot",
-		"custom/prayers", 
+		"custom/prayers",
 		"custom/separator#dot",
 		"mpris"
 		],
-	
+
 	"modules-center": [
 		"hyprland/window"
-		], 
-	
+		],
+
 	"modules-right": [
 		"group/tray",
-		"custom/separator#dot", 
+		"custom/separator#dot",
 		"custom/weather2",
 		"custom/separator#dot",
 		"clock",
@@ -35,4 +35,3 @@
 		"custom/swaync"
 		]
 	}
-	

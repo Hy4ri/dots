@@ -1,6 +1,6 @@
 
 {
-"include": "~/.config/waybar/modules",
+"include": "~/.config/waybar/modules.jsonc",
 "layer": "top",
 //"mode": "dock",
 "exclusive": true,
@@ -13,24 +13,24 @@
 //"margin-bottom": 0,
 //"margin-left": 0,
 //"margin-right": 0,
-	
+
 "modules-left": [
 	"hyprland/workspaces#cam",
-	"custom/separator#line", 
+	"custom/separator#line",
 	"mpris",
-	"custom/swaync", 
-	"tray#cam", 
+	"custom/swaync",
+	"tray#cam",
 	],
 
-"modules-center": ["hyprland/window#cam"], 
-	
+"modules-center": ["hyprland/window#cam"],
+
 "modules-right": [
 	"custom/backlight",
 	"backlight/slider",
 	"custom/speaker",
 	"pulseaudio/slider",
 	"battery#cam",
-	"clock#cam", 
+	"clock#cam",
 	],
 
 // Additional modules //
@@ -61,7 +61,7 @@
 		"8":"Otto",
 		"9":"Nove",
 		"10":"Dieci"
-	}	
+	}
 },
 
 "hyprland/window#cam": {
@@ -79,7 +79,7 @@
 	//"format": "{:%A, %I:%M %P}",
 	"format": "{:%A, %H:%M}",
 	"max-length": 25,
-	
+
 },
 
 "battery#cam": {
@@ -108,11 +108,11 @@
 	"min": 0,
 	"max": 100,
 	"orientation": "horizontal",
-	
+
 },
 
 "custom/speaker": {
-	"exec": "echo '🔊'",  
+	"exec": "echo '🔊'",
 	"interval": 1,
 	"format": "{}"
 },
@@ -125,7 +125,7 @@
 },
 
 "custom/backlight": {
-	"exec": "echo '✨'",  
+	"exec": "echo '✨'",
 	"interval": 1,
 	"format": "{}"
 },
@@ -139,7 +139,7 @@
 	"format": "{ifname}",
 	"format-wifi": "{icon}",
 	"format-ethernet": "󰌘",
-	"format-disconnected": "󰌙", 
+	"format-disconnected": "󰌙",
 	"tooltip-format": "{ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
 	"format-linked": "󰈁 {ifname} (No IP)",
 	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",

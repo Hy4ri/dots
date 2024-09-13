@@ -1,5 +1,5 @@
 {
-"include": "~/.config/waybar/modules",
+"include": "~/.config/waybar/modules.jsonc",
 "layer": "top",
 "exclusive": true,
 "passthrough": false,
@@ -11,17 +11,18 @@
 "ipc": true,
 
 "modules-left": [
-	"sway/workspaces",
+	"hyprland/workspaces#NO",
+    /*"wlr/taskbar",*/
 	"custom/prayers",
 	"mpris"
     ],
 
 "modules-center": [
-	"sway/window"
+	"hyprland/window"
 	],
 
 "modules-right": [
-	"privacy",
+    "privacy",
     "tray",
     "group/sys",
 	"custom/weather2",
