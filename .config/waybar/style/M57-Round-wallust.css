@@ -57,7 +57,7 @@ tooltip label {
 
 #workspaces button.active,
 #workspaces button.focused {
-    color: @foreground;
+    color: @background;
     background: @color12;
     /*border: 2px solid @color11;*/
     border-radius: 50px 50px;

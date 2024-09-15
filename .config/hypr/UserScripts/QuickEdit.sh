@@ -11,7 +11,8 @@ menu(){
   printf "5. view Env-variables\n"
   printf "6. view Monitors\n"
   printf "7. view Laptop-Settings\n"
-  printf "8. view Settings\n"
+  printf "8. view Wal Colors\n"
+  printf "9. view Settings\n"
 }
 
 main() {
@@ -39,6 +40,9 @@ main() {
             foot nvim "$Configs/Laptops.conf"
             ;;
         8)
+            foot nvim "$Configs/wal.conf"
+            ;;
+        9)
             foot nvim ~/.config/hypr/hyprland.conf
             ;;
         *)

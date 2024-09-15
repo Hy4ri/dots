@@ -5,8 +5,7 @@ INTERVAL=1800 # 30 minutes in seconds
 change_wallpaper() {
     while true; do
         waypaper --random
-        sleep 3
-        ~/.config/hypr/scripts/WalSwww.sh
+        #~/.config/hypr/scripts/WalSwww.sh
         sleep $INTERVAL
         #hyprctl hyprpaper unload unused
     done
