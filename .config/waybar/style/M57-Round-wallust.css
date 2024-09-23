@@ -1,5 +1,9 @@
 @import "../../.config/waybar/wal/colors-waybar.css";
 
+@define-color font-color #e2e2e2;
+@define-color background-color #121212;
+@define-color accent @color5;
+@define-color shadow #252525;
 * {
     font-family: JetBrainsMono Nerd Font;
     font-weight: 700;
@@ -9,30 +13,30 @@
 }
 
 #window {
-    background: @background;
-    color: @color15;
-    box-shadow: @color1 2px 2px 2px 1px;
+    background-color: @background-color;
+    color: @font-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 window#waybar {
-    background: transparent;
+    background-color: transparent;
 }
 
 window#waybar.empty #window {
-    background: transparent;
+    background-color: transparent;
     box-shadow: none;
 }
 
 tooltip {
-    background: @background;
+    background: @background-color;
     opacity: 0.9;
     border-radius: 0px;
     border-width: 2px;
     border-style: solid;
-    border-color: @color11;
+    border-color: @accent;
 }
 
 tooltip label {
@@ -40,16 +44,16 @@ tooltip label {
 }
 
 #workspaces {
-    background: @background;
-    box-shadow: @color1 2px 2px 2px 1px;
+    background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #workspaces button {
-    background: @color1;
-    color: @color0;
+    background-color: #222222;
+    color: @font-color;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 10px;
@@ -57,24 +61,24 @@ tooltip label {
 
 #workspaces button.active,
 #workspaces button.focused {
-    color: @background;
-    background: @color12;
-    /*border: 2px solid @color11;*/
+    color: @color0;
+    background-color: @accent;
+    /*border: 2px solid @accent;*/
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 20px;
 }
 
 #workspaces button:hover {
-    color: @color10;
-    background: @color15;
+    color: @background-color;
+    background-color: @font-color;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 20px;
 }
 
 #workspaces button.urgent {
-    color: @color13;
+    color: white;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
@@ -83,60 +87,61 @@ tooltip label {
 
 @keyframes flash {
     0% {
-        background: @color14;
+        background-color: #990000;
     }
     50% {
-        background: @color7;
+        background-color: #ff0000;
     }
     100% {
-        background: @color14;
+        background-color: #990000;
     }
 }
 
 #custom-swaync {
-    color: @color11;
-    background: @background;
-    box-shadow: @color1 2px 2px 2px 1px;
+    color: @font-color;
+    background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #clock {
-    color: @color6;
-    background: @background;
-    box-shadow: @color1 2px 2px 2px 1px;
+    color: @accent;
+    background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #custom-weather2 {
-    color: @color10;
-    background: @background;
-    box-shadow: @color1 2px 2px 2px 1px;
+    color: @font-color;
+    background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #tray {
-    background: @background;
-    color: @color15;
-    box-shadow: @color1 2px 2px 2px 1px;
+    background-color: @background-color;
+    color: @font-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 0px 0px 50px;
     margin-top: 3px;
-    margin-left: 3px;
+    margin-right: 3px;
     margin-bottom: 3px;
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-left: 15px;
+    padding-right: 3px;
+    padding-left: 2px;
 }
 
 #sys {
-    background: @background;
+    background-color: @background-color;
     border-radius: 0px 50px 50px 0px;
-    box-shadow: @color1 2px 2px 2px 1px;
+    box-shadow: @shadow 2px 2px 2px 1px;
     margin-top: 3px;
     margin-right: 3px;
     margin-bottom: 3px;
@@ -146,47 +151,46 @@ tooltip label {
     padding-left: 2px;
 }
 #mpris {
-    background: @background;
-    color: @color1;
-    box-shadow: @color1 2px 2px 2px 1px;
+    background-color: @background-color;
+    color: @accent;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #custom-prayers {
-    background: @background;
-    color: @color13;
-    box-shadow: @color1 2px 2px 2px 1px;
+    background-color: @background-color;
+    color: @font-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #custom-hyprshade {
-    color: @color13;
+    color: yellow;
 }
 #pulseaudio,
 #pulseaudio-micorphone {
-    color: @color12;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-#battery {
-    color: @color2;
     padding-left: 5px;
     padding-right: 12px;
 }
 
+#battery {
+    padding-left: 5px;
+    padding-right: 12px;
+    color: greenyellow;
+}
+
 #power-profiles-daemon {
-    color: @color11;
     padding-left: 5px;
     padding-right: 5px;
+    color: @font-color;
 }
 
 #battery.critical:not(.charging) {
-    color: @color11;
+    color: @accent;
 }
 
 #custom-separator {
@@ -194,24 +198,20 @@ tooltip label {
 }
 
 #taskbar {
-    background: @background;
+    background-color: @background-color;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #privacy {
-    color: @color15;
-    background: @background;
+    color: @font-color;
+    background-color: @background-color;
     border-radius: 50px 50px;
     margin: 3px;
     padding: 3px 15px;
 }
 
 #privacy-item.screenshare {
-    color: @color9;
-}
-#custom-RandomWallpaper{
-    color: @color5;
-    padding-right: 5px;
+    color: @accent;
 }

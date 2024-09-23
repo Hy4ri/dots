@@ -103,7 +103,7 @@
 },
 
 //  NUMBERS style
-"hyprland/workspaces#No": {
+"hyprland/workspaces#Num": {
     "format": "{name}",
     //"format": " {icon} ",
     "show-special": false,
@@ -131,9 +131,9 @@
 
 //  NUMBERS and ICONS style
 "hyprland/workspaces#4": {
-    "format": "{name}",
-    "format": " {name} {icon} ",
-    //"format": " {icon} ",
+    //"format": "{name}",
+    //"format": " {name} {icon} ",
+    "format": " {icon} ",
     "show-special": false,
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -162,34 +162,45 @@
 	"all-outputs": true,
 	"warp-on-scroll": false,
 	"sort-by-number": true,
-	"show-special": true,
+	"show-special": false,
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
 	"format": "{icon} {windows}",
 	"format-window-separator": " ",
-	"window-rewrite-default": " ",
+	"window-rewrite-default": "",
 	"window-rewrite": {
 		"title<.*youtube.*>": " ",
 		"title<.*amazon.*>": " ",
 		"title<.*reddit.*>": " ",
 		"title<.*Picture-in-Picture.*>": " ",
-		"class<firefox>": " ",
-		"class<kitty>": " ",
-		"class<konsole>": " ",
+		"class<Vivaldi-stable>": " ",
+		"class<dev.zed.Zed>": " ",
+		"class<firefox|org.mozilla.firefox>": " ",
+		"class<kitty|konsole|foot|Alacritty>": " ",
+		"class<kitty-dropterm>": " ",
+		"class<Chromium>": " ",
+		"class<org.telegram.desktop|io.github.tdesktop_x64.TDeskto>": " ",
+		"class<[Ss]potify>": " ",
+		"class<VSCode|code-url-handler|code-oss|codium|codium-url-handler|VSCodium>": "󰨞 ",
 		"class<thunar>": "󰝰 ",
-		"class<discord>": " ",
+		"class<[Tt]hunderbird|[Tt]hunderbird-esr>": " ",
+		"class<discord|[Ww]ebcord|vesktop>": " ",
+		"class<page.kramo.Cartridges>": "󰺷  ",
 		"class<subl>": "󰅳 ",
 		"class<celluloid>": " ",
 		"class<Cider>": "󰎆 ",
-		"class<code-oss>": "󰨞 ",
-		"class<codium|codium-url-handler|VSCodium>": "󰨞 ",
+		"class<virt-manager>": " ",
 		"class<codeblocks>": "󰅩 ",
 		"class<mousepad>": " ",
 		"class<libreoffice-writer>": " ",
-		"class<libreoffice-startcenter>": "󰏆 "
+		"class<libreoffice-startcenter>": "󰏆 ",
+		"class<com.obsproject.Studio>": " ",
+		"class<polkit-gnome-authentication-agent-1>": "󰒃 ",
+		"class<nwg-look>": " ",
+		"class<blueman-manager>": " "
 		}
-},
+	},
 
 // GROUP
 

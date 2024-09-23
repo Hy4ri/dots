@@ -1,7 +1,7 @@
-@define-color noti-border-color rgba(159 , 38 , 53 , 0.8);
+@define-color noti-border-color rgba(153, 0, 0 , 0.8);
 @define-color noti-bg rgba(0, 0, 0, 0.8);
 @define-color noti-bg-alt rgba(0, 0, 0, 0.8);
-@define-color noti-bg-hover rgba(159 , 38 , 53 , 0.8);
+@define-color noti-bg-hover rgba(153, 0, 0 , 0.8);
 @define-color text-color rgba(255 ,255, 255, 0.8);
 @define-color text-color-alt rgba(255 ,255, 255, 1);
 @define-color text-color-disabled rgba(20, 19, 19, 0.7);
@@ -43,7 +43,7 @@
 }
 
 .close-button {
-    background: rgba(159 , 38 , 53 , 0.8);
+    background: rgba(153, 0, 0 , 0.8);
     color: @noti-bg;
     text-shadow: none;
     padding: 0;
@@ -54,7 +54,7 @@
 
 .close-button:hover {
     box-shadow: none;
-    background: rgba(159 , 38 , 53 , 0.8);
+    background: rgba(153, 0, 0 , 0.8);
     transition: all .15s ease-in-out;
     border: none
 }
@@ -196,7 +196,7 @@
 }
 
 .widget-title>button:hover {
-    background: rgba(159 , 38 , 53 , 0.8);
+    background: rgba(153, 0, 0 , 0.8);
     color: white;
 }
 
@@ -216,8 +216,8 @@
 }
 
 .widget-dnd>switch:checked {
-    background: rgba(159 , 38 , 53 , 1);
-    border: 1px solid rgba(159 , 38 , 53 , 0.9);
+    background: rgba(153, 0, 0 , 0.8);
+    border: 1px solid rgba(153, 0, 0 , 0.9);
 }
 
 .widget-dnd>switch slider {
@@ -340,7 +340,7 @@
 }
 
 .critical {
-  background: red;
+  background: rgba(153, 0, 0 , 0.8);
   padding: 0px;
   border-radius: 10px;
 }

@@ -1,7 +1,7 @@
 @define-color font-color #e2e2e2;
 @define-color background-color #121212;
-@define-color accent #cd3244;
-@define-color shadow #111111;
+@define-color accent #990000;
+@define-color shadow #252525;
 * {
     font-family: JetBrainsMono Nerd Font;
     font-weight: 700;
@@ -105,7 +105,7 @@ tooltip label {
 }
 
 #clock {
-    color: @accent;
+    color: rgb(204 , 0 , 0);
     background-color: @background-color;
     box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 50px 50px;
@@ -144,7 +144,7 @@ tooltip label {
     margin-bottom: 3px;
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-right: 15px;
+    padding-right: 3px;
     padding-left: 2px;
 }
 #mpris {
