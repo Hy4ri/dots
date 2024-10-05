@@ -250,11 +250,10 @@
 		"transition-duration": 500
         },
     "modules": [
-        "custom/hyprshade",
+        "power-profiles-daemon",
         "group/audio",
         "custom/RandomWallpaper",
-        "battery",
-		"power-profiles-daemon",
+        "battery"
      ]
 },
 

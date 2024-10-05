@@ -4,7 +4,7 @@ sudo pacman -Sy --noconfirm --needed flatpak
 
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-flatpak install --user -y flathub com.github.tchx84.Flatseal com.vivaldi.Vivaldi dev.vencord.Vesktop org.gimp.GIMP \
+flatpak install --user -y flathub com.github.tchx84.Flatseal dev.vencord.Vesktop org.gimp.GIMP \
 org.onlyoffice.desktopeditors it.mijorus.smile com.visualstudio.code com.spotify.Client
 
 sudo flatpak override --filesystem=$HOME/.themes
