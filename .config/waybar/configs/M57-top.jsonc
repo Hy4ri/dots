@@ -13,19 +13,19 @@
 "modules-left": [
 	"hyprland/workspaces#Num",
     /*"wlr/taskbar",*/
-	"custom/prayers",
+    "custom/prayers",
 	"mpris"
     ],
 
 "modules-center": [
-	"hyprland/window"
+    "hyprland/window"
 	],
 
 "modules-right": [
     "privacy",
     "tray",
     "group/sys",
-	"custom/weather2",
+	/*"custom/weather2",*/
 	"clock",
 	"custom/swaync"
 	]
