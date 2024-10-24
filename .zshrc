@@ -24,6 +24,7 @@ alias spsyyu='sudo pacman -Syyu'
 alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
 alias spruns='sudo pacman -Runs'
+alias scc='sudo pacman -Rns $(pacman -Qtdq)'
 
 #paru
 alias parusc='paru -Sc' # remove unused cache
@@ -61,6 +62,8 @@ alias anime='jerry'
 alias storage='dua i'
 alias termdown='termdown -f roman'
 alias sway='sway --unsupported-gpu'
+alias png='bash ~/.config/hypr/UserScripts/png.sh'
+alias update='paru -Syyu && flatpak update '
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -110,4 +113,6 @@ eval "$(zoxide init zsh)"
 #fzf
 source <(fzf --zsh)
 #ff
-fastfetch --logo arch_small --color-keys red --logo-color-1 red --logo-color-2 red
+fastfetch --logo arch_small --logo-color-2 red --logo-color-1 red --color-keys red
+# Created by `pipx` on 2024-09-09 14:25:17
+export PATH="$PATH:/home/m57/.local/bin"

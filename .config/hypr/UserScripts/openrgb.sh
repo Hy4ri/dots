@@ -1,3 +1,3 @@
 #!/bin/bash
 
-openrgb -p Yellow
+openrgb -p crimson
