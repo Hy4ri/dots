@@ -101,12 +101,26 @@ extract ()
     echo "'$1' is not a valid file"
   fi
 }
-#git
+#git push all
 gitup() {
   git add -A
   git commit -m "$1"
   git push
 }
+
+#github new repo
+gitnew() {
+  git init
+  sleep 5
+  git add .
+  git commit -m "create $1 repo"
+  gh repo create $1 --public
+  sleep 3
+  git branch -M main
+  git remote add origin https://github.com/Hy4ri/$1.git
+  git push -u origin main
+}
+
 
 #Zoxide
 eval "$(zoxide init zsh)"
