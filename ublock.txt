@@ -1,7 +1,7 @@
 ! Download
 www.youtube.com##ytd-download-button-renderer.ytd-menu-renderer.style-scope
 ! Thanks
-www.youtube.com###flexible-item-buttons > yt-button-view-model.ytd-menu-renderer.style-scope:nth-of-type(1)
+www.youtube.com###flexible-item-buttons > yt-button-view-model.ytd-menu-renderer:nth-of-type(1)
 ! Join
 www.youtube.com###sponsor-button
 ! Remove empty spaces in grid
@@ -45,14 +45,14 @@ flixhq.bz##.site-content > .text-center.mb-3
 
 ! anime4up.cam
 ! Pinned 
-anime4up.cam##div.page-content-container.content:nth-of-type(4) > .container
+anime4up.rest##div.page-content-container.content:nth-of-type(4) > .container
 ! Espace
-anime4up.cam##.content.space
-anime4up.cam##div.page-content-container.content
+anime4up.rest##.content.space
+anime4up.rest##div.page-content-container.content
 ! Top page
-anime4up.cam##section.text-white.text-center.anime4up-blue:nth-of-type(1)
-anime4up.cam##[href="https://halacima.media/"]
-anime4up.cam##[href="https://3isq.cam/"]
+anime4up.rest##section.text-white.text-center.anime4up-blue:nth-of-type(1)
+anime4up.rest##[href="https://halacima.media/"]
+anime4up.rest##[href="https://3isq.cam/"]
 
 
 ! aniwave.to
@@ -65,4 +65,6 @@ www.twitch.tv##.hPfSAv.Layout-sc-1xcs6mc-0 > .kBtJDm.InjectLayout-sc-1i43xsx-0 >
 www.twitch.tv##div.czRfnU.Layout-sc-1xcs6mc-0:nth-of-type(5)
 www.twitch.tv##div.czRfnU.Layout-sc-1xcs6mc-0:nth-of-type(6)
 www.twitch.tv##.prime-offers.cwtKyw.Layout-sc-1xcs6mc-0
+
+! Sep 24, 2024 https://www.youtube.com
 
