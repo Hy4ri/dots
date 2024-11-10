@@ -25,9 +25,10 @@ alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
 alias spruns='sudo pacman -Runs'
 alias scc='sudo pacman -Rns $(pacman -Qtdq)'
+alias unlock='sudo rm /var/lib/pacman/db.lock'
 
 #paru
-alias parusc='paru -Sc' # remove unused cache
+alias paruscc='paru -Scc' # remove unused cache
 alias parus='paru -S'
 alias paruss='paru -Ss'
 alias parusyyu='paru -Syyu'
@@ -37,6 +38,9 @@ alias ls='eza --color=always --group-directories-first' # better ls
 alias la='eza -a --color=always --group-directories-first'  # all files and dirs
 alias ll='eza -al --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
+
+#git
+alias gitc='git clone'
 
 #aliases
 alias snvim='sudo nvim'

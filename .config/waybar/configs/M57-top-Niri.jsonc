@@ -1,0 +1,32 @@
+{
+"include": "~/.config/waybar/modules.jsonc",
+"layer": "top",
+"exclusive": true,
+"passthrough": false,
+"gtk-layer-shell": true,
+"position": "top",
+"reload_style_on_change": true,
+"spacing": 0,
+"fixed-center": true,
+"ipc": true,
+
+"modules-left": [
+	"niri/workspaces#Num",
+    /*"wlr/taskbar",*/
+    "custom/prayers",
+	"mpris"
+    ],
+
+"modules-center": [
+    "niri/window"
+	],
+
+"modules-right": [
+    "privacy",
+    "tray",
+    "group/sys",
+	/*"custom/weather2",*/
+	"clock",
+	"custom/swaync"
+	]
+}
