@@ -6,9 +6,9 @@ ffmpegthumbnailer file-roller thunar-archive-plugin wev xwaylandvideobridge xorg
 zathura-language-server zathura-pdf-mupdf zathura-ps zoxide cliphist curl grim gvfs gvfs-mtp gvfs-google hypridle \
 hyprlock hyprpaper inxi jq foot kvantum network-manager-applet pamixer pavucontrol pipewire-alsa playerctl \
 qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync waybar wget wl-clipboard xdg-user-dirs xdg-utils yad brightnessctl \
-btop eza fastfetch vlc mpv mpv-mpris nvtop pacman-contrib neovim yt-dlp bash-completion bc bash-completion dua-cli duf \
-egl-wayland fish fish-autopair fish-pure-prompt fisher hwinfo intel-ucode lshw nano-syntax-highlighting obs-studio openssh \
-w3m nwg-look vivaldi vivaldi-ffmpeg-codecs vivaldi-update-ffmpeg-hook vivaldi-widevine
+btop eza fastfetch vlc mpv mpv-mpris nvtop pacman-contrib neovim yt-dlp bc bash-completion dua-cli duf \
+egl-wayland hwinfo intel-ucode lshw nano-syntax-highlighting obs-studio openssh qalculate-gtk zed \
+nwg-look vivaldi vivaldi-ffmpeg-codecs vivaldi-update-ffmpeg-hook vivaldi-widevine
 
 sleep 2
 
