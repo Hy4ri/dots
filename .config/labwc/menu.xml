@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu>
+<menu id="root-menu" label="root-menu">
+  <menu id="Accessories" label="Accessories" icon="applications-accessories">
+    <item label="About Xfce" icon="org.xfce.about">
+      <action name="Execute"><command>xfce4-about</command></action>
+    </item>
+    <item label="Azote" icon="azote">
+      <action name="Execute"><command>azote</command></action>
+    </item>
+    <item label="Bitwarden" icon="bitwarden">
+      <action name="Execute"><command>bitwarden-desktop</command></action>
+    </item>
+    <item label="Bottles" icon="com.usebottles.bottles">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=bottles --file-forwarding com.usebottles.bottles @@u  @@</command></action>
+    </item>
+    <item label="Bulk Rename" icon="org.xfce.thunar">
+      <action name="Execute"><command>thunar --bulk-rename</command></action>
+    </item>
+    <item label="Clocks" icon="org.gnome.clocks">
+      <action name="Execute"><command>gnome-clocks</command></action>
+    </item>
+    <item label="Davincibox" icon="/home/m57/.local/share/icons/distrobox/fedora.png">
+      <action name="Execute"><command>/usr/bin/distrobox enter  davincibox</command></action>
+    </item>
+    <item label="File Roller" icon="org.gnome.FileRoller">
+      <action name="Execute"><command>file-roller</command></action>
+    </item>
+    <item label="Flatseal" icon="com.github.tchx84.Flatseal">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=com.github.tchx84.Flatseal com.github.tchx84.Flatseal</command></action>
+    </item>
+    <item label="Flatsweep" icon="io.github.giantpinkrobots.flatsweep">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=flatsweep io.github.giantpinkrobots.flatsweep</command></action>
+    </item>
+    <item label="Flowtime" icon="io.github.diegoivanme.flowtime">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=flowtime io.github.diegoivanme.flowtime</command></action>
+    </item>
+    <item label="Gammastep Indicator" icon="gammastep">
+      <action name="Execute"><command>gammastep-indicator</command></action>
+    </item>
+    <item label="Gear Lever" icon="it.mijorus.gearlever">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=gearlever --file-forwarding it.mijorus.gearlever @@u  @@</command></action>
+    </item>
+    <item label="HP Device Manager" icon="/usr/share/hplip/data/images/128x128/hp_logo.png">
+      <action name="Execute"><command>hp-toolbox</command></action>
+    </item>
+    <item label="HyprWall" icon="hyprwall">
+      <action name="Execute"><command>/usr/bin/hyprwall</command></action>
+    </item>
+    <item label="Kvantum Manager" icon="kvantum">
+      <action name="Execute"><command>kvantummanager</command></action>
+    </item>
+    <item label="LocalSend" icon="localsend">
+      <action name="Execute"><command>localsend</command></action>
+    </item>
+    <item label="Maps" icon="org.gnome.Maps">
+      <action name="Execute"><command>gapplication launch org.gnome.Maps</command></action>
+    </item>
+    <item label="MarkText" icon="/home/m57/AppImages/.icons/marktext.png">
+      <action name="Execute"><command>/home/m57/AppImages/marktext.appimage --no-sandbox</command></action>
+    </item>
+    <item label="Nemo" icon="system-file-manager">
+      <action name="Execute"><command>nemo</command></action>
+    </item>
+    <item label="Neovide" icon="neovide">
+      <action name="Execute"><command>neovide</command></action>
+    </item>
+    <item label="Neovim" icon="nvim">
+      <action name="Execute"><command>nvim</command></action>
+    </item>
+    <item label="NormCap" icon="normcap">
+      <action name="Execute"><command>normcap</command></action>
+    </item>
+    <item label="OpenRGB" icon="OpenRGB">
+      <action name="Execute"><command>openrgb</command></action>
+    </item>
+    <item label="PINCE" icon="PINCE">
+      <action name="Execute"><command>pince</command></action>
+    </item>
+    <item label="Piper" icon="org.freedesktop.Piper">
+      <action name="Execute"><command>piper</command></action>
+    </item>
+    <item label="Protontricks" icon="wine">
+      <action name="Execute"><command>protontricks --no-term --gui</command></action>
+    </item>
+    <item label="ProtonUp-Qt" icon="net.davidotek.pupgui2">
+      <action name="Execute"><command>net.davidotek.pupgui2</command></action>
+    </item>
+    <item label="Qalculate!" icon="qalculate">
+      <action name="Execute"><command>qalculate-gtk</command></action>
+    </item>
+    <item label="QtScrcpy" icon="qtscrcpy">
+      <action name="Execute"><command>qtscrcpy</command></action>
+    </item>
+    <item label="scrcpy" icon="scrcpy">
+      <action name="Execute"><command>/bin/sh -c "\$SHELL -i -c scrcpy"</command></action>
+    </item>
+    <item label="scrcpy (console)" icon="scrcpy">
+      <action name="Execute"><command>/bin/sh -c "\$SHELL -i -c 'scrcpy --pause-on-exit=if-error'"</command></action>
+    </item>
+    <item label="Smile" icon="it.mijorus.smile">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=smile it.mijorus.smile</command></action>
+    </item>
+    <item label="System Monitoring Center" icon="io.github.hakandundar34coding.system-monitoring-center">
+      <action name="Execute"><command>system-monitoring-center</command></action>
+    </item>
+    <item label="Thunar File Manager" icon="org.xfce.thunar">
+      <action name="Execute"><command>thunar</command></action>
+    </item>
+    <item label="Ventoy" icon="ventoy">
+      <action name="Execute"><command>ventoygui</command></action>
+    </item>
+    <item label="Vim" icon="gvim">
+      <action name="Execute"><command>vim</command></action>
+    </item>
+    <item label="Winetricks" icon="winetricks">
+      <action name="Execute"><command>winetricks --gui</command></action>
+    </item>
+    <item label="Yazi" icon="yazi">
+      <action name="Execute"><command>yazi</command></action>
+    </item>
+    <item label="Zed" icon="zed">
+      <action name="Execute"><command>zeditor</command></action>
+    </item>
+  </menu> <!-- Accessories -->
+  <menu id="Development" label="Development" icon="applications-development">
+    <item label="CMake" icon="CMakeSetup">
+      <action name="Execute"><command>cmake-gui</command></action>
+    </item>
+    <item label="Electron 31" icon="electron31">
+      <action name="Execute"><command>electron31</command></action>
+    </item>
+    <item label="Electron 32" icon="electron32">
+      <action name="Execute"><command>electron32</command></action>
+    </item>
+    <item label="Electron 33" icon="electron33">
+      <action name="Execute"><command>electron33</command></action>
+    </item>
+    <item label="Icon Browser" icon="yad">
+      <action name="Execute"><command>yad-icon-browser</command></action>
+    </item>
+    <item label="Meld" icon="org.gnome.Meld">
+      <action name="Execute"><command>meld</command></action>
+    </item>
+    <item label="PINCE" icon="PINCE">
+      <action name="Execute"><command>pince</command></action>
+    </item>
+    <item label="QtScrcpy" icon="qtscrcpy">
+      <action name="Execute"><command>qtscrcpy</command></action>
+    </item>
+    <item label="Zed" icon="zed">
+      <action name="Execute"><command>zeditor</command></action>
+    </item>
+  </menu> <!-- Development -->
+  <menu id="Education" label="Education" icon="applications-science">
+    <item label="Qalculate!" icon="qalculate">
+      <action name="Execute"><command>qalculate-gtk</command></action>
+    </item>
+  </menu> <!-- Education -->
+  <menu id="Games" label="Games" icon="applications-games">
+    <item label="Cartridges" icon="page.kramo.Cartridges">
+      <action name="Execute"><command>cartridges</command></action>
+    </item>
+    <item label="Counter-Strike 2" icon="steam_icon_730">
+      <action name="Execute"><command>steam steam://rungameid/730</command></action>
+    </item>
+    <item label="Crab Game" icon="steam_icon_1782210">
+      <action name="Execute"><command>steam steam://rungameid/1782210</command></action>
+    </item>
+    <item label="Dosbox" icon="dosbox">
+      <action name="Execute"><command>dosbox</command></action>
+    </item>
+    <item label="Goverlay" icon="goverlay">
+      <action name="Execute"><command>goverlay</command></action>
+    </item>
+    <item label="Heroic Games Launcher" icon="com.heroicgameslauncher.hgl">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=heroic-run --file-forwarding com.heroicgameslauncher.hgl @@u  @@</command></action>
+    </item>
+    <item label="Heroic Games Launcher" icon="heroic">
+      <action name="Execute"><command>/opt/Heroic/heroic</command></action>
+    </item>
+    <item label="Lutris" icon="lutris">
+      <action name="Execute"><command>lutris</command></action>
+    </item>
+    <item label="PolyMC" icon="org.polymc.PolyMC">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=polymc org.polymc.PolyMC</command></action>
+    </item>
+    <item label="Proton Experimental" icon="steam">
+      <action name="Execute"><command>steam steam://rungameid/1493710</command></action>
+    </item>
+    <item label="ProtonUp-Qt" icon="net.davidotek.pupgui2">
+      <action name="Execute"><command>net.davidotek.pupgui2</command></action>
+    </item>
+    <item label="Space Cadet Pinball" icon="spacecadetpinball">
+      <action name="Execute"><command>spacecadetpinball</command></action>
+    </item>
+    <item label="Steam (Native)" icon="steam">
+      <action name="Execute"><command>/usr/bin/steam-native</command></action>
+    </item>
+    <item label="Steam (Runtime)" icon="steam">
+      <action name="Execute"><command>/usr/bin/steam-runtime</command></action>
+    </item>
+    <item label="Steam Linux Runtime 3.0 (sniper)" icon="steam">
+      <action name="Execute"><command>steam steam://rungameid/1628350</command></action>
+    </item>
+    <item label="Vampire Survivors" icon="steam_icon_1794680">
+      <action name="Execute"><command>steam steam://rungameid/1794680</command></action>
+    </item>
+  </menu> <!-- Games -->
+  <menu id="Graphics" label="Graphics" icon="applications-graphics">
+    <item label="(beta) GNU Image Manipulation Program" icon="org.gimp.GIMP">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=beta --arch=x86_64 --command=gimp-3.0 --file-forwarding org.gimp.GIMP @@u  @@</command></action>
+    </item>
+    <item label="Krita" icon="krita">
+      <action name="Execute"><command>krita</command></action>
+    </item>
+    <item label="Pinta" icon="pinta">
+      <action name="Execute"><command>pinta</command></action>
+    </item>
+    <item label="qimgv" icon="qimgv">
+      <action name="Execute"><command>qimgv</command></action>
+    </item>
+    <item label="qView" icon="com.interversehq.qView">
+      <action name="Execute"><command>qview</command></action>
+    </item>
+    <item label="Upscayl" icon="org.upscayl.Upscayl">
+      <action name="Execute"><command>upscayl  --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations</command></action>
+    </item>
+  </menu> <!-- Graphics -->
+  <menu id="Internet" label="Internet" icon="applications-internet">
+    <item label="Advanced Network Configuration" icon="preferences-system-network">
+      <action name="Execute"><command>nm-connection-editor</command></action>
+    </item>
+    <item label="Avahi SSH Server Browser" icon="network-wired">
+      <action name="Execute"><command>/usr/bin/bssh</command></action>
+    </item>
+    <item label="Avahi VNC Server Browser" icon="network-wired">
+      <action name="Execute"><command>/usr/bin/bvnc</command></action>
+    </item>
+    <item label="Brave" icon="brave-desktop">
+      <action name="Execute"><command>brave</command></action>
+    </item>
+    <item label="Free Download Manager" icon="freedownloadmanager">
+      <action name="Execute"><command>/usr/bin/fdm</command></action>
+    </item>
+    <item label="LibreWolf" icon="librewolf">
+      <action name="Execute"><command>/usr/lib/librewolf/librewolf</command></action>
+    </item>
+    <item label="LocalSend" icon="localsend">
+      <action name="Execute"><command>localsend</command></action>
+    </item>
+    <item label="Remote Viewer" icon="virt-viewer">
+      <action name="Execute"><command>remote-viewer</command></action>
+    </item>
+    <item label="Steam (Native)" icon="steam">
+      <action name="Execute"><command>/usr/bin/steam-native</command></action>
+    </item>
+    <item label="Steam (Runtime)" icon="steam">
+      <action name="Execute"><command>/usr/bin/steam-runtime</command></action>
+    </item>
+    <item label="Teams for Linux" icon="com.github.IsmaelMartinez.teams_for_linux">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=teams-for-linux --file-forwarding com.github.IsmaelMartinez.teams_for_linux @@u  @@</command></action>
+    </item>
+    <item label="Vesktop" icon="dev.vencord.Vesktop">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=startvesktop dev.vencord.Vesktop</command></action>
+    </item>
+    <item label="Vesktop" icon="vesktop">
+      <action name="Execute"><command>/usr/bin/vesktop</command></action>
+    </item>
+    <item label="Vivaldi" icon="vivaldi">
+      <action name="Execute"><command>/usr/bin/vivaldi-stable</command></action>
+    </item>
+    <item label="Zen Browser" icon="zen-browser">
+      <action name="Execute"><command>/opt/zen-browser-bin/zen-bin</command></action>
+    </item>
+  </menu> <!-- Internet -->
+  <menu id="Multimedia" label="Multimedia" icon="applications-multimedia">
+    <item label="Blanket" icon="com.rafaelmardojai.Blanket">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=blanket com.rafaelmardojai.Blanket</command></action>
+    </item>
+    <item label="Kdenlive" icon="/home/m57/AppImages/.icons/kdenlive.png">
+      <action name="Execute"><command>/home/m57/AppImages/kdenlive.appimage</command></action>
+    </item>
+    <item label="mpv Media Player" icon="mpv">
+      <action name="Execute"><command>mpv --player-operation-mode=pseudo-gui --</command></action>
+    </item>
+    <item label="OBS Studio" icon="com.obsproject.Studio">
+      <action name="Execute"><command>obs</command></action>
+    </item>
+    <item label="Qt V4L2 test Utility" icon="qv4l2">
+      <action name="Execute"><command>qv4l2</command></action>
+    </item>
+    <item label="Qt V4L2 video capture utility" icon="qvidcap">
+      <action name="Execute"><command>qvidcap</command></action>
+    </item>
+    <item label="Spotify" icon="com.spotify.Client">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u  @@</command></action>
+    </item>
+    <item label="VLC media player" icon="vlc">
+      <action name="Execute"><command>/usr/bin/vlc --started-from-file</command></action>
+    </item>
+    <item label="Volume Control" icon="multimedia-volume-control">
+      <action name="Execute"><command>pavucontrol</command></action>
+    </item>
+    <item label="YouTube Music" icon="youtube-music">
+      <action name="Execute"><command>youtube-music</command></action>
+    </item>
+  </menu> <!-- Multimedia -->
+  <menu id="Office" label="Office" icon="applications-office">
+    <item label="Flowtime" icon="io.github.diegoivanme.flowtime">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=flowtime io.github.diegoivanme.flowtime</command></action>
+    </item>
+    <item label="MarkText" icon="/home/m57/AppImages/.icons/marktext.png">
+      <action name="Execute"><command>/home/m57/AppImages/marktext.appimage --no-sandbox</command></action>
+    </item>
+    <item label="ONLYOFFICE Desktop Editors" icon="org.onlyoffice.desktopeditors">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=desktopeditors --file-forwarding org.onlyoffice.desktopeditors @@u  @@</command></action>
+    </item>
+    <item label="PDF Arranger" icon="com.github.jeromerobert.pdfarranger">
+      <action name="Execute"><command>pdfarranger</command></action>
+    </item>
+    <item label="Teams for Linux" icon="com.github.IsmaelMartinez.teams_for_linux">
+      <action name="Execute"><command>/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=teams-for-linux --file-forwarding com.github.IsmaelMartinez.teams_for_linux @@u  @@</command></action>
+    </item>
+    <item label="Todoist" icon="/home/m57/AppImages/.icons/todoist.png">
+      <action name="Execute"><command>/home/m57/AppImages/todoist.appimage --no-sandbox</command></action>
+    </item>
+    <item label="Zathura" icon="org.pwmt.zathura">
+      <action name="Execute"><command>zathura</command></action>
+    </item>
+  </menu> <!-- Office -->
+  <menu id="Settings" label="Settings" icon="preferences-desktop">
+    <item label="Advanced Network Configuration" icon="preferences-system-network">
+      <action name="Execute"><command>nm-connection-editor</command></action>
+    </item>
+    <item label="Azote" icon="azote">
+      <action name="Execute"><command>azote</command></action>
+    </item>
+    <item label="Bluetooth Adapters" icon="blueman-device">
+      <action name="Execute"><command>blueman-adapters</command></action>
+    </item>
+    <item label="Bluetooth Manager" icon="blueman">
+      <action name="Execute"><command>blueman-manager</command></action>
+    </item>
+    <item label="File Manager Settings" icon="org.xfce.thunar">
+      <action name="Execute"><command>thunar-settings</command></action>
+    </item>
+    <item label="GTK Settings" icon="nwg-look">
+      <action name="Execute"><command>nwg-look</command></action>
+    </item>
+    <item label="Kvantum Manager" icon="kvantum">
+      <action name="Execute"><command>kvantummanager</command></action>
+    </item>
+    <item label="Manage Printing" icon="cups">
+      <action name="Execute"><command>xdg-open http://localhost:631/</command></action>
+    </item>
+    <item label="NVIDIA X Server Settings" icon="nvidia-settings">
+      <action name="Execute"><command>/usr/bin/nvidia-settings</command></action>
+    </item>
+    <item label="Print Settings" icon="printer">
+      <action name="Execute"><command>system-config-printer</command></action>
+    </item>
+    <item label="Qt6 Settings" icon="preferences-desktop-theme">
+      <action name="Execute"><command>qt6ct</command></action>
+    </item>
+    <item label="Removable Drives and Media" icon="org.xfce.volman">
+      <action name="Execute"><command>thunar-volman-settings</command></action>
+    </item>
+    <item label="Volume Control" icon="multimedia-volume-control">
+      <action name="Execute"><command>pavucontrol</command></action>
+    </item>
+    <item label="YAD settings" icon="yad">
+      <action name="Execute"><command>yad-settings</command></action>
+    </item>
+  </menu> <!-- Settings -->
+  <menu id="System" label="System" icon="applications-system">
+    <item label="Alacritty" icon="Alacritty">
+      <action name="Execute"><command>alacritty</command></action>
+    </item>
+    <item label="Avahi Zeroconf Browser" icon="network-wired">
+      <action name="Execute"><command>/usr/bin/avahi-discover</command></action>
+    </item>
+    <item label="btop++" icon="btop">
+      <action name="Execute"><command>btop</command></action>
+    </item>
+    <item label="Btrfs Assistant" icon="btrfs-assistant">
+      <action name="Execute"><command>btrfs-assistant-launcher</command></action>
+    </item>
+    <item label="CachyOS Kernel Manager" icon="cachyos-kernel-manager">
+      <action name="Execute"><command>cachyos-kernel-manager</command></action>
+    </item>
+    <item label="CachyOS Package Installer" icon="cachyos-pi">
+      <action name="Execute"><command>/usr/bin/cachyos-pi</command></action>
+    </item>
+    <item label="Davincibox" icon="/home/m57/.local/share/icons/distrobox/fedora.png">
+      <action name="Execute"><command>/usr/bin/distrobox enter  davincibox</command></action>
+    </item>
+    <item label="fish" icon="fish">
+      <action name="Execute"><command>fish</command></action>
+    </item>
+    <item label="Foot" icon="foot">
+      <action name="Execute"><command>foot</command></action>
+    </item>
+    <item label="Foot Client" icon="foot">
+      <action name="Execute"><command>footclient</command></action>
+    </item>
+    <item label="Foot Server" icon="foot">
+      <action name="Execute"><command>foot --server</command></action>
+    </item>
+    <item label="GParted" icon="gparted">
+      <action name="Execute"><command>/usr/bin/gparted</command></action>
+    </item>
+    <item label="Hardware Locality lstopo" icon="hwloc">
+      <action name="Execute"><command>lstopo</command></action>
+    </item>
+    <item label="kitty" icon="kitty">
+      <action name="Execute"><command>kitty</command></action>
+    </item>
+    <item label="LSHW" icon="/usr/share/lshw/artwork/logo.svg">
+      <action name="Execute"><command>/usr/sbin/gtk-lshw</command></action>
+    </item>
+    <item label="Manage Printing" icon="cups">
+      <action name="Execute"><command>xdg-open http://localhost:631/</command></action>
+    </item>
+    <item label="nvtop" icon="nvtop">
+      <action name="Execute"><command>nvtop</command></action>
+    </item>
+    <item label="Octopi" icon="octopi">
+      <action name="Execute"><command>/usr/bin/octopi</command></action>
+    </item>
+    <item label="Octopi CacheCleaner" icon="octopi">
+      <action name="Execute"><command>/usr/bin/octopi-cachecleaner</command></action>
+    </item>
+    <item label="Octopi Notifier" icon="octopi">
+      <action name="Execute"><command>/usr/bin/octopi-notifier</command></action>
+    </item>
+    <item label="Octopi Repository Editor" icon="octopi">
+      <action name="Execute"><command>/usr/bin/octopi-repoeditor</command></action>
+    </item>
+    <item label="OpenJDK Java 21 Console" icon="java21-openjdk">
+      <action name="Execute"><command>/usr/lib/jvm/java-21-openjdk/bin/jconsole</command></action>
+    </item>
+    <item label="OpenJDK Java 21 Shell" icon="java21-openjdk">
+      <action name="Execute"><command>/usr/lib/jvm/java-21-openjdk/bin/jshell</command></action>
+    </item>
+    <item label="Print Settings" icon="printer">
+      <action name="Execute"><command>system-config-printer</command></action>
+    </item>
+    <item label="System Monitoring Center" icon="io.github.hakandundar34coding.system-monitoring-center">
+      <action name="Execute"><command>system-monitoring-center</command></action>
+    </item>
+    <item label="Thunar File Manager" icon="org.xfce.thunar">
+      <action name="Execute"><command>thunar</command></action>
+    </item>
+    <item label="Timeshift" icon="timeshift">
+      <action name="Execute"><command>timeshift-launcher</command></action>
+    </item>
+    <item label="Virtual Machine Manager" icon="virt-manager">
+      <action name="Execute"><command>virt-manager</command></action>
+    </item>
+    <item label="Yazi" icon="yazi">
+      <action name="Execute"><command>yazi</command></action>
+    </item>
+  </menu> <!-- System -->
+  <menu id="Other" label="Other">
+    <item label="BakkesMod" icon="742F_BakkesMod.0">
+      <action name="Execute"><command>bash -c '~/.config/hypr/UserScripts/bakkasmod.sh'</command></action>
+    </item>
+    <item label="Excalidraw" icon="ftwa-excalidraw">
+      <action name="Execute"><command>/usr/bin/brave --app='https://excalidraw.com'</command></action>
+    </item>
+    <item label="Flathub - Apps for Linux" icon="vivaldi-jmionjmeaoingggjgjfeflbooeajakdm-Default">
+      <action name="Execute"><command>/opt/vivaldi/vivaldi --profile-directory=Default --app-id=jmionjmeaoingggjgjfeflbooeajakdm</command></action>
+    </item>
+    <item label="Gmail" icon="ftwa-gmail">
+      <action name="Execute"><command>/usr/bin/google-chrome-stable --app='https://mail.google.com'</command></action>
+    </item>
+    <item label="hp-uiscan" icon="/usr/share/icons/Humanity/devices/48/printer.svg">
+      <action name="Execute"><command>/usr/bin/hp-uiscan</command></action>
+    </item>
+    <item label="Rofi" icon="rofi">
+      <action name="Execute"><command>rofi -show</command></action>
+    </item>
+    <item label="Rofi Theme Selector" icon="rofi">
+      <action name="Execute"><command>rofi-theme-selector</command></action>
+    </item>
+  </menu> <!-- Other -->
+</menu> <!-- root-menu -->
+</openbox_menu>

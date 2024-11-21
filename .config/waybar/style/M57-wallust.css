@@ -1,8 +1,7 @@
-@import "../../.config/waybar/wal/colors-waybar.css";
+@import "/home/m57/.cache/wal/colors-waybar.css";
 
 @define-color font-color #e2e2e2;
 @define-color background-color #121212;
-@define-color accent @color5;
 @define-color shadow #252525;
 * {
     font-family: JetBrainsMono Nerd Font;
@@ -16,9 +15,9 @@
     background-color: @background-color;
     color: @font-color;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
 }
 
 window#waybar {
@@ -36,7 +35,7 @@ tooltip {
     border-radius: 0px;
     border-width: 2px;
     border-style: solid;
-    border-color: @accent;
+    border-color: @color3;
 }
 
 tooltip label {
@@ -46,42 +45,42 @@ tooltip label {
 #workspaces {
     background-color: @background-color;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 7px;
 }
 
 #workspaces button {
     background-color: #222222;
     color: @font-color;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 10px;
+    padding: 3px 13px;
 }
 
 #workspaces button.active,
 #workspaces button.focused {
-    color: @color0;
-    background-color: @accent;
-    /*border: 2px solid @accent;*/
-    border-radius: 50px 50px;
+    color: @background;
+    background-color: @color3;
+    /*border: 2px solid @color3;*/
+    border-radius: 5px 5px;
     margin: 3px;
     padding: 3px 20px;
 }
 
 #workspaces button:hover {
-    color: @background-color;
+    color: @color3;
     background-color: @font-color;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
     padding: 3px 20px;
 }
 
 #workspaces button.urgent {
     color: white;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
     animation: flash 1s infinite;
 }
 
@@ -101,71 +100,70 @@ tooltip label {
     color: @font-color;
     background-color: @background-color;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
 }
 
 #clock {
-    color: @accent;
+    color: @color3;
     background-color: @background-color;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
 }
 
 #custom-weather2 {
     color: @font-color;
     background-color: @background-color;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
 }
 
 #tray {
     background-color: @background-color;
     color: @font-color;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 50px 0px 0px 50px;
+    border-radius: 5px 0px 0px 5px;
     margin-top: 3px;
-    margin-right: 3px;
+    margin-left: 3px;
     margin-bottom: 3px;
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-right: 3px;
-    padding-left: 2px;
+    padding-left: 13px;
 }
 
 #sys {
     background-color: @background-color;
-    border-radius: 0px 50px 50px 0px;
+    border-radius: 0px 5px 5px 0px;
     box-shadow: @shadow 2px 2px 2px 1px;
     margin-top: 3px;
     margin-right: 3px;
     margin-bottom: 3px;
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-right: 15px;
+    padding-right: 7px;
     padding-left: 2px;
 }
 #mpris {
     background-color: @background-color;
-    color: @accent;
+    color: @color3;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
 }
 
 #custom-prayers {
     background-color: @background-color;
     color: @font-color;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
 }
 
 #custom-hyprshade {
@@ -173,24 +171,28 @@ tooltip label {
 }
 #pulseaudio,
 #pulseaudio-micorphone {
-    padding-left: 5px;
-    padding-right: 12px;
+    padding-left: 10px;
+    padding-right: 5px;
 }
 
 #battery {
     padding-left: 5px;
-    padding-right: 12px;
+    padding-right: 5px;
     color: greenyellow;
 }
-
-#power-profiles-daemon {
+#custom-RandomWallpaper{
     padding-left: 5px;
+    padding-right: 5px;
+    color: pink;
+}
+#power-profiles-daemon {
+    padding-left: 10px;
     padding-right: 5px;
     color: @font-color;
 }
 
 #battery.critical:not(.charging) {
-    color: @accent;
+    color: @color3;
 }
 
 #custom-separator {
@@ -199,19 +201,19 @@ tooltip label {
 
 #taskbar {
     background-color: @background-color;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
 }
 
 #privacy {
     color: @font-color;
     background-color: @background-color;
-    border-radius: 50px 50px;
+    border-radius: 5px 5px;
     margin: 3px;
-    padding: 3px 15px;
+    padding: 3px 13px;
 }
 
 #privacy-item.screenshare {
-    color: @accent;
+    color: @color3;
 }
