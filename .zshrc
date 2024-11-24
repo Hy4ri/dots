@@ -14,7 +14,7 @@ COMPLETION_WAITING_DOTS="true"
 
 ZSH_THEME="nanotech"
 
-plugins=(git fzf aliases colored-man-pages extract safe-paste sudo zsh-autosuggestions colorize zsh-syntax-highlighting )
+plugins=(fzf aliases colored-man-pages extract safe-paste sudo zsh-autosuggestions colorize zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 #pacman
@@ -24,7 +24,7 @@ alias spsyyu='sudo pacman -Syyu'
 alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
 alias spruns='sudo pacman -Runs'
-alias scc='sudo pacman -Rns $(pacman -Qtdq)'
+alias spcc='sudo pacman -Rns $(pacman -Qtdq)'
 alias unlock='sudo rm /var/lib/pacman/db.lock'
 
 #paru

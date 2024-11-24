@@ -12,7 +12,6 @@
 
 "modules-left": [
 	"hyprland/workspaces#Num",
-    /*"wlr/taskbar",*/
     "custom/prayers",
 	"mpris"
     ],
