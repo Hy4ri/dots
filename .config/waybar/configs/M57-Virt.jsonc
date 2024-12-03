@@ -16,16 +16,16 @@
 	"mpris#Virt"
     ],
 
-/*"modules-center": [
-    "hyprland/window"
-	],*/
+"modules-center": [
+    //"hyprland/window",
+	"clock#vertical"
+	],
 
 "modules-right": [
     "privacy",
     "tray",
     "group/sysVirt",
 	//"custom/weather2",
-	"clock#vertical",
 	"custom/swaync"
 	],
 

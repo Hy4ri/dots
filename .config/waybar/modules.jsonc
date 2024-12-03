@@ -369,16 +369,16 @@
     "format-alt": "{:%I:%M:%p   %Y, %d %B, %A}",
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
-      "mode"          : "month",
+      "mode"          : "year",
       "mode-mon-col"  : 3,
       "weeks-pos"     : "",
       "on-scroll"     : 1,
       "format": {
-      "months":     "<span color='#ffead3'><b>{}</b></span>",
-      "days":       "<span color='#ecc6d9'>{}</span>",
-      "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-      "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-      "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      "months":     "<span color='#e2e2e2'><b>{}</b></span>",
+      "days":       "<span color='#f0ccd2'>{}</span>",
+      "weeks":      "<span color='#ddcc66'><b>W{}</b></span>",
+      "weekdays":   "<span color='#ddcc66'><b>{}</b></span>",
+      "today":      "<span color='#990000'><b><u>{}</u></b></span>"
                 }
                 }
     },
@@ -500,7 +500,7 @@
 "mpris": {
     "interval": 1,
 	"format": "{title}",
-	"tooltip-format": "{artist} [{position}/{length}]",
+	"tooltip-format": "{status_icon} {title}\n{artist}\n[{position}/{length}]",
 	"on-click": "playerctl play-pause",
     "on-click-middle": "playerctl previous",
     "on-click-right": "playerctl next",
@@ -640,7 +640,7 @@
 
 "custom/RandomWallpaper":{
     "format":"  ",
-    "on-click": "~/.config/hypr/UserScripts/waypaperRandom",
+    "on-click": "hyprwall --random",
     "tooltip-format": "Random Wallpaper"
 },
 

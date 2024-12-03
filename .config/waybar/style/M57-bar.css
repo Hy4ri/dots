@@ -198,12 +198,31 @@ tooltip label {
     color: transparent;
 }
 
-#taskbar {
+#taskbar{
     background-color: @background-color;
+    box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 5px 5px;
-    margin: 3px;
-    padding: 3px 13px;
+    padding: 1px 1px 1px 1px;
 }
+#taskbar button{
+    color: @font-color;
+    background-color: #222222;
+    border-radius: 5px 5px;
+    margin: 1px 1px 1px 1px;
+    padding: 1px 7px;
+}
+#taskbar button.active{
+    color: @font-color;
+    background-color: @accent;
+}
+#taskbar button.minimized{
+    color: @shadow;
+}
+#taskbar.empty{
+    background-color: transparent;
+    box-shadow: none;
+}
+
 
 #privacy {
     color: @font-color;
