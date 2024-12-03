@@ -16,6 +16,22 @@ EOF
 sudo cp "$(pwd)" -r ~/m57-dots-install
 cd ~/m57-dots-install
 
+
+while true; do
+  echo "Add cachyos repos? "
+  read -r caos
+case "$caos" in
+  yes | Yes | y | Y)
+    curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
+    tar xvf cachyos-repo.tar.xz && cd cachyos-repo
+    sudo ./cachyos-repo.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
 echo "edit pacman.conf"
 
 pacman_conf="/etc/pacman.conf"
