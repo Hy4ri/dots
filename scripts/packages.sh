@@ -1,14 +1,14 @@
 #!/bin/bash
 
-$helper -Sy --noconfirm --needed alacritty bitwarden bat flatpak gammastep gamemode gparted lutris man-db man-pages openrgb \
-papirus-icon-theme feh power-profiles-daemon scrcpy timeshift thunar thunar-volman tumbler termdown \
-ffmpegthumbnailer file-roller thunar-archive-plugin wev xwaylandvideobridge xorg-host zathura zathura-cb zathura-djvu \
-zathura-language-server zathura-pdf-mupdf zathura-ps zoxide cliphist curl grim gvfs gvfs-mtp gvfs-google hypridle \
-hyprlock hyprpaper inxi jq foot kvantum network-manager-applet pamixer pavucontrol pipewire-alsa playerctl \
+$helper -Sy --needed alacritty bitwarden bat flatpak gammastep gamemode gparted lutris man-db man-pages openrgb \
+papirus-icon-theme feh power-profiles-daemon scrcpy thunar thunar-volman tumbler termdown \
+ffmpegthumbnailer file-roller thunar-archive-plugin wev xwaylandvideobridge xorg-xhost zathura zathura-cb zathura-djvu \
+zathura-language-server zathura-pdf-mupdf zathura-ps zoxide cliphist curl grim gvfs gvfs-mtp gvfs-google \
+inxi jq foot kvantum network-manager-applet pamixer pavucontrol pipewire-alsa playerctl \
 qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync waybar wget wl-clipboard xdg-user-dirs xdg-utils yad brightnessctl \
 btop eza fastfetch vlc mpv mpv-mpris nvtop pacman-contrib neovim yt-dlp bc bash-completion dua-cli duf \
 egl-wayland hwinfo intel-ucode lshw nano-syntax-highlighting obs-studio openssh qalculate-gtk zed \
-nwg-look vivaldi vivaldi-ffmpeg-codecs vivaldi-update-ffmpeg-hook vivaldi-widevine
+nwg-look vivaldi vivaldi-ffmpeg-codecs vivaldi-update-ffmpeg-hook vivaldi-widevine termdown
 
 sleep 2
 
