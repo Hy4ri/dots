@@ -17,21 +17,6 @@ sudo cp "$(pwd)" -r ~/m57-dots-install
 cd ~/m57-dots-install
 
 
-while true; do
-  echo "Add cachyos repos? "
-  read -r caos
-case "$caos" in
-  yes | Yes | y | Y)
-    curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
-    tar xvf cachyos-repo.tar.xz && cd cachyos-repo
-    sudo ./cachyos-repo.sh
-  ;;
-  No | no | n | N)
-  ;;
-  *)
-  ;;
-esac
-
 echo "edit pacman.conf"
 
 pacman_conf="/etc/pacman.conf"
@@ -105,6 +90,8 @@ while true; do
       echo -n "installing paru"
       ~/m57-dots-install/scripts/./paru.sh
       break
+    ;;
+    No | no | n | N)
     ;;
     *)
       echo "Invalid option. Please choose either 'yay', 'paru', or 'both'."
@@ -245,6 +232,8 @@ while true; do
       echo -n "installing hyprland"
       ~/m57-dots-install/scripts/./hyprland.sh
       break
+    ;;
+    No | no | n | N)
     ;;
     *)
       echo "Invalid option. Please choose either 'hyprland', 'wayfire', 'sway' or 'all'."
@@ -494,14 +483,14 @@ cd ~/m57-dots-install
 cp -r .config ~/
 cp -r .icons ~/
 cd ~/.icons
-extract Bibata-Modern-Ice.tar.gz
+tar -xvzf Bibata-Modern-Ice.tar.gz
 cp -r .local ~/
 cp -r .themes ~/
 cd ~/.themes
-extract M57.tar.gz
+tar -xvzf M57.tar.gz
 cd ~/dots
-mkdir -p ~/Pictures
-cd ~/Pictures
+mkdir -p ~/Pictures/wallpapers
+cd ~/Pictures/wallpapers
 git clone https://github.com/hy4ri/wallpapers
 cd ~/m57-dots-install
 cp -r .zshrc ~/
