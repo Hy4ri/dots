@@ -453,7 +453,7 @@ esac
 sleep 1
 
 # input profile
-~/m57-dots-install/scripts/./input-profile.sh
+# ~/m57-dots-install/scripts/./input-profile.sh
 
 sleep 1
 cd ~/dots
