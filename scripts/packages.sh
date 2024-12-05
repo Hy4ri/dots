@@ -1,14 +1,14 @@
 #!/bin/bash
 
-$helper -Sy --needed alacritty bitwarden bat flatpak gammastep gamemode gparted lutris man-db man-pages openrgb \
-papirus-icon-theme feh power-profiles-daemon scrcpy thunar thunar-volman tumbler termdown \
-ffmpegthumbnailer file-roller thunar-archive-plugin wev xwaylandvideobridge xorg-xhost zathura zathura-cb zathura-djvu \
-zathura-language-server zathura-pdf-mupdf zathura-ps zoxide cliphist curl grim gvfs gvfs-mtp gvfs-google \
-inxi jq foot kvantum network-manager-applet pamixer pavucontrol pipewire-alsa playerctl \
-qt5ct qt6ct qt6-svg rofi-wayland slurp swappy swaync waybar wget wl-clipboard xdg-user-dirs xdg-utils yad brightnessctl \
-btop eza fastfetch vlc mpv mpv-mpris nvtop pacman-contrib neovim yt-dlp bc bash-completion dua-cli duf \
-egl-wayland hwinfo intel-ucode lshw nano-syntax-highlighting obs-studio openssh qalculate-gtk zed \
-nwg-look vivaldi vivaldi-ffmpeg-codecs vivaldi-update-ffmpeg-hook vivaldi-widevine termdown
+$helper -Sy --needed alacritty bash-completion bat bc bitwarden brightnessctl btop cartridges cliphist curl \
+dua-cli duf egl-wayland eza fastfetch feh ffmpegthumbnailer file-roller foot gammastep gamemode grim gvfs \
+gvfs-google gvfs-mtp heroic-games-launcher-bin hwinfo inxi intel-ucode jq kvantum lshw lutris man-db man-pages mpv \
+mpv-mpris neovim network-manager-applet nwg-look obs-studio openrgb pacman-contrib pamixer papirus-icon-theme \
+pavucontrol pipewire-alsa playerctl power-profiles-daemon qalculate-gtk qt5ct qt6-svg qt6ct rofi-wayland scrcpy \
+slurp swappy swaync termdown tesseract-data-ara tesseract-data-eng thunar thunar-archive-plugin thunar-volman \
+tty-clock vesktop vivaldi vivaldi-ffmpeg-codecs vivaldi-widevine vlc waybar wget wl-clipboard xdg-user-dirs \
+xdg-utils xorg-xhost xwaylandvideobridge yad yt-dlp zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps zed \
+zoxide
 
 sleep 2
 

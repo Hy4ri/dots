@@ -54,6 +54,24 @@ sudo pacman -Sy
 
 sleep 1
 
+# Backup
+echo -n "Backup /home? y/n:  "
+read Backup
+
+case "$Backup" in
+  yes | Yes | y | Y)
+    mv ~/.config/ ~/old-config/
+    mv ~/.icons/ ~/old-config/
+    mv ~/.themes/ ~/old-config/
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
+sleep 0.5
+
 #aur helper
 cat <<"EOF"
 
@@ -275,7 +293,7 @@ case "$DisMan" in
     $helper -Sy --needed --noconfirm ly
     systemctl enable ly.service
   ;;
-  * | none)
+  None | none | n | N)
   ;;
 esac
 
@@ -460,15 +478,28 @@ cd ~/dots
 
 ### Dotfiles
 
-# Backup
-echo -n "Backup /home? y/n:  "
-read Backup
+echo -n "Apply Dotfiles? y/n:  "
+read Dotfiles
 
-case "$Backup" in
+case "$Dotfiles" in
   yes | Yes | y | Y)
-    mv ~/.config/ ~/old-config/
-    mv ~/.icons/ ~/old-config/
-    mv ~/.themes/ ~/old-config/
+    papirus-folders -C carmine --theme Papirus-Dark
+    cd ~/m57-dots-install
+    cp -r .config ~/
+    cp -r .icons ~/
+    cp -r .local ~/
+    cp -r .themes ~/
+    cd ~/.icons
+    tar -xvzf Bibata-Modern-Ice.tar.gz
+    cd ~/.themes
+    tar -xvzf M57.tar.gz
+    cd ~/dots
+    mkdir -p ~/Pictures/
+    cd ~/Pictures/
+    git clone https://github.com/hy4ri/wallpapers
+    cd ~/m57-dots-install
+    cp -r .zshrc ~/
+    cp -r .zprofile ~/
   ;;
   No | no | n | N)
   ;;
@@ -477,24 +508,6 @@ case "$Backup" in
 esac
 
 sleep 0.5
-
-papirus-folders -C carmine --theme Papirus-Dark
-cd ~/m57-dots-install
-cp -r .config ~/
-cp -r .icons ~/
-cd ~/.icons
-tar -xvzf Bibata-Modern-Ice.tar.gz
-cp -r .local ~/
-cp -r .themes ~/
-cd ~/.themes
-tar -xvzf M57.tar.gz
-cd ~/dots
-mkdir -p ~/Pictures/wallpapers
-cd ~/Pictures/wallpapers
-git clone https://github.com/hy4ri/wallpapers
-cd ~/m57-dots-install
-cp -r .zshrc ~/
-cp -r .zprofile ~/
 
 sudo rm -r ~/m57-dots-install
 

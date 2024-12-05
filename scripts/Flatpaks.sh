@@ -8,8 +8,8 @@ flatpak install --user -y flathub com.github.tchx84.Flatseal dev.vencord.Vesktop
 org.onlyoffice.desktopeditors com.spotify.Client com.rafaelmardojai.Blanket com.usebottles.bottles \
 io.github.flattool.Warehouse it.mijorus.gearlever \
 
-sudo flatpak override --filesystem=$HOME/.themes
-sudo flatpak override --filesystem=$HOME/.icons
+sudo flatpak override --filesystem=~/.themes
+sudo flatpak override --filesystem=~/.icons
 
 sleep 3
 cd ~/m57-dots-install
