@@ -1,7 +1,7 @@
 @define-color font-color #e2e2e2;
 @define-color background-color #121212;
 @define-color accent #990000;
-@define-color shadow #404040;
+@define-color shadow #303030;
 * {
     font-family: JetBrainsMono Nerd Font;
     font-weight: 700;
@@ -120,7 +120,6 @@ tooltip label {
     box-shadow: none;
 }
 
-
 #custom-swaync {
     color: @font-color;
     background-color: @background-color;
@@ -150,28 +149,18 @@ tooltip label {
 
 #tray {
     background-color: @background-color;
-    color: @font-color;
     box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 5px 0px 0px 5px;
-    margin-top: 1px;
-    margin-left: 3px;
-    margin-bottom: 3px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 13px;
+    border-radius: 5px 5px;
+    margin: 1px 3px 3px 3px;
+    padding: 3px 13px;
 }
 
 #sys {
     background-color: @background-color;
-    border-radius: 0px 5px 5px 0px;
     box-shadow: @shadow 2px 2px 2px 1px;
-    margin-top: 1px;
-    margin-right: 3px;
-    margin-bottom: 3px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-right: 7px;
-    padding-left: 2px;
+    border-radius: 5px 5px;
+    margin: 1px 1px 3px 1px;
+    padding: 3px 3px;
 }
 #mpris {
     background-color: @background-color;
@@ -211,7 +200,7 @@ tooltip label {
     color: pink;
 }
 #power-profiles-daemon {
-    padding-left: 10px;
+    padding-left: 7px;
     padding-right: 5px;
     color: @font-color;
 }

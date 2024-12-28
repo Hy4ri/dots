@@ -4,8 +4,8 @@ LastActiveRenamer=ThunarSbrNumberRenamer
 
 [ThunarSbrReplaceRenamer]
 CaseSensitive=FALSE
-Replacement=wallust
-Pattern=pywal
+Replacement=
+Pattern=_66905893452
 Regexp=FALSE
 
 [ThunarSbrNumberRenamer]

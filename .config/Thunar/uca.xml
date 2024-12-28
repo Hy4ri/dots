@@ -61,7 +61,7 @@
 	<name>Shortcut</name>
 	<submenu></submenu>
 	<unique-id>1715448178988490-2</unique-id>
-	<command>ln -s %f &apos;short to %n&apos;</command>
+	<command>ln -s %f &apos;%n link&apos;</command>
 	<description></description>
 	<range>*</range>
 	<patterns>*</patterns>

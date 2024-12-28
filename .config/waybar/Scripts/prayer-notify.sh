@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Store the path to the prayer-times script
-script="/home/m57/.local/bin/prayer-times"
+script="$HOME/.config/waybar/Scripts/prayer-times"
 
 #sync
 $script check

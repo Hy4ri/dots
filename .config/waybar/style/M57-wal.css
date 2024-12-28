@@ -1,4 +1,4 @@
-@import "/home/m57/.cache/wal/colors-waybar.css";
+@import "/home/hyari/.cache/wal/colors-waybar.css";
 
 @define-color font-color #e2e2e2;
 @define-color background-color #121212;
@@ -35,7 +35,7 @@ tooltip {
     border-radius: 0px;
     border-width: 2px;
     border-style: solid;
-    border-color: @color3;
+    border-color: @color1;
 }
 
 tooltip label {
@@ -61,15 +61,15 @@ tooltip label {
 #workspaces button.active,
 #workspaces button.focused {
     color: @background;
-    background-color: @color3;
-    /*border: 2px solid @color3;*/
+    background-color: @color1;
+    /*border: 2px solid @color1;*/
     border-radius: 5px 5px;
     margin: 3px;
     padding: 3px 20px;
 }
 
 #workspaces button:hover {
-    color: @color3;
+    color: @color1;
     background-color: @font-color;
     border-radius: 5px 5px;
     margin: 3px;
@@ -106,7 +106,7 @@ tooltip label {
 }
 
 #clock {
-    color: @color3;
+    color: @color1;
     background-color: @background-color;
     box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 5px 5px;
@@ -150,7 +150,7 @@ tooltip label {
 }
 #mpris {
     background-color: @background-color;
-    color: @color3;
+    color: @color1;
     box-shadow: @shadow 2px 2px 2px 1px;
     border-radius: 5px 5px;
     margin: 3px;
@@ -192,7 +192,7 @@ tooltip label {
 }
 
 #battery.critical:not(.charging) {
-    color: @color3;
+    color: @color1;
 }
 
 #custom-separator {
@@ -215,5 +215,5 @@ tooltip label {
 }
 
 #privacy-item.screenshare {
-    color: @color3;
+    color: @color1;
 }

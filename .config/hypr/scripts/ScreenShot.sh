@@ -7,7 +7,7 @@ sDIR="$HOME/.config/hypr/UserScripts"
 notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
 
 time=$(date "+%d-%b_%H-%M-%S")
-dir="$(xdg-user-dir)/Pictures/Screenshots"
+dir="$HOME/Pictures/Screenshots"
 file="Screenshot_${time}_${RANDOM}.png"
 
 active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
@@ -57,7 +57,7 @@ shot5() {
 	sleep 1 && cd ${dir} && grim -l0 - | tee "$file" | wl-copy
 	sleep 1
 	notify_view
-	
+
 }
 
 shot10() {
@@ -91,7 +91,7 @@ shotactive() {
 
     hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -g -l0 - "${active_window_path}"
 	sleep 1
-    notify_view "active"  
+    notify_view "active"
 }
 
 shotswappy() {

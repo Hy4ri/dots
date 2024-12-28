@@ -250,10 +250,11 @@
 		"transition-duration": 500
         },
     "modules": [
+        "battery",
         "power-profiles-daemon",
-        "group/audio",
-        "custom/RandomWallpaper",
-        "battery"
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "custom/RandomWallpaper"
      ]
 },
 
@@ -271,23 +272,11 @@
         },
     "modules": [
         "power-profiles-daemon",
-        "group/audio",
+        "pulseaudio",
+        "pulseaudio#microphone",
         "custom/RandomWallpaper",
         "battery#vertical"
      ]
-},
-
-"group/audio": {
-    "orientation": "inherit",
-	"drawer": {
-		"transition-duration": 500,
-		"children-class": "pulseaudio",
-        "transition-left-to-right": true
-        },
-    "modules": [
-      "pulseaudio",
-      "pulseaudio#microphone"
-      ]
 },
 
 "group/connections": {
@@ -757,19 +746,11 @@
     "format": "{}",
     "interval": 15,
     "return-type": "json",
-    "exec": "/home/m57/.config/waybar/Scripts/prayer-notify.sh ; $HOME/.local/bin/prayer-times status",
-    "on-click-middle": "$HOME/.local/bin/prayer-times yad",
+    "exec": "$HOME/.config/waybar/Scripts/prayer-notify.sh ; $HOME/.config/waybar/Scripts/prayer-times status",
+    "on-click-middle": "$HOME/.config/waybar/Scripts/prayer-times yad",
     "on-click": "xdg-open https://timesprayer.com/prayer-times-cities-jordan.html"
 },
-"custom/timer": {
-    "tooltip": true,
-    "return-type": "json",
-    "exec":"$HOME/.config/waybar/Scripts/timer check",
-    "on-click": "$HOME/.config/waybar/Scripts/timer minute_dialog",
-    "on-click-right": "$HOME/.config/waybar/Scripts/timer datetime_dialog",
-    "on-click-middle": "$HOME/.config/waybar/Scripts/timer stop",
-    "interval": 1
-},
+
 // This is a custom cava visualizer
 "custom/cava_mviz": {
     "exec": "~/.config/hypr/scripts/WaybarCava.sh",
