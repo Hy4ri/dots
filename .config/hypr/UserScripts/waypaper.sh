@@ -3,7 +3,7 @@
 INTERVAL=1800 # 30 minutes in seconds
 
 change_wallpaper() {
-    hyprwall | awk '/Wallpaper set successfully/ {print $NF}' | sed "s|~|$HOME|" > ~/Desktop/pic.txt
+    waypaper | awk '/Wallpaper set successfully/ {print $NF}' | sed "s|~|$HOME|" > ~/Desktop/pic.txt
     ln -sf "$(cat ~/Desktop/pic.txt)" ~/Desktop/.pic
     wal -i ~/Desktop/.pic
     rm ~/Desktop/pic.txt ~/Desktop/.pic
@@ -11,7 +11,7 @@ change_wallpaper() {
 }
 
 change_wallpaper_random() {
-    hyprwall -R | awk '/Random wallpaper set successfully/ {print $NF}' | sed "s|~|$HOME|" > ~/Desktop/pic.txt
+    waypaper --random | awk '/Random wallpaper set successfully/ {print $NF}' | sed "s|~|$HOME|" > ~/Desktop/pic.txt
     ln -sf "$(cat ~/Desktop/pic.txt)" ~/Desktop/.pic
     wal -i ~/Desktop/.pic
     rm ~/Desktop/pic.txt ~/Desktop/.pic
@@ -20,7 +20,7 @@ change_wallpaper_random() {
 
 change_wallpaper_auto() {
     while true; do
-        hyprwall -R
+        waypaper --random
         hyprctl hyprpaper unload unused
         sleep $INTERVAL
     done
@@ -28,7 +28,7 @@ change_wallpaper_auto() {
 
 change_wallpaper_auto_wall() {
     while true; do
-        hyprwall -R | awk '/Random wallpaper set successfully/ {print $NF}' | sed "s|~|$HOME|" > ~/Desktop/pic.txt
+        waypaper --random | awk '/Random wallpaper set successfully/ {print $NF}' | sed "s|~|$HOME|" > ~/Desktop/pic.txt
         ln -sf "$(cat ~/Desktop/pic.txt)" ~/Desktop/.pic
         wal -i ~/Desktop/.pic
         rm ~/Desktop/pic.txt ~/Desktop/.pic

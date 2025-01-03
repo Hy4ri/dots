@@ -629,7 +629,7 @@
 
 "custom/RandomWallpaper":{
     "format":"  ",
-    "on-click": "hyprwall --random",
+    "on-click": "waypaper --random",
     "tooltip-format": "Random Wallpaper"
 },
 
