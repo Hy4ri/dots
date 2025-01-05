@@ -120,35 +120,6 @@ done
 
 sleep 1
 
-#Zsh
-
-cat <<"EOF"
-
-███████╗███████╗██╗  ██╗
-╚══███╔╝██╔════╝██║  ██║
-  ███╔╝ ███████╗███████║
- ███╔╝  ╚════██║██╔══██║
-███████╗███████║██║  ██║
-╚══════╝╚══════╝╚═╝  ╚═╝
-
-EOF
-
-echo -n "Install Zsh? y/n: "
-read Zsh
-
-case "$Zsh" in
-  yes | Yes | y | Y)
-    echo -n "installing Zsh"
-    ~/m57-dots-install/scripts/./Zsh.sh
-  ;;
-  No | no | n | N)
-  ;;
-  *)
-  ;;
-esac
-
-sleep 1
-
 #pipewire
 
 cat <<"EOF"
@@ -470,12 +441,6 @@ esac
 
 sleep 1
 
-# input profile
-# ~/m57-dots-install/scripts/./input-profile.sh
-
-sleep 1
-cd ~/dots
-
 ### Dotfiles
 
 echo -n "Apply Dotfiles? y/n:  "
@@ -507,7 +472,36 @@ case "$Dotfiles" in
   ;;
 esac
 
-sleep 0.5
+sleep 1
+
+#Zsh
+
+cat <<"EOF"
+
+███████╗███████╗██╗  ██╗
+╚══███╔╝██╔════╝██║  ██║
+  ███╔╝ ███████╗███████║
+ ███╔╝  ╚════██║██╔══██║
+███████╗███████║██║  ██║
+╚══════╝╚══════╝╚═╝  ╚═╝
+
+EOF
+
+echo -n "Install Zsh? y/n: "
+read Zsh
+
+case "$Zsh" in
+  yes | Yes | y | Y)
+    echo -n "installing Zsh"
+    ~/m57-dots-install/scripts/./Zsh.sh
+  ;;
+  No | no | n | N)
+  ;;
+  *)
+  ;;
+esac
+
+sleep 1
 
 sudo rm -r ~/m57-dots-install
 

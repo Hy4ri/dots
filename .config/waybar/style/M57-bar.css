@@ -11,12 +11,7 @@
 }
 
 #window {
-    background-color: @background-color;
     color: @font-color;
-    box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 5px 5px;
-    margin: 3px;
-    padding: 3px 13px;
 }
 
 window#waybar {
@@ -43,9 +38,9 @@ tooltip label {
 
 #workspaces {
     background-color: @background-color;
-    box-shadow: @shadow 2px 2px 2px 1px;
+    box-shadow: @shadow 1px 1px 1px 1px;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 7px;
 }
 
@@ -53,7 +48,7 @@ tooltip label {
     background-color: #222222;
     color: @font-color;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 13px;
 }
 
@@ -63,7 +58,7 @@ tooltip label {
     background-color: @accent;
     /*border: 2px solid @accent;*/
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 20px;
 }
 
@@ -71,14 +66,14 @@ tooltip label {
     color: @accent;
     background-color: @font-color;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 20px;
 }
 
 #workspaces button.urgent {
     color: white;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 13px;
     animation: flash 1s infinite;
 }
@@ -95,73 +90,88 @@ tooltip label {
     }
 }
 
+#taskbar{
+    background-color: @background-color;
+    box-shadow: @shadow 1px 1px 1px 1px;
+    border-radius: 5px 5px;
+    padding: 1px 1px 1px 1px;
+}
+#taskbar button{
+    color: @font-color;
+    background-color: #222222;
+    border-radius: 5px 5px;
+    margin: 1px 1px 1px 1px;
+    padding: 1px 7px;
+}
+#taskbar button.active{
+    color: @font-color;
+    background-color: @accent;
+}
+#taskbar button.minimized{
+    color: @shadow;
+}
+#taskbar.empty{
+    background-color: transparent;
+    box-shadow: none;
+}
+
 #custom-swaync {
     color: @font-color;
     background-color: @background-color;
-    box-shadow: @shadow 2px 2px 2px 1px;
+    box-shadow: @shadow 1px 1px 1px 1px;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 13px;
 }
 
 #clock {
     color: rgb(204 , 0 , 0);
     background-color: @background-color;
-    box-shadow: @shadow 2px 2px 2px 1px;
+    box-shadow: @shadow 1px 1px 1px 1px;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 13px;
 }
 
 #custom-weather2 {
     color: @font-color;
     background-color: @background-color;
-    box-shadow: @shadow 2px 2px 2px 1px;
+    box-shadow: @shadow 1px 1px 1px 1px;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 13px;
 }
 
 #tray {
     background-color: @background-color;
-    color: @font-color;
-    box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 5px 0px 0px 5px;
-    margin-top: 3px;
-    margin-left: 3px;
-    margin-bottom: 3px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 13px;
+    box-shadow: @shadow 1px 1px 1px 1px;
+    border-radius: 5px 5px;
+    margin: 1px 3px 3px 3px;
+    padding: 3px 13px;
 }
 
 #sys {
     background-color: @background-color;
-    border-radius: 0px 5px 5px 0px;
-    box-shadow: @shadow 2px 2px 2px 1px;
-    margin-top: 3px;
-    margin-right: 3px;
-    margin-bottom: 3px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-right: 7px;
-    padding-left: 2px;
+    box-shadow: @shadow 1px 1px 1px 1px;
+    border-radius: 5px 5px;
+    margin: 1px 1px 3px 1px;
+    padding: 3px 3px;
 }
 #mpris {
     background-color: @background-color;
     color: @accent;
-    box-shadow: @shadow 2px 2px 2px 1px;
+    box-shadow: @shadow 1px 1px 1px 1px;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 13px;
 }
 
 #custom-prayers {
     background-color: @background-color;
     color: @font-color;
-    box-shadow: @shadow 2px 2px 2px 1px;
+    box-shadow: @shadow 1px 1px 1px 1px;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 13px;
 }
 
@@ -185,7 +195,7 @@ tooltip label {
     color: pink;
 }
 #power-profiles-daemon {
-    padding-left: 10px;
+    padding-left: 7px;
     padding-right: 5px;
     color: @font-color;
 }
@@ -198,37 +208,12 @@ tooltip label {
     color: transparent;
 }
 
-#taskbar{
-    background-color: @background-color;
-    box-shadow: @shadow 2px 2px 2px 1px;
-    border-radius: 5px 5px;
-    padding: 1px 1px 1px 1px;
-}
-#taskbar button{
-    color: @font-color;
-    background-color: #222222;
-    border-radius: 5px 5px;
-    margin: 1px 1px 1px 1px;
-    padding: 1px 7px;
-}
-#taskbar button.active{
-    color: @font-color;
-    background-color: @accent;
-}
-#taskbar button.minimized{
-    color: @shadow;
-}
-#taskbar.empty{
-    background-color: transparent;
-    box-shadow: none;
-}
-
-
 #privacy {
     color: @font-color;
     background-color: @background-color;
+    box-shadow: @shadow 1px 1px 1px 1px;
     border-radius: 5px 5px;
-    margin: 3px;
+    margin: 1px 3px 3px 3px;
     padding: 3px 13px;
 }
 

@@ -69,7 +69,6 @@
         "4": [],
         "5": []
     },
-    "format": "{icon}",
     "format-icons": {
       "active": " 󰮯 ",
       "default": "󰊠",
@@ -698,7 +697,7 @@
     "on-click-right": "~/.config/hypr/UserScripts/WallpaperRandom.sh",
     "on-click-middle": "~/.config/hypr/scripts/WaybarStyles.sh",
     "interval" : 86400, // once every day
-    "tooltip": true,
+    "tooltip": true
 },
 
 "custom/hint": {
@@ -706,14 +705,14 @@
     "exec": "echo ; echo  Key Hints SUPER H",
     "on-click": "~/.config/hypr/scripts/KeyHints.sh",
     "interval" : 86400, // once every day
-    "tooltip": true,
+    "tooltip": true
 },
 
 "custom/keyboard": {
     "exec": "cat ~/.cache/kb_layout",
     "interval": 1,
     "format": "{}",
-    "on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh",
+    "on-click": "~/.config/hypr/scripts/SwitchKeyboardLayout.sh"
     },
 
 "custom/light_dark": {
@@ -731,7 +730,7 @@
     "exec": "echo ; echo 󰷛  screen lock",
     "interval" : 86400, // once every day
     "tooltip": true,
-    "on-click": "~/.config/hypr/scripts/LockScreen.sh",
+    "on-click": "~/.config/hypr/scripts/LockScreen.sh"
 },
 
 "custom/menu": {
@@ -740,7 +739,7 @@
     "tooltip": true,
     "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser,window",
     "on-click-middle": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
-    "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
+    "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh"
 },
 "custom/prayers": {
     "format": "{}",
@@ -761,7 +760,7 @@
     "format": " ",
     "tooltip": false,
     "on-click": "~/.config/hypr/scripts/ClipManager.sh",
-    "on-click-right": "~/.config/hypr/scripts/ClipManager.sh",
+    "on-click-right": "~/.config/hypr/scripts/ClipManager.sh"
   },
 
 "custom/playerctl": {
@@ -775,7 +774,7 @@
     "scroll-step": 5.0,
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
-    "smooth-scrolling-threshold": 1,
+    "smooth-scrolling-threshold": 1
 },
 
 "custom/power": {
@@ -784,7 +783,7 @@
 	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
     "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
     "interval" : 86400, // once every day
-    "tooltip": true,
+    "tooltip": true
 },
 
 "custom/swaync": {
@@ -805,7 +804,7 @@
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "escape": true,
+    "escape": true
 },
 
 // NOTE:! This is only for Arch and Arch Based Distros
@@ -826,7 +825,7 @@
     //"exec": "~/.config/hypr/UserScripts/Weather.sh",
     "exec": "~/.config/hypr/UserScripts/Weather-wttr.py",
     "exec-if": "ping wttr.in -c1",
-    "tooltip" : true,
+    "tooltip" : true
 },
 "custom/weather2": {
     "exec": "python ~/.config/hypr/UserScripts/Weather.py",
@@ -917,7 +916,7 @@
     "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
     "smooth-scrolling-threshold": 1,
-	"tooltip-format": "{percent}%",
+	"tooltip-format": "{percent}%"
 },
 
 "clock#vertical": {
@@ -930,7 +929,7 @@
 		"mode": "year",
 		"mode-mon-col": 3,
 		"format": {
-			"today": "<span color='#0dbc79'>{}</span>",
+			"today": "<span color='#0dbc79'>{}</span>"
 		}
 	}
 },
@@ -938,7 +937,7 @@
 "cpu#vertical": {
     "format": "󰍛\n{usage}%",
     "interval": 1,
-    "on-click-right": "gnome-system-monitor",
+    "on-click-right": "gnome-system-monitor"
 },
 
 "memory#vertical": {
@@ -948,7 +947,7 @@
     "format-alt-click": "click",
     "tooltip": true,
     "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
-    "on-click-right": "kitty --title btop sh -c 'btop'",
+    "on-click-right": "kitty --title btop sh -c 'btop'"
 },
 
 "mpris#Virt": {
@@ -995,7 +994,7 @@
         "car": "",
     "default": ["", "", "󰕾", ""],
 	"tooltip-format": "{icon} {desc} | {volume}%",
-    "ignored-sinks": ["Easy Effects Sink"],
+    "ignored-sinks": ["Easy Effects Sink"]
 	},
     "scroll-step": 5.0,
     "on-click": "~/.config/hypr/scripts/Volume.sh --toggle",
@@ -1003,7 +1002,7 @@
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
 	"tooltip-format": "{icon} {desc} | {volume}%",
-    "smooth-scrolling-threshold": 1,
+    "smooth-scrolling-threshold": 1
 },
 
 "pulseaudio#microphone_vertical": {
@@ -1017,7 +1016,6 @@
     "max-volume": 100,
     "tooltip": true,
 	"tooltip-format": "{source_desc} | {source_volume}%",
-},
 
 "temperature#vertical": {
     "interval": 10,
@@ -1037,6 +1035,7 @@
 	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
     "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
     "interval" : 86400, // once every day
-    "tooltip": true,
+    "tooltip": true
+}
 }
 }
