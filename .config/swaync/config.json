@@ -29,19 +29,19 @@
     "hide-on-action": true,
     "script-fail-notify": true,
     "widgets": [
-       	"dnd",
-        "buttons-grid",
-		"mpris",
-    	"volume", 
-   	 	"backlight",
-        "title",
-        "notifications"
+       "title",
+       "buttons-grid",
+       "volume",
+       "backlight",
+	   "mpris",
+	   "dnd",
+       "notifications"
     ],
     "widget-config": {
         "title": {
             "text": "Notifications",
             "clear-all-button": true,
-            "button-text": "Clear"
+            "button-text": "󰩹"
         },
         "dnd": {
             "text": "Do Not Disturb"
@@ -51,11 +51,15 @@
             "text": "Notification"
         },
         "mpris": {
-            "image-size": 10,
+            "image-size": 20,
             "image-radius": 0
         },
         "volume": {
-            "label": "󰕾"
+            "label": "󰕾",
+            "show-per-app":true,
+            "show-per-app-icon":true,
+            "expand-button-label":"󰍜",
+            "collapse-button-label":"󰍜"
         },
         "backlight": {
             "label": "󰃟"
@@ -63,36 +67,20 @@
         "buttons-grid": {
             "actions": [
                 {
-                    "label": "󰐥",
+                    "label": "",
                     "command": "systemctl poweroff"
                 },
                 {
-                    "label": "󰜉",
+                    "label": "",
                     "command": "systemctl reboot"
                 },
                 {
-                    "label": "󰌾",
+                    "label": "",
                     "command": "hyprlock -q --immediate"
                 },
                 {
-                    "label": "󰍃",
+                    "label": "",
                     "command": "hyprctl dispatch exit"
-                },
-                {
-                    "label": "󰀝",
-                    "command": "~/.config/hypr/scripts/AirplaneMode.sh"
-                },
-                {
-                    "label": "󰕾",
-                    "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-                },
-                {
-                    "label": "󰍬",
-                    "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
-                },
-                {
-                    "label": "󰂯",
-                    "command": "blueman-manager"
                 }
             ]
         }

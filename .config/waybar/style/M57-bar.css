@@ -1,7 +1,7 @@
 @define-color font-color #e2e2e2;
-@define-color background-color #121212;
-@define-color accent #990000;
-@define-color shadow #252525;
+@define-color background-color rgba(18,18,18,1);
+@define-color accent rgba(153,0,0,1);
+@define-color shadow rgba(37,37,37,1);
 * {
     font-family: JetBrainsMono Nerd Font;
     font-weight: 700;
@@ -15,7 +15,7 @@
 }
 
 window#waybar {
-    background-color: @background-color;
+    background-color: rgba(18,18,18,0.85);
 }
 
 window#waybar.empty #window {
@@ -45,7 +45,7 @@ tooltip label {
 }
 
 #workspaces button {
-    background-color: #222222;
+    background-color: @shadow;
     color: @font-color;
     border-radius: 5px 5px;
     margin: 1px 3px 3px 3px;

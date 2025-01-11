@@ -1,21 +1,23 @@
-@define-color noti-border-color rgba(153, 0, 0 , 0.8);
-@define-color noti-bg rgba(0, 0, 0, 0.8);
-@define-color noti-bg-alt rgba(0, 0, 0, 0.8);
-@define-color noti-bg-hover rgba(153, 0, 0 , 0.8);
-@define-color text-color rgba(255 ,255, 255, 0.8);
-@define-color text-color-alt rgba(255 ,255, 255, 1);
-@define-color text-color-disabled rgba(20, 19, 19, 0.7);
+@define-color border-color rgba(153, 0, 0 , 1);
+@define-color accent rgba(153, 0, 0 , 0.9);
+@define-color bg-1 rgba(18, 18, 18, 0.8);
+@define-color bg-2 rgba(22, 22, 22, 0.7);
+@define-color bg-3 rgba(18, 18, 18, 1);
+@define-color bg-hover rgba(153, 0, 0 , 0.8);
+@define-color text rgba(226, 226, 226, 1);
+@define-color text-2 rgba(226, 226, 226, 1);
+@define-color text-disabled rgba(20, 19, 19, 0.7);
 
 * {
     font-family: JetBrainsMono Nerd Font;
     font-weight: Bolder;
+    border-radius: 4px;
 }
 
 .control-center .notification-row:focus,
 .control-center .notification-row:hover {
     opacity: 1;
-    background: @noti-bg;
-    border-radius: 10px;
+    background: @bg-1;
 }
 
 .notification-row {
@@ -23,73 +25,55 @@
     margin: 0px;
 }
 
-.notification {
-	border-radius: 7px;
-}
-
 .notification-content{
-	color: @text-color;
-    background: @noti-bg;
+	color: @text;
+    background: @bg-1;
     padding: 3px 10px 3px 6px;
-    border-radius: 7px;
-    border: 2px solid @noti-border-color;
+    border: 2px solid @border-color;
     margin: 0px;
 }
 
 .notification-default-action {
     margin: 0;
     padding: 0;
-    border-radius: 7px;
 }
 
 .close-button {
-    background: rgba(153, 0, 0 , 0.8);
-    color: @noti-bg;
+    background: @accent;
+    color: @bg-1;
     text-shadow: none;
     padding: 0;
-    border-radius: 10px;
     margin-top: 5px;
     margin-right: 5px;
 }
 
 .close-button:hover {
     box-shadow: none;
-    background: rgba(153, 0, 0 , 0.8);
+    background: @accent;
     transition: all .15s ease-in-out;
-    border: none
+    border: none;
 }
-
 
 .notification-action {
-    border: 2px solid @noti-border-color;
+    border: 2px solid @border-color;
     border-top: none;
-    border-radius: 10px;
 }
-
 
 .notification-default-action:hover,
 .notification-action:hover {
-    color: @text-color;
-    background: @noti-bg;
+    color: @text;
+    background: @bg-1;
 }
 
 .notification-default-action {
-    border-radius: 7px;
     margin: 5px;
 }
 
-.notification-default-action:not(:only-child) {
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px
-}
-
 .notification-action:first-child {
-    border-bottom-left-radius: 10px;
     background: #1b1b2b
 }
 
 .notification-action:last-child {
-    border-bottom-right-radius: 10px;
     background: #1b1b2b
 }
 
@@ -98,43 +82,41 @@
 }
 
 .inline-reply-entry {
-    background: @noti-bg;
-    color: @text-color;
-    caret-color: @text-color;
-    border: 1px solid @noti-border-color;
-    border-radius: 10px
+    background: @bg-1;
+    color: @text;
+    caret-color: @text;
+    border: 1px solid @border-color;
+
 }
 
 .inline-reply-button {
 	font-size: 0.5rem;
     margin-left: 4px;
-    background: @noti-bg;
-    border: 1px solid @noti-border-color;
-    border-radius: 10px;
-    color: @text-color
+    background: @bg-1;
+    border: 1px solid @border-color;
+    color: @text
 }
 
 .inline-reply-button:disabled {
     background: initial;
-    color: @text-color-disabled;
+    color: @text-disabled;
     border: 1px solid transparent
 }
 
 .inline-reply-button:hover {
-    background: @noti-bg-hover
+    background: @bg-hover
 }
 
 .body-image {
     margin-top: 6px;
-    color: @text-color-alt;
-    border-radius: 10px
+    color: @text-2;
 }
 
 .summary {
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: 100;
     background: transparent;
-    color: @text-color-alt;
+    color: @text-2;
     text-shadow: none
 }
 
@@ -142,7 +124,7 @@
     font-size: 1rem;
     font-weight: 200;
     background: transparent;
-    color: @text-color;
+    color: @text;
     text-shadow: none;
     margin-right: 18px
 }
@@ -151,15 +133,14 @@
     font-size: 1rem;
     font-weight: 200;
     background: transparent;
-    color: @text-color;
+    color: @text;
     text-shadow: none
 }
 
 .control-center {
-    background: @noti-bg;
-    border: 2px solid @noti-border-color;
-	color: @text-color;
-    border-radius: 10px;
+    background: @bg-1;
+    border: 2px solid @border-color;
+	color: @text;
 }
 
 .control-center-list {
@@ -179,20 +160,18 @@
 }
 
 .widget-title {
-    color: @noti-border-color;
-    background: @noti-bg-alt;
+    color: @border-color;
+    background: @bg-2;
     padding: 3px 6px;
     margin: 5px;
-    font-size: 1rem;
-    border-radius: 10px;
+    font-size: 1.1rem;
 }
 
 .widget-title>button {
-    font-size: 0.75rem;
-    color: @text-color;
-    border-radius: 10px;
+    font-size: 1.2rem;
+    color: @text;
 	background: transparent;
-	border: 0.5px solid @noti-border-color;
+	border: 0.5px solid @border-color;
 }
 
 .widget-title>button:hover {
@@ -201,33 +180,29 @@
 }
 
 .widget-dnd {
-    background: rgba(20, 19, 19, 0.7);
+    background: @bg-1;
     padding: 3px 6px;
     margin: 5px;
-    border-radius: 10px;
     font-size: 1rem;
-    color: @noti-border-color;
+    color: @border-color;
 }
 
 .widget-dnd>switch {
-    border-radius: 10px;
-    /* border: 1px solid #7aa2f7; */
-    background: @noti-border-color;
+    border: 1px solid @accent;
+    background: @border-color;
 }
 
 .widget-dnd>switch:checked {
-    background: rgba(153, 0, 0 , 0.8);
-    border: 1px solid rgba(153, 0, 0 , 0.9);
+    background: @accent;
 }
 
 .widget-dnd>switch slider {
-    background: rgba(20, 19, 19, 1);
-    border-radius: 10px;
+    background: @bg-3;
+    border: 1px solid @accent;
 }
 
 .widget-dnd>switch:checked slider {
-    background: rgba(20, 19, 19, 1);
-    border-radius: 10px;
+    background: @bg-3;;
 }
 
 .widget-label {
@@ -236,19 +211,14 @@
 
 .widget-label>label {
     font-size: 1rem;
-    color: @text-color;
+    color: @text;
 }
 
 .widget-mpris {
-    color: @text-color;
-    background: @noti-bg-alt;
+    color: @text;
+    background: @bg-2;
     padding: 3px 6px;
     margin: 5px;
-    border-radius: 10px;
-}
-
-.widget-mpris > box > button {
-    border-radius: 10px;
 }
 
 .widget-mpris-player {
@@ -257,33 +227,31 @@
 }
 
 .widget-mpris-title {
-    font-weight: 100;
     font-size: 1rem
 }
 
 .widget-mpris-subtitle {
-    font-size: 0.75rem
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 .widget-buttons-grid {
     font-size: large;
-	color: @noti-border-color;
+	color: @border-color;
     padding: 2px;
     margin: 5px;
-    border-radius: 10px;
-    background: @noti-bg-alt;
+    background: @bg-2;
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button {
     margin: 1px;
-    background: @noti-bg;
-    border-radius: 10px;
-    color: @text-color
+    background: @bg-3;
+    border: 1px solid @accent;
+    color: @text
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-    background: rgba(122, 162, 247, 0.1);
-    color: @text-color-alt
+    color: @accent
 }
 
 .widget-menubar>box>.menu-button-bar>button {
@@ -297,50 +265,37 @@
 }
 
 .widget-volume {
-    background: @noti-bg-alt;
+    background: @bg-2;
     padding: 2px;
     margin: 10px 10px 5px 10px;
-    border-radius: 10px;
     font-size: x-large;
-    color: @text-color
+    color: @text
 }
 
 .widget-volume>box>button {
-    background: #7aa2f7;
-    border: none
-}
-
-.per-app-volume {
-    background-color: @noti-bg;
-    padding: 4px 8px 8px;
-    margin: 0 8px 8px;
-    border-radius: 10px;
-	color: @text-color
+    background: @bg-1;
+    border: 1px solid @accent;
 }
 
 .widget-backlight {
-    background: @noti-bg-alt;
+    background: @bg-2;
     padding: 5px;
     margin: 10px 10px 5px 10px;
-    border-radius: 10px;
     font-size: x-large;
-    color: @text-color
+    color: @text
 }
 
 .low {
-  background: @noti-bg;
+  background: @bg-1;
   padding: 0px;
-  border-radius: 10px;
 }
 
 .normal {
-  background: @noti-bg;
+  background: @bg-1;
   padding: 0px;
-  border-radius: 10px;
 }
 
 .critical {
   background: rgba(153, 0, 0 , 0.8);
   padding: 0px;
-  border-radius: 10px;
 }
