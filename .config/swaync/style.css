@@ -1,6 +1,6 @@
 @define-color border-color rgba(153, 0, 0 , 1);
 @define-color accent rgba(153, 0, 0 , 0.9);
-@define-color bg-1 rgba(18, 18, 18, 0.8);
+@define-color bg-1 rgba(18, 18, 18, 0.95);
 @define-color bg-2 rgba(22, 22, 22, 0.7);
 @define-color bg-3 rgba(18, 18, 18, 1);
 @define-color bg-hover rgba(153, 0, 0 , 0.8);
@@ -114,9 +114,9 @@
 
 .summary {
     font-size: 1rem;
-    font-weight: 100;
+    font-weight: bold;
     background: transparent;
-    color: @text-2;
+    color: @text;
     text-shadow: none
 }
 

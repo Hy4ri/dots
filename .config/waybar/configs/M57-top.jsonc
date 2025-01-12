@@ -1,31 +1,18 @@
 {
-"include": "~/.config/waybar/modules.jsonc",
-"layer": "top",
-"exclusive": true,
-"passthrough": false,
-"gtk-layer-shell": true,
-"position": "top",
-"reload_style_on_change": true,
-"spacing": 0,
-"fixed-center": true,
-"ipc": true,
+    "include": "~/.config/waybar/modules.jsonc",
+    "layer": "top",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "position": "top",
+    "reload_style_on_change": true,
+    "spacing": 0,
+    "fixed-center": true,
+    "ipc": true,
 
-"modules-left": [
-	"hyprland/workspaces#Num",
-    "custom/prayers",
-	"mpris"
-    ],
+    "modules-left": ["hyprland/workspaces#Num", "custom/prayers", "mpris"],
 
-"modules-center": [
-    "hyprland/window"
-	],
+    "modules-center": ["hyprland/window"],
 
-"modules-right": [
-    "privacy",
-    "tray",
-    "group/sys",
-	/*"custom/weather2",*/
-	"clock",
-	"custom/swaync"
-	]
+    "modules-right": ["privacy", "tray", "group/sys", "clock", "custom/swaync"],
 }
