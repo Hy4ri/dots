@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 music_icon="$HOME/.config/swaync/icons/music.png"
 
 # Play the next track

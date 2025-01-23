@@ -1,5 +1,5 @@
 #!/bin/bash
-
+ 
 $helper --needed --noconfirm -S qemu libvirt virt-manager virt-viewer bridge-utils dnsmasq ovmf edk2-ovmf
 
 sudo systemctl start libvirtd

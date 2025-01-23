@@ -7,16 +7,30 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+    "languages": {
+        "HTML": {
+            "show_inline_completions": false
+        }
+    },
+    "notification_panel": {
+        "button": false,
+        "dock": "left"
+    },
+    "chat_panel": {
+        "button": false,
+        "dock": "left"
+    },
     "collaboration_panel": {
+        "button": false,
         "dock": "left"
     },
     "telemetry": {
         "metrics": false,
         "diagnostics": false
     },
-    "font_family": "JetBrainsMonoNL Nerd Font",
-    "ui_font_family": "JetBrainsMonoNL Nerd Font",
-    "buffer_font_family": "JetBrainsMonoNL Nerd Font",
+    "font_family": "JetBrainsMono Nerd Font",
+    "ui_font_family": "JetBrainsMono Nerd Font",
+    "buffer_font_family": "JetBrainsMono Nerd Font",
     "ui_font_size": 16,
     "buffer_font_size": 20,
     "theme": {
@@ -46,7 +60,7 @@
         "breadcrumbs": false,
         "quick_actions": false
     },
-    "format_on_save": "off",
+    "format_on_save": "on",
     "use_autoclose": true,
     "tab_size": 4,
     "terminal": {
@@ -77,19 +91,18 @@
     },
     "assistant": {
         "default_model": {
-            "provider": "openai",
-            "model": "gpt-4o"
+        "provider": "copilot_chat",
+        "model": "o1-preview"
         },
-        "enabled": false,
-        "button": false,
-        "dock": "right",
+        "enabled": true,
+        "button": true,
+        "dock": "left",
         "default_width": 640,
         "default_height": 320,
-        "provider": "ollama",
         "version": "2"
     },
     "outline_panel": {
-        "button": false,
+        "button": true,
         "default_width": 240,
         "dock": "left",
         "file_icons": true,

@@ -234,10 +234,21 @@
         },
         "modules": [
             "battery",
-            "power-profiles-daemon",
+            "custom/powerprofile",
             "pulseaudio#microphone",
             "pulseaudio",
         ],
+    },
+
+    "group/time": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+        },
+        "modules": [
+            "clock",
+            "custom/prayers"
+        ]
     },
 
     "group/sysVirt": {
@@ -311,8 +322,7 @@
         "format-time": "{H}h {M}min",
         "tooltip": true,
         "tooltip-format": "{timeTo} {power}w",
-        "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
-        "on-click-middle": "~/.config/hypr/UserScripts/Battery-Saving-mode.sh",
+        "on-click-middle": "~/.config/hypr/scripts/power.sh --powersaver",
         "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
         "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
     },
@@ -410,22 +420,23 @@
     },
 
     "hyprland/window": {
-        "format": "{title}",
-        "max-length": 120,
+        "format": "~ {title}",
+        "max-length": 200,
         "separate-outputs": true,
-        "icon": "true",
+        "icon": true,
+        "icon-size": 18,
         "rewrite": {
-            "(.*) — Mozilla Firefox": "  $1",
-            "(.*) - Brave": "󰖟  $1",
-            "(.*) - Vivaldi": "  $1",
-            "nvim (.*)": " $1",
-            "(.*) - Thunar": "  $1",
+            "(.*) — Mozilla Firefox": "$1",
+            "(.*) - Brave": "$1",
+            "(.*) - Vivaldi": "$1",
+            "nvim (.*)": "$1",
+            "(.*) - Thunar": "$1",
             "(.*) - fish": "_> [$1]",
-            "(.*) - mpv": "  $1",
-            "(.*) - Visual Studio Code": "󰨞  $1",
-            "(.*)Visual Studio Code": "󰨞  Code",
-            "Spotify Free": "󰓇  Spotify",
-            "(.*)Steam": "󰓓 Steam",
+            "(.*) - mpv": " $1",
+            "(.*) - Visual Studio Code": "$1",
+            "(.*)Visual Studio Code": "Code",
+            "Spotify Free": "  Spotify",
+            "(.*)Steam": "Steam",
             "(.*) - zsh": "_> [$1]",
             "(.*) - $term": "_> [$1]",
         },
@@ -470,7 +481,7 @@
         "on-click": "playerctl play-pause",
         "on-click-middle": "playerctl previous",
         "on-click-right": "playerctl next",
-        "scroll-step": 5.0,
+        "scroll-step": 15.0,
         "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
         "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
         "smooth-scrolling-threshold": 1,
@@ -655,7 +666,7 @@
 
     "custom/hyprshade": {
         "format": "  ",
-        "on-click": "~/.config/hypr/UserScripts/shader.sh",
+        "on-click": "~/.config/hypr/scripts/shader.sh",
         "on-click-right": "hyprshade on vibrance",
         "on-click-middle": "hyprshade on grayscale",
         "tooltip-format": "Nightlight",
@@ -670,8 +681,8 @@
     "custom/cycle_wall": {
         "format": " ",
         "exec": "echo ; echo 󰸉 wallpaper select",
-        "on-click": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
-        "on-click-right": "~/.config/hypr/UserScripts/WallpaperRandom.sh",
+        "on-click": "~/.config/hypr/scripts/WallpaperSelect.sh",
+        "on-click-right": "~/.config/hypr/scripts/WallpaperRandom.sh",
         "on-click-middle": "~/.config/hypr/scripts/WaybarStyles.sh",
         "interval": 86400, // once every day
         "tooltip": true,
@@ -715,9 +726,20 @@
         "exec": "echo ; echo 󱓟 app launcher",
         "tooltip": true,
         "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser,window",
-        "on-click-middle": "~/.config/hypr/UserScripts/WallpaperSelect.sh",
+        "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",
         "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
     },
+
+    "custom/powerprofile": {
+        "format": "{}",
+        "exec": "~/.config/hypr/scripts/power.sh",
+        "return-type": "json",
+        "on-click": "~/.config/hypr/scripts/power.sh --performance",
+        "on-click-right": "~/.config/hypr/scripts/power.sh --balanced",
+        "on-click-middle": "~/.config/hypr/scripts/power.sh --powersaver",
+        "interval": 1
+        },
+
     "custom/prayers": {
         "format": "{}",
         "interval": 15,
@@ -799,13 +821,13 @@
         "format-alt-click": "click",
         "interval": 3600,
         "return-type": "json",
-        //"exec": "~/.config/hypr/UserScripts/Weather.sh",
-        "exec": "~/.config/hypr/UserScripts/Weather-wttr.py",
+        //"exec": "~/.config/hypr/scripts/Weather.sh",
+        "exec": "~/.config/hypr/scripts/Weather-wttr.py",
         "exec-if": "ping wttr.in -c1",
         "tooltip": true,
     },
     "custom/weather2": {
-        "exec": "python ~/.config/hypr/UserScripts/Weather.py",
+        "exec": "python ~/.config/hypr/scripts/Weather.py",
         "restart-interval": 300,
         "return-type": "json",
         "on-click": "xdg-open https://weather.com/ar-JO/weather/today/l/b9c4bcc7a420f01261a519b340fd9aee0eccef5d335124ecdbb931e7afcb3aa0",
@@ -874,7 +896,7 @@
         "tooltip": true,
         "tooltip-format": "{timeTo} {power}w",
         "on-click-right": "~/.config/hypr/scripts/Wlogout.sh",
-        "on-click-middle": "~/.config/hypr/UserScripts/Battery-Saving-mode.sh",
+        "on-click-middle": "~/.config/hypr/scripts/Battery-Saving-mode.sh",
         "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
         "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
     },
