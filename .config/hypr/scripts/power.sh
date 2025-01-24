@@ -9,6 +9,7 @@ get_profile() {
         *) echo "❓";;
     esac
 }
+
 performance() {
     powerprofilesctl set performance
     hyprctl reload
@@ -42,5 +43,5 @@ elif [[ "$1" == "--balanced" ]]; then
 elif [[ "$1" == "--powersaver" ]]; then
     powerSaver
 else
-    echo "{\"text\": \"$(get_profile)\", \"tooltip\": \"Click to change power mode\", \"class\": \"power-mode\"}"
+    echo "{\"text\": \"$(get_profile)\", \"tooltip\": \"$(powerprofilesctl get) mode | Click to change\", \"class\": \"power-mode\"}"
 fi
