@@ -16,6 +16,9 @@ ZSH_THEME="nanotech"
 
 plugins=(fzf aliases colored-man-pages extract safe-paste sudo zsh-autosuggestions colorize zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
+source <(fzf --zsh)
+
+############################ ALIASES #################################
 
 #pacman
 alias sps='sudo pacman -S'
@@ -47,7 +50,7 @@ alias snvim='sudo nvim'
 alias clock='tty-clock -c -C7 -b -t -n'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
-alias music='bash ~/.config/hypr/UserScripts/spotify-update.sh'
+alias music='bash ~/.config/hypr/scripts/spotify-update.sh'
 alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
 alias 2x='upscayl'
 alias vdl='yt-dlp'
@@ -64,9 +67,10 @@ alias anime='jerry'
 alias storage='dua i'
 alias termdown='termdown -f roman'
 alias sway='sway --unsupported-gpu'
-alias png='bash ~/.config/hypr/UserScripts/png.sh'
+alias png='bash ~/.config/hypr/scripts/png.sh'
 alias update='paru -Syyu && flatpak update '
-alias 25='bash ~/.config/hypr/UserScripts/25.sh'
+alias 25='bash ~/.config/hypr/Scripts/25.sh'
+alias dngl='z videos/dangool && yt-dlp'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -78,8 +82,9 @@ venv/bin/pip install -r requirements.txt
 sudo venv/bin/python3 main.py'
 
 
-##FUNCTIONS
-#ARCHIVE EXTRACT
+############################# FUNCTIONS ##########################################
+
+# ARCHIVE EXTRACT
 extract ()
 {
     if [ -f $1 ] ; then
@@ -104,14 +109,14 @@ extract ()
     echo "'$1' is not a valid file"
   fi
 }
-#git push all
+# git push all
 gitup() {
   git add -A
   git commit -m "$1"
   git push
 }
 
-#github new repo
+# github new repo
 gitnew() {
   git init
   sleep 5
@@ -124,12 +129,19 @@ gitnew() {
   git push -u origin main
 }
 
+# Update dotfiles
+
+dup() {
+  cd $HOME/Documents/Projects/dots/
+  git add -A
+  git commit -m "update :)"
+  git push
+}
+
+############################## LAUNCH #############################
 
 #Zoxide
 eval "$(zoxide init zsh)"
-#fzf
-source <(fzf --zsh)
 #ff
 fastfetch --logo arch_small --logo-color-2 red --logo-color-1 red --color-keys red
-# Created by `pipx` on 2024-09-09 14:25:17
-export PATH="$PATH:/home/m57/.local/bin"
+
