@@ -84,8 +84,8 @@ light.color=#ffffff
 mid.light.color=#f0f0f0
 dark.color=#c8c8c8
 mid.color=#e1e1e196
-highlight.color=#4285f4
-inactive.highlight.color=#4285f4150
+highlight.color=#990000
+inactive.highlight.color=#990000150
 text.color=#444444
 window.text.color=#444444
 button.text.color=#444444
@@ -530,7 +530,7 @@ frame=false
 text.shadow=0
 text.margin=0
 text.normal.color=#444444
-text.focus.color=#4285f4
+text.focus.color=#990000
 text.bold=false
 frame.expansion=0
 
@@ -556,7 +556,7 @@ text.margin=0
 interior.element=tooltip
 frame.element=tooltip
 text.normal.color=#444444
-text.focus.color=#4285f4
+text.focus.color=#990000
 frame.expansion=6
 
 [StatusBar]
