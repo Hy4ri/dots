@@ -10,7 +10,7 @@
     "fixed-center": true,
     "ipc": true,
 
-    "modules-left": ["hyprland/workspaces#Num", "hyprland/window", "mpris"],
+    "modules-left": ["hyprland/workspaces#Num", "hyprland/window", "mpris", "cava"],
 
     "modules-center": [],
 

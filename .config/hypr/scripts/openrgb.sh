@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-openrgb -p crimson
+openrgb -p Crimson

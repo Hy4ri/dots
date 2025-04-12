@@ -69,7 +69,7 @@ alias termdown='termdown -f roman'
 alias sway='sway --unsupported-gpu'
 alias png='bash ~/.config/hypr/scripts/png.sh'
 alias update='paru -Syyu && flatpak update '
-alias 25='bash ~/.config/hypr/Scripts/25.sh'
+alias 25='bash ~/.config/hypr/scripts/25.sh'
 alias dngl='z videos/dangool && yt-dlp'
 
 #waydroid

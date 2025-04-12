@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$helper -Sy --needed alacritty bat bitwarden brightnessctl btop cartridges cliphist \
+$helper -Sy --needed alacritty bat brightnessctl btop cartridges cliphist \
 dua-cli duf egl-wayland eza fastfetch file-roller foot gammastep gamemode grim \
 heroic-games-launcher-bin hwinfo intel-ucode jq kvantum lutris man-db man-pages mpv \
 mpv-mpris neovim network-manager-applet nwg-look openrgb pacman-contrib pamixer papirus-icon-theme \

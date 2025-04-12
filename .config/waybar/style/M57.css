@@ -199,6 +199,15 @@ tooltip label {
     box-shadow: @shadow 1px 1px 1px 1px;
 }
 
+#cava,
+#custom-cava_mviz {
+    color: @font-color;
+    background-color: @background-color;
+    padding: 2px 12px;
+    margin: 1px 1px 1px 1px;
+    box-shadow: @shadow 1px 1px 1px 1px;
+}
+
 #custom-prayers {
     color: @font-color;
     background-color: @background-color;

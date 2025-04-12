@@ -280,6 +280,11 @@
         "modules": ["network", "bluetooth"],
     },
 
+    "group/music": {
+        "orientation": "inherit",
+        "modules": ["mpris", "custom/cava_mviz"],
+    },
+
     "backlight": {
         "interval": 2,
         "align": 0,
@@ -404,6 +409,28 @@
         "format": "{percentage_used}% 󰋊",
         //"tooltip": true,
         "tooltip-format": "{used} used out of {total} on {path} ({percentage_used}%)",
+    },
+
+    "cava": {
+        "framerate": 30,
+        "autosens": 0,
+        "sensitivity": 20,
+        "bars": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "hide_on_silence": true,
+        "method": "pulse",
+        "source": "auto",
+        "stereo": false,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "input_delay": 2,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+                   }
     },
 
     "hyprland/language": {
@@ -752,7 +779,7 @@
 
     // This is a custom cava visualizer
     "custom/cava_mviz": {
-        "exec": "~/.config/hypr/scripts/WaybarCava.sh",
+        "exec": "~/.config/hypr/scripts/waybarcava.sh",
         "format": "{}",
     },
 
