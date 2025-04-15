@@ -6,8 +6,8 @@ theme='style-5'
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
-    "Yellow|yellow"
-    "Crimson|crimson"
+    "🟨 Yellow|yellow"
+    "🟥 Crimson|crimson"
 )
 
 yellow() {

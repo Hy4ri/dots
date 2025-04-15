@@ -1,5 +1,6 @@
-{
+[{
     "include": "~/.config/waybar/modules.jsonc",
+    "output": "eDP-1",
     "layer": "top",
     "exclusive": true,
     "passthrough": false,
@@ -10,9 +11,29 @@
     "fixed-center": true,
     "ipc": true,
 
-    "modules-left": ["hyprland/workspaces#Num", "hyprland/window", "mpris", "cava"],
+    "modules-left": ["hyprland/workspaces#Num", "hyprland/window", "mpris"],
 
     "modules-center": [],
 
-    "modules-right": ["privacy", "tray", "group/sys", "group/time", "custom/swaync"],
-}
+    "modules-right": ["privacy", "tray", "group/sys", "group/time", "custom/swaync"]
+},
+
+{
+    "include": "~/.config/waybar/modules.jsonc",
+    "output": "HDMI-A-1",
+    "layer": "top",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "position": "top",
+    "reload_style_on_change": true,
+    "spacing": 0,
+    "fixed-center": true,
+    "ipc": true,
+
+    "modules-left": ["hyprland/workspaces#Num"],
+
+    "modules-center": ["hyprland/window"],
+
+    "modules-right": ["tray","group/time","custom/swaync"]
+}]

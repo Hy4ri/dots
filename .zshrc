@@ -28,7 +28,8 @@ alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
 alias spruns='sudo pacman -Runs'
 alias spcc='sudo pacman -Rns $(pacman -Qtdq)'
-alias unlock='sudo rm /var/lib/pacman/db.lock'
+alias unlock='sudo rm /var/lib/pacman/db.lck'
+alias mirror="sudo cachyos-rate-mirrors"
 
 #paru
 alias paruscc='paru -Scc' # remove unused cache
@@ -52,9 +53,7 @@ alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
 alias music='bash ~/.config/hypr/scripts/spotify-update.sh'
 alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
-alias 2x='upscayl'
 alias vdl='yt-dlp'
-alias fm='yazi'
 alias img2txt='ascii-image-converter'
 alias vim='nvim'
 alias nano='nvim'
@@ -66,11 +65,11 @@ alias manga='mangal'
 alias anime='jerry'
 alias storage='dua i'
 alias termdown='termdown -f roman'
-alias sway='sway --unsupported-gpu'
 alias png='bash ~/.config/hypr/scripts/png.sh'
 alias update='paru -Syyu && flatpak update '
 alias 25='bash ~/.config/hypr/scripts/25.sh'
 alias dngl='z videos/dangool && yt-dlp'
+alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 #waydroid
 alias wayon='waydroid show-full-ui '
