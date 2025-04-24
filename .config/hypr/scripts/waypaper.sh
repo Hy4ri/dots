@@ -11,7 +11,7 @@ change_wallpaper() {
 }
 
 change_wallpaper_random() {
-    waypaper --random | awk '/Random wallpaper set successfully/ {print $NF}' | sed "s|~|$HOME|" > ~/Desktop/pic.txt
+    waypaper --random --monitor eDP-1 | awk '/Random wallpaper set successfully/ {print $NF}' | sed "s|~|$HOME|" > ~/Desktop/pic.txt
     ln -sf "$(cat ~/Desktop/pic.txt)" ~/Desktop/.pic
     wal -i ~/Desktop/.pic
     rm ~/Desktop/pic.txt ~/Desktop/.pic
@@ -20,7 +20,7 @@ change_wallpaper_random() {
 
 change_wallpaper_auto() {
     while true; do
-        waypaper --random
+        waypaper --random --monitor eDP-1
         hyprctl hyprpaper unload unused
         sleep $INTERVAL
     done

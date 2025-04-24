@@ -15,7 +15,7 @@ MENU_ITEMS=(
     "󱩑 40%|40"
     "󱩐 30%|30"
     "󱩏 20%|20"
-    "󱩎 10%|110"
+    "󱩎 10%|10"
 )
 
 # Define functions for each menu item
