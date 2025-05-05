@@ -18,6 +18,13 @@ plugins=(fzf aliases colored-man-pages extract safe-paste sudo zsh-autosuggestio
 source $ZSH/oh-my-zsh.sh
 source <(fzf --zsh)
 
+
+############################ Binds #################################
+
+bindkey "^a" beginning-of-line
+bindkey "^e" end-of-line
+
+
 ############################ ALIASES #################################
 
 #pacman
