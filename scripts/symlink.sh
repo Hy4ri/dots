@@ -37,3 +37,8 @@ ln -s $HOME/Documents/Projects/dots/.config/swaync $HOME/.config/swaync
 
 rm -rf $HOME/.config/waybar
 ln -s $HOME/Documents/Projects/dots/.config/waybar $HOME/.config/waybar
+
+# nvim
+
+rm -rf $HOME/.config/nvim
+ln -s $HOME/Documents/Projects/dots/.config/nvim $HOME/.config/nvim
