@@ -193,7 +193,7 @@ cat <<"EOF"
 EOF
 
 while true; do
-  echo -n "chose a Windomanager:Hyprland, sway, wayfire or all: "
+  echo -n "chose a Windomanager:Hyprland, sway or both : "
   read Wm
   case "$Wm" in
     hyprland | Hyprland)
@@ -206,17 +206,9 @@ while true; do
       ~/m57-dots-install/scripts/./sway.sh
       break
     ;;
-    Wayfire | wayfire)
-      echo -n "installing $Wm"
-      ~/m57-dots-install/scripts/./wayfire.sh
-      break
-    ;;
-    all | All)
+    both | Both )
       echo -n "installing sway"
       ~/m57-dots-install/scripts/./sway.sh
-      sleep 1
-      echo -n "installing wayfire"
-      ~/m57-dots-install/scripts/./wayfire.sh
       sleep 1
       echo -n "installing hyprland"
       ~/m57-dots-install/scripts/./hyprland.sh
@@ -451,6 +443,7 @@ case "$Dotfiles" in
     papirus-folders -C carmine --theme Papirus-Dark
     cd ~/m57-dots-install
     cp -r .config ~/
+    ~/m57-dots-install/scripts/./symlink.sh
     cp -r .icons ~/
     cp -r .local ~/
     cp -r .themes ~/
