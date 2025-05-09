@@ -1,6 +1,7 @@
 #!/bin/bash
 
 $helper -Sy --noconfirm --needed zsh zsh-completions fzf curl git
+$hlper -Sy --needed eza tty-clock yt-dlp ripgrep dua-cli termdown zoxide fastfetch
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 sleep 1
