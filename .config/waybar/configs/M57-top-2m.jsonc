@@ -31,9 +31,9 @@
     "fixed-center": true,
     "ipc": true,
 
-    "modules-left": ["hyprland/workspaces#Num","mpris"],
+    "modules-left": ["hyprland/workspaces#Num","hyprland/window","mpris"],
 
-    "modules-center": ["hyprland/window"],
+    "modules-center": [],
 
     "modules-right": ["tray","clock","custom/swaync"]
 

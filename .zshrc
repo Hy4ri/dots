@@ -2,6 +2,8 @@ export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export CSCOPE_EDITOR="nvim"
+export MANPAGER="nvim +Man!"
+export TERMINAL=/usr/bin/foot
 export PATH=$PATH:/home/m57/.spicetify
 export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
@@ -23,7 +25,6 @@ source <(fzf --zsh)
 
 bindkey "^a" beginning-of-line
 bindkey "^e" end-of-line
-
 
 ############################ ALIASES #################################
 
@@ -77,6 +78,8 @@ alias update='paru -Syyu && flatpak update '
 alias 25='bash ~/.config/hypr/scripts/25.sh'
 alias dngl='z videos/dangool && yt-dlp'
 alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias xx="bash ~/Documents/xx.sh"
+alias rsync="rsync -rPavh"
 
 #waydroid
 alias wayon='waydroid show-full-ui '

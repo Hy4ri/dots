@@ -1,5 +1,3 @@
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-       Hyprland 
+if [[ -z "$TMUX" ]] && uwsm check may-start && uwsm select; then
+    exec uwsm start default
 fi
-
-export GTK_THEME=M57

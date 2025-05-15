@@ -2,51 +2,57 @@
 # Rofi menu for Quick Edit / View of Settings (SUPER E)
 
 Configs="$HOME/.config/hypr/Configs"
+Scripts="$HOME/.config/hypr/scripts"
+term="foot"
 
-menu(){
-  printf "1. view Hyprland-Settings\n"
-  printf "2. view Window-Rules\n"
-  printf "3. view Keybinds\n"
-  printf "4. view Startup_Apps\n"
-  printf "5. view Env-variables\n"
-  printf "6. view Monitors\n"
-  printf "7. view Laptop-Settings\n"
-  printf "8. view UserSettings-wal\n"
-  printf "9. view Settings\n"
+menu() {
+    printf "1. view Hyprland-Settings\n"
+    printf "2. view Scripts\n"
+    printf "3. view Window-Rules\n"
+    printf "4. view Keybinds\n"
+    printf "5. view Startup_Apps\n"
+    printf "6. view Env-variables\n"
+    printf "7. view Monitors\n"
+    printf "8. view Laptop-Settings\n"
+    printf "9. view UserSettings-wal\n"
+    printf "10. view Main config \n"
 }
 
 main() {
     choice=$(menu | rofi -i -dmenu -theme $HOME/.config/rofi/launchers/type-3/style-5.rasi | cut -d. -f1)
     case $choice in
-        1)
-            foot nvim "$Configs/UserSettings.conf"
-            ;;
-        2)
-            foot nvim "$Configs/WindowRules.conf"
-            ;;
-        3)
-            foot nvim "$Configs/Keybinds.conf"
-            ;;
-        4)
-            foot nvim "$Configs/Startup_Apps.conf"
-            ;;
-        5)
-            foot nvim "$Configs/ENVariables.conf"
-            ;;
-        6)
-            foot nvim "$Configs/Monitors.conf"
-            ;;
-        7)
-            foot nvim "$Configs/Laptops.conf"
-            ;;
-        8)
-            foot nvim "$Configs/UserSettings-wal.conf"
-            ;;
-        9)
-            foot nvim ~/.config/hypr/hyprland.conf
-            ;;
-        *)
-            ;;
+    1)
+        $term nvim "$Configs/UserSettings.conf"
+        ;;
+    2)
+        cd $Scripts
+        $term nvim
+        ;;
+    3)
+        $term nvim "$Configs/WindowRules.conf"
+        ;;
+    4)
+        $term nvim "$Configs/Keybinds.conf"
+        ;;
+    5)
+        $term nvim "$Configs/Startup_Apps.conf"
+        ;;
+    6)
+        $term nvim "$Configs/ENVariables.conf"
+        ;;
+    7)
+        $term nvim "$Configs/Monitors.conf"
+        ;;
+    8)
+        $term nvim "$Configs/Laptops.conf"
+        ;;
+    9)
+        $term nvim "$Configs/UserSettings-wal.conf"
+        ;;
+    10)
+        $term nvim ~/.config/hypr/hyprland.conf
+        ;;
+    *) ;;
     esac
 }
 

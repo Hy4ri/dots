@@ -1,7 +1,7 @@
 return {
-    'hy4ri/m57-nvim',
-    priority = 1000, -- makes sure it loads before other UI plugins
-    config = function()
-      vim.cmd.colorscheme 'M57'
-    end,
-  }
+  "hy4ri/m57.nvim",
+  priority = 1000, -- makes sure it loads before other UI plugins
+  config = function()
+    vim.cmd.colorscheme("m57")
+  end,
+}
