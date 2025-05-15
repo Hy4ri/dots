@@ -10,6 +10,8 @@ else
     dots="$HOME/m57-dots-install"
 fi
 
+echo "Linking ..."
+
 # zshrc
 rm $HOME/.zshrc
 ln -s $dots/.zshrc $HOME/.zshrc
@@ -49,3 +51,5 @@ ln -s $dots/.config/nvim $config/nvim
 # tmux
 rm $HOME/.tmux.conf
 ln -s $dots/.tmux.conf $HOME/.tmux.conf
+
+echo "Done :)"
