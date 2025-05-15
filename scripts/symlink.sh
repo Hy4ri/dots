@@ -49,7 +49,3 @@ ln -s $dots/.config/nvim $config/nvim
 # tmux
 rm $HOME/.tmux.conf
 ln -s $dots/.tmux.conf $HOME/.tmux.conf
-
-# tmux plugins
-rm -rf $HOME/.tmux
-ln -s $dots/.tmux $HOME/.tmux
