@@ -54,6 +54,9 @@ alias lt='eza -aT --color=always --group-directories-first' # tree listing
 #git
 alias gitc='git clone'
 
+#tmux
+alias tmuxa='tmux attach'
+
 #aliases
 alias snvim='sudo nvim'
 alias clock='tty-clock -c -C7 -b -t -n'

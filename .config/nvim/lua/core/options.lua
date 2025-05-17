@@ -3,14 +3,8 @@ local opt = vim.opt
 -- do shaping for Arabic characters
 opt.arabicshape = true
 
--- auto indent
-opt.autoindent = true
-
 -- auto read
 opt.autoread = true
-
--- Enable break indent
-opt.breakindent = true
 
 -- enable system clipboard
 opt.clipboard = "unnamedplus"
@@ -90,9 +84,6 @@ opt.inccommand = "split"
 
 -- cleaner cmd
 opt.shortmess = "filnxtToOFc"
-
--- completion menu
-opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- cmd sugg
 opt.wildmenu = true
