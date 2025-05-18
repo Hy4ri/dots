@@ -1,93 +1,108 @@
-local opt = vim.opt
-
--- do shaping for Arabic characters
-opt.arabicshape = true
-
--- auto read
-opt.autoread = true
-
--- enable system clipboard
-opt.clipboard = "unnamedplus"
-
--- make 'autoindent' use existing indent structure
-opt.copyindent = true
-
--- (optional) cursorline has no effect if transparent.nvim is enable
-opt.cursorline = true
-
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- Snacks animations
+-- Set to `false` to globally disable all snacks animations
+vim.g.snacks_animate = false
+
+-- do shaping for Arabic characters
+vim.opt.arabicshape = true
+
+-- enable system clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- make 'autoindent' use existing indent structure
+vim.opt.copyindent = true
+
+-- (optional) cursorline has no effect if transparent.nvim is enable
+vim.opt.cursorline = true
+
 -- global statusline
-opt.laststatus = 3
+vim.opt.laststatus = 3
 
 -- disable cmd messages
-opt.showmode = false
+vim.opt.showmode = false
 
 -- scrolloff for cursor
-opt.scrolloff = 8
+vim.opt.scrolloff = 8
 
 -- Indenting
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.smartindent = true
-opt.tabstop = 2
-opt.softtabstop = 2
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.smartindent = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 
 -- statusline characters
-opt.fillchars = { eob = " " }
+vim.opt.fillchars = { eob = " " }
 
 -- enhance searching
-opt.ignorecase = true
-opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- mouse
-opt.mouse = "a"
+vim.opt.mouse = "a"
 
 -- numberline
-opt.number = true
-opt.relativenumber = true
-opt.numberwidth = 2
-opt.ruler = false
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.numberwidth = 2
+vim.opt.ruler = false
 
 -- disable highlight search
-opt.hlsearch = true
+vim.opt.hlsearch = true
 
 -- wrap
-opt.wrap = false
+vim.opt.wrap = false
 
 -- enbale signcolumn
-opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes"
 
 -- default split from bottom-right
-opt.splitbelow = true
-opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 -- enable guicolors
-opt.termguicolors = true
+vim.opt.termguicolors = true
 
 -- file recovery
-opt.undofile = true
+vim.opt.undofile = true
 
 -- interval for writing swap file to disk, also used by gitsigns
-opt.updatetime = 400
+vim.opt.updatetime = 300
 
 -- Decrease mapped sequence wait time
-opt.timeoutlen = 500
+vim.opt.timeoutlen = 500
+vim.opt.ttimeoutlen = 10
 
 -- Sets how neovim will display certain whitespace characters in the editor.
-opt.list = true
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.list = true
+vim.opt.listchars = { space = "·", tab = "  ↦", trail = "·" }
 
 -- Preview substitutions live, as you type!
-opt.inccommand = "split"
+vim.opt.inccommand = "split"
 
 -- cleaner cmd
-opt.shortmess = "filnxtToOFc"
+vim.opt.shortmess = "filnxtToOFc"
 
 -- cmd sugg
-opt.wildmenu = true
-opt.wildmode = "longest:full,full"
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
 
 -- no new comment
-opt.formatoptions = "jcroql"
+vim.opt.formatoptions = "jcroql"
+
+-- Completion.
+vim.opt.completeopt = "menu,menuone,noselect,noinsert"
+
+-- Status line.
+vim.opt.cmdheight = 1
+
+vim.opt.fillchars = {
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
+}

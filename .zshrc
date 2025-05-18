@@ -57,6 +57,11 @@ alias gitc='git clone'
 #tmux
 alias tmuxa='tmux attach'
 
+#Python
+alias p='python'
+alias pvenv='python -m venv venv'
+alias sopy='source venv/bin/activate'
+
 #aliases
 alias snvim='sudo nvim'
 alias clock='tty-clock -c -C7 -b -t -n'
@@ -80,9 +85,9 @@ alias png='bash ~/.config/hypr/scripts/png.sh'
 alias update='paru -Syyu && flatpak update '
 alias 25='bash ~/.config/hypr/scripts/25.sh'
 alias dngl='z videos/dangool && yt-dlp'
-alias grubup="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-alias xx="bash ~/Documents/xx.sh"
-alias rsync="rsync -rPavh"
+alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias xx='bash ~/Documents/xx.sh'
+alias rsync='rsync -rPavh'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
