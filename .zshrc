@@ -63,6 +63,9 @@ alias pvenv='python -m venv venv'
 alias sopy='source venv/bin/activate'
 
 #aliases
+alias ..='cd ..'
+alias ...='cd ...'
+alias zr='. "$HOME/.zshrc"'
 alias snvim='sudo nvim'
 alias clock='tty-clock -c -C7 -b -t -n'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
@@ -102,8 +105,7 @@ sudo venv/bin/python3 main.py'
 ############################# FUNCTIONS ##########################################
 
 # ARCHIVE EXTRACT
-extract ()
-{
+extract () {
     if [ -f $1 ] ; then
       case $1 in
         *.tar.bz2)   tar xjf $1   ;;
@@ -120,7 +122,7 @@ extract ()
         *.deb)       ar x $1      ;;
         *.tar.xz)    tar xf $1    ;;
         *.tar.zst)   unzstd $1    ;;
-        *)           echo "'$1' cannot be extracted via ex()" ;;
+        *)           echo "'$1' cannot be extracted via extract()" ;;
     esac
   else
     echo "'$1' is not a valid file"
