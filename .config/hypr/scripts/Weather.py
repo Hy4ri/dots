@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-import subprocess
-from pyquery import PyQuery  # install using `pip install pyquery`
 import json
+
+from pyquery import PyQuery  # install using `pip install pyquery`
 
 # weather icons
 weather_icons = {
@@ -76,8 +76,8 @@ temp_min_max = f"  {temp_min}\t\t  {temp_max}"
 # print(temp_min_max)
 
 # wind speed
-wind_speed = html_data("span[data-testid='Wind']").text().split("\n")[1]
-wind_text = f"  {wind_speed}"
+# wind_speed = html_data("span[data-testid='Wind']").text().split("\n")[1]
+# wind_text = f"  {wind_speed}"
 # print(wind_text)
 
 # humidity

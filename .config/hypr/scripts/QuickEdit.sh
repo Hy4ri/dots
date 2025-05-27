@@ -19,7 +19,7 @@ menu() {
 }
 
 main() {
-    choice=$(menu | rofi -i -dmenu -theme $HOME/.config/rofi/launchers/type-3/style-5.rasi | cut -d. -f1)
+    choice=$(menu | rofi -i -dmenu -theme $HOME/.config/rofi/launchers/style.rasi | cut -d. -f1)
     case $choice in
     1)
         $term nvim "$Configs/UserSettings.conf"

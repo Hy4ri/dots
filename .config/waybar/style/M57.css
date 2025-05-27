@@ -6,25 +6,25 @@
 @define-color shadow #550000;
 
 * {
-    font-family: JetBrainsMono Nerd Font;
-    font-weight: 700;
-    min-height: 0;
-    font-size: 15px;
-    font-feature-settings: '"zero"';
-    border-radius: 0px;
+  font-family: JetBrainsMono Nerd Font;
+  font-weight: 700;
+  min-height: 0;
+  font-size: 15px;
+  font-feature-settings: '"zero"';
+  border-radius: 0px;
 }
 
 
 #window {
-    background-color: @background-color;
-    color: @font-color;
-    padding: 3px 10px;
-    margin: 1px 1px 1px 2px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  background-color: @background-color;
+  color: @font-color;
+  padding: 3px 10px;
+  margin: 1px 1px 1px 2px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 window#waybar {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 /*window#waybar.empty #window {
@@ -33,241 +33,257 @@ window#waybar {
 }*/
 
 tooltip {
-    background: @background-color;
-    opacity: 0.9;
-    border: 2px solid @accent;
+  background: @background-color;
+  opacity: 0.9;
+  border: 2px solid @accent;
 }
 
 tooltip label {
-    color: @font-color;
+  color: @font-color;
 }
 
 #workspaces {
-    background-color: @background-color;
-    padding: 3px 3px;
-    margin: 1px 1px 1px 0px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  background-color: @background-color;
+  padding: 3px 3px;
+  margin: 1px 1px 1px 0px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 #workspaces button {
-    color: @font-color;
-    background-color: @background-color-2;
-    padding: 2px 10px;
-    margin: 1px 1px 1px 1px;
+  color: @font-color;
+  background-color: @background-color-2;
+  padding: 2px 10px;
+  margin: 1px 1px 1px 1px;
 }
 
 #workspaces button.active,
 #workspaces button.focused {
-    color: @font-color;
-    background-color: @accent;
-    padding: 2px 17px;
-    margin: 1px 1px 1px 1px;
+  color: @font-color;
+  background-color: @accent;
+  padding: 2px 17px;
+  margin: 1px 1px 1px 1px;
 }
 
 #workspaces button:hover {
-    color: @accent;
-    background-color: @font-color;
-    padding: 2px 20px;
-    margin: 1px 1px 1px 1px;
+  color: @accent;
+  background-color: @font-color;
+  padding: 2px 20px;
+  margin: 1px 1px 1px 1px;
 }
 
 #workspaces button.urgent {
-    color: white;
-    padding: 2px 20px;
-    margin: 1px 1px 1px 1px;
-    animation: flash 1s infinite;
+  color: white;
+  padding: 2px 20px;
+  margin: 1px 1px 1px 1px;
+  animation: flash 1s infinite;
 }
 
 #tags {
-    background-color: @background-color;
-    padding: 3px 3px;
-    margin: 1px 1px 1px 0px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  background-color: @background-color;
+  padding: 3px 3px;
+  margin: 1px 1px 1px 0px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
-#tags button{
-    color: @font-color;
-    background-color: @background-color-2;
-    padding: 2px 10px;
-    margin: 1px 1px 1px 1px;
+#tags button {
+  color: @font-color;
+  background-color: @background-color-2;
+  padding: 2px 10px;
+  margin: 1px 1px 1px 1px;
 }
 
 #tags button:hover {
-    color: @accent;
-    background-color: @font-color;
-    padding: 2px 20px;
-    margin: 1px 1px 1px 1px;
+  color: @accent;
+  background-color: @font-color;
+  padding: 2px 20px;
+  margin: 1px 1px 1px 1px;
 }
 
-#tags button.occupied{
-    border-bottom: @accent 1px solid;
+#tags button.occupied {
+  border-bottom: @accent 1px solid;
 }
 
-#tags button.focused{
-    color: @font-color;
-    background-color: @accent;
-    padding: 2px 17px;
-    margin: 1px 1px 1px 1px;
+#tags button.focused {
+  color: @font-color;
+  background-color: @accent;
+  padding: 2px 17px;
+  margin: 1px 1px 1px 1px;
 }
 
 #tags button.urgent {
-    color: white;
-    padding: 2px 20px;
-    margin: 1px 1px 1px 1px;
-    animation: flash 1s infinite;
+  color: white;
+  padding: 2px 20px;
+  margin: 1px 1px 1px 1px;
+  animation: flash 1s infinite;
 }
 
 @keyframes flash {
-    0% {
-        background-color: #990000;
-    }
-    50% {
-        background-color: #ff0000;
-    }
-    100% {
-        background-color: #990000;
-    }
+  0% {
+    background-color: #990000;
+  }
+
+  50% {
+    background-color: #ff0000;
+  }
+
+  100% {
+    background-color: #990000;
+  }
 }
 
 #taskbar {
-    background-color: @background-color;
-    padding: 3px 3px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  background-color: @background-color;
+  padding: 3px 3px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
+
 #taskbar button {
-    color: @font-color;
-    background-color: @background-color-2;
-    padding: 2px 8px;
-    margin: 1px 1px 1px 1px;
+  color: @font-color;
+  background-color: @background-color-2;
+  padding: 2px 8px;
+  margin: 1px 1px 1px 1px;
 }
+
 #taskbar button.active {
-    color: @font-color;
-    background-color: @accent;
+  color: @font-color;
+  background-color: @accent;
 }
+
 #taskbar button.minimized {
-    color: @shadow;
+  color: @shadow;
 }
+
 #taskbar.empty {
-    background-color: transparent;
-    box-shadow: none;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 
 #custom-swaync {
-    color: @font-color;
-    background-color: @background-color;
-    padding: 2px 12px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  color: @font-color;
+  background-color: @background-color;
+  padding: 2px 12px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 #clock {
-    color: @clock;
-    background-color: @background-color;
-    padding: 2px 12px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  color: @clock;
+  background-color: @background-color;
+  padding: 2px 12px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 #custom-weather2 {
-    color: @font-color;
-    background-color: @background-color;
-    padding: 2px 12px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  color: @font-color;
+  background-color: @background-color;
+  padding: 2px 12px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 #tray {
-    background-color: @background-color;
-    padding: 2px 12px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  background-color: @background-color;
+  padding: 2px 12px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 #sys {
-    background-color: @background-color;
-    padding: 2px 10px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  background-color: @background-color;
+  padding: 2px 10px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
+
 #mpris {
-    color: @accent;
-    background-color: @background-color;
-    padding: 2px 12px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  color: @accent;
+  background-color: @background-color;
+  padding: 2px 12px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 #cava,
 #custom-cava_mviz {
-    color: @font-color;
-    background-color: @background-color;
-    padding: 2px 12px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  color: @font-color;
+  background-color: @background-color;
+  padding: 2px 12px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 #custom-prayers {
-    color: @font-color;
-    background-color: @background-color;
-    padding: 2px 12px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  color: @font-color;
+  background-color: @background-color;
+  padding: 2px 12px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 0px 1px 1px 0px;
 }
 
 #custom-hyprshade {
-    color: yellow;
+  color: yellow;
 }
 
 #pulseaudio {
-    margin-left: 5px;
-    padding-right: 10px;
-}
-
-#pulseaudio-micorphone {
-    margin-left: 5px;
-    margin-right: 1px;
+  margin-left: 5px;
+  padding-right: 10px;
 }
 
 #battery {
-    color: greenyellow;
+  color: greenyellow;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #custom-RandomWallpaper {
-    margin-left: 1px;
-    margin-right: 5px;
-    color: pink;
+  margin-left: 1px;
+  margin-right: 5px;
+  color: pink;
 }
+
 #power-profiles-daemon {
-    margin-left: 15px;
-    margin-right: 5px;
-    color: @font-color;
+  margin-left: 15px;
+  margin-right: 5px;
+  color: @font-color;
 }
 
 #custom-powerprofile {
-    margin-left: 10px;
-    margin-right: 15px;
-    color: @font-color;
+  margin-left: 1px;
+  margin-right: 15px;
+  color: @font-color;
 }
 
 
 #battery.critical:not(.charging) {
-    color: @accent;
+  color: @accent;
 }
 
 #custom-separator {
-    color: transparent;
+  color: transparent;
 }
 
 #privacy {
-    color: @font-color;
-    background-color: @background-color;
-    padding: 2px 12px;
-    margin: 1px 1px 1px 1px;
-    box-shadow: @shadow 1px 1px 1px 1px;
+  color: @font-color;
+  background-color: @background-color;
+  padding: 2px 12px;
+  margin: 1px 1px 1px 1px;
+  box-shadow: @shadow 1px 1px 1px 1px;
 }
 
 #privacy-item.screenshare {
-    color: @accent;
+  color: @accent;
+}
+
+#idle_inhibitor {
+  margin-left: 1px;
+  margin-right: 3px;
+}
+
+#custom-updater {
+  margin-left: 2px;
+  margin-right: 7px;
+  padding: 0px 10px 0px 10px;
 }

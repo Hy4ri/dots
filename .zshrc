@@ -16,7 +16,7 @@ COMPLETION_WAITING_DOTS="true"
 
 ZSH_THEME="nanotech"
 
-plugins=(fzf aliases colored-man-pages extract safe-paste sudo zsh-autosuggestions colorize zsh-syntax-highlighting)
+plugins=(fzf aliases safe-paste sudo zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 source <(fzf --zsh)
 
@@ -47,7 +47,6 @@ alias parusyyu='paru -Syyu'
 
 #eza
 alias ls='eza --color=always --group-directories-first' # better ls
-alias la='eza -a --color=always --group-directories-first'  # all files and dirs
 alias ll='eza -al --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
 
@@ -65,9 +64,9 @@ alias sopy='source venv/bin/activate'
 #aliases
 alias ..='cd ..'
 alias ...='cd ...'
-alias zr='. "$HOME/.zshrc"'
+alias sz='. "$HOME/.zshrc"'
 alias snvim='sudo nvim'
-alias clock='tty-clock -c -C7 -b -t -n'
+alias clock='termdown -z -Z " %I   %M " -f banner3'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
 alias music='bash ~/.config/hypr/scripts/spotify-update.sh'
@@ -75,6 +74,7 @@ alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/star
 alias vdl='yt-dlp'
 alias img2txt='ascii-image-converter'
 alias vim='nvim'
+alias nivm='nvim'
 alias nano='nvim'
 alias grep='rg'
 alias prop='hyprprop'
@@ -87,7 +87,6 @@ alias termdown='termdown -f roman'
 alias png='bash ~/.config/hypr/scripts/png.sh'
 alias update='paru -Syyu && flatpak update '
 alias 25='bash ~/.config/hypr/scripts/25.sh'
-alias dngl='z videos/dangool && yt-dlp'
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias xx='bash ~/Documents/xx.sh'
 alias rsync='rsync -rPavh'
@@ -157,8 +156,13 @@ dup() {
   git push
 }
 
-############################## LAUNCH #############################
+dngl() {
+  cd $HOME/Videos/dangool/
+  yt-dlp "$1"
+  cd $HOME
+}
 
+############################## LAUNCH #############################
 #Zoxide
 eval "$(zoxide init zsh)"
 #ff

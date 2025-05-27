@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Style
-dir="$HOME/.config/rofi/launchers/type-3"
-theme='style-5'
+dir="$HOME/.config/rofi/launchers/"
+theme='style'
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
@@ -19,61 +19,61 @@ MENU_ITEMS=(
 )
 
 # Define functions for each menu item
-100(){
+100() {
     monitorctl b 100
     sleep 0.2
     notify-send -a "Brightness" "󰛨 100%"
 }
 
-90(){
+90() {
     monitorctl b 90
     sleep 0.2
     notify-send -a "Brightness" "󱩖 90%"
 }
 
-80(){
+80() {
     monitorctl b 80
     sleep 0.2
     notify-send -a "Brightness" "󱩕 80%"
 }
 
-70(){
+70() {
     monitorctl b 70
     sleep 0.2
     notify-send -a "Brightness" "󱩔 70%"
 }
 
-60(){
+60() {
     monitorctl b 60
     sleep 0.2
     notify-send -a "Brightness" "󱩓 60%"
 }
 
-50(){
+50() {
     monitorctl b 50
     sleep 0.2
     notify-send -a "Brightness" "󱩒 50%"
 }
 
-40(){
+40() {
     monitorctl b 40
     sleep 0.2
     notify-send -a "Brightness" "󱩑 40%"
 }
 
-30(){
+30() {
     monitorctl b 30
     sleep 0.2
     notify-send -a "Brightness" "󱩐 30%"
 }
 
-20(){
+20() {
     monitorctl b 20
     sleep 0.2
     notify-send -a "Brightness" "󱩏 20%"
 }
 
-10(){
+10() {
     monitorctl b 10
     sleep 0.2
     notify-send -a "Brightness" "󱩎 10%"

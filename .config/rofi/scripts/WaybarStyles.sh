@@ -9,7 +9,7 @@ IFS=$'\n\t'
 waybar_styles="$HOME/.config/waybar/style"
 waybar_style="$HOME/.config/waybar/style.css"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
-rofi_theme="$HOME/.config/rofi/launchers/type-3/style-5.rasi"
+rofi_theme="$HOME/.config/rofi/launchers/style.rasi"
 
 # Function to display menu options
 menu() {
@@ -33,7 +33,7 @@ apply_style() {
 restart_waybar_if_needed() {
     if pgrep -x "waybar" >/dev/null; then
         pkill waybar
-        sleep 0.1  # Delay for Waybar to completely terminate
+        sleep 0.1 # Delay for Waybar to completely terminate
     fi
     "${SCRIPTSDIR}/Refresh.sh" &
 }

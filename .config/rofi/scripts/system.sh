@@ -3,8 +3,8 @@
 # shellcheck disable=SC2317
 
 # Style
-dir="$HOME/.config/rofi/launchers/type-3"
-theme='style-5'
+dir="$HOME/.config/rofi/launchers/"
+theme='style'
 
 # System monitoring functions
 get_cpu_usage() {
@@ -13,7 +13,7 @@ get_cpu_usage() {
 }
 
 get_gpu_usage() {
-    if command -v nvidia-smi &> /dev/null; then
+    if command -v nvidia-smi &>/dev/null; then
         GPU_USAGE=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)
         notify-send "GPU Usage" "🎮 GPU: ${GPU_USAGE}%" -i "nvidia"
     else
@@ -96,7 +96,7 @@ show_all_stats() {
     # Build output for rofi
     {
         echo "🖥️ CPU: ${CPU_USAGE}%"
-        if command -v nvidia-smi &> /dev/null; then
+        if command -v nvidia-smi &>/dev/null; then
             GPU_USAGE=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)
             echo "🎮 GPU: ${GPU_USAGE}%"
         fi
