@@ -6,7 +6,7 @@ theme='style'
 scripts="$HOME/.config/rofi/scripts"
 
 # Menu labels
-MENU="📝 Notes\n👾 Games\n💡 Brightness\n🔆 Weather\n💻 Pc Stats\n🟥🟩🟦 RGB Profiles\n🎨 Waybar Theme\n🎨 Waybar Layout"
+MENU="📝 Notes\n⌚ Timer\n👾 Games\n💡 Brightness\n🔆 Weather\n💻 Pc Stats\n🟥🟩🟦 RGB Profiles\n🎨 Waybar Theme\n🎨 Waybar Layout"
 
 CHOICE=$(echo -e "$MENU" | rofi -dmenu -p "Choose Script" -theme ${dir}/${theme}.rasi)
 
@@ -19,4 +19,5 @@ case "$CHOICE" in
 "💻 Pc Stats") $scripts/system.sh ;;
 "💡 Brightness") $scripts/brightness.sh ;;
 "📝 Notes") $scripts/notes.sh ;;
+"⌚ Timer") $scripts/timer.sh ;;
 esac

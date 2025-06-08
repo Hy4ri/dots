@@ -39,4 +39,4 @@ if vim.fn.filereadable(lockfile) == 0 then
 end
 
 -- Set my colorscheme.
-vim.cmd.colorscheme("m57")
+vim.cmd.colorscheme("tokyonight-moon")

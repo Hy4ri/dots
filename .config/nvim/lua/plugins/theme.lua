@@ -1,5 +1,23 @@
 return {
-	"hy4ri/m57.nvim",
-	priority = 1000, -- makes sure it loads before other UI plugins
-	config = function() end,
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				transparent_background = true,
+			})
+		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("tokyonight").setup({
+				transparent = true,
+			})
+		end,
+	},
 }

@@ -7,7 +7,7 @@ IFS=$'\n\t'
 
 # Define directories
 waybar_layouts="$HOME/.config/waybar/configs"
-waybar_config="$HOME/.config/waybar/config"
+waybar_config="$HOME/.config/waybar/config.jsonc"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 rofi_theme="$HOME/.config/rofi/launchers/style.rasi"
 

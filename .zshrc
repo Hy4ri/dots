@@ -63,10 +63,9 @@ alias sopy='source venv/bin/activate'
 
 #aliases
 alias ..='cd ..'
-alias ...='cd ...'
 alias sz='. "$HOME/.zshrc"'
 alias snvim='sudo nvim'
-alias clock='termdown -z -Z " %I   %M " -f banner3'
+alias clock='termdown -z -Z " %I : %M " -f banner3'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
 alias music='bash ~/.config/hypr/scripts/spotify-update.sh'
@@ -80,12 +79,9 @@ alias grep='rg'
 alias prop='hyprprop'
 alias cp='cp -i'
 alias c+x='chmod +x'
-alias manga='mangal'
-alias anime='jerry'
 alias storage='dua i'
 alias termdown='termdown -f roman'
 alias png='bash ~/.config/hypr/scripts/png.sh'
-alias update='paru -Syyu && flatpak update '
 alias 25='bash ~/.config/hypr/scripts/25.sh'
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias xx='bash ~/Documents/xx.sh'
@@ -156,10 +152,19 @@ dup() {
   git push
 }
 
+# Dangool
+
 dngl() {
   cd $HOME/Videos/dangool/
   yt-dlp "$1"
   cd $HOME
+}
+
+# Update
+
+up() {
+  paru -Syyu 
+  flatpak update 
 }
 
 ############################## LAUNCH #############################

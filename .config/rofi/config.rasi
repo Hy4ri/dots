@@ -180,10 +180,6 @@ configuration {
 */
 }
 
-//@theme "/usr/share/rofi/themes/DarkBlue.rasi"
+@theme "/usr/share/rofi/themes/DarkBlue.rasi"
 
-//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
 
-//@theme "/usr/share/rofi/themes/iggy.rasi"
-
-@theme "/usr/share/rofi/themes/sidebar-v2.rasi"

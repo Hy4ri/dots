@@ -6,9 +6,14 @@ theme='style'
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
+    "menu|function"
 )
 
 # Define functions for each menu item
+
+functionname() {
+
+}
 
 # Create Rofi menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do

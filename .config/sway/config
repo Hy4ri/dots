@@ -18,13 +18,11 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu pkill rofi || ~/.config/rofi/launchers/type-3/launcher.sh
+set $menu pkill rofi || ~/.config/rofi/launchers/launcher.sh
 
 #DIR
 set $scriptsDir $HOME/.config/hypr/scripts
 set $configs $HOME/.config/hypr/configs
-set $UserConfigs  $HOME/.config/hypr/UserConfigs
-set $UserScripts  $HOME/.config/hypr/UserScripts
 
 ### Output configuration
 #
@@ -59,23 +57,24 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
 #Startup
   exec swww-daemon
   exec_always autotiling -l 2 -sr 1.60
-  exec waybar -c ~/.config/waybar/configs/M57-top-Sway -s ~/.config/waybar/style/M57-Round.css
+  exec waybar -c ~/.config/waybar/configs/M57-top-Sway -s ~/.config/waybar/style/M57.css
   exec swaync
   exec nm-applet --indicator
-  exec_always gammastep
+  exec gammastep-indicator
   exec blumean-manager
   exec hypridle
   exec foor --server
-  exec ~/.config/hypr/UserScripts/openrgb.sh
+  exec ~/.config/hypr/Scripts/openrgb.sh
   exec wl-paste --type text --watch cliphist store
   exec wl-paste --type image --watch cliphist store
-  exec_always ~/.config/hypr/UserScripts/WallpaperRandom-sway.sh
+  exec_always ~/.config/hypr/Scripts/WallpaperRandom-sway.sh
+
 #Setting
   mouse_warping container
   smart_borders on
-  default_border pixel 2
-  default_floating_border pixel 2
-  client.focused  #cd3422  #cd3422 #cd3422 #cd3422
+  default_border pixel 1
+  default_floating_border pixel 1
+  client.focused  #990000  #990000 #990000 #990000
   font pongo:JetBrainsMono Nerd Font 11
   # Disable the laptop screen when the lid is closed.
   bindswitch --reload --locked lid:on output eDP-1 disable
@@ -173,16 +172,11 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
     bindsym Ctrl+Alt+w exec ~/.config/hypr/UserScripts/WallpaperRandom-sway.sh
     bindsym $mod+alt+v exec ~/.config/hypr/scripts/ClipManager.sh
     bindsym $mod+alt+r exec $scriptsDir/Refresh.sh
-    bindsym $mod+B exec killall -SIGUSR1 waybar # Toggle hide/show waybar
-    bindsym CTRL+ALT+A exec $UserScripts/openrgb.sh
+    bindsym $mod+B exec killall -SIGUSR1 waybar  
     bindsym $mod+p exec ~/.config/rofi/powermenu/type-1/powermenu.sh
-    bindsym Ctrl+SHIFT+B exec $UserScripts/bluetooth.sh # bluetooth on/off
     #SceenShot
     bindsym Print exec $scriptsDir/ScreenShot.sh --now
     bindsym $mod+SHIFT+S exec $scriptsDir/ScreenShot.sh --swappy
-    bindsym CTRL+Print exec $scriptsDir/ScreenShot.sh --in5 #screenshot in 5 secs
-    bindsym ALT+Print exec $scriptsDir/ScreenShot.sh --in10 #screenshot in 10 secs
-    bindsym $mod+Print exec $scriptsDir/ScreenShot.sh --active #screenshot in 10 secs
     # Special Keys / Hot Keys
     bindsym  xf86audioraisevolume exec $scriptsDir/Volume.sh --inc #volume up
     bindsym  xf86audiolowervolume exec $scriptsDir/Volume.sh --dec #volume down
@@ -204,13 +198,10 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
     bindsym $mod+alt+s exec spotify-launcher
     bindsym $mod+SHIFT+C exec $UserScripts/colorpicker
     bindsym $mod+S exec normcap
-    bindsym $mod+d exec flatpak run dev.vencord.Vesktop
+    bindsym $mod+d exec equibop
     bindsym $mod+g exec cartridges
     bindsym $mod+e exec thunar
-    bindsym $mod+SHIFT+v exec zeditor
     #Rofi
-    bindsym $mod+Ctrl+b exec $scriptsDir/WaybarStyles.sh
-    bindsym $mod+alt+b exec $scriptsDir/WaybarLayout.sh
     bindsym $mod+alt+e exec $scriptsdir/rofiemoji.sh # emoji
 # Scratchpad:
 #
@@ -293,65 +284,65 @@ set $UserScripts  $HOME/.config/hypr/UserScripts
 
 
 
-###  SWAYFX ###
-    blur enable
-    blur_xray disable
-    blur_passes 4
-    blur_radius 4
-    layer_effects "waybar" blur enable; shadows disable;
-    layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 13
-    layer_effects "wofi" blur enable; shadows enable; corner_radius 13
-    layer_effects "avizo" blur enable; corner_radius 15
-    smart_corner_radius enable
-    corner_radius 5
-    shadows enable
-    shadows_on_csd enable
-    shadow_blur_radius 20
-   
-
-#vivaldi
-for_window [class="Vivaldi-stable"] opacity 0.9
-# Rofi
-for_window [app_id="rofi"] opacity 0.9
-
-# Brave Browser (beta, dev)
-for_window [class="Brave-browser(-beta|-dev)"] opacity 0.9
-
-# Vivaldi and Zen Alpha
-for_window [app_id="zen-alpha"] opacity 0.9
-
-# Firefox
-for_window [class="(?i)^firefox$"] opacity 0.9
-
-# Thunar
-for_window [app_id="thunar"] opacity 0.9
-
-# Foot terminal
-for_window [app_id="foot"] opacity 0.8
-
-# Visual Studio Code and related apps
-for_window [class="(?i)^VSCodium|codium-url-handler|Visual-Studio-Code|Code$"] opacity 0.9
-
-# Zed editor
-for_window [app_id="dev.zed.Zed"] opacity 0.9
-
-# OBS Studio
-for_window [app_id="com.obsproject.Studio"] opacity 0.9
-
-# Discord and Vesktop (assuming "vesktop" was intended)
-for_window [class="discord|vesktop"] opacity 0.8
-
-# Spotify
-for_window [class="Spotify"] opacity 0.8
-
-# Kramo's Cartridges app
-for_window [app_id="page.kramo.Cartridges"] opacity 0.8
-
-# Zathura PDF reader
-for_window [app_id="org.pwmt.zathura"] opacity 0.9
-
-# Picture-in-Picture windows (specific title match)
-for_window [title="(?i)^Picture-in-Picture$"] opacity 0.95 0.75
+# ###  SWAYFX ###
+#     blur enable
+#     blur_xray disable
+#     blur_passes 4
+#     blur_radius 4
+#     layer_effects "waybar" blur enable; shadows disable;
+#     layer_effects "gtk-layer-shell" blur enable; shadows enable; corner_radius 13
+#     layer_effects "wofi" blur enable; shadows enable; corner_radius 13
+#     layer_effects "avizo" blur enable; corner_radius 15
+#     smart_corner_radius enable
+#     corner_radius 5
+#     shadows enable
+#     shadows_on_csd enable
+#     shadow_blur_radius 20
+#
+#
+# #vivaldi
+# for_window [class="Vivaldi-stable"] opacity 0.9
+# # Rofi
+# for_window [app_id="rofi"] opacity 0.9
+#
+# # Brave Browser (beta, dev)
+# for_window [class="Brave-browser(-beta|-dev)"] opacity 0.9
+#
+# # Vivaldi and Zen Alpha
+# for_window [app_id="zen-alpha"] opacity 0.9
+#
+# # Firefox
+# for_window [class="(?i)^firefox$"] opacity 0.9
+#
+# # Thunar
+# for_window [app_id="thunar"] opacity 0.9
+#
+# # Foot terminal
+# for_window [app_id="foot"] opacity 0.8
+#
+# # Visual Studio Code and related apps
+# for_window [class="(?i)^VSCodium|codium-url-handler|Visual-Studio-Code|Code$"] opacity 0.9
+#
+# # Zed editor
+# for_window [app_id="dev.zed.Zed"] opacity 0.9
+#
+# # OBS Studio
+# for_window [app_id="com.obsproject.Studio"] opacity 0.9
+#
+# # Discord and Vesktop (assuming "vesktop" was intended)
+# for_window [class="discord|vesktop"] opacity 0.8
+#
+# # Spotify
+# for_window [class="Spotify"] opacity 0.8
+#
+# # Kramo's Cartridges app
+# for_window [app_id="page.kramo.Cartridges"] opacity 0.8
+#
+# # Zathura PDF reader
+# for_window [app_id="org.pwmt.zathura"] opacity 0.9
+#
+# # Picture-in-Picture windows (specific title match)
+# for_window [title="(?i)^Picture-in-Picture$"] opacity 0.95 0.75
 
 
 

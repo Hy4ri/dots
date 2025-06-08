@@ -265,8 +265,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "󰥔 ",
-            "deactivated": " "
+            "activated": "",
+            "deactivated": ""
         },
         "on-click-right": "~/.config/hypr/scripts/LockScreen.sh"
     },
@@ -279,8 +279,8 @@
         "on-click-middle": "playerctl previous",
         "on-click-right": "playerctl next",
         "scroll-step": 15.0,
-        "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
-        "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
+        "on-scroll-up": "~/.config/hypr/scripts/playerctl.sh +",
+        "on-scroll-down": "~/.config/hypr/scripts/playerctl.sh -",
         "smooth-scrolling-threshold": 1,
         "player-icons": {
             "chromium": " ",
@@ -399,9 +399,15 @@
         "format": "{}",
         "interval": 15,
         "return-type": "json",
-        "exec": "$HOME/.config/waybar/Scripts/prayer-notify.sh ; $HOME/.config/waybar/Scripts/prayer-times status",
-        "on-click-middle": "$HOME/.config/waybar/Scripts/prayer-times yad",
+        "exec": "$HOME/.config/waybar/scripts/prayer-notify.sh ; $HOME/.config/waybar/scripts/prayer-times status",
+        "on-click-middle": "$HOME/.config/waybar/scripts/prayer-times yad",
         "on-click": "xdg-open https://timesprayer.com/prayer-times-cities-jordan.html"
+    },
+    "custom/go-pray": {
+     "interval": 1,
+     "return-type": "json",
+     "exec": "$HOME/.config/waybar/scripts/go-pray.sh",
+     "format": "{}",
     },
 
     // This is a custom cava visualizer
@@ -435,7 +441,7 @@
     "custom/updater": {
         "exec": "echo '{ \"text\": \"'$(checkupdates | wc -l)'\" , \"tooltip\": \"'$(checkupdates | awk '{print $1}' | head -n 50 | sed ':a;N;$!ba;s/\\n/\\\\n/g')'\"}'",
         "return-type": "json",
-        "interval": 10800,
+        "interval": 3600,
         "on-click": "foot -e paru -Syyu; pkill -RTMIN+8 waybar",
     },
    }
