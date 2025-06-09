@@ -5,9 +5,10 @@
 # Vars
 config="$HOME/.config"
 if [ -d "$HOME/Documents/Projects/dots" ]; then
-    dots="$HOME/Documents/Projects/dots"
+  dots="$HOME/Documents/Projects/dots"
 else
-    dots="$HOME/m57-dots-install"
+  mkdir $HOME/Documents/Projects/dots
+  dots="$HOME/Documents/Projects/dots"
 fi
 
 echo "Linking ..."

@@ -14,10 +14,10 @@ EOF
 cd ~/
 
 check_paru_installed() {
-    if command -v paru &> /dev/null
-    then
+    if command -v paru &>/dev/null; then
         paru -Syu --noconfirm
     else
+        sudo pacman -S base-devel
         git clone https://aur.archlinux.org/paru.git
         cd paru
         makepkg -si --noconfirm
