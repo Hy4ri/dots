@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 clear
 
@@ -12,7 +12,7 @@ cat <<"EOF"
 ╚═╝     ╚═╝╚══════╝   ╚═╝      ╚═════╝  ╚═════╝    ╚═╝    ╚═╝     ╚═╝╚══════╝╚══════╝╚══════
 EOF
 
-[ ! -d ~/dots ] cp "$(pwd)" -r ~/dots
+[ ! -d ~/dots ] && jcp "$(pwd)" -r ~/dots
 cd ~/dots
 
 echo "edit pacman.conf"
@@ -33,21 +33,20 @@ lines_to_edit=(
 for line in "${lines_to_edit[@]}"; do
     if grep -q "^#$line" "$pacman_conf"; then
         sudo sed -i "s/^#$line/$line/" "$pacman_conf"
-        echo -e "${CAT} Uncommented: $line ${RESET}"
     else
-        echo -e "${CAT} $line is already uncommented. ${RESET}"
+        echo -e "$line is already uncommented."
     fi
 done
 
 # Add "ILoveCandy" below ParallelDownloads if it doesn't exist
 if grep -q "^ParallelDownloads" "$pacman_conf" && ! grep -q "^ILoveCandy" "$pacman_conf"; then
     sudo sed -i "/^ParallelDownloads/a ILoveCandy" "$pacman_conf"
-    echo -e "${CAT} Added ILoveCandy below ParallelDownloads. ${RESET}"
+    echo -e "Added ILoveCandy below ParallelDownloads. "
 else
-    echo -e "${CAT} ILoveCandy already exists ${RESET}"
+    echo -e "ILoveCandy already exists "
 fi
 
-echo -e "${CAT} Pacman.conf spicing up completed ${RESET}"
+echo -e "Pacman.conf spicing up completed "
 
 # updating pacman.conf
 sudo pacman -Sy
@@ -60,10 +59,11 @@ read Backup
 
 case "$Backup" in
 yes | Yes | y | Y)
+    mkdir -p ~/old-config
     [ -d ~/.config ] && mv ~/.config/ ~/old-config/
     [ -d ~/.icons ] && mv ~/.icons/ ~/old-config/
     [ -d ~/.themes ] && mv ~/.themes/ ~/old-config/
-    [ -d ~/.zshrc ] && mv ~/.zshrc ~/old-config/
+    [ -f ~/.zshrc ] && mv ~/.zshrc ~/old-config/
     ;;
 No | no | n | N) ;;
 *) ;;
@@ -86,13 +86,13 @@ while true; do
     case "$helper" in
     yay)
         export helper
-        echo -n "installing $helper"
+        echo -n "installing \" $helper\""
         ~/dots/scripts/./yay.sh
         break
         ;;
     paru)
         export helper
-        echo -n "installing $helper"
+        echo -n "installing \"$helper\""
         ~/dots/scripts/./paru.sh
         break
         ;;
@@ -166,17 +166,16 @@ sleep 1
 
 cat <<"EOF"
 
-██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗
-██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗
-██║ █╗ ██║██║██╔██╗ ██║██║  ██║██║   ██║██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝
-██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗
-╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║
- ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
-
+██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗    ███╗   ███╗ █████╗ ███╗   ██╗ ██████╗ ███████╗██████╗ ███████╗
+██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗██║    ██║    ████╗ ████║██╔══██╗████╗  ██║██╔════╝ ██╔════╝██╔══██╗██╔════╝
+██║ █╗ ██║██║██╔██╗ ██║██║  ██║██║   ██║██║ █╗ ██║    ██╔████╔██║███████║██╔██╗ ██║██║  ███╗█████╗  ██████╔╝███████╗
+██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║███╗██║    ██║╚██╔╝██║██╔══██║██║╚██╗██║██║   ██║██╔══╝  ██╔══██╗╚════██║
+╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝╚███╔███╔╝    ██║ ╚═╝ ██║██║  ██║██║ ╚████║╚██████╔╝███████╗██║  ██║███████║
+ ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝
 EOF
 
 while true; do
-    echo -n "chose a Windomanager:Hyprland, sway or both : "
+    echo -n "chose a Window manager: Hyprland, Sway or both : "
     read Wm
     case "$Wm" in
     hyprland | Hyprland)
@@ -199,7 +198,7 @@ while true; do
         ;;
     No | no | n | N) ;;
     *)
-        echo "Invalid option. Please choose either 'hyprland', 'wayfire', 'sway' or 'all'."
+        echo "Invalid option. Please choose either Hyprland, Sway or both."
         ;;
     esac
 done
@@ -224,17 +223,17 @@ case "$DisMan" in
 sddm | SDDM | Sddm)
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm sddm
-    systemctl enable sddm.service
+    sudo systemctl enable sddm.service
     ;;
 gdm | GDM | Gdm)
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm gdm
-    systemctl enable gdm.service
+    sudo systemctl enable gdm.service
     ;;
 ly | Ly | LY)
     echo -n "installing $DisMan"
     $helper -Sy --needed --noconfirm ly
-    systemctl enable ly.service
+    sudo systemctl enable ly.service
     ;;
 None | none | n | N) ;;
 esac
