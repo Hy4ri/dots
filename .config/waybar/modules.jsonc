@@ -442,6 +442,7 @@
         "exec": "echo '{ \"text\": \"'$(checkupdates | wc -l)'\" , \"tooltip\": \"'$(checkupdates | awk '{print $1}' | head -n 50 | sed ':a;N;$!ba;s/\\n/\\\\n/g')'\"}'",
         "return-type": "json",
         "interval": 3600,
-        "on-click": "foot -e paru -Syyu; pkill -RTMIN+8 waybar",
+        "on-click": "foot -e $HOME/.config/waybar/scripts/update.sh; pkill -RTMIN+8 waybar",
+    
     },
    }

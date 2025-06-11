@@ -5,10 +5,9 @@
 # Vars
 config="$HOME/.config"
 if [ -d "$HOME/Documents/Projects/dots" ]; then
-  dots="$HOME/Documents/Projects/dots"
+    dots="$HOME/Documents/Projects/dots"
 else
-  mkdir $HOME/Documents/Projects/dots
-  dots="$HOME/Documents/Projects/dots"
+    dots="$HOME/dots"
 fi
 
 echo "Linking ..."

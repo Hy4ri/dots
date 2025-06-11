@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<"EOF"
 
@@ -13,19 +13,15 @@ EOF
 
 cd ~/
 
-check_paru_installed() {
-    if command -v paru &>/dev/null; then
-        paru -Syu --noconfirm
-    else
-        sudo pacman -S base-devel
-        git clone https://aur.archlinux.org/paru.git
-        cd paru
-        makepkg -si --noconfirm
-        sleep 1
-        paru -Syu --noconfirm
-    fi
-}
-check_paru_installed
+if command -v paru &>/dev/null; then
+  paru -Syu --noconfirm
+else
+  sudo pacman -S base-devel
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
+  makepkg -si --noconfirm
+  sleep 1
+  paru -Syu --noconfirm
+fi
 
-sleep 1
-cd ~/m57-dots-install
+cd ~/dots

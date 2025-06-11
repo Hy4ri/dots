@@ -25,8 +25,7 @@ main() {
         $term nvim "$Configs/UserSettings.conf"
         ;;
     2)
-        cd $Scripts
-        $term nvim
+        $term nvim $Scripts
         ;;
     3)
         $term nvim "$Configs/WindowRules.conf"

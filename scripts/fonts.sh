@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-$helper -Sy --needed adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts \
-adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts awesome-terminal-fonts awesome-terminal-fonts \
-noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-bitstream-vera ttf-dejavu ttf-droid ttf-fantasque-nerd \
-ttf-fira-code ttf-fira-sans ttf-font-awesome ttf-hack ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-liberation \
-ttf-meslo-nerd ttf-ms-win10-auto ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-common ttf-opensans
+$helper -Sy --needed \
+  adobe-source-code-pro-fonts \
+  ttf-bitstream-vera \
+  ttf-jetbrains-mono \
+  ttf-jetbrains-mono-nerd \
+  ttf-opensans \
+  ttf-ms-win10-auto
 
-sleep 1
-cd ~/m57-dots-install
+cd ~/dots

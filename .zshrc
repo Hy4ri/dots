@@ -3,13 +3,13 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export CSCOPE_EDITOR="nvim"
 export MANPAGER="nvim +Man!"
-export TERMINAL=/usr/bin/foot
+export TERMINAL="foot"
+export helper="paru"
 export PATH=$PATH:/home/m57/.spicetify
 export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export FZF_BASE=/usr/share/fzf
-
 
 DISABLE_MAGIC_FUNCTIONS="true"
 COMPLETION_WAITING_DOTS="true"
