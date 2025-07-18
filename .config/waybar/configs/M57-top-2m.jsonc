@@ -15,7 +15,7 @@
 
     "modules-center": [],
 
-    "modules-right": ["privacy", "tray", "group/sys", "group/time", "custom/swaync"]
+    "modules-right": ["privacy", "tray", "group/sys", "group/time" ]
 },
 
 {
@@ -35,7 +35,7 @@
 
     "modules-center": [],
 
-    "modules-right": ["tray","group/sys","clock","custom/swaync"]
+    "modules-right": ["tray","group/sys","group/time"]
 
 
 }]

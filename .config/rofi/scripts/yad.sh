@@ -6,20 +6,31 @@ theme='style'
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
-    "menu|function"
+    "Calendar|calendar"
+    "Colors|color"
+    "Fonts|font"
 )
 
 # Define functions for each menu item
 
-functionname() {
+calendar() {
+    THEDATE=$(yad --calendar)
+    yad --text="You chose $THEDATE"
+}
 
+color() {
+    yad --color
+}
+
+font() {
+    yad --font
 }
 
 # Create Rofi menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
     IFS="|" read -r label _ <<<"$item"
     echo "$label"
-done | rofi -dmenu -p "Title" -i -theme ${dir}/${theme}.rasi)
+done | rofi -dmenu -p "Yad tools" -i -theme ${dir}/${theme}.rasi)
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do

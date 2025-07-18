@@ -26,7 +26,7 @@ echo "Done"
 echo ""
 echo "**Renaming files sequentially**"
 echo ""
-counter=1
+counter=1000
 for item in *.png; do
     mv "$item" "$counter.png"
     counter=$((counter + 1))

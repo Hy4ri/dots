@@ -16,7 +16,11 @@ $helper --needed --noconfirm -S \
 $helper --needed --noconfirm -S \
   libvirt \
   dnsmasq \
-  openbsd-netcat
+  openbsd-netcat \
+  virt-manager \
+  vde2 \
+  bridge-utils \
+  libgeustfs
 
 sudo systemctl start libvirtd.service
 sudo systemctl enable libvirtd.service

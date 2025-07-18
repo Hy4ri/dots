@@ -5,7 +5,7 @@ export CSCOPE_EDITOR="nvim"
 export MANPAGER="nvim +Man!"
 export TERMINAL="foot"
 export helper="paru"
-export PATH=$PATH:/home/m57/.spicetify
+export PATH="$HOME/.local/bin:$PATH"
 export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
@@ -19,7 +19,6 @@ ZSH_THEME="nanotech"
 plugins=(fzf aliases safe-paste sudo zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 source <(fzf --zsh)
-
 
 ############################ Binds #################################
 
@@ -47,7 +46,7 @@ alias parusyyu='paru -Syyu'
 
 #eza
 alias ls='eza --color=always --group-directories-first' # better ls
-alias ll='eza -al --color=always --group-directories-first'  # long format
+alias l='eza -al --color=always --group-directories-first'  # long format
 alias lt='eza -aT --color=always --group-directories-first' # tree listing
 
 #git
@@ -68,7 +67,7 @@ alias snvim='sudo nvim'
 alias clock='termdown -z -Z " %I : %M " -f banner3'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
-alias music='bash ~/.config/hypr/scripts/spotify-update.sh'
+alias music='bash ~/.config/hypr/scripts/music.sh'
 alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
 alias vdl='yt-dlp'
 alias img2txt='ascii-image-converter'
@@ -86,6 +85,7 @@ alias 25='bash ~/.config/hypr/scripts/25.sh'
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias xx='bash ~/Documents/xx.sh'
 alias rsync='rsync -rPavh'
+alias bios='sudo systemctl reboot --firmware-setup'
 
 #waydroid
 alias wayon='waydroid show-full-ui '

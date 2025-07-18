@@ -36,10 +36,6 @@ ln -s $dots/.config/gammastep $config/gammastep
 rm -rf $config/rofi
 ln -s $dots/.config/rofi $config/rofi
 
-# swaync
-rm -rf $config/swaync
-ln -s $dots/.config/swaync $config/swaync
-
 # waybar
 rm -rf $config/waybar
 ln -s $dots/.config/waybar $config/waybar

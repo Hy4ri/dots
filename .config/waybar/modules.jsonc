@@ -297,7 +297,7 @@
             "playing": "",
             "stopped": ""
         },
-        "ignored-players": ["chromium", "mpv", "brave", "firefox"],
+        "ignored-players": ["chromium","vivaldi","mpv", "brave", "firefox"],
         "max-length": 300
     },
 
