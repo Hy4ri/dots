@@ -35,7 +35,7 @@
 
     "modules-center": [],
 
-    "modules-right": ["tray","group/sys","group/time"]
+    "modules-right": ["tray","group/sys","clock"]
 
 
 }]
