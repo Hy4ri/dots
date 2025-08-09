@@ -11,11 +11,11 @@
     "fixed-center": false,
     "ipc": true,
 
-    "modules-left": ["hyprland/workspaces#Num", "hyprland/window", "mpris"],
+    "modules-left": ["hyprland/workspaces#Num", "hyprland/window"],
 
     "modules-center": [],
 
-    "modules-right": ["privacy", "tray", "group/sys", "group/time" ]
+    "modules-right": ["mpris", "privacy", "tray", "custom/powerprofile", "custom/updater", "idle_inhibitor", "pulseaudio", "pulseaudio#microphone", "battery", "group/time" ]
 },
 
 {
@@ -31,11 +31,11 @@
     "fixed-center": false,
     "ipc": true,
 
-    "modules-left": ["hyprland/workspaces#Num","hyprland/window","mpris"],
+    "modules-left": ["hyprland/workspaces#Num","hyprland/window"],
 
     "modules-center": [],
 
-    "modules-right": ["tray","group/sys","clock"]
+    "modules-right": ["mpris", "tray","group/sys","clock"]
 
 
 }]

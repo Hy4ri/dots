@@ -45,9 +45,9 @@ alias paruss='paru -Ss'
 alias parusyyu='paru -Syyu'
 
 #eza
-alias ls='eza --color=always --group-directories-first' # better ls
-alias l='eza -al --color=always --group-directories-first'  # long format
-alias lt='eza -aT --color=always --group-directories-first' # tree listing
+alias ls='eza --color=always --group-directories-first --icons' # better ls
+alias l='eza -al --color=always --group-directories-first --icons --git'  # long format
+alias lt='eza -aT --level=2 --color=always --group-directories-first --icons --git' # tree listing
 
 #git
 alias gitc='git clone'
@@ -61,7 +61,6 @@ alias pvenv='python -m venv venv'
 alias sopy='source venv/bin/activate'
 
 #aliases
-alias ..='cd ..'
 alias sz='. "$HOME/.zshrc"'
 alias snvim='sudo nvim'
 alias clock='termdown -z -Z " %I : %M " -f banner3'

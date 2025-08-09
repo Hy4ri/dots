@@ -1,0 +1,133 @@
+@define-color font-color #e2e2e2;
+@define-color background-color #121212;
+@define-color accent #990000;
+
+* {
+  font-family: JetBrainsMono Nerd Font;
+  font-weight: 700;
+  min-height: 0;
+  font-size: 15px;
+  border-radius: 0px;
+}
+
+
+#window {
+  background-color: @accent;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+window#waybar {
+  background-color: @accent;
+  color: @font-color;
+}
+
+
+tooltip {
+  background: @background-color;
+  opacity: 0.9;
+  border: 2px solid @accent;
+}
+
+tooltip label {
+  color: @font-color;
+}
+
+
+#workspaces button {
+  color: @font-color;
+  background: @background-color;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+  background-color: @accent;
+}
+
+#workspaces button:hover {
+  background-color: @background-color;
+}
+
+#workspaces button.urgent {
+  animation: flash 1s infinite;
+}
+
+@keyframes flash {
+  0% {
+    background-color: #990000;
+  }
+
+  50% {
+    background-color: #ff0000;
+  }
+
+  100% {
+    background-color: #990000;
+  }
+}
+
+#clock {
+  padding-left: 5px;
+  padding-right: 5px;
+  background: @background-color;
+}
+
+#tray {
+  padding-left: 5px;
+  padding-right: 5px;
+  background: @background-color;
+}
+
+#mpris {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: @accent;
+  background: @background-color;
+}
+
+#custom-prayers {
+  padding-left: 5px;
+  padding-right: 5px;
+  background: @accent;
+}
+
+#pulseaudio {
+  padding-left: 8px;
+  padding-right: 8px;
+  background: @background-color;
+}
+
+#battery {
+  padding-left: 5px;
+  padding-right: 5px;
+  background: @background-color;
+}
+
+#custom-powerprofile {
+  padding-left: 8px;
+  padding-right: 8px;
+  background: @background-color;
+}
+
+#battery.critical:not(.charging) {}
+
+#privacy {
+  background: @background-color;
+}
+
+
+#privacy-item.screenshare {
+  background: @background-color;
+}
+
+#idle_inhibitor {
+  padding-left: 8px;
+  padding-right: 8px;
+  background: @background-color;
+}
+
+#custom-updater {
+  padding-left: 8px;
+  padding-right: 8px;
+  background: @background-color;
+}

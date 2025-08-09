@@ -7,7 +7,6 @@ change_wallpaper() {
     ln -sf "$(cat ~/Desktop/pic.txt)" ~/Desktop/.pic
     wal -i ~/Desktop/.pic
     rm ~/Desktop/pic.txt ~/Desktop/.pic
-    hyprctl hyprpaper unload unused
 }
 
 change_wallpaper_random() {
@@ -15,14 +14,12 @@ change_wallpaper_random() {
     ln -sf "$(cat ~/Desktop/pic.txt)" ~/Desktop/.pic
     wal -i ~/Desktop/.pic
     rm ~/Desktop/pic.txt ~/Desktop/.pic
-    hyprctl hyprpaper unload unused
 }
 
 change_wallpaper_auto() {
     while true; do
         sleep $INTERVAL
         waypaper --random --monitor eDP-1
-        hyprctl hyprpaper unload unused
     done
 }
 
@@ -32,7 +29,6 @@ change_wallpaper_auto_wall() {
         ln -sf "$(cat ~/Desktop/pic.txt)" ~/Desktop/.pic
         wal -i ~/Desktop/.pic
         rm ~/Desktop/pic.txt ~/Desktop/.pic
-        hyprctl hyprpaper unload unused
         sleep $INTERVAL
     done
 }
