@@ -30,6 +30,7 @@ bindkey "^e" end-of-line
 #pacman
 alias sps='sudo pacman -S'
 alias spss='sudo pacman -Ss'
+alias spfzf="pacman -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -Si {1}' --reverse | xargs -ro sudo pacman -S"
 alias spsyyu='sudo pacman -Syyu'
 alias spr='sudo pacman -R'
 alias sprns='sudo pacman -Rns'
@@ -41,7 +42,7 @@ alias mirror="sudo cachyos-rate-mirrors"
 #paru
 alias paruscc='paru -Scc' # remove unused cache
 alias parus='paru -S'
-alias paruss='paru -Ss'
+alias paruss="paru -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S"
 alias parusyyu='paru -Syyu'
 
 #eza

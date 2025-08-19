@@ -18,32 +18,32 @@ MENU_ITEMS=(
 # Define functions for each menu item
 
 set() {
-    duration=$(rofi -dmenu -p "Timer duration:" -theme "${dir}/${theme}.rasi")
-    sleep $duration && notify-send "Timer Finshed"
+    duration=$(rofi -dmenu -p "Timer duration in Minutes:" -theme "${dir}/${theme}.rasi")
+    sleep $duration && notify-send --expire-time=9999 "Timer Finshed"
 }
 
 1min() {
-    sleep 60 && notify-send "Timer Finshed"
+    sleep 60 && notify-send --expire-time=9999 "Timer Finshed"
 }
 
 5min() {
-    sleep 300 && notify-send "Timer Finshed"
+    sleep 300 && notify-send --expire-time=9999 "Timer Finshed"
 }
 
 10min() {
-    sleep 600 && notify-send "Timer Finshed"
+    sleep 600 && notify-send --expire-time=9999 "Timer Finshed"
 }
 
 15min() {
-    sleep 900 && notify-send "Timer Finshed"
+    sleep 900 && notify-send --expire-time=9999 "Timer Finshed"
 }
 
 30min() {
-    sleep 1800 && notify-send "Timer Finshed"
+    sleep 1800 && notify-send --expire-time=9999 "Timer Finshed"
 }
 
 60min() {
-    sleep 3600 && notify-send "Timer Finshed"
+    sleep 3600 && notify-send --expire-time=9999 "Timer Finshed"
 }
 
 # Create Rofi menu

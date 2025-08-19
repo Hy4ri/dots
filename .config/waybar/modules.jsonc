@@ -121,7 +121,6 @@
         "modules": [
             "battery",
             "idle_inhibitor",
-            "custom/updater",
             "custom/powerprofile",
             "pulseaudio#microphone",
             "pulseaudio"
