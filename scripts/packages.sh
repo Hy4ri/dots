@@ -61,7 +61,7 @@ $helper -Sy --needed \
     zathura \
     zathura-cb \
     zathura-djvu \
-    zathura-pdf-mupdf \
+    zathura-pdf-poppler \
     zathura-ps \
     zoxide \
     nemo-audio-tab \

@@ -5,15 +5,15 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "position": "top",
+    "position": "bottom",
     "reload_style_on_change": true,
     "spacing": 0,
     "fixed-center": false,
     "ipc": true,
 
-    "modules-left": ["hyprland/workspaces#Num", "hyprland/window" ,"mpris"],
+    "modules-left": ["custom/launcher", "wlr/taskbar" ],
 
-    "modules-center": [],
+    "modules-center": ["mpris"],
 
     "modules-right": ["privacy", "tray", "group/sys", "group/time" ]
 },
@@ -25,15 +25,15 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "position": "top",
+    "position": "bottom",
     "reload_style_on_change": true,
     "spacing": 0,
     "fixed-center": false,
     "ipc": true,
 
-    "modules-left": ["hyprland/workspaces#Num","hyprland/window","mpris"],
+    "modules-left": ["custom/launcher", "wlr/taskbar" ],
 
-    "modules-center": [],
+    "modules-center": ["mpris"],
 
     "modules-right": ["tray","group/sys","clock"]
 

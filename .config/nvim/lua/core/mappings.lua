@@ -46,7 +46,7 @@ keymap.set("n", "<leader>t", "<cmd>split | terminal<CR>")
 keymap.set("n", "<leader>r", ":%s/", { noremap = true })
 
 -- quit
-keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- Keeping the cursor centered.
 keymap.set("n", "<C-d>", "<C-d>zz")

@@ -14,12 +14,21 @@ export FZF_BASE=/usr/share/fzf
 DISABLE_MAGIC_FUNCTIONS="true"
 COMPLETION_WAITING_DOTS="true"
 
-ZSH_THEME="nanotech"
+############################ Plugins #################################
 
-plugins=(fzf aliases safe-paste sudo zsh-autosuggestions zsh-syntax-highlighting)
-source $ZSH/oh-my-zsh.sh
-source <(fzf --zsh)
+source ~/antigen.zsh
+antigen use oh-my-zsh
 
+antigen bundle sudo
+antigen bundle fzf
+antigen bundle aliases
+antigen bundle safe-paste
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+
+antigen theme nanotech
+
+antigen apply
 ############################ Binds #################################
 
 bindkey "^a" beginning-of-line
@@ -40,9 +49,9 @@ alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias mirror="sudo cachyos-rate-mirrors"
 
 #paru
+alias paruss="paru -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S"
 alias paruscc='paru -Scc' # remove unused cache
 alias parus='paru -S'
-alias paruss="paru -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S"
 alias parusyyu='paru -Syyu'
 
 #eza
@@ -61,8 +70,23 @@ alias p='python'
 alias pvenv='python -m venv venv'
 alias sopy='source venv/bin/activate'
 
-#aliases
+#Files
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -Iv'
+alias mkdir='mkdir -pv'
+
+#cd
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+
+#ZSH
 alias sz='. "$HOME/.zshrc"'
+alias zshrc='${EDITOR} ~/.zshrc'
+
+#Random
 alias snvim='sudo nvim'
 alias clock='termdown -z -Z " %I : %M " -f banner3'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'

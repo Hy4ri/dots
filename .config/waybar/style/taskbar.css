@@ -1,0 +1,84 @@
+@define-color font-color #e2e2e2;
+@define-color background-color #121212;
+@define-color background-color-2 #222222;
+@define-color accent #990000;
+@define-color clock rgb(204, 0, 0);
+@define-color shadow #550000;
+
+/* padding :top right bottom left */
+* {
+  font-family: JetBrainsMono Nerd Font;
+  font-weight: 700;
+  min-height: 0;
+  font-size: 15px;
+  border-radius: 1px;
+}
+
+/* Left */
+
+#custom-launcher {
+  color: @accent;
+  padding: 0px 10px 0px 5px;
+  margin: 0px 0px 0px 0px
+}
+
+#taskbar {
+  padding: 0px 5px 0px 5px;
+  margin: 0px 5px 0px 5px
+}
+
+#taskbar button {
+  color: @font-color;
+  background-color: @background-color-2;
+  border: 1px solid @shadow;
+  margin: 0px 1px 0px 1px
+}
+
+#taskbar button.active {
+  background-color: @accent;
+  padding: 0px 10px 0px 10px
+}
+
+/* Middle */
+
+#mpris {
+  color: @accent;
+}
+
+/* Right */
+
+#clock {
+  color: @accent;
+  padding: 0px 5px 0px 10px;
+  margin: 0px 0px 0px 5px
+}
+
+#sys {
+  padding: 0px 0px 0px 5px;
+  margin: 0px 0px 0px 10px
+}
+
+#battery {
+  color: greenyellow;
+}
+
+#pulseaudio {
+  margin-left: 5px;
+  padding-right: 10px;
+}
+
+#custom-powerprofile {
+  margin-left: 7px;
+  margin-right: 15px;
+  color: @font-color;
+}
+
+#idle_inhibitor {
+  margin-left: 1px;
+  margin-right: 7px;
+}
+
+#tray {
+  border: 1px solid @shadow;
+  padding: 0px 5px 0px 5px
+}
