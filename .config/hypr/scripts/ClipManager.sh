@@ -10,8 +10,7 @@ while true; do
     result=$(
         rofi -dmenu -i \
             -kb-custom-1 "Control-Delete" \
-            -kb-custom-2 "Alt-Delete" \
-            -theme $HOME/.config/rofi/launchers/style.rasi < <(cliphist list)
+            -kb-custom-2 "Alt-Delete" < <(cliphist list)
     )
 
     case "$?" in

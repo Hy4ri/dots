@@ -1,0 +1,24 @@
+configuration {
+	modi: "drun";
+	case-smart: true;
+	cycle: true;
+	filter: "";
+	scroll-method: 0;
+	normalize-match: true;
+	show-icons: true;
+	steal-focus: false;
+
+	/*---------- Matching setting ----------*/
+	matching: "regex";
+	tokenize: true;
+
+	/*---------- History and Sorting ----------*/
+	disable-history: true;
+
+	/*---------- Other settings ----------*/
+    timeout {
+      action: "kb-cancel";
+      delay:  0;
+    }
+
+}

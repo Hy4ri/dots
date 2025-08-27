@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 
 # Style
-dir="$HOME/.config/rofi/launchers/"
-theme='style'
 scripts="$HOME/.config/rofi/scripts"
 
 # Menu labels
-MENU="📝 Notes\n⌚ Timer\n👾 Games\n🔧 Yad\n💡 Brightness\n🔆 Weather\n💻 Pc Stats\n🎨 Waybar Theme\n🎨 Waybar Layout"
+MENU="📝 Notes\n⏸️ Powermenu\n⌚ Timer\n👾 Games\n📃 Mans\n🔧 Yad\n💡 Brightness\n🔆 Weather\n💻 Pc Stats\n🎨 Waybar Theme\n🎨 Waybar Layout"
 
-CHOICE=$(echo -e "$MENU" | rofi -dmenu -p "Choose Script" -i -theme ${dir}/${theme}.rasi)
+CHOICE=$(echo -e "$MENU" | rofi -dmenu -p "Choose Script")
 
 case "$CHOICE" in
 "🟥🟩🟦 RGB Profiles") $scripts/rgb_profiles.sh ;;
@@ -22,4 +20,6 @@ case "$CHOICE" in
 "⌚ Timer") $scripts/timer.sh ;;
 "🎥 Screen Recorder") $scripts/screenrecord.sh ;;
 "🔧 Yad") $scripts/yad.sh ;;
+"📃 Mans") $scripts/man.sh ;;
+"⏸️ Powermenu") $scripts/powermenu.sh ;;
 esac

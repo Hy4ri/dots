@@ -1,38 +1,17 @@
 #!/usr/bin/env bash
 
-## Author : Aditya Shakya (adi1090x)
-## Github : @adi1090x
-#
-## Rofi   : Power Menu
-#
-## Available Styles
-#
-## style-1   style-2   style-3   style-4   style-5
-## style-6   style-7   style-8   style-9   style-10
-
-# Current Theme
-dir="$HOME/.config/rofi/powermenu/"
-theme='style'
-
-# CMDs
-uptime="$(uptime -p | sed -e 's/up //g')"
-host=$(hostname)
-
 # Options
-shutdown=''
-reboot=''
-lock=''
-suspend='󰒲'
-logout=''
+shutdown=' Shutdown'
+reboot=' Reboot'
+lock=' Lock'
+suspend='󰒲 Suspend'
+logout=' Logout'
 yes=''
 no=''
 
 # Rofi CMD
 rofi_cmd() {
-  rofi -dmenu \
-    -p "Uptime: $uptime" \
-    -mesg "Uptime: $uptime" \
-    -theme ${dir}/${theme}.rasi
+  rofi -dmenu
 }
 
 # Confirmation CMD
@@ -43,9 +22,7 @@ confirm_cmd() {
     -theme-str 'element-text {horizontal-align: 0.5;}' \
     -theme-str 'textbox {horizontal-align: 0.5;}' \
     -dmenu \
-    -p 'Confirmation' \
-    -mesg 'Are you Sure?' \
-    -theme ${dir}/${theme}.rasi
+    -p 'Confirmation'
 }
 
 # Ask for confirmation
@@ -67,8 +44,6 @@ run_cmd() {
     elif [[ $1 == '--reboot' ]]; then
       systemctl reboot
     elif [[ $1 == '--suspend' ]]; then
-      mpc -q pause
-      amixer set Master mute
       systemctl suspend
     elif [[ $1 == '--logout' ]]; then
       loginctl kill-session $XDG_SESSION_ID
@@ -97,3 +72,5 @@ $logout)
   run_cmd --logout
   ;;
 esac
+
+rofi_run

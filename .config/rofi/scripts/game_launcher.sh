@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 
-# Style
-dir="$HOME/.config/rofi/launchers/"
-theme='style'
-
 # Configs
 HEROIC_INSTALLED_JSON="$HOME/.config/heroic/legendaryConfig/legendary/installed.json"
-ROFI_CMD="rofi -dmenu -i -p Games -theme ${dir}/${theme}.rasi -show-icons"
+ROFI_CMD="rofi -dmenu -i -p Games -show-icons"
 ICON_CACHE="$HOME/.cache/game_launcher_icons"
 
 mkdir -p "$ICON_CACHE"

@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Style
-dir="$HOME/.config/rofi/launchers/"
-theme='style'
 notes_dir=~/Documents/notes
 
 # Define menu items as "Label|Function Name"
@@ -14,7 +11,7 @@ MENU_ITEMS=(
 # Define functions for each menu item
 
 new() {
-  name=$(rofi -dmenu -p "Note name:" -theme "${dir}/${theme}.rasi")
+  name=$(rofi -dmenu -p "Note name:")
   timestamp=$(date +%d-%m-%Y)
 
   [[ -z "$name" ]] && name="$timestamp"
@@ -28,7 +25,7 @@ new() {
 }
 
 list() {
-  selected=$(ls -t ~/Documents/notes/ | rofi -dmenu -theme "${dir}/${theme}.rasi")
+  selected=$(ls -t ~/Documents/notes/ | rofi -dmenu)
   [[ -n "$selected" ]] && foot -e nvim $notes_dir/$selected
 }
 
@@ -36,7 +33,7 @@ list() {
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "Notes" -theme ${dir}/${theme}.rasi)
+done | rofi -dmenu -p "Notes")
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do

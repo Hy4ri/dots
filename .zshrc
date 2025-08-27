@@ -29,6 +29,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen theme nanotech
 
 antigen apply
+
 ############################ Binds #################################
 
 bindkey "^a" beginning-of-line
@@ -191,9 +192,14 @@ up() {
   flatpak update 
 }
 
-############################## LAUNCH #############################
-#Zoxide
-eval "$(zoxide init zsh)"
+############################## LAUNCH ###############################
+
 #ff
 fastfetch --logo arch_small --logo-color-2 red --logo-color-1 red --color-keys red
 
+#Zoxide
+autoload -Uz add-zsh-hook
+load_zoxide_late() {
+  eval "$(zoxide init zsh)"
+}
+add-zsh-hook precmd load_zoxide_late

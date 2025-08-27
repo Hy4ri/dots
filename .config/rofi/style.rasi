@@ -16,9 +16,16 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "shared/colors.rasi"
-@import                          "shared/fonts.rasi"
 
+* {
+    font: "JetBrainsMono Nerd Font 12";
+    background:     #121212FF;
+    background-alt: #121212FF;
+    foreground:     #e2e2e2FF;
+    selected:       #990000FF;
+    active:         #FFFFFFFF;
+    urgent:         #E06C75FF;
+}
 /*****----- Main Window -----*****/
 window {
     transparency:                "real";

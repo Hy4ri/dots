@@ -6,7 +6,7 @@ return {
 	opts = {
 		bigfile = { enabled = false },
 		dashboard = { enabled = false },
-		explorer = { enabled = false },
+		explorer = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
 		notifier = {
@@ -64,33 +64,13 @@ return {
 			desc = "Goto T[y]pe Definition",
 		},
 		{
-			"<leader>ss",
+			"<leader>fe",
 			function()
-				Snacks.picker.lsp_symbols()
+				Snacks.explorer()
 			end,
-			desc = "LSP Symbols",
+			desc = "Explorer Snacks (cwd)",
 		},
-		{
-			"<leader>sS",
-			function()
-				Snacks.picker.lsp_workspace_symbols()
-			end,
-			desc = "LSP Workspace Symbols",
-		},
-		{
-			"<leader>bd",
-			function()
-				Snacks.bufdelete()
-			end,
-			desc = "Delete Buffer",
-		},
-		{
-			"<leader>un",
-			function()
-				Snacks.notifier.hide()
-			end,
-			desc = "Dismiss All Notifications",
-		},
+		{ "<leader>e", "<leader>fe", desc = "Explorer Snacks (cwd)", remap = true },
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
@@ -106,7 +86,6 @@ return {
 				vim.print = _G.dd -- Override print to use snacks for `:=` command
 
 				-- Create some toggle mappings
-				Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
 				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
 				Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>ul")
 				Snacks.toggle.diagnostics():map("<leader>ud")

@@ -27,9 +27,6 @@ keymap.set("n", "<leader>sw", "<cmd> Telescope grep_string <cr>")
 keymap.set("n", "<leader>so", "<cmd> Telescope oldfiles <cr>")
 keymap.set("n", "<leader>sb", "<cmd>Telescope buffers<CR>")
 
--- oil
-keymap.set("n", "<leader>e", "<cmd> Oil <cr>")
-
 keymap.set("n", "<leader>fc", function()
   require("telescope.builtin").find_files({
     cwd = "~/.config/nvim/",
@@ -75,6 +72,15 @@ end, { expr = true })
 -- Make U opposite to u.
 keymap.set("n", "U", "<C-r>")
 
--- commenting
-keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
-keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+-- better up/down
+keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+
+-- buffers
+keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+keymap.set("n", "<leader>bd", function()
+  Snacks.bufdelete()
+end, { desc = "Delete Buffer" })

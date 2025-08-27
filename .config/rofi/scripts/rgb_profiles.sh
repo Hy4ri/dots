@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Style
-dir="$HOME/.config/rofi/launchers/"
-theme='style'
-
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
   "🟨 Yellow|yellow"
@@ -26,7 +22,7 @@ crimson() {
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "Set RGB Profile" -theme ${dir}/${theme}.rasi)
+done | rofi -dmenu -p "Set RGB Profile")
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do
