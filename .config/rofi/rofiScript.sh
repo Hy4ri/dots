@@ -4,7 +4,7 @@
 scripts="$HOME/.config/rofi/scripts"
 
 # Menu labels
-MENU="📝 Notes\n⏸️ Powermenu\n⌚ Timer\n👾 Games\n📃 Mans\n🔧 Yad\n💡 Brightness\n🔆 Weather\n💻 Pc Stats\n🎨 Waybar Theme\n🎨 Waybar Layout"
+MENU="📝 Notes\n⏸️ Powermenu\n⚙ HyprEdit\n⌚ Timer\n👾 Games\n📃 Mans\n🔧 Yad\n💡 Brightness\n🔆 Weather\n💻 Pc Stats\n🎨 Waybar Theme\n🎨 Waybar Layout"
 
 CHOICE=$(echo -e "$MENU" | rofi -dmenu -p "Choose Script")
 
@@ -22,4 +22,5 @@ case "$CHOICE" in
 "🔧 Yad") $scripts/yad.sh ;;
 "📃 Mans") $scripts/man.sh ;;
 "⏸️ Powermenu") $scripts/powermenu.sh ;;
+"⚙ HyprEdit") $scripts/hypredit.sh ;;
 esac
