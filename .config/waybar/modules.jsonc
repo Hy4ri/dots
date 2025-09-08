@@ -238,27 +238,12 @@
     },
 
     "hyprland/window": {
-        "format": "~ {title}",
+        "format":"{}",
         "max-length": 333,
         "separate-outputs": true,
         "icon": true,
         "icon-size": 18,
         "on-click-middle": "~/.config/hypr/scripts/KillActiveProcess.sh",
-        "rewrite": {
-            "(.*) — Mozilla Firefox": "$1",
-            "(.*) - Brave": "$1",
-            "(.*) - Vivaldi": "$1",
-            "nvim (.*)": "$1",
-            "(.*) - Thunar": "$1",
-            "(.*) - fish": "_> [$1]",
-            "(.*) - mpv": " $1",
-            "(.*) - Visual Studio Code": "$1",
-            "(.*)Visual Studio Code": "Code",
-            "Spotify Free": "  Spotify",
-            "(.*)Steam": "Steam",
-            "(.*) - zsh": "_> [$1]",
-            "(.*) - $term": "_> [$1]"
-        }
     },
 
     "idle_inhibitor": {

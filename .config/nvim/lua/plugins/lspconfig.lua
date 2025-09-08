@@ -1,29 +1,18 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "williamboman/mason.nvim", opts = {} }, -- Tool/LSP installer
-		"williamboman/mason-lspconfig.nvim", -- Mason ↔ LSP bridge
-		"WhoIsSethDaniel/mason-tool-installer.nvim", -- Auto install tools
-		"saghen/blink.cmp", -- Completion capabilities
+		{ "williamboman/mason.nvim", opts = {} },
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"saghen/blink.cmp",
 	},
 	config = function()
-		-- Keymaps when an LSP server attaches to a buffer
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 			callback = function(event)
 				local map = function(keys, func, desc, mode)
 					vim.keymap.set(mode or "n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
-
-				map("grn", vim.lsp.buf.rename, "Rename symbol")
-				map("gra", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
-				map("grr", require("telescope.builtin").lsp_references, "References")
-				map("gri", require("telescope.builtin").lsp_implementations, "Implementations")
-				map("grd", require("telescope.builtin").lsp_definitions, "Definitions")
-				map("grD", vim.lsp.buf.declaration, "Declaration")
-				map("gO", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
-				map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
-				map("grt", require("telescope.builtin").lsp_type_definitions, "Type Definition")
 
 				-- Highlight symbol references
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -84,13 +73,10 @@ return {
 
 		-- LSP servers configuration
 		local servers = {
-			pyright = {},
-			-- qmlls = { capabilities = capabilities }, -- QML language server
 			lua_ls = {
 				settings = {
 					Lua = {
 						completion = { callSnippet = "Replace" },
-						-- diagnostics = { disable = { "missing-fields" } }, -- Example to disable warnings
 					},
 				},
 			},
@@ -98,7 +84,7 @@ return {
 
 		-- Tools to install via Mason
 		local ensure_installed = vim.tbl_keys(servers)
-		vim.list_extend(ensure_installed, { "stylua" }) -- Formatter for Lua
+		vim.list_extend(ensure_installed, { "stylua" })
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		-- Setup LSP servers with capabilities

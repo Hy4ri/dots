@@ -1,8 +1,8 @@
-export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export CSCOPE_EDITOR="nvim"
 export MANPAGER="nvim +Man!"
+export TERM="foot"
 export TERMINAL="foot"
 export helper="paru"
 export PATH="$HOME/.local/bin:$PATH"
@@ -10,9 +10,11 @@ export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export FZF_BASE=/usr/share/fzf
+export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
+export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 
-DISABLE_MAGIC_FUNCTIONS="true"
-COMPLETION_WAITING_DOTS="true"
+HISTSIZE=100000
+SAVEHIST=100000
 
 ############################ Plugins #################################
 
@@ -47,7 +49,7 @@ alias sprns='sudo pacman -Rns'
 alias spruns='sudo pacman -Runs'
 alias spcc='sudo pacman -Rns $(pacman -Qtdq)'
 alias unlock='sudo rm /var/lib/pacman/db.lck'
-alias mirror="sudo cachyos-rate-mirrors"
+alias mirror='sudo cachyos-rate-mirrors'
 
 #paru
 alias paruss="paru -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S"
@@ -88,7 +90,7 @@ alias sz='. "$HOME/.zshrc"'
 alias zshrc='${EDITOR} ~/.zshrc'
 
 #Random
-alias snvim='sudo nvim'
+alias snvim='sudoedit'
 alias clock='termdown -z -Z " %I : %M " -f banner3'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
@@ -169,7 +171,6 @@ gitnew() {
 }
 
 # Update dotfiles
-
 dup() {
   cd $HOME/Documents/Projects/dots/
   git add -A
@@ -178,7 +179,6 @@ dup() {
 }
 
 # Dangool
-
 dngl() {
   cd $HOME/Videos/dangool/
   yt-dlp "$1"
@@ -186,10 +186,15 @@ dngl() {
 }
 
 # Update
-
 up() {
   paru -Syyu 
   flatpak update 
+}
+
+#Windows
+win() {
+  cd /media/SSD-Linux/winapps/
+  podman compose --file ./compose.yaml up
 }
 
 ############################## LAUNCH ###############################

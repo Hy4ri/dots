@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-field
 -- These modules are not loaded by lazy
 require("core.options")
-require("core.mappings")
+require("core.keymaps")
 require("core.autocmd")
 require("core.neovide")
 
@@ -30,7 +30,7 @@ require("lazy").setup("plugins", {
 	},
 })
 
--- 🚀 Auto-sync plugins on first install
+--  Auto-sync plugins on first install
 local lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json"
 if vim.fn.filereadable(lockfile) == 0 then
 	vim.api.nvim_create_autocmd("User", {
@@ -46,6 +46,3 @@ end
 for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
 	dofile(vim.g.base46_cache .. v)
 end
-
--- Set my colorscheme.
--- vim.cmd.colorscheme("m57")

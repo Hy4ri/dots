@@ -1,9 +1,11 @@
-@define-color font-color #e2e2e2;
-@define-color background-color #121212;
-@define-color background-color-2 #222222;
-@define-color accent #990000;
-@define-color clock rgb(204, 0, 0);
-@define-color shadow #550000;
+@import url('file:///home/m57/.cache/wal/colors-waybar.css');
+
+@define-color font-color @foreground;
+@define-color background-color @background;
+@define-color background-color-2 @color0;
+@define-color accent @color1;
+@define-color clock @color1;
+@define-color shadow @color9;
 
 * {
   font-family: JetBrainsMono Nerd Font;
@@ -34,21 +36,14 @@ window#waybar {
   color: @font-color;
   background-color: @background-color;
   padding: 0px 10px 3px 10px;
-  margin: 0px 2px 1px 0px;
+  margin: 1px 2px 1px 2px;
   box-shadow: @shadow 1px 2px 1px 1px;
-}
-
-window#waybar.empty #window {
-  font-size: 0;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
 }
 
 #workspaces {
   background-color: @background-color;
   padding: 3px 3px;
-  margin: 0px 2px 1px 0px;
+  margin: 1px 1px 1px 0px;
   box-shadow: @shadow 1px 2px 1px 1px;
 }
 
@@ -83,7 +78,7 @@ window#waybar.empty #window {
 #tags {
   background-color: @background-color;
   padding: 3px 3px;
-  margin: 0px 1px 1px 0px;
+  margin: 1px 1px 1px 0px;
   box-shadow: @shadow 1px 2px 1px 1px;
 }
 
@@ -122,7 +117,7 @@ window#waybar.empty #window {
 #taskbar {
   background-color: @background-color;
   padding: 3px 3px;
-  margin: 0px 1px 1px 1px;
+  margin: 1px 1px 1px 1px;
   box-shadow: @shadow 1px 2px 1px 1px;
 }
 
@@ -165,7 +160,7 @@ window#waybar.empty #window {
   color: @accent;
   background-color: @background-color;
   padding: 0px 10px 3px 10px;
-  margin: 0px 2px 1px 0px;
+  margin: 1px 2px 1px 2px;
   box-shadow: @shadow 1px 2px 1px 1px;
 }
 
@@ -185,7 +180,7 @@ window#waybar.empty #window {
   color: @clock;
   background-color: @background-color;
   padding: 2px 12px;
-  margin: 0px 2px 1px 0px;
+  margin: 1px 2px 1px 2px;
   box-shadow: @shadow 1px 2px 1px 1px;
 }
 
@@ -194,14 +189,14 @@ window#waybar.empty #window {
   color: @font-color;
   background-color: @background-color;
   padding: 2px 12px;
-  margin: 0px 1px 1px 1px;
+  margin: 1px 1px 1px 1px;
   box-shadow: @shadow 0px 1px 1px 0px;
 }
 
 #sys {
   background-color: @background-color;
   padding: 0px 10px 3px 10px;
-  margin: 0px 2px 1px 0px;
+  margin: 1px 2px 1px 2px;
   box-shadow: @shadow 1px 2px 1px 1px;
 }
 
@@ -238,7 +233,7 @@ window#waybar.empty #window {
 #tray {
   background-color: @background-color;
   padding: 0px 10px 3px 10px;
-  margin: 0px 2px 1px 1px;
+  margin: 1px 2px 1px 2px;
   box-shadow: @shadow 1px 2px 1px 1px;
 }
 

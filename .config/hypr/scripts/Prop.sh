@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
-prop=$(hyprprop | jq -r '"class=\(.class)\ntitle=\(.title)\nxwayland=\(.xwayland)"')
+# Run hyprprop once and store the result
+prop_json=$(hyprprop)
 
-wl-copy $prop
+# Extract values from the stored JSON
+class=$(jq -r '.class' <<<"$prop_json")
+prop=$(jq -r '"class=\(.class)\ntitle=\(.title)\nxwayland=\(.xwayland)"' <<<"$prop_json")
 
-notify-send -t 300 "$prop"
+# Copy class to clipboard
+wl-copy $class
+
+# Show notification
+notify-send -t 3000 "$prop"
