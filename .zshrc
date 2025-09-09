@@ -40,12 +40,11 @@ bindkey "^e" end-of-line
 ############################ ALIASES #################################
 
 #nix
-alias nxbld='sudo nixos-rebuild switch --flake ~/.nix'
-alias nxc='nvim ~/.nix/configuration.nix'
-alias nxp='nvim ~/.nix/pkgs.nix'
-alias nxf='nvim ~/.nix/flake.nix'
+alias nxbld='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
+alias nxc='nvim ~/Documents/Projects/dots/nix/configuration.nix'
+alias nxp='nvim ~/Documents/Projects/dots/nix/pkgs.nix'
+alias nxf='nvim ~/Documents/Projects/dots/nix/flake.nix'
 alias nxcln='sudo nix-collect-garbage -d'
-alias nixup='sudo nixos-rebuild switch --upgrade'
 
 #pacman
 alias sps='sudo pacman -S'
@@ -183,8 +182,8 @@ dngl() {
 
 # Update pkgs
 up() {
-  nix flake update --flake ~/.nix
-  sudo nixos-rebuild switch --upgrade --flake ~/.nix
+  nix flake update --flake ~/Documents/Projects/dots/nix
+  sudo nixos-rebuild switch --upgrade --flake ~/Documents/Projects/dots/nix
   flatpak update 
 }
 

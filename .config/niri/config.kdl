@@ -1,7 +1,7 @@
 input {
     keyboard {
         xkb {
-             layout "us,sy"
+             layout "us,ara"
              options "grp:alt_Shift_toggle,caps:escape"
         }
           repeat-delay 350
@@ -40,7 +40,7 @@ output "eDP-1" {
     position x=0 y=0
     background-color "#121212"
 }
-output "HDMI-A-1" {
+output "HDMI-A-3" {
     // off
     mode "1280x800@59.91"
     scale 1
@@ -111,10 +111,11 @@ layout {
  spawn-at-startup "blueman-applet"
  spawn-at-startup "nm-applet" "--indicator"
  spawn-at-startup "foot" "--server"
- spawn-at-startup "pocky" "restore"
- spawn-at-startup "waybar" "-c" "~/.config/hypr/scripts/.config/waybar/configs/M57-top-Niri.jsonc" "-s" "~/.config/hypr/scripts/.config/waybar/style/M57.css"
-
- prefer-no-csd
+ spawn-at-startup "waypaper" "--restore"
+ spawn-at-startup "waybar" "-c" ".config/waybar/configs/M57-top-Niri.jsonc" "-s" ".config/waybar/style/M57.css"
+ spawn-at-startup "xwayland-satellite"
+ 
+prefer-no-csd
 
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
@@ -285,11 +286,12 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
+  
     Mod+return { spawn "foot"; }
-    Mod+Z { spawn "~/.config/rofi/launchers/type-3/launcher.sh"; }
+    Mod+Z { spawn "~/.config/rofi/launchers/launcher.sh"; }
     Mod+Shift+Z { spawn "~/.config/rofi/rofiScript.sh"; }
-    Mod+E { spawn "thunar"; }
-    Mod+C { spawn "firefox"; }
+    Mod+E { spawn "nemo"; }
+    Mod+v { spawn "firefox"; }
     Mod+alt+V { spawn "~/.config/hypr/scripts/ClipManager.sh"; }
 
 
@@ -416,8 +418,6 @@ environment {
     NVD_BACKEND "direct"
     GSK_RENDERER "ngl"
     GBM_BACKEND "nvidia-drm"
-
-
 }
 
 cursor {
