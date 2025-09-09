@@ -7,7 +7,6 @@
     ps:
       with ps; [
         requests
-        pyquery
       ]
   );
 in {
@@ -30,6 +29,7 @@ in {
       duf
       dunst
       python313Packages.ds4drv
+      emote
       eza
       equibop
       fastfetch
@@ -135,6 +135,9 @@ in {
       xwayland.enable = true;
     };
 
+    appimage.enable = true;
+    appimage.binfmt = true;
+    gamemode.enable = true;
     zsh.enable = true;
     waybar.enable = true;
     hyprlock.enable = true;
@@ -145,6 +148,11 @@ in {
     neovim = {
       enable = true;
       defaultEditor = true;
+    };
+
+    nh = {
+      enable = true;
+      flake = "~/Documents/Projects/dots/Nix/"; # sets NH_OS_FLAKE variable for you
     };
 
     steam = {
