@@ -39,6 +39,14 @@ bindkey "^e" end-of-line
 
 ############################ ALIASES #################################
 
+#nix
+alias nxbld='sudo nixos-rebuild switch --flake ~/.nix'
+alias nxc='nvim ~/.nix/configuration.nix'
+alias nxp='nvim ~/.nix/pkgs.nix'
+alias nxf='nvim ~/.nix/flake.nix'
+alias nxcln='sudo nix-collect-garbage -d'
+alias nixup='sudo nixos-rebuild switch --upgrade'
+
 #pacman
 alias sps='sudo pacman -S'
 alias spss='sudo pacman -Ss'
@@ -150,24 +158,12 @@ extract () {
     echo "'$1' is not a valid file"
   fi
 }
+
 # git push all
 gitup() {
   git add -A
   git commit -m "$1"
   git push
-}
-
-# github new repo
-gitnew() {
-  git init
-  sleep 5
-  git add .
-  git commit -m "create $1 repo"
-  gh repo create $1 --public
-  sleep 3
-  git branch -M main
-  git remote add origin https://github.com/Hy4ri/$1.git
-  git push -u origin main
 }
 
 # Update dotfiles
@@ -185,9 +181,10 @@ dngl() {
   cd $HOME
 }
 
-# Update
+# Update pkgs
 up() {
-  paru -Syyu 
+  nix flake update --flake ~/.nix
+  sudo nixos-rebuild switch --upgrade --flake ~/.nix
   flatpak update 
 }
 
@@ -200,7 +197,7 @@ win() {
 ############################## LAUNCH ###############################
 
 #ff
-fastfetch --logo arch_small --logo-color-2 red --logo-color-1 red --color-keys red
+fastfetch --logo NixOS_small --logo-color-2 red --logo-color-1 red --color-keys red
 
 #Zoxide
 autoload -Uz add-zsh-hook

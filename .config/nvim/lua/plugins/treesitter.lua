@@ -7,7 +7,7 @@ return {
 		if vim.fn.executable("gcc") == 0 or vim.fn.executable("make") == 0 then
 			vim.schedule(function()
 				vim.notify(
-					"⚠️  Tree-sitter: Missing 'gcc' or 'make'. Auto-install may fail for some languages.\nRun: sudo pacman -S build-essential",
+					"⚠️  Tree-sitter: Missing 'gcc' or 'make'. Auto-install may fail for some languages.\n install build-essential",
 					vim.log.levels.WARN
 				)
 			end)
