@@ -5,9 +5,9 @@
 # Vars
 config="$HOME/.config"
 if [ -d "$HOME/Documents/Projects/dots" ]; then
-    dots="$HOME/Documents/Projects/dots"
+  dots="$HOME/Documents/Projects/dots"
 else
-    dots="$HOME/dots"
+  dots="$HOME/dots"
 fi
 
 echo "Linking ..."
@@ -28,10 +28,6 @@ ln -s $dots/.config/hypr $config/hypr
 rm -rf $config/foot
 ln -s $dots/.config/foot $config/foot
 
-# gammastep
-rm -rf $config/gammastep
-ln -s $dots/.config/gammastep $config/gammastep
-
 # rofi
 rm -rf $config/rofi
 ln -s $dots/.config/rofi $config/rofi
@@ -39,6 +35,10 @@ ln -s $dots/.config/rofi $config/rofi
 # waybar
 rm -rf $config/waybar
 ln -s $dots/.config/waybar $config/waybar
+
+# dunst
+rm -rf $config/dunst
+ln -s $dots/.config/dunst $config/dunst
 
 # nvim
 rm -rf $config/nvim

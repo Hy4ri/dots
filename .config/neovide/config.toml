@@ -1,0 +1,23 @@
+fork = false
+frame = "none"
+idle = true
+maximized = true
+mouse-cursor-icon = "i-beam"
+neovim-bin = "/usr/bin/nvim" # in reality found dynamically on $PATH if unset
+no-multigrid = false
+srgb = false # platform-specific: false (Linux/macOS) or true (Windows)
+tabs = false
+theme = "auto"
+vsync = true
+wsl = false
+
+[font]
+normal = ["JetBrainsMono Nerd Font"] 
+size = 15.0
+
+[box-drawing]
+# "font-glyph", "native" or "selected-native"
+mode = "native"
+
+[box-drawing.sizes]
+default = [2, 4]  # Thin and thick values respectively, for all sizes

@@ -41,6 +41,7 @@ in {
       gamemode
       gcc
       gdb
+      gimp3-with-plugins
       go
       grim
       gnumake
@@ -64,6 +65,7 @@ in {
       kitty
       killall
       lutris
+      localsend
       libappindicator
       libnotify
       libsForQt5.qtstyleplugin-kvantum
@@ -77,6 +79,7 @@ in {
       networkmanagerapplet
       nvtopPackages.full
       normcap
+      neovide
       nodejs_24
       nsxiv
       nwg-look
