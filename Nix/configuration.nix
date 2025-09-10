@@ -94,7 +94,7 @@
         variant = "";
       };
     };
-
+    power-profiles-daemon.enable = true;
     pulseaudio.enable = false;
 
     pipewire = {
