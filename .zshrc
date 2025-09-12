@@ -40,11 +40,9 @@ bindkey "^e" end-of-line
 ############################ ALIASES #################################
 
 #nix
+alias nxup='nh os switch -u ~/Documents/Projects/dots/Nix'
 alias nxbld='nh os switch ~/Documents/Projects/dots/Nix'
-alias nxcln='nh clean all -k 5'
-alias nxc='nvim ~/Documents/Projects/dots/Nix/configuration.nix'
-alias nxp='nvim ~/Documents/Projects/dots/Nix/pkgs.nix'
-alias nxf='nvim ~/Documents/Projects/dots/Nix/flake.nix'
+alias nxcln='sudo nix-collect-garbage -d3'
 
 #pacman
 alias sps='sudo pacman -S'

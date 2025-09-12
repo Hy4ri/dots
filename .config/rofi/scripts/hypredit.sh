@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Rofi menu for Quick Edit / View of Settings (SUPER E)
 
 Configs="$HOME/.config/hypr/Configs"
 Scripts="$HOME/.config/hypr/scripts"
+hypr="$HOME/.config/hypr/"
 term="foot"
 
 menu() {
@@ -12,10 +12,11 @@ menu() {
   printf "4. view Keybinds\n"
   printf "5. view Startup_Apps\n"
   printf "6. view Env-variables\n"
-  printf "7. view Monitors\n"
-  printf "8. view Laptop-Settings\n"
-  printf "9. view Settings-wal\n"
-  printf "10. view Main config \n"
+  printf "7. view Hypr Folder\n"
+  printf "8. view Monitors\n"
+  printf "9. view Laptop-Settings\n"
+  printf "10. view Settings-wal\n"
+  printf "11. view Main config \n"
 }
 
 main() {
@@ -40,15 +41,18 @@ main() {
     $term nvim "$Configs/ENVariables.conf"
     ;;
   7)
-    $term nvim "$Configs/Monitors.conf"
+    $term nvim "$hypr"
     ;;
   8)
-    $term nvim "$Configs/Laptops.conf"
+    $term nvim "$Configs/Monitors.conf"
     ;;
   9)
-    $term nvim "$Configs/Settings-wal.conf"
+    $term nvim "$Configs/Laptops.conf"
     ;;
   10)
+    $term nvim "$Configs/Settings-wal.conf"
+    ;;
+  11)
     $term nvim ~/.config/hypr/hyprland.conf
     ;;
   *) ;;

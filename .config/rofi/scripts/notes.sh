@@ -4,8 +4,8 @@ notes_dir=~/Documents/notes
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
-  "New note|new"
   "Note List|list"
+  "New note|new"
 )
 
 # Define functions for each menu item

@@ -38,7 +38,6 @@ in {
       ffmpeg
       foot
       fzf
-      gamemode
       gcc
       gdb
       gimp3-with-plugins
@@ -46,10 +45,8 @@ in {
       grim
       gnumake
       heroic
-      hyprcursor
       hypridle
-      hyprlock
-      hyprland
+      hyprcursor
       hyprutils
       hyprpicker
       hyprprop
@@ -77,13 +74,11 @@ in {
       nemo-with-extensions
       nemo-fileroller
       networkmanagerapplet
-      nvtopPackages.full
       normcap
       neovide
       nodejs_24
       nsxiv
       nwg-look
-      openrgb
       pamixer
       pavucontrol
       playerctl
@@ -98,14 +93,12 @@ in {
       swww
       termdown
       tesseract4
+      tmux
       # upscyal
       unzip
-      uwsm
       vivaldi
       vivaldi-ffmpeg-codecs
       vlc
-      waybar
-      waypaper
       wget
       wl-clipboard
       wev
@@ -129,21 +122,22 @@ in {
   };
 
   programs = {
-    hyprland = {
-      enable = true;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      xwayland.enable = true;
-    };
-
     appimage.enable = true;
     appimage.binfmt = true;
     gamemode.enable = true;
     zsh.enable = true;
     waybar.enable = true;
-    hyprlock.enable = true;
     firefox.enable = true;
-    nm-applet.indicator = true;
     virt-manager.enable = false;
+    hyprlock.enable = true;
+    hyprland.withUWSM = true;
+    uwsm.enable = true;
+
+    hyprland = {
+      enable = true;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
+      xwayland.enable = true;
+    };
 
     neovim = {
       enable = true;
@@ -160,6 +154,7 @@ in {
       gamescopeSession.enable = false;
       remotePlay.openFirewall = false;
       dedicatedServer.openFirewall = false;
+      protontricks.enable = true;
     };
 
     xwayland.enable = true;
