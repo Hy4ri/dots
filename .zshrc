@@ -42,7 +42,7 @@ bindkey "^e" end-of-line
 #nix
 alias nxup='nh os switch -u ~/Documents/Projects/dots/Nix'
 alias nxbld='nh os switch ~/Documents/Projects/dots/Nix'
-alias nxcln='sudo nix-collect-garbage -d3'
+alias nxcln='sudo nix-collect-garbage --delete-older-than 2d'
 
 #pacman
 alias sps='sudo pacman -S'
