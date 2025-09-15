@@ -84,7 +84,7 @@ in {
       playerctl
       power-profiles-daemon
       qalculate-gtk
-      rofi-wayland
+      rofi
       ripgrep
       scrcpy
       slurp
@@ -99,6 +99,7 @@ in {
       vivaldi
       vivaldi-ffmpeg-codecs
       vlc
+      wf-recorder
       wget
       wl-clipboard
       wev
@@ -132,6 +133,9 @@ in {
     hyprlock.enable = true;
     hyprland.withUWSM = true;
     uwsm.enable = true;
+    xwayland.enable = true;
+    dconf.enable = true;
+    fuse.userAllowOther = true;
 
     hyprland = {
       enable = true;
@@ -157,10 +161,6 @@ in {
       protontricks.enable = true;
     };
 
-    xwayland.enable = true;
-
-    dconf.enable = true;
-    fuse.userAllowOther = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -174,6 +174,7 @@ in {
       };
     };
   };
+
   xdg.portal = {
     enable = true;
     wlr.enable = false;
