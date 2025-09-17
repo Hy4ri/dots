@@ -215,6 +215,16 @@ window#waybar.empty #window {
   color: @accent;
 }
 
+#network {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+#bluetooth {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 #pulseaudio {
   margin-left: 5px;
   padding-right: 10px;

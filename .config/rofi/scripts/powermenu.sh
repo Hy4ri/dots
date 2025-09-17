@@ -63,7 +63,7 @@ $reboot)
   run_cmd --reboot
   ;;
 $lock)
-  hyprlock
+  loginctl lock-session
   ;;
 $suspend)
   run_cmd --suspend

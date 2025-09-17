@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  hyprqt6engine,
   ...
 }: let
   python-packages = pkgs.python3.withPackages (
@@ -73,7 +74,6 @@ in {
       nixd
       nemo-with-extensions
       nemo-fileroller
-      networkmanagerapplet
       normcap
       neovide
       nodejs_24
@@ -83,6 +83,7 @@ in {
       pavucontrol
       playerctl
       power-profiles-daemon
+      pkg-config
       qalculate-gtk
       rofi
       ripgrep
@@ -98,7 +99,6 @@ in {
       unzip
       vivaldi
       vivaldi-ffmpeg-codecs
-      vlc
       wf-recorder
       wget
       wl-clipboard
@@ -110,6 +110,7 @@ in {
       yt-dlp
       zathura
       zoxide
+      hyprqt6engine.packages.${pkgs.system}.default
     ])
     ++ [
       python-packages
@@ -150,7 +151,7 @@ in {
 
     nh = {
       enable = true;
-      flake = "~/Documents/Projects/dots/Nix/"; # sets NH_OS_FLAKE variable for you
+      flake = "~/Documents/Projects/dots/Nix/";
     };
 
     steam = {

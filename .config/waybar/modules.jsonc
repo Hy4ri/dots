@@ -123,7 +123,9 @@
             "idle_inhibitor",
             "custom/powerprofile",
             "pulseaudio#microphone",
-            "pulseaudio"
+            "pulseaudio",
+            "bluetooth",
+            "network",
         ]
     },
 
@@ -185,6 +187,14 @@
         "on-click-middle": "~/.config/hypr/scripts/power.sh --powersaver",
         "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
         "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec"
+    },
+
+    "bluetooth": {
+        "format": "",
+	      "format-disabled": "",
+	      "format-connected": " {num_connections}",
+	      "tooltip-format": "{status}",
+	      "on-click": "blueman-manager"
     },
 
     "clock": {
@@ -285,19 +295,18 @@
         "max-length": 300
     },
 
-    "network#speed": {
-        "interval": 1,
-        "format": "{ifname}",
-        "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-        "format-ethernet": "󰌘   {bandwidthUpBytes}  {bandwidthDownBytes}",
-        "format-disconnected": "󰌙",
-        "tooltip-format": "{ipaddr}",
-        "format-linked": "󰈁 {ifname} (No IP)",
-        "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
-        "tooltip-format-ethernet": "{ifname} 󰌘",
-        "tooltip-format-disconnected": "󰌙 Disconnected",
-        "max-length": 50,
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    "network": {
+        "interval": "1",
+        "format-ethernet": "󰈁",
+        "format-wifi": "{icon}",
+        "format-disconnected": "",
+        "format-disabled": "",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "on-click": "nm-connection-editor",
+        "on-click-middle": "foot -T nmtui nmtui",
+        "on-click-right": "~/.config/rofi/scripts/wifi.sh",
+        "tooltip-format": " {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "tooltip-format-wifi": "{essid}\n {bandwidthUpBytes}  {bandwidthDownBytes}",
     },
 
     "privacy": {
@@ -338,7 +347,7 @@
         "on-click-middle": "pavucontrol -t 3",
         "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
         "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
-        "tooltip-format": "{icon} {desc} | {volume}%",
+        "tooltip-format": "󰋋 {desc} | {icon} {volume}%",
         "smooth-scrolling-threshold": 1
     },
 
@@ -347,7 +356,7 @@
         "format-source": "",
         "format-source-muted": "",
         "on-click": "~/.config/hypr/scripts/Volume.sh --toggle-mic",
-        "on-click-right": "pavucontrol -t 1",
+        "on-click-right": "pavucontrol -t 4",
         "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --mic-inc",
         "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --mic-dec",
         "tooltip-format": "{source_desc} | {source_volume}%",
@@ -432,7 +441,7 @@
         "exec": "echo '{ \"text\": \"'$(checkupdates | wc -l)'\" , \"tooltip\": \"'$(checkupdates | awk '{print $1}' | head -n 50 | sed ':a;N;$!ba;s/\\n/\\\\n/g')'\"}'",
         "return-type": "json",
         "interval": 3600,
-        "on-click": "foot -e $HOME/.config/waybar/scripts/update.sh; pkill -RTMIN+8 waybar",
+        "on-click": "foot $HOME/.config/waybar/scripts/update.sh; pkill -RTMIN+8 waybar",
     
     },
    }
