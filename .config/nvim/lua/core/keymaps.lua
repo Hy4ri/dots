@@ -43,6 +43,15 @@ keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 
+-- Fix paste and delete
+keymap.set("x", "<leader>p", "\"_dP")
+
+-- Move highlighted text
+keymap.set("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move highlighted text down"})
+keymap.set("v", "K", ":m '>-2<CR>gv=gv", {desc = "Move highlighted text up"})
+
+-- Fix J cursor placment
+keymap.set("n", "J", "mzJ`z")
 
 --Snacks
 -- stylua: ignore
@@ -68,3 +77,5 @@ keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 keymap.set("n", "<leader>uc", "<cmd>copilot toggle<cr>", { desc = "toggle copilot" })
 keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true})
+

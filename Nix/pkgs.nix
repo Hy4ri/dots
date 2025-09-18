@@ -46,6 +46,7 @@ in {
       grim
       gnumake
       heroic
+      home-manager
       hypridle
       hyprcursor
       hyprutils
@@ -97,8 +98,6 @@ in {
       tmux
       # upscyal
       unzip
-      vivaldi
-      vivaldi-ffmpeg-codecs
       wf-recorder
       wget
       wl-clipboard
@@ -187,4 +186,13 @@ in {
       pkgs.xdg-desktop-portal
     ];
   };
+
+  services.flatpak.packages = [
+    "com.vivaldi.Vivaldi"
+    "com.github.tchx84.Flatseal"
+    "com.spotify.Client"
+    "io.github.flattool.Warehouse"
+    "it.mijorus.gearlever"
+    "com.obsproject.Studio"
+  ];
 }
