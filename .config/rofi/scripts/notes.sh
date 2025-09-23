@@ -6,6 +6,7 @@ notes_dir=~/Documents/notes
 MENU_ITEMS=(
   "Note List|list"
   "New note|new"
+  "Delete note|remove"
 )
 
 # Define functions for each menu item
@@ -26,7 +27,13 @@ new() {
 
 list() {
   selected=$(ls -t ~/Documents/notes/ | rofi -dmenu)
-  [[ -n "$selected" ]] && foot -e nvim $notes_dir/$selected
+  [[ -n "$selected" ]] && foot nvim $notes_dir/$selected
+}
+
+remove() {
+  selected=$(ls -t ~/Documents/notes/ | rofi -dmenu)
+  [[ -n "$selected" ]] && rm $notes_dir/$selected
+  [[ -n "$selected" ]] && notify-send "Notes" "Deleted $selected"
 }
 
 # Create Rofi menu

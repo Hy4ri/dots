@@ -24,10 +24,10 @@ in {
       blueman
       cliphist
       curl
-      clang
       cargo
+      clang
+      cmake
       dua
-      duf
       dunst
       python313Packages.ds4drv
       emote
@@ -46,7 +46,6 @@ in {
       grim
       gnumake
       heroic
-      home-manager
       hypridle
       hyprcursor
       hyprutils
@@ -56,13 +55,11 @@ in {
       hyprsunset
       hyprland-qt-support
       imagemagick
-      inxi
       jq
       kdePackages.qt6ct
       kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
       kitty
-      killall
       lutris
       localsend
       libappindicator
@@ -72,7 +69,6 @@ in {
       man-db
       man-pages
       mpv
-      nixd
       nemo-with-extensions
       nemo-fileroller
       normcap
@@ -83,6 +79,8 @@ in {
       pamixer
       pavucontrol
       playerctl
+      podman
+      podman-compose
       power-profiles-daemon
       pkg-config
       qalculate-gtk
@@ -139,7 +137,8 @@ in {
 
     hyprland = {
       enable = true;
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
 
@@ -190,9 +189,12 @@ in {
   services.flatpak.packages = [
     "com.vivaldi.Vivaldi"
     "com.github.tchx84.Flatseal"
-    "com.spotify.Client"
     "io.github.flattool.Warehouse"
     "it.mijorus.gearlever"
     "com.obsproject.Studio"
+    "com.bitwarden.desktop"
+    "com.discordapp.Discord"
+    "org.telegram.desktop"
+    "com.google.Chrome"
   ];
 }

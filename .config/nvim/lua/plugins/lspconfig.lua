@@ -80,49 +80,26 @@ return {
 					},
 				},
 			},
-		}
+    }
 
-		-- Tools to install via Mason
-		local ensure_installed = vim.tbl_keys(servers)
-		vim.list_extend(ensure_installed, { "stylua" })
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+    -- Tools to install via Mason
+    local ensure_installed = vim.tbl_keys(servers)
+    vim.list_extend(ensure_installed, { "stylua" })
+    require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-		-- Setup LSP servers with capabilities
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local opts = vim.tbl_deep_extend(
-						"force",
-						{},
-						{ capabilities = capabilities },
-						servers[server_name] or {}
-					)
-					require("lspconfig")[server_name].setup(opts)
-				end,
-			},
-		})
-
-require("lspconfig").nixd.setup({
-  cmd = { "nixd" },
-  settings = {
-    nixd = {
-      nixpkgs = {
-        expr = "import <nixpkgs> { }",
+    -- Setup LSP servers with capabilities
+    require("mason-lspconfig").setup({
+      handlers = {
+        function(server_name)
+          local opts = vim.tbl_deep_extend(
+            "force",
+            {},
+            { capabilities = capabilities },
+            servers[server_name] or {}
+          )
+          require("lspconfig")[server_name].setup(opts)
+        end,
       },
-      formatting = {
-        command = { "alejandra" }, -- or nixfmt or nixpkgs-fmt
-      },
-      -- options = {
-      --   nixos = {
-      --       expr = '(builtins.getFlake "/PATH/TO/FLAKE").nixosConfigurations.CONFIGNAME.options',
-      --   },
-      --   home_manager = {
-      --       expr = '(builtins.getFlake "/PATH/TO/FLAKE").homeConfigurations.CONFIGNAME.options',
-      --   },
-      -- },
-    },
-  },
-})
-
-	end,
+    })
+  end,
 }

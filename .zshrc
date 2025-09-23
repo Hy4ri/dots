@@ -186,7 +186,7 @@ up() {
 
 #Windows
 win() {
-  cd /media/SSD-Linux/winapps/
+  cd /run/media/m57/SSD-Linux/winapps/
   podman compose --file ./compose.yaml up
 }
 

@@ -31,32 +31,6 @@ No | no | n | N) ;;
 *) ;;
 esac
 
-cat <<"EOF"
-
-███████╗██╗      █████╗ ████████╗██████╗  █████╗ ██╗  ██╗
-██╔════╝██║     ██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██║ ██╔╝
-█████╗  ██║     ███████║   ██║   ██████╔╝███████║█████╔╝
-██╔══╝  ██║     ██╔══██║   ██║   ██╔═══╝ ██╔══██║██╔═██╗
-██║     ███████╗██║  ██║   ██║   ██║     ██║  ██║██║  ██╗
-╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝
-
-
-EOF
-
-echo -n "Install Flatpaks? y/n: "
-read Flatpaks
-
-case "$Flatpaks" in
-yes | Yes | y | Y)
-  echo -n "installing the Flatpaks"
-  ~/dots/scripts/./Flatpaks.sh
-  ;;
-No | no | n | N) ;;
-*) ;;
-esac
-
-sleep 1
-
 ### Nix
 
 echo -n "Bulid Nix? y/n:  "

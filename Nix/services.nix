@@ -4,7 +4,6 @@
   ...
 }: {
   services = {
-    flatpak.enable = true;
     power-profiles-daemon.enable = true;
     udisks2.enable = true;
     gvfs.enable = true;
@@ -43,12 +42,16 @@
         pkgs.hplipWithPlugin
       ];
     };
-  };
-
-  systemd.services.flatpak-repo = {
-    path = [pkgs.flatpak];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    '';
+    flatpak = {
+      enable = true;
+      overrides = {
+        global = {
+          Context.sockets = ["wayland" "!x11" "!fallback-x11"];
+          Environment = {
+            GTK_THEME = "theme";
+          };
+        };
+      };
+    };
   };
 }
