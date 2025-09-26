@@ -92,6 +92,7 @@
     extraGroups = ["networkmanager" "wheel" "scanner" "lp" "video" "audio"];
   };
 
+
   hardware = {
     bluetooth = {
       enable = true;

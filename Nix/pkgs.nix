@@ -195,6 +195,5 @@ in {
     "com.bitwarden.desktop"
     "com.discordapp.Discord"
     "org.telegram.desktop"
-    "com.google.Chrome"
   ];
 }

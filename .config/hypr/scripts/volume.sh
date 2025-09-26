@@ -3,7 +3,6 @@
 # Scripts for volume controls for audio and mic
 
 iDIR="$HOME/.config/dunst/icons"
-sDIR="$HOME/.config/hypr/UserScripts"
 
 # Get Volume
 get_volume() {

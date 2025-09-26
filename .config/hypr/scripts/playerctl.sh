@@ -2,7 +2,7 @@
 
 # Set volume step
 STEP=0.10
-iDIR="$HOME/.config/dunst/icons"
+iDIR="$HOME/.config/swaync/icons"
 current_volume=$(playerctl volume)
 
 # Check argument
