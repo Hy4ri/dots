@@ -40,9 +40,11 @@ bindkey "^e" end-of-line
 ############################ ALIASES #################################
 
 #nix
-alias nxup='nh os switch -u ~/Documents/Projects/dots/Nix'
-alias nxbld='nh os switch ~/Documents/Projects/dots/Nix'
+alias nxup='nh os switch -u ~/Documents/Projects/dots/nix'
+alias nxbld='nh os switch ~/Documents/Projects/dots/nix'
 alias nxcln='sudo nix-collect-garbage --delete-older-than 1d'
+alias nxup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
+alias nxtry='nix-shell -p'
 
 #pacman
 alias sps='sudo pacman -S'
@@ -92,32 +94,13 @@ alias ~='cd ~'
 
 #ZSH
 alias sz='. "$HOME/.zshrc"'
-alias zshrc='${EDITOR} ~/.zshrc'
+alias zrc='${EDITOR} ~/.zshrc'
 
-#Random
+#Nvim
 alias snvim='sudoedit'
-alias clock='termdown -z -Z " %I : %M " -f banner3'
-alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-alias weather='curl https://wttr.in/As%20Salt\?format=3'
-alias music='bash ~/.config/hypr/scripts/music.sh'
-alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
-alias vdl='yt-dlp'
-alias img2txt='ascii-image-converter'
-alias vim='nvim'
-alias nivm='nvim'
 alias nano='nvim'
-alias grep='rg'
-alias prop='hyprprop'
-alias cp='cp -i'
-alias c+x='chmod +x'
-alias storage='dua i'
-alias termdown='termdown -f roman'
-alias png='bash ~/.config/hypr/scripts/png.sh'
-alias 25='bash ~/.config/hypr/scripts/25.sh'
-alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias xx='bash ~/Documents/xx.sh'
-alias rsync='rsync -rPavh'
-alias bios='sudo systemctl reboot --firmware-setup'
+alias nivm='nvim'
+alias vim='nvim'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -128,6 +111,29 @@ python3 -m venv venv
 venv/bin/pip install -r requirements.txt
 sudo venv/bin/python3 main.py'
 
+#Scripts
+alias music='bash ~/.config/hypr/scripts/music.sh'
+alias png='bash ~/.config/hypr/scripts/png.sh'
+alias 25='bash ~/.config/hypr/scripts/25.sh'
+alias xx='bash ~/Documents/xx.sh'
+
+#Random
+alias clock='termdown -z -Z " %I : %M " -f banner3'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+alias weather='curl https://wttr.in/As%20Salt\?format=3'
+alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
+alias vdl='yt-dlp'
+alias odl='yt-dlp -t mp3'
+alias img2txt='ascii-image-converter'
+alias prop='hyprprop'
+alias cp='cp -i'
+alias c+x='chmod +x'
+alias storage='dua i'
+alias termdown='termdown -f roman'
+alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias rsync='rsync -rPavh'
+alias bios='sudo systemctl reboot --firmware-setup'
+alias h='Hyprland'
 
 ############################# FUNCTIONS ##########################################
 
@@ -180,7 +186,7 @@ dngl() {
 
 # Update pkgs
 up() {
-  nh os switch -u ~/Documents/Projects/dots/Nix
+  nh os switch -u ~/Documents/Projects/dots/nix
   flatpak update 
 }
 
@@ -201,3 +207,5 @@ load_zoxide_late() {
   eval "$(zoxide init zsh)"
 }
 add-zsh-hook precmd load_zoxide_late
+
+export PATH=$PATH:/home/m57/.spicetify

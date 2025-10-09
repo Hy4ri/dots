@@ -119,13 +119,13 @@
 
         },
         "modules": [
-            "battery",
+            "network",
             "idle_inhibitor",
             "custom/powerprofile",
             "pulseaudio#microphone",
             "pulseaudio",
             "bluetooth",
-            "network",
+            "battery",
         ]
     },
 
@@ -297,7 +297,7 @@
 
     "network": {
         "interval": "1",
-        "format-ethernet": "󰈁",
+        "format-ethernet": "󰈀",
         "format-wifi": "{icon}",
         "format-disconnected": "",
         "format-disabled": "",

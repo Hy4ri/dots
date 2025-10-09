@@ -27,7 +27,7 @@
     sort = yes
     idle_threshold = 120
 
-    font = JetBrainsMono Nerd Font 11
+    font = JetBrainsMono Nerd Font 15
     line_height = 0
 
     markup = full

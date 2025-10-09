@@ -11,6 +11,7 @@
     udev.enable = true;
     envfs.enable = true;
     dbus.enable = true;
+    resolved.enable = true;
 
     xserver = {
       enable = false;
@@ -37,7 +38,7 @@
 
     blueman.enable = true;
     printing = {
-      enable = true;
+      enable = false;
       drivers = [
         pkgs.hplipWithPlugin
       ];

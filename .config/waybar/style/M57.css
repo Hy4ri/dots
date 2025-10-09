@@ -216,8 +216,8 @@ window#waybar.empty #window {
 }
 
 #network {
-  margin-left: 5px;
-  margin-right: 10px;
+  margin-left: 3px;
+  margin-right: 5px;
 }
 
 #bluetooth {

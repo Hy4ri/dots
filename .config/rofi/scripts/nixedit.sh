@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-Configs="$HOME/Documents/Projects/dots/Nix/"
+Configs="$HOME/Documents/Projects/dots/nix/"
 term="foot"
 
 menu() {
   printf "1. Nix Config\n"
   printf "2. Nix Packages\n"
   printf "3. Nix Services\n"
+  printf "4. Nix Networking\n"
   printf "4. Nix Flake\n"
   printf "5. Nix Folder\n"
 }
@@ -24,9 +25,12 @@ main() {
     $term nvim "$Configs/services.nix"
     ;;
   4)
-    $term nvim "$Configs/flake.nix"
+    $term nvim "$Configs/networking.nix"
     ;;
   5)
+    $term nvim "$Configs/flake.nix"
+    ;;
+  6)
     $term nvim $Configs
     ;;
   *) ;;

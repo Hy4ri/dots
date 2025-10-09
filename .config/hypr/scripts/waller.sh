@@ -20,6 +20,7 @@ Select_wallpaper_wal() {
     echo "No wallpaper selected or invalid file."
   fi
 }
+
 Auto_Change() {
   while true; do
     Random_wallpaper

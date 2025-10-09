@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pkill spotify
-spicetify update
-curl -fsSL https://raw.githubusercontent.com/spicetify/marketplace/main/resources/install.sh | sh
-spicetify backup apply
-spicetify restore backup apply
+curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
+~/.spicetify/spicetify update
+~/.spicetify/spicetify backup apply
+~/.spicetify/spicetify restore backup apply

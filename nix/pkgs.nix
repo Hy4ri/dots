@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  hyprqt6engine,
   ...
 }: let
   python-packages = pkgs.python3.withPackages (
@@ -15,12 +14,12 @@ in {
 
   environment.systemPackages =
     (with pkgs; [
-      alacritty
       bc
       bat
       brightnessctl
       btop
       binutils
+      bitwarden
       blueman
       cliphist
       curl
@@ -30,7 +29,6 @@ in {
       dua
       dunst
       python313Packages.ds4drv
-      emote
       eza
       equibop
       fastfetch
@@ -76,11 +74,8 @@ in {
       nodejs_24
       nsxiv
       nwg-look
-      pamixer
       pavucontrol
       playerctl
-      podman
-      podman-compose
       power-profiles-daemon
       pkg-config
       qalculate-gtk
@@ -88,13 +83,10 @@ in {
       ripgrep
       scrcpy
       slurp
-      spicetify-cli
       swappy
       swww
       termdown
-      tesseract4
       tmux
-      # upscyal
       unzip
       wf-recorder
       wget
@@ -107,7 +99,6 @@ in {
       yt-dlp
       zathura
       zoxide
-      hyprqt6engine.packages.${pkgs.system}.default
     ])
     ++ [
       python-packages
@@ -127,7 +118,7 @@ in {
     zsh.enable = true;
     waybar.enable = true;
     firefox.enable = true;
-    virt-manager.enable = false;
+    virt-manager.enable = true;
     hyprlock.enable = true;
     hyprland.withUWSM = true;
     uwsm.enable = true;
@@ -157,7 +148,7 @@ in {
       gamescopeSession.enable = false;
       remotePlay.openFirewall = false;
       dedicatedServer.openFirewall = false;
-      protontricks.enable = true;
+      protontricks.enable = false;
     };
 
     gnupg.agent = {
@@ -192,8 +183,8 @@ in {
     "io.github.flattool.Warehouse"
     "it.mijorus.gearlever"
     "com.obsproject.Studio"
-    "com.bitwarden.desktop"
     "com.discordapp.Discord"
     "org.telegram.desktop"
+    "it.mijorus.smile"
   ];
 }

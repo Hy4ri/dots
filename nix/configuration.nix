@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./networking.nix
     ./nvidia.nix
     ./intel.nix
     ./prime.nix
@@ -12,18 +13,16 @@
     ./services.nix
   ];
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelParams = [
     "systemd.mask=systemd-vconsole-setup.service"
     "systemd.mask=dev-tpmrm0.device"
     "nowatchdog"
-    "modprobe.blacklist=sp5100_tco" #watchdog for AMD
-    "modprobe.blacklist=iTCO_wdt" #watchdog for Intel
+    "modprobe.blacklist=sp5100_tco"
+    "modprobe.blacklist=iTCO_wdt"
   ];
 
   boot.initrd = {
@@ -44,14 +43,6 @@
     magicOrExtension = ''\x7fELF....AI\x02'';
   };
 
-  networking.hostName = "hyari";
-
-  # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   drivers = {
     intel.enable = true;
     nvidia.enable = true;
@@ -62,13 +53,8 @@
     };
   };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
   time.timeZone = "Asia/Amman";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -91,7 +77,6 @@
     description = "hyari";
     extraGroups = ["networkmanager" "wheel" "scanner" "lp" "video" "audio"];
   };
-
 
   hardware = {
     bluetooth = {
@@ -130,18 +115,12 @@
     };
   };
 
-  virtualisation.libvirtd.enable = false;
+  virtualisation.libvirtd.enable = true;
   virtualisation.podman = {
     enable = false;
     dockerCompat = false;
     defaultNetwork.settings.dns_enabled = false;
   };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   system.stateVersion = "25.05";
 }
