@@ -21,6 +21,7 @@ in {
       binutils
       bitwarden
       blueman
+      cloudflare-warp
       cliphist
       curl
       cargo
