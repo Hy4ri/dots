@@ -207,12 +207,19 @@ window#waybar.empty #window {
 
 #battery {
   color: greenyellow;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-right: 5px;
 }
 
 #battery.critical:not(.charging) {
   color: @accent;
+}
+
+#battery.full {
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
 }
 
 #network {

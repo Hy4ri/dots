@@ -11,7 +11,14 @@
     udev.enable = true;
     envfs.enable = true;
     dbus.enable = true;
-    resolved.enable = true;
+
+    resolved = {
+      enable = true;
+      extraConfig = ''
+        [Resolve]
+        ResolveUnicastSingleLabel=yes
+        '';
+    };
 
     xserver = {
       enable = false;

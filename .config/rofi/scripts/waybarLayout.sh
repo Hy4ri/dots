@@ -32,7 +32,7 @@ restart_waybar_if_needed() {
     pkill waybar
     sleep 0.1 # Delay for Waybar to completely terminate
   fi
-  "${SCRIPTSDIR}/Refresh.sh" &
+  "${SCRIPTSDIR}/refresh.sh" &
 }
 
 # Main function

@@ -380,8 +380,8 @@
     },
 
     "custom/launcher": {
-      "format": "",
-      "on-click": "~/.config/rofi/launchers/launcher.sh"
+      "format": "",
+      "on-click": "rofi -show drun"
 },
 
     "custom/powerprofile": {
