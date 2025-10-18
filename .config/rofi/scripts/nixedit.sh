@@ -8,8 +8,8 @@ menu() {
   printf "2. Nix Packages\n"
   printf "3. Nix Services\n"
   printf "4. Nix Networking\n"
-  printf "4. Nix Flake\n"
-  printf "5. Nix Folder\n"
+  printf "5. Nix Flake\n"
+  printf "6. Nix Folder\n"
 }
 
 main() {

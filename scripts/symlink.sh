@@ -40,6 +40,10 @@ ln -s $dots/.config/waybar $config/waybar
 rm -rf $config/dunst
 ln -s $dots/.config/dunst $config/dunst
 
+# yazi
+rm -rf $config/yazi
+ln -s $dots/.config/yazi $config/yazi
+
 # nvim
 rm -rf $config/nvim
 ln -s $dots/.config/nvim $config/nvim

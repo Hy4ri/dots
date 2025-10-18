@@ -102,6 +102,7 @@ alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
 alias lvim='NVIM_APPNAME=lnvim nvim'
+alias avim='NVIM_APPNAME=avim nvim'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -135,6 +136,43 @@ alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias rsync='rsync -rPavh'
 alias bios='sudo systemctl reboot --firmware-setup'
 alias h='Hyprland'
+
+############################# VI Mode ##########################################
+
+bindkey -v 
+export KEYTIMEOUT=1 
+export VI_MODE_SET_CURSOR=true 
+
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]]; then
+    echo -ne '\e[2 q'
+  else
+    echo -ne '\e[5 q'
+  fi
+}
+
+zle -N zle-keymap-select
+
+zle-line-init() {
+  zle -K viins 
+  echo -ne '\e[5 q'
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' 
+
+# Yank to the system clipboard
+function vi-yank-xclip {
+  zle vi-yank
+  echo "$CUTBUFFER" | wl-copy
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
+# Press 'v' in normal mode to launch Nvim with current line
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 ############################# FUNCTIONS ##########################################
 
@@ -191,10 +229,11 @@ up() {
   flatpak update 
 }
 
-#Windows
-win() {
-  cd /run/media/m57/SSD-Linux/winapps/
-  podman compose --file ./compose.yaml up
+#Warp
+warp() {
+  sudo -v || return 1
+  sudo warp-svc >/dev/null 2>&1 &
+  disown
 }
 
 ############################## LAUNCH ###############################

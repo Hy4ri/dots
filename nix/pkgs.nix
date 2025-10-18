@@ -89,6 +89,8 @@ in {
       termdown
       tmux
       unzip
+      vivaldi
+      vivaldi-ffmpeg-codecs
       wf-recorder
       wget
       wl-clipboard
@@ -97,6 +99,7 @@ in {
       xdg-user-dirs
       xdg-utils
       yad
+      yazi
       yt-dlp
       zathura
       zoxide
@@ -179,12 +182,10 @@ in {
   };
 
   services.flatpak.packages = [
-    "com.vivaldi.Vivaldi"
     "com.github.tchx84.Flatseal"
     "io.github.flattool.Warehouse"
     "it.mijorus.gearlever"
     "com.obsproject.Studio"
-    "com.discordapp.Discord"
     "org.telegram.desktop"
     "it.mijorus.smile"
   ];

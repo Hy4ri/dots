@@ -2,4 +2,4 @@
 
 cd ~/dots/Nix
 
-sudo nix-rebuild switch --flake .
+sudo nix-rebuild switch --flake .#hyari
