@@ -19,9 +19,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- base46 themes
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
-
 -- Initialize lazy with dynamic loading of anything in the plugins directory
 require("lazy").setup("plugins", {
 	change_detection = {
@@ -42,7 +39,4 @@ if vim.fn.filereadable(lockfile) == 0 then
 	})
 end
 
--- (method 2, for non lazyloaders) to load all highlights at once
-for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
-	dofile(vim.g.base46_cache .. v)
-end
+vim.cmd.colorscheme("vague")

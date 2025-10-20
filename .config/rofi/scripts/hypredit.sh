@@ -35,7 +35,7 @@ main() {
   4)
     $term nvim "$Configs/Appbinds.conf"
     ;;
-  6)
+  5)
     $term nvim $Scripts
     ;;
   6)

@@ -21,9 +21,7 @@ SAVEHIST=100000
 source ~/antigen.zsh
 antigen use oh-my-zsh
 
-antigen bundle sudo
 antigen bundle fzf
-antigen bundle aliases
 antigen bundle safe-paste
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -31,11 +29,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen theme nanotech
 
 antigen apply
-
-############################ Binds #################################
-
-bindkey "^a" beginning-of-line
-bindkey "^e" end-of-line
 
 ############################ ALIASES #################################
 

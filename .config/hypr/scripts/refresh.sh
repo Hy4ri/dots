@@ -19,7 +19,7 @@ hyprctl dispacth forcerendererreload
 
 #Relunch
 
-waybar &
+# waybar &
 hyprsunset &
 
 exit 0

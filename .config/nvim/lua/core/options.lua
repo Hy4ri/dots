@@ -99,7 +99,8 @@ opt.formatoptions = "jcroql"
 opt.completeopt = "menu,menuone,noselect,noinsert"
 
 -- Status line.
-opt.cmdheight = 1
+opt.cmdheight = 0
+opt.showcmdloc = "statusline"
 
 opt.fillchars = {
 	foldopen = "",
@@ -109,8 +110,3 @@ opt.fillchars = {
 	diff = "╱",
 	eob = " ",
 }
-
--- folds
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevel = 99
