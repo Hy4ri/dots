@@ -11,6 +11,7 @@
     udev.enable = true;
     envfs.enable = true;
     dbus.enable = true;
+    pulseaudio.enable = false;
 
     resolved = {
       enable = true;
@@ -27,8 +28,6 @@
         variant = "";
       };
     };
-
-    pulseaudio.enable = false;
 
     pipewire = {
       enable = true;
@@ -50,6 +49,7 @@
         pkgs.hplipWithPlugin
       ];
     };
+
     flatpak = {
       enable = true;
       overrides = {

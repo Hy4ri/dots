@@ -1,139 +1,276 @@
+// Input
+
 input {
-    keyboard {
-        xkb {
-             layout "us,ara"
-             options "grp:alt_Shift_toggle,caps:escape"
-        }
-          repeat-delay 350
-          repeat-rate 30
+  keyboard {
+    xkb {
+      layout "us,ara"
+      options "grp:alt_Shift_toggle,caps:escape"
     }
+    repeat-delay 350
+    repeat-rate 30
+    // numlock
+  }
 
-    touchpad {
-        // off
-        tap
-        dwt
-        drag-lock
-        natural-scroll
-        accel-speed 0.2
-        scroll-method "two-finger"
-        // disabled-on-external-mouse
-    }
-
-    mouse {
-        // off
-        accel-speed 0.0
-        accel-profile "flat"
-    }
-
-       focus-follows-mouse max-scroll-amount="0%"
-       workspace-auto-back-and-forth
-}
-
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-output "eDP-1" {
-     // off
-    mode "1920x1080@120.030"
-    scale 1
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
-    position x=0 y=0
-    background-color "#121212"
-}
-output "HDMI-A-3" {
+  touchpad {
     // off
-    mode "1280x800@59.91"
-    scale 1
-    transform "270"
-    position x=1920 y=0
-    background-color "#121212"
+    tap
+    dwt
+    // drag false
+    drag-lock
+    natural-scroll
+    accel-speed 0.2
+    // accel-profile "flat"
+    scroll-factor vertical=1.0 horizontal=-2.0
+    scroll-method "two-finger"
+    tap-button-map "left-middle-right"
+    click-method "clickfinger"
+    middle-emulation
+  }
+
+  mouse {
+    // off
+    accel-speed 0.0
+    accel-profile "flat"
+    scroll-factor 1.0
+    // middle-emulation
+  }
+
+  warp-mouse-to-focus
+  focus-follows-mouse max-scroll-amount="50%"
+  workspace-auto-back-and-forth
 }
+
+// Monitors
+
+output "eDP-1" {
+  // off
+  mode "1920x1080@120.030"
+  scale 1
+  // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+  transform "normal"
+  position x=0 y=0
+  background-color "#121212"
+}
+
+output "HDMI-A-3" {
+  // off
+  mode "1280x800@59.91"
+  scale 1
+  transform "270"
+  position x=1920 y=0
+  background-color "#121212"
+}
+
+// Layout
 
 layout {
-    gaps 1
-    center-focused-column "never"
-    //always-center-single-column
-    default-column-display "tabbed"
-    preset-column-widths {
-         proportion 0.5
-         proportion 0.9
-    }
+  gaps 0
+  center-focused-column "never"
+  //always-center-single-column
+  // empty-workspace-above-first
+  default-column-display "tabbed"
 
-    // default-column-width {}
-       default-column-width { proportion 0.6;}
+  preset-column-widths {
+    proportion 0.5
+    proportion 0.9
+  }
 
-    // draw-border-with-background
+  default-column-width { proportion 0.6;}
 
-    focus-ring {
-        off
-        width 1
-        active-color "#990000"
-        inactive-color "#121212"
-    }
+  focus-ring {
+    width 2
+    active-color "#990000"
+  }
 
-    border {
-        // off
-        width 1
-        active-color "#990000"
-        inactive-color "#121212"
-    }
+  tab-indicator {
+    hide-when-single-tab
+    place-within-column
+    gap 0
+    width 2
+    length total-proportion=1.0
+    position "top"
+    gaps-between-tabs 1 
+    corner-radius 0 
+    active-color "#990000"
+    inactive-color "#121212"
+  }
 
-    shadow {
-        // on
+  insert-hint {
+    color "#99000080"
+  }
 
-        // Softness controls the shadow blur radius.
-        softness 30
-
-        // Spread expands the shadow.
-        spread 5
-
-        // Offset moves the shadow relative to the window.
-        offset x=0 y=5
-
-        // You can also change the shadow color and opacity.
-        color "#0007"
-    }
-
-    struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
-    }
+  struts {
+     left 1
+     right 1
+     top 1
+     bottom 1
+  }
 }
 
- // spawn-at-startup "alacritty" "-e" "fish"
- spawn-at-startup "hypridle"
- spawn-at-startup "swaync"
- spawn-at-startup "wl-paste" "-t" "text" "-w" "cliphist store"
- spawn-at-startup "wl-paste" "-t" "image" "-w" "cliphist store"
- spawn-at-startup "gammastep-indicator"
- spawn-at-startup "blueman-applet"
- spawn-at-startup "nm-applet" "--indicator"
- spawn-at-startup "foot" "--server"
- spawn-at-startup "waypaper" "--restore"
- spawn-at-startup "waybar" "-c" ".config/waybar/configs/M57-top-Niri.jsonc" "-s" ".config/waybar/style/M57.css"
- spawn-at-startup "xwayland-satellite"
- 
-prefer-no-csd
+// Startup
 
-// You can change the path where screenshots are saved.
-// A ~ at the front will be expanded to the home directory.
-// The path is formatted with strftime(3) to give you the screenshot date and time.
+ spawn-at-startup "hypridle"
+ spawn-at-startup "bash" "-c" "wl-paste -t text -w cliphist store -max-items 1000000"
+ spawn-at-startup "bash" "-c" "wl-paste -t image -w cliphist store -max-items 1000000"
+ spawn-at-startup "foot" "--server"
+ spawn-at-startup "waybar" "-c" ".config/waybar/configs/Niri.jsonc" "-s" ".config/waybar/style/Main.css"
+ spawn-at-startup "xwayland-satellite"
+ spawn-at-startup "dunst"
+ spawn-at-startup "swww-daemon"
+
+
+// Env Vars
+
+environment {
+    gdk_backend "wayland"
+    qt_qpa_platform "wayland"
+    sdl_videodriver "wayland"
+    clutter_backend "wayland"
+
+    // XDG Specifications
+    XDG_CURRENT_DESKTOP "Niri"
+    XDG_SESSION_DESKTOP "Niri"
+    XDG_SESSION_TYPE "wayland"
+
+    // Qt Variables
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+    QT_SCALE_FACTOR "1"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_WAYLAND_FORCE_DPI "physical"
+
+    // GTK Theme
+    GDK_SCALE "1"
+
+    // Firefox Specifies
+    MOZ_ENABLE_WAYLAND "1"
+    MOZ_DBUS_REMOTE "1"
+
+    // NVIDIA Specific
+    LIBVA_DRIVER_NAME "nvidia"
+    __GLX_VENDOR_LIBRARY_NAME "nvidia"
+    __GL_VRR_ALLOWED "1"
+    __GL_GSYNC_ALLOWED "1"
+    NVD_BACKEND "direct"
+    GSK_RENDERER "ngl"
+    GBM_BACKEND "nvidia-drm"
+}
+
+// Misc
+
+prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
-
-animations {
-     off
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 24
+    //hide-when-typing
 }
 
-// Window rules for Niri
-// Based on Hyprland windowrulev2 conversion
-// See https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+overview {
+    zoom 0.5
+    backdrop-color "#262626"
+}
 
-// Float rules
+clipboard {
+    // disable-primary
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+//Binds
+
+binds {
+    Mod+return { spawn "foot"; }
+    Mod+Z { spawn "rofi" "-show" "drun" "-p"; }
+    Mod+Shift+Z { spawn "~/.config/rofi/rofiScript.sh"; }
+    Mod+E { spawn "nemo"; }
+    Mod+v { spawn "vivaldi"; }
+    Mod+alt+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+
+    xf86audioraisevolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--inc"; }
+    xf86audiolowervolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--dec"; }
+    Shift+xf86audioraisevolume { spawn "~/.config/hypr/scripts/brightness.sh" "--inc"; }
+    Shift+xf86audiolowervolume { spawn "~/.config/hypr/scripts/brightness.sh" "--dec"; }
+    xf86Search { spawn "~/.config/hypr/scripts/volume.sh" "--toggle-mic"; }
+    xf86audiomute { spawn "~/.config/hypr/scripts/volume.sh" "--toggle"; }
+    xf86Sleep { spawn "systemctl suspend"; }
+    xf86Rfkill { spawn "~/.config/hypr/scripts/airplaneMode.sh"; }
+    xf86AudioPlay allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--pause"; }
+    xf86AudioPause allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--pause"; }
+    xf86AudioNext allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--nxt"; }
+    xf86AudioPrev allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--prv"; }
+    xf86audiostop allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--stop"; }
+
+    Mod+Q { close-window; }
+
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+L     { focus-column-right; }
+
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+J     { move-window-down; }
+    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+L     { move-column-right; }
+
+    Mod+alt+1  { move-workspace-to-monitor-left; }
+    Mod+alt+2  { move-workspace-to-monitor-right; }
+
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+
+    Mod+1 { focus-workspace  1; }
+    Mod+2 { focus-workspace  2; }
+    Mod+3 { focus-workspace  3; }
+    Mod+4 { focus-workspace  4; }
+    Mod+5 { focus-workspace  5; }
+    Mod+6 { focus-workspace  6; }
+    Mod+7 { focus-workspace  7; }
+    Mod+8 { focus-workspace  8; }
+    Mod+9 { focus-workspace  9; }
+    Mod+0 { focus-workspace  10; }
+    Mod+Shift+1 { move-column-to-workspace  1; }
+    Mod+Shift+2 { move-column-to-workspace  2; }
+    Mod+Shift+3 { move-column-to-workspace  3; }
+    Mod+Shift+4 { move-column-to-workspace  4; }
+    Mod+Shift+5 { move-column-to-workspace  5; }
+    Mod+Shift+6 { move-column-to-workspace  6; }
+    Mod+Shift+7 { move-column-to-workspace  7; }
+    Mod+Shift+8 { move-column-to-workspace  8; }
+    Mod+Shift+9 { move-column-to-workspace  9; }
+    Mod+Shift+0 { move-column-to-workspace  10; }
+
+    Mod+Tab { focus-workspace-previous; }
+
+    Mod+R { switch-preset-column-width; }
+
+    Mod+Ctrl+F { maximize-column; }
+    Mod+F { fullscreen-window; }
+    Mod+Mod+Shift+F       { toggle-window-floating; }
+
+    Mod+Ctrl+H { set-column-width "-10%"; }
+    Mod+Ctrl+J { set-window-height "-10%"; }
+    Mod+Ctrl+K { set-window-height "+10%"; }
+    Mod+Ctrl+L { set-column-width "+10%"; }
+
+    Mod+Shift+S { screenshot; }
+    Print { spawn "~/.config/hypr/scripts/ScreenShot.sh" "--now"; }
+
+    Ctrl+Alt+Delete { quit; }
+
+    Mod+Ctrl+P { power-off-monitors; }
+
+     Mod+W { spawn "~/.config/hypr/scripts/waller.sh" "--select"; }
+     Ctrl+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--random"; }  
+     Mod+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--mini"; } 
+}
+
+// WindowRules
+
+   // Float rules
 window-rule {
     match app-id=r#"^[Tt]hunar$"# title=r#"File Operation Progress$"#
     open-floating true
@@ -207,7 +344,7 @@ window-rule {
     open-floating true
 }
 
-// Tile rules (Niri tiles by default, so explicit rules may not be needed unless overriding floating)
+// tile
 window-rule {
     match app-id=r#"^ONLYOFFICE Desktop Editors$"#
     open-floating false
@@ -221,7 +358,8 @@ window-rule {
     open-floating false
 }
 
-// Fullscreen (Niri supports maximizing, not true fullscreen)
+// Fullscreen
+
 window-rule {
     match app-id=r#"^Waydroid$"#
     open-maximized true
@@ -230,15 +368,6 @@ window-rule {
     match app-id=r#"^cs2$"#
     open-maximized true
 }
-
-// Center (Niri auto-positions floating windows, no direct centering support)
-// Workaround: Use `open-on-workspace` or external scripts for positioning
-
-// NoBlur, NoBorder, NoShadow (Unsupported in Niri KDL)
-// Workaround: Disable compositor effects globally or use external tools like `picom` for X11 apps via xwayland-satellite
-
-// IdleInhibit (Unsupported in Niri KDL)
-// Workaround: Use external tools like `swayidle` or `wlr-randr` for idle management
 
 // Monitor assignment
 window-rule {
@@ -250,7 +379,7 @@ window-rule {
     open-on-output "HDMI-A-1"
 }
 
-// Size (Niri supports preset sizes via `default-column-width` or `preset-window-heights`)
+// Size 
 window-rule {
     match title=r#"^Picture-in-Picture$"#
     default-column-width { proportion 0.25; }
@@ -261,171 +390,25 @@ window-rule {
     min-width 1129
     min-height 508
 }
-
-// Move (Unsupported for precise positioning)
-// Workaround: Niri auto-adjusts floating window positions relative to monitor size[](https://www.reddit.com/r/linux/comments/1hzsbad/release_niri_2501/?rdt=52300)
-
-// KeepAspectRatio (Unsupported in Niri KDL)
-// Workaround: Rely on app’s native aspect ratio handling or external tools
-
-
-
-binds {
-    // Keys consist of modifiers separated by + signs, followed by an XKB key name
-    // in the end. To find an XKB name for a particular key, you may use a program
-    // like wev.
-    //
-    // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt
-    // when running as a winit window.
-    //
-    // Most actions that you can bind here can also be invoked programmatically with
-    // `niri msg action do-something`.
-
-    // Mod-Shift-/, which is usually the same as Mod-?,
-    // shows a list of important hotkeys.
-    Mod+Shift+Slash { show-hotkey-overlay; }
-
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
-  
-    Mod+return { spawn "foot"; }
-    Mod+Z { spawn "~/.config/rofi/launchers/launcher.sh"; }
-    Mod+Shift+Z { spawn "~/.config/rofi/rofiScript.sh"; }
-    Mod+E { spawn "nemo"; }
-    Mod+v { spawn "firefox"; }
-    Mod+alt+V { spawn "~/.config/hypr/scripts/ClipManager.sh"; }
-
-
-    // You can also use a shell. Do this if you need pipes, multiple commands, etc.
-    // Note: the entire command goes as a single argument in the end.
-    // Mod+T { spawn "bash" "-c" "notify-send hello && spawn alacritty"; }
-
-    // Example volume keys mappings for PipeWire & WirePlumber.
-    // The allow-when-locked=true property makes them work even when the session is locked.
-
-    xf86audioraisevolume allow-when-locked=true { spawn "~/.config/hypr/scripts/Volume.sh" "--inc"; }
-    xf86audiolowervolume allow-when-locked=true { spawn "~/.config/hypr/scripts/Volume.sh" "--dec"; }
-    Shift+xf86audioraisevolume { spawn "~/.config/hypr/scripts/Brightness.sh" "--inc"; }
-    Shift+xf86audiolowervolume { spawn "~/.config/hypr/scripts/Brightness.sh" "--dec"; }
-    xf86Search { spawn "~/.config/hypr/scripts/Volume.sh" "--toggle-mic"; }
-    xf86audiomute { spawn "~/.config/hypr/scripts/Volume.sh" "--toggle"; }
-    xf86Sleep { spawn "systemctl suspend"; }
-    xf86Rfkill { spawn "~/.config/hypr/scripts/AirplaneMode.sh"; }
-    xf86AudioPlay allow-when-locked=true { spawn "~/.config/hypr/scripts/MediaCtrl.sh" "--pause"; }
-    xf86AudioPause allow-when-locked=true { spawn "~/.config/hypr/scripts/MediaCtrl.sh" "--pause"; }
-    xf86AudioNext allow-when-locked=true { spawn "~/.config/hypr/scripts/MediaCtrl.sh" "--nxt"; }
-    xf86AudioPrev allow-when-locked=true { spawn "~/.config/hypr/scripts/MediaCtrl.sh" "--prv"; }
-    xf86audiostop allow-when-locked=true { spawn "~/.config/hypr/scripts/MediaCtrl.sh" "--stop"; }
-
-    Mod+Q { close-window; }
-
-    Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-down; }
-    Mod+K     { focus-window-up; }
-    Mod+L     { focus-column-right; }
-
-    Mod+Shift+H     { move-column-left; }
-    Mod+Shift+J     { move-window-down; }
-    Mod+Shift+K     { move-window-up; }
-    Mod+Shift+L     { move-column-right; }
-
-    Mod+Home { focus-column-first; }
-    Mod+End  { focus-column-last; }
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End  { move-column-to-last; }
-
-    // And you can also move a whole workspace  to another monitor:
-    Mod+alt+1  { move-workspace-to-monitor-left; }
-    Mod+alt+2  { move-workspace-to-monitor-right; }
-
-    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
-
-    Mod+1 { focus-workspace  1; }
-    Mod+2 { focus-workspace  2; }
-    Mod+3 { focus-workspace  3; }
-    Mod+4 { focus-workspace  4; }
-    Mod+5 { focus-workspace  5; }
-    Mod+6 { focus-workspace  6; }
-    Mod+7 { focus-workspace  7; }
-    Mod+8 { focus-workspace  8; }
-    Mod+9 { focus-workspace  9; }
-    Mod+0 { focus-workspace  10; }
-    Mod+Shift+1 { move-column-to-workspace  1; }
-    Mod+Shift+2 { move-column-to-workspace  2; }
-    Mod+Shift+3 { move-column-to-workspace  3; }
-    Mod+Shift+4 { move-column-to-workspace  4; }
-    Mod+Shift+5 { move-column-to-workspace  5; }
-    Mod+Shift+6 { move-column-to-workspace  6; }
-    Mod+Shift+7 { move-column-to-workspace  7; }
-    Mod+Shift+8 { move-column-to-workspace  8; }
-    Mod+Shift+9 { move-column-to-workspace  9; }
-    Mod+Shift+0 { move-column-to-workspace  10; }
-
-    Mod+Tab { focus-workspace-previous; }
-
-    Mod+R { switch-preset-column-width; }
-    Mod+Ctrl+F { maximize-column; }
-    Mod+F { fullscreen-window; }
-
-    Mod+Ctrl+H { set-column-width "-10%"; }
-    Mod+Ctrl+J { set-window-height "-10%"; }
-    Mod+Ctrl+K { set-window-height "+10%"; }
-    Mod+Ctrl+L { set-column-width "+10%"; }
-
-    Mod+Mod+Shift+F       { toggle-window-floating; }
-
-    Mod+Shift+S { screenshot; }
-    Print { spawn "~/.config/hypr/scripts/ScreenShot.sh" "--now"; }
-
-    Ctrl+Alt+Delete { quit; }
-
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
-    Mod+Ctrl+P { power-off-monitors; }
+window-rule {
+  match app-id="(.*)[Vv]ivaldi(.*)"
+  default-column-width { proportion 0.95; }
 }
 
-environment {
-    // Toolkit Backend Variables
-    GDK_BACKEND "wayland"
-    QT_QPA_PLATFORM "wayland"
-    SDL_VIDEODRIVER "wayland"
-    CLUTTER_BACKEND "wayland"
-
-    // XDG Specifications
-    XDG_CURRENT_DESKTOP "Niri"
-    XDG_SESSION_DESKTOP "Niri"
-    XDG_SESSION_TYPE "wayland"
-
-    // Qt Variables
-    QT_AUTO_SCREEN_SCALE_FACTOR "1"
-    QT_SCALE_FACTOR "1"
-    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-    QT_QPA_PLATFORMTHEME "qt6ct"
-    QT_WAYLAND_FORCE_DPI "physical"
-
-    // GTK Theme
-    GDK_SCALE "1"
-
-    // Firefox Specifies
-    MOZ_ENABLE_WAYLAND "1"
-    MOZ_DBUS_REMOTE "1"
-
-    // NVIDIA Specific
-    LIBVA_DRIVER_NAME "nvidia"
-    __GLX_VENDOR_LIBRARY_NAME "nvidia"
-    __GL_VRR_ALLOWED "1"
-    __GL_GSYNC_ALLOWED "1"
-    NVD_BACKEND "direct"
-    GSK_RENDERER "ngl"
-    GBM_BACKEND "nvidia-drm"
+window-rule {
+  match app-id="(.*)[Ff]oot(.*)"
+  default-column-width { proportion 0.95; }
 }
 
-cursor {
-    xcursor-theme "Bibata-Modern-Ice"
-    xcursor-size 24
-    hide-when-typing
+// random
+
+window-rule {
+  match app-id="(.*)"
+  opacity 0.95
+  geometry-corner-radius 2
 }
 
-hotkey-overlay {
-    skip-at-startup
+animations {
+  off
 }
+

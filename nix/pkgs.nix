@@ -98,6 +98,7 @@ in {
       xdg-desktop-portal-hyprland
       xdg-user-dirs
       xdg-utils
+      xwayland-satellite
       yad
       yazi
       yt-dlp
@@ -129,6 +130,8 @@ in {
     xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
+
+    niri.enable = true;
 
     hyprland = {
       enable = true;

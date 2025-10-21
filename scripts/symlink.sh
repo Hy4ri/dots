@@ -44,6 +44,10 @@ ln -s $dots/.config/dunst $config/dunst
 rm -rf $config/yazi
 ln -s $dots/.config/yazi $config/yazi
 
+# niri
+rm -rf $config/niri
+ln -s $dots/.config/niri $config/niri
+
 # nvim
 rm -rf $config/nvim
 ln -s $dots/.config/nvim $config/nvim
