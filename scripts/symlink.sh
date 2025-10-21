@@ -1,59 +1,35 @@
 #!/usr/bin/env bash
-
-# link from dots to .config
+set -euo pipefail
 
 # Vars
 config="$HOME/.config"
+dots="$HOME/dots"
+
 if [ -d "$HOME/Documents/Projects/dots" ]; then
   dots="$HOME/Documents/Projects/dots"
-else
-  dots="$HOME/dots"
 fi
 
-echo "Linking ..."
+echo "Linking configs from: $dots"
 
-# zshrc
-rm $HOME/.zshrc
-ln -s $dots/.zshrc $HOME/.zshrc
+safe_link() {
+  local src=$1
+  local dest=$2
 
-# zprofile
-rm $HOME/.zprofile
-ln -s $dots/.zprofile $HOME/.zprofile
+  if [ -e "$dest" ] || [ -L "$dest" ]; then
+    echo "Removing existing: $dest"
+    rm -rf "$dest"
+  fi
 
-# hyprland
-rm -rf $config/hypr
-ln -s $dots/.config/hypr $config/hypr
+  ln -s "$src" "$dest"
+  echo "Linked: $dest → $src"
+}
 
-# foot
-rm -rf $config/foot
-ln -s $dots/.config/foot $config/foot
+safe_link "$dots/.zshrc" "$HOME/.zshrc"
+safe_link "$dots/.zprofile" "$HOME/.zprofile"
+safe_link "$dots/.tmux.conf" "$HOME/.tmux.conf"
 
-# rofi
-rm -rf $config/rofi
-ln -s $dots/.config/rofi $config/rofi
-
-# waybar
-rm -rf $config/waybar
-ln -s $dots/.config/waybar $config/waybar
-
-# dunst
-rm -rf $config/dunst
-ln -s $dots/.config/dunst $config/dunst
-
-# yazi
-rm -rf $config/yazi
-ln -s $dots/.config/yazi $config/yazi
-
-# niri
-rm -rf $config/niri
-ln -s $dots/.config/niri $config/niri
-
-# nvim
-rm -rf $config/nvim
-ln -s $dots/.config/nvim $config/nvim
-
-# tmux
-rm $HOME/.tmux.conf
-ln -s $dots/.tmux.conf $HOME/.tmux.conf
+for dir in hypr foot rofi waybar dunst yazi niri nvim; do
+  safe_link "$dots/.config/$dir" "$config/$dir"
+done
 
 echo "Done :)"
