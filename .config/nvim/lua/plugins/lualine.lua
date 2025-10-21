@@ -45,7 +45,7 @@ return {
       for _, client in ipairs(clients) do
         local filetypes = client.config.filetypes
         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-          return " " .. client.name
+          return "" .. client.name
         end
       end
       return "" -- Hide if no LSP supports this filetype
@@ -55,7 +55,18 @@ return {
     -- Function: Display current time (HH:MM)
     ---------------------------------------------------------------------
     local function clock()
-      return os.date("%H:%M")
+      return os.date("%I:%M")
+    end
+
+    ---------------------------------------------------------------------
+    -- Function: Show macro recording status (e.g., " q")
+    ---------------------------------------------------------------------
+    local function recording_macro()
+      local reg = vim.fn.reg_recording()
+      if reg == "" then
+        return ""
+      end
+      return " @" .. reg
     end
 
     ---------------------------------------------------------------------
@@ -63,7 +74,7 @@ return {
     ---------------------------------------------------------------------
     require("lualine").setup({
       options = {
-        theme = "iceberg_dark",
+        theme = "auto",--"iceberg_dark",
         icons_enabled = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
@@ -101,19 +112,21 @@ return {
         lualine_x = {
           {
             "diagnostics", -- LSP diagnostics (errors, warnings, etc.)
-            sources = { "nvim_diagnostic" },
+            sources = {"nvim_diagnostic"},
             symbols = { error = " ", warn = " ", info = " ", hint = " " },
             colored = true,
           },
           {
             lsp_client, -- Active LSP client name
-            icon = "",
           },
-          -- { "encoding" },   -- File encoding (e.g., utf-8)
-          { "fileformat" }, -- File format (unix/dos)
+          {
+            recording_macro, -- Macro recording indicator
+            color = { fg = "#BF616A", gui = "bold" }, -- Red + bold when active
+          },
+          {"fileformat"}, -- File format (unix/dos)
         },
         lualine_y = {
-          { "location" }, -- Cursor position (line:column)
+          {"location"}, -- Cursor position (line:column)
         },
         lualine_z = {
           {
@@ -127,7 +140,7 @@ return {
       -------------------------------------------------------------------
       inactive_sections = {
         lualine_a = {},
-        lualine_b = {file_with_icon },
+        lualine_b = { file_with_icon },
         lualine_c = {},
         lualine_x = { "location" },
         lualine_y = {},
@@ -139,6 +152,17 @@ return {
       -------------------------------------------------------------------
       tabline = {},
       extensions = {},
+    })
+
+    ---------------------------------------------------------------------
+    -- Auto-update the macro indicator
+    ---------------------------------------------------------------------
+    vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+      callback = function()
+        vim.defer_fn(function()
+          require("lualine").refresh({ place = { "statusline" } })
+        end, 50)
+      end,
     })
   end,
 }

@@ -96,6 +96,8 @@ in {
       wl-clipboard
       wev
       xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
       xdg-user-dirs
       xdg-utils
       xwayland-satellite
@@ -104,6 +106,7 @@ in {
       yt-dlp
       zathura
       zoxide
+      inputs.hyprwire.packages.${pkgs.system}.default
     ])
     ++ [
       python-packages

@@ -5,9 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    hyprwire.url = "github:hyprwm/hyprwire";
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, hyprland, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, hyprland, hyprwire, ... }@inputs: {
     nixosConfigurations = {
       hyari = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

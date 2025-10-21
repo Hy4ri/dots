@@ -39,4 +39,4 @@ if vim.fn.filereadable(lockfile) == 0 then
 	})
 end
 
-vim.cmd.colorscheme("vague")
+vim.cmd.colorscheme("m57")

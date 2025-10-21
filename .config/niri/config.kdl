@@ -36,7 +36,7 @@ input {
   }
 
   warp-mouse-to-focus
-  focus-follows-mouse max-scroll-amount="50%"
+  focus-follows-mouse max-scroll-amount="100%"
   workspace-auto-back-and-forth
 }
 
@@ -100,60 +100,59 @@ layout {
   }
 
   struts {
-     left 1
-     right 1
-     top 1
-     bottom 1
+    left 1
+    right 1
+    top 1
+    bottom 1
   }
 }
 
 // Startup
 
- spawn-at-startup "hypridle"
- spawn-at-startup "bash" "-c" "wl-paste -t text -w cliphist store -max-items 1000000"
- spawn-at-startup "bash" "-c" "wl-paste -t image -w cliphist store -max-items 1000000"
- spawn-at-startup "foot" "--server"
- spawn-at-startup "waybar" "-c" ".config/waybar/configs/Niri.jsonc" "-s" ".config/waybar/style/Main.css"
- spawn-at-startup "xwayland-satellite"
- spawn-at-startup "dunst"
- spawn-at-startup "swww-daemon"
+spawn-at-startup "foot" "--server"
+spawn-at-startup "waybar" "-c" ".config/waybar/configs/Niri.jsonc" "-s" ".config/waybar/style/Main.css"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "dunst"
+spawn-at-startup "swww-daemon"
+spawn-sh-at-startup "wl-paste -t text -w cliphist store -max-items 1000000"
+spawn-sh-at-startup "wl-paste -t image -w cliphist store -max-items 1000000"
 
 
 // Env Vars
 
 environment {
-    gdk_backend "wayland"
-    qt_qpa_platform "wayland"
-    sdl_videodriver "wayland"
-    clutter_backend "wayland"
+  gdk_backend "wayland"
+  qt_qpa_platform "wayland"
+  sdl_videodriver "wayland"
+  clutter_backend "wayland"
 
-    // XDG Specifications
-    XDG_CURRENT_DESKTOP "Niri"
-    XDG_SESSION_DESKTOP "Niri"
-    XDG_SESSION_TYPE "wayland"
+  // XDG Specifications
+  XDG_CURRENT_DESKTOP "Niri"
+  XDG_SESSION_DESKTOP "Niri"
+  XDG_SESSION_TYPE "wayland"
 
-    // Qt Variables
-    QT_AUTO_SCREEN_SCALE_FACTOR "1"
-    QT_SCALE_FACTOR "1"
-    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-    QT_QPA_PLATFORMTHEME "qt6ct"
-    QT_WAYLAND_FORCE_DPI "physical"
+  // Qt Variables
+  QT_AUTO_SCREEN_SCALE_FACTOR "1"
+  QT_SCALE_FACTOR "1"
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+  QT_QPA_PLATFORMTHEME "qt6ct"
+  QT_WAYLAND_FORCE_DPI "physical"
 
-    // GTK Theme
-    GDK_SCALE "1"
+  // GTK Theme
+  GDK_SCALE "1"
 
-    // Firefox Specifies
-    MOZ_ENABLE_WAYLAND "1"
-    MOZ_DBUS_REMOTE "1"
+  // Firefox Specifies
+  MOZ_ENABLE_WAYLAND "1"
+  MOZ_DBUS_REMOTE "1"
 
-    // NVIDIA Specific
-    LIBVA_DRIVER_NAME "nvidia"
-    __GLX_VENDOR_LIBRARY_NAME "nvidia"
-    __GL_VRR_ALLOWED "1"
-    __GL_GSYNC_ALLOWED "1"
-    NVD_BACKEND "direct"
-    GSK_RENDERER "ngl"
-    GBM_BACKEND "nvidia-drm"
+  // NVIDIA Specific
+  LIBVA_DRIVER_NAME "nvidia"
+  __GLX_VENDOR_LIBRARY_NAME "nvidia"
+  __GL_VRR_ALLOWED "1"
+  __GL_GSYNC_ALLOWED "1"
+  NVD_BACKEND "direct"
+  GSK_RENDERER "ngl"
+  GBM_BACKEND "nvidia-drm"
 }
 
 // Misc
@@ -162,233 +161,229 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 cursor {
-    xcursor-theme "Bibata-Modern-Ice"
-    xcursor-size 24
-    //hide-when-typing
+  xcursor-theme "Bibata-Modern-Ice"
+  xcursor-size 24
+  //hide-when-typing
 }
 
 overview {
-    zoom 0.5
-    backdrop-color "#262626"
-}
-
-clipboard {
-    // disable-primary
+  zoom 0.5
+  backdrop-color "#262626"
 }
 
 hotkey-overlay {
-    skip-at-startup
+  skip-at-startup
 }
 
 //Binds
 
 binds {
-    Mod+return { spawn "foot"; }
-    Mod+Z { spawn "rofi" "-show" "drun" "-p"; }
-    Mod+Shift+Z { spawn "~/.config/rofi/rofiScript.sh"; }
-    Mod+E { spawn "nemo"; }
-    Mod+v { spawn "vivaldi"; }
-    Mod+alt+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+  Mod+return { spawn "foot"; }
+  Mod+Z { spawn "rofi" "-show" "drun" "-p"; }
+  Mod+Shift+Z { spawn "~/.config/rofi/rofiScript.sh"; }
+  Mod+E { spawn "nemo"; }
+  Mod+v { spawn "vivaldi"; }
+  Mod+alt+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
 
-    xf86audioraisevolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--inc"; }
-    xf86audiolowervolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--dec"; }
-    Shift+xf86audioraisevolume { spawn "~/.config/hypr/scripts/brightness.sh" "--inc"; }
-    Shift+xf86audiolowervolume { spawn "~/.config/hypr/scripts/brightness.sh" "--dec"; }
-    xf86Search { spawn "~/.config/hypr/scripts/volume.sh" "--toggle-mic"; }
-    xf86audiomute { spawn "~/.config/hypr/scripts/volume.sh" "--toggle"; }
-    xf86Sleep { spawn "systemctl suspend"; }
-    xf86Rfkill { spawn "~/.config/hypr/scripts/airplaneMode.sh"; }
-    xf86AudioPlay allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--pause"; }
-    xf86AudioPause allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--pause"; }
-    xf86AudioNext allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--nxt"; }
-    xf86AudioPrev allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--prv"; }
-    xf86audiostop allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--stop"; }
+  xf86audioraisevolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--inc"; }
+  xf86audiolowervolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--dec"; }
+  Shift+xf86audioraisevolume { spawn "~/.config/hypr/scripts/brightness.sh" "--inc"; }
+  Shift+xf86audiolowervolume { spawn "~/.config/hypr/scripts/brightness.sh" "--dec"; }
+  xf86Search { spawn "~/.config/hypr/scripts/volume.sh" "--toggle-mic"; }
+  xf86audiomute { spawn "~/.config/hypr/scripts/volume.sh" "--toggle"; }
+  xf86Sleep { spawn "systemctl suspend"; }
+  xf86Rfkill { spawn "~/.config/hypr/scripts/airplaneMode.sh"; }
+  xf86AudioPlay allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--pause"; }
+  xf86AudioPause allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--pause"; }
+  xf86AudioNext allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--nxt"; }
+  xf86AudioPrev allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--prv"; }
+  xf86audiostop allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--stop"; }
 
-    Mod+Q { close-window; }
+  Mod+Q { close-window; }
 
-    Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-down; }
-    Mod+K     { focus-window-up; }
-    Mod+L     { focus-column-right; }
+  Mod+H     { focus-column-left; }
+  Mod+J     { focus-window-down; }
+  Mod+K     { focus-window-up; }
+  Mod+L     { focus-column-right; }
 
-    Mod+Shift+H     { move-column-left; }
-    Mod+Shift+J     { move-window-down; }
-    Mod+Shift+K     { move-window-up; }
-    Mod+Shift+L     { move-column-right; }
+  Mod+Shift+H     { move-column-left; }
+  Mod+Shift+J     { move-window-down; }
+  Mod+Shift+K     { move-window-up; }
+  Mod+Shift+L     { move-column-right; }
 
-    Mod+alt+1  { move-workspace-to-monitor-left; }
-    Mod+alt+2  { move-workspace-to-monitor-right; }
+  Mod+alt+1  { move-workspace-to-monitor-left; }
+  Mod+alt+2  { move-workspace-to-monitor-right; }
 
-    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+  Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+  Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
 
-    Mod+1 { focus-workspace  1; }
-    Mod+2 { focus-workspace  2; }
-    Mod+3 { focus-workspace  3; }
-    Mod+4 { focus-workspace  4; }
-    Mod+5 { focus-workspace  5; }
-    Mod+6 { focus-workspace  6; }
-    Mod+7 { focus-workspace  7; }
-    Mod+8 { focus-workspace  8; }
-    Mod+9 { focus-workspace  9; }
-    Mod+0 { focus-workspace  10; }
-    Mod+Shift+1 { move-column-to-workspace  1; }
-    Mod+Shift+2 { move-column-to-workspace  2; }
-    Mod+Shift+3 { move-column-to-workspace  3; }
-    Mod+Shift+4 { move-column-to-workspace  4; }
-    Mod+Shift+5 { move-column-to-workspace  5; }
-    Mod+Shift+6 { move-column-to-workspace  6; }
-    Mod+Shift+7 { move-column-to-workspace  7; }
-    Mod+Shift+8 { move-column-to-workspace  8; }
-    Mod+Shift+9 { move-column-to-workspace  9; }
-    Mod+Shift+0 { move-column-to-workspace  10; }
+  Mod+1 { focus-workspace  1; }
+  Mod+2 { focus-workspace  2; }
+  Mod+3 { focus-workspace  3; }
+  Mod+4 { focus-workspace  4; }
+  Mod+5 { focus-workspace  5; }
+  Mod+6 { focus-workspace  6; }
+  Mod+7 { focus-workspace  7; }
+  Mod+8 { focus-workspace  8; }
+  Mod+9 { focus-workspace  9; }
+  Mod+0 { focus-workspace  10; }
+  Mod+Shift+1 { move-column-to-workspace  1; }
+  Mod+Shift+2 { move-column-to-workspace  2; }
+  Mod+Shift+3 { move-column-to-workspace  3; }
+  Mod+Shift+4 { move-column-to-workspace  4; }
+  Mod+Shift+5 { move-column-to-workspace  5; }
+  Mod+Shift+6 { move-column-to-workspace  6; }
+  Mod+Shift+7 { move-column-to-workspace  7; }
+  Mod+Shift+8 { move-column-to-workspace  8; }
+  Mod+Shift+9 { move-column-to-workspace  9; }
+  Mod+Shift+0 { move-column-to-workspace  10; }
 
-    Mod+Tab { focus-workspace-previous; }
+  Mod+Tab { focus-workspace-previous; }
 
-    Mod+R { switch-preset-column-width; }
+  Mod+R { switch-preset-column-width; }
 
-    Mod+Ctrl+F { maximize-column; }
-    Mod+F { fullscreen-window; }
-    Mod+Mod+Shift+F       { toggle-window-floating; }
+  Mod+F { fullscreen-window; }
+  Mod+Ctrl+F { toggle-window-floating; }
+  Mod+Shift+F { maximize-column; }
 
-    Mod+Ctrl+H { set-column-width "-10%"; }
-    Mod+Ctrl+J { set-window-height "-10%"; }
-    Mod+Ctrl+K { set-window-height "+10%"; }
-    Mod+Ctrl+L { set-column-width "+10%"; }
+  Mod+Ctrl+H { set-column-width "-10%"; }
+  Mod+Ctrl+J { set-window-height "-10%"; }
+  Mod+Ctrl+K { set-window-height "+10%"; }
+  Mod+Ctrl+L { set-column-width "+10%"; }
 
-    Mod+Shift+S { screenshot; }
-    Print { spawn "~/.config/hypr/scripts/ScreenShot.sh" "--now"; }
+  Mod+Shift+S { screenshot; }
+  Print { spawn "~/.config/hypr/scripts/ScreenShot.sh" "--now"; }
 
-    Ctrl+Alt+Delete { quit; }
+  Ctrl+Alt+Delete { quit; }
 
-    Mod+Ctrl+P { power-off-monitors; }
+  Mod+Ctrl+P { power-off-monitors; }
 
-     Mod+W { spawn "~/.config/hypr/scripts/waller.sh" "--select"; }
-     Ctrl+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--random"; }  
-     Mod+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--mini"; } 
+  Mod+W { spawn "~/.config/hypr/scripts/waller.sh" "--select"; }
+  Ctrl+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--random"; }  
+  Mod+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--mini"; } 
 }
 
 // WindowRules
 
-   // Float rules
+// Float rules
 window-rule {
-    match app-id=r#"^[Tt]hunar$"# title=r#"File Operation Progress$"#
-    open-floating true
+  match app-id=r#"^[Tt]hunar$"# title=r#"File Operation Progress$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^[Tt]hunar$"# title=r#"Confirm to replace files$"#
-    open-floating true
+  match app-id=r#"^[Tt]hunar$"# title=r#"Confirm to replace files$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^xdg-desktop-portal-gtk$"#
-    open-floating true
+  match app-id=r#"^xdg-desktop-portal-gtk$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^org\.gnome\.Calculator$"# title=r#"Calculator$"#
-    open-floating true
+  match app-id=r#"^org\.gnome\.Calculator$"# title=r#"Calculator$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^(codium|codium-url-handler|VSCodium)$"# title=r#"Add Folder to Workspace$"#
-    open-floating true
+  match app-id=r#"^(codium|codium-url-handler|VSCodium)$"# title=r#"Add Folder to Workspace$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^(pavucontrol|org\.pulseaudio\.pavucontrol)$"#
-    open-floating true
+  match app-id=r#"^(pavucontrol|org\.pulseaudio\.pavucontrol)$"#
+  open-floating true
 }
 window-rule {
-    match title=r#"chat\.openai\.com_/$"#
-    open-floating true
+  match title=r#"chat\.openai\.com_/$"#
+  open-floating true
 }
 window-rule {
-    match title=r#"app\.todoist\.com_/app/today$"#
-    open-floating true
+  match title=r#"app\.todoist\.com_/app/today$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^(waypaper|Pocky)$"#
-    open-floating true
+  match app-id=r#"^(waypaper|Pocky)$"#
+  open-floating true
 }
 window-rule {
-    match title=r#"^(Open File|Select a File|Save As|Library|File Upload).*$"#
-    open-floating true
+  match title=r#"^(Open File|Select a File|Save As|Library|File Upload).*$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^it\.mijorus\.smile$"#
-    open-floating true
+  match app-id=r#"^it\.mijorus\.smile$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^(galculator|qalculate-gtk)$"#
-    open-floating true
+  match app-id=r#"^(galculator|qalculate-gtk)$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^(nm-connection-editor|blueman-manager)$"#
-    open-floating true
+  match app-id=r#"^(nm-connection-editor|blueman-manager)$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^(nwg-look|qt5ct|qt6ct)$"#
-    open-floating true
+  match app-id=r#"^(nwg-look|qt5ct|qt6ct)$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^yad$"#
-    open-floating true
+  match app-id=r#"^yad$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^wihotspot-gui$"#
-    open-floating true
+  match app-id=r#"^wihotspot-gui$"#
+  open-floating true
 }
 window-rule {
-    match app-id=r#"^(file-roller|org\.gnome\.FileRoller)$"#
-    open-floating true
+  match app-id=r#"^(file-roller|org\.gnome\.FileRoller)$"#
+  open-floating true
 }
 window-rule {
-    match title=r#"^Picture-in-Picture$"#
-    open-floating true
+  match title=r#"^Picture-in-Picture$"#
+  open-floating true
 }
 
 // tile
 window-rule {
-    match app-id=r#"^ONLYOFFICE Desktop Editors$"#
-    open-floating false
+  match app-id=r#"^ONLYOFFICE Desktop Editors$"#
+  open-floating false
 }
 window-rule {
-    match app-id=r#"^dev\.warp\.Warp$"#
-    open-floating false
+  match app-id=r#"^dev\.warp\.Warp$"#
+  open-floating false
 }
 window-rule {
-    match app-id=r#"^Chromium$"#
-    open-floating false
+  match app-id=r#"^Chromium$"#
+  open-floating false
 }
 
 // Fullscreen
 
 window-rule {
-    match app-id=r#"^Waydroid$"#
-    open-maximized true
+  match app-id=r#"^Waydroid$"#
+  open-maximized true
 }
 window-rule {
-    match app-id=r#"^cs2$"#
-    open-maximized true
+  match app-id=r#"^cs2$"#
+  open-maximized true
 }
 
 // Monitor assignment
 window-rule {
-    match app-id=r#"^(vesktop|equibop)$"#
-    open-on-output "HDMI-A-1"
+  match app-id=r#"^(vesktop|equibop)$"#
+  open-on-output "HDMI-A-1"
 }
 window-rule {
-    match app-id=r#"^Spotify$"#
-    open-on-output "HDMI-A-1"
+  match app-id=r#"^Spotify$"#
+  open-on-output "HDMI-A-1"
 }
 
 // Size 
 window-rule {
-    match title=r#"^Picture-in-Picture$"#
-    default-column-width { proportion 0.25; }
-    default-window-height { proportion 0.25; }
+  match title=r#"^Picture-in-Picture$"#
+  default-column-width { proportion 0.25; }
+  default-window-height { proportion 0.25; }
 }
 window-rule {
-    match app-id=r#"^(pavucontrol|org\.pulseaudio\.pavucontrol)$"#
-    min-width 1129
-    min-height 508
+  match app-id=r#"^(pavucontrol|org\.pulseaudio\.pavucontrol)$"#
+  min-width 1129
+  min-height 508
 }
 window-rule {
   match app-id="(.*)[Vv]ivaldi(.*)"
@@ -400,7 +395,7 @@ window-rule {
   default-column-width { proportion 0.95; }
 }
 
-// random
+// All Apps
 
 window-rule {
   match app-id="(.*)"
