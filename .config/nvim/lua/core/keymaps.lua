@@ -47,8 +47,8 @@ keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 keymap.set("x", "<leader>p", "\"_dP")
 
 -- Move highlighted text
-keymap.set("v", "J", ":m '>+1<CR>gv=gv", {desc = "Move highlighted text down"})
-keymap.set("v", "K", ":m '>-2<CR>gv=gv", {desc = "Move highlighted text up"})
+keymap.set("x", "J", ":move '>+1<CR>gv-gv", { desc = "Move highlighted text down", silent = true })
+keymap.set("x", "K", ":move '<-2<CR>gv-gv", { desc = "Move highlighted text up", silent = true })
 
 -- Fix J cursor placment
 keymap.set("n", "J", "mzJ`z")
@@ -72,6 +72,7 @@ keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Write" })
 keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
 keymap.set("n", "<leader>t", "<cmd>split | terminal<CR>", { desc = "Split Terminal" })
 keymap.set("n", "<leader>r", ":%s/", { noremap = true }, { desc = "Replace in file" })
+keymap.set("x", "<leader>r", ":s/", { noremap = true }, { desc = "Replace in file" })
 keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
 keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 keymap.set("n", "U", "<C-r>", { desc = "Redo" })

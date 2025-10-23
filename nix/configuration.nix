@@ -97,6 +97,7 @@
   nix = {
     settings = {
       auto-optimise-store = true;
+      download-buffer-size = 104857600;
       experimental-features = [
         "nix-command"
         "flakes"

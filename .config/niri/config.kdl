@@ -110,13 +110,14 @@ layout {
 // Startup
 
 spawn-at-startup "foot" "--server"
-spawn-at-startup "waybar" "-c" ".config/waybar/configs/Niri.jsonc" "-s" ".config/waybar/style/Main.css"
+// spawn-at-startup "waybar" "-c" "~/.config/waybar/configs/Niri.jsonc" "-s" "~/.config/waybar/style/Main.css"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "dunst"
+spawn-at-startup "hypridle"
 spawn-at-startup "swww-daemon"
 spawn-sh-at-startup "wl-paste -t text -w cliphist store -max-items 1000000"
 spawn-sh-at-startup "wl-paste -t image -w cliphist store -max-items 1000000"
-
+spawn-sh-at-startup "~/.config/niri/scripts/polkit.sh"
 
 // Env Vars
 
@@ -183,7 +184,8 @@ binds {
   Mod+Shift+Z { spawn "~/.config/rofi/rofiScript.sh"; }
   Mod+E { spawn "nemo"; }
   Mod+v { spawn "vivaldi"; }
-  Mod+alt+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+  Mod+Alt+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+  Ctrl+Shift+escape { spawn "foot" "btop"; }
 
   xf86audioraisevolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--inc"; }
   xf86audiolowervolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--dec"; }
@@ -261,6 +263,8 @@ binds {
   Mod+W { spawn "~/.config/hypr/scripts/waller.sh" "--select"; }
   Ctrl+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--random"; }  
   Mod+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--mini"; } 
+
+  Mod+B { spawn "~/.config/hypr/scripts/waybar.sh" "--niri"; }
 }
 
 // WindowRules
@@ -362,6 +366,16 @@ window-rule {
 window-rule {
   match app-id=r#"^cs2$"#
   open-maximized true
+}
+
+// Maxed
+window-rule {
+  match title=r#"^.*nvim.*$"#
+  min-width 1917
+}
+window-rule {
+  match app-id="vivaldi-stable"
+  min-width 1917
 }
 
 // Monitor assignment

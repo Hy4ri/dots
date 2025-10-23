@@ -2,4 +2,6 @@
 #     exec uwsm start hyprland.desktop
 # fi
 
-hyprland
+if [ "$(tty)" = "/dev/tty1" ] && [ -n "$PS1" ]; then
+  hyprland
+fi

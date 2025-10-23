@@ -18,7 +18,6 @@ in {
       bat
       brightnessctl
       btop
-      binutils
       bitwarden
       blueman
       cloudflare-warp
@@ -78,7 +77,7 @@ in {
       pavucontrol
       playerctl
       power-profiles-daemon
-      pkg-config
+      polkit_gnome
       qalculate-gtk
       rofi
       ripgrep
@@ -97,7 +96,6 @@ in {
       wev
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gnome
-      xdg-desktop-portal-gtk
       xdg-user-dirs
       xdg-utils
       xwayland-satellite
@@ -106,7 +104,6 @@ in {
       yt-dlp
       zathura
       zoxide
-      inputs.hyprwire.packages.${pkgs.system}.default
     ])
     ++ [
       python-packages
@@ -122,7 +119,7 @@ in {
   programs = {
     appimage.enable = true;
     appimage.binfmt = true;
-    gamemode.enable = true;
+    gamemode.enable = false;
     zsh.enable = true;
     waybar.enable = true;
     firefox.enable = true;
