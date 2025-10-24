@@ -119,7 +119,7 @@ in {
   programs = {
     appimage.enable = true;
     appimage.binfmt = true;
-    gamemode.enable = false;
+    gamemode.enable = true;
     zsh.enable = true;
     waybar.enable = true;
     firefox.enable = true;

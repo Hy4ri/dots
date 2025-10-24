@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-cd ~/dots/Nix
+cd ~/dots/nix
 
-sudo nix-rebuild switch --flake .#hyari
+sudo nix-rebuild boot --flake .#hyari

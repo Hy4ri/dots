@@ -18,23 +18,23 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/22484d50-14a4-4339-941a-ff551de8829b";
+    device = "/dev/disk/by-uuid/bb2eefc1-9d8c-43a7-a6eb-1da5a7407348";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2D80-7A2B";
+    device = "/dev/disk/by-uuid/9230-1FCA";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/11789d57-809e-43fb-b7d3-3dfc5f3f9df3";
+    device = "/dev/disk/by-uuid/ff5c64e0-a7dd-4550-b785-8c434dde63f9";
     fsType = "ext4";
   };
 
   fileSystems."/run/media/m57/SSD-Linux" = {
-    device = "/dev/disk/by-uuid/fbd0768e-ef86-4052-868f-574f0226fb29";
+    device = "/dev/disk/by-uuid/8cfeb7a9-9b4c-442a-9fce-5683fbf58ff3";
     fsType = "ext4";
     options = ["defaults" "nofail" "noatime"];
   };

@@ -75,7 +75,7 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "hyari";
-    extraGroups = ["networkmanager" "wheel" "scanner" "lp" "video" "audio"];
+    extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio"];
   };
 
   hardware = {
