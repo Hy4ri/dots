@@ -1,66 +1,50 @@
-export EDITOR="nvim"
-export VISUAL="nvim"
-export CSCOPE_EDITOR="nvim"
-export MANPAGER="nvim +Man!"
-export TERM="foot"
-export TERMINAL="foot"
+export editor="nvim"
+export visual="nvim"
+export cscope_editor="nvim"
+export manpager="nvim +man!"
+export term="foot"
+export terminal="foot"
 export helper="paru"
-export PATH="$HOME/.local/bin:$PATH"
-export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
-export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-export FZF_BASE=/usr/share/fzf
-export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
-export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
+export less_termcap_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
+export less_termcap_me="$(tput sgr0 2> /dev/null)"
+export fzf_default_opts="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
+export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
+# export path=$path:/home/m57/.spicetify
 
-HISTSIZE=100000
-SAVEHIST=100000
+histsize=100000
+savehist=100000
 
-############################ Plugins #################################
 
-source ~/antigen.zsh
-antigen use oh-my-zsh
-
-antigen bundle fzf
-antigen bundle safe-paste
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-
-antigen theme nanotech
-
-antigen apply
-
-############################ ALIASES #################################
+############################ aliases #################################
 
 #nix
-alias nxup='nh os switch -u ~/Documents/Projects/dots/nix'
-alias nxbld='nh os switch ~/Documents/Projects/dots/nix'
+alias nxup='nh os switch -u ~/documents/projects/dots/nix'
+alias nxbld='nh os switch ~/documents/projects/dots/nix'
 alias nxcln='sudo nix-collect-garbage --delete-older-than 1d'
-alias nxup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
-alias nxtry='nix-shell -p'
+alias nxup='sudo nixos-rebuild switch --flake ~/documents/projects/dots/nix'
 
 #pacman
-alias sps='sudo pacman -S'
-alias spss='sudo pacman -Ss'
-alias spfzf="pacman -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -Si {1}' --reverse | xargs -ro sudo pacman -S"
-alias spsyyu='sudo pacman -Syyu'
-alias spr='sudo pacman -R'
-alias sprns='sudo pacman -Rns'
-alias spruns='sudo pacman -Runs'
-alias spcc='sudo pacman -Rns $(pacman -Qtdq)'
+alias sps='sudo pacman -s'
+alias spss='sudo pacman -ss'
+alias spfzf="pacman -sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -si {1}' --reverse | xargs -ro sudo pacman -s"
+alias spsyyu='sudo pacman -syyu'
+alias spr='sudo pacman -r'
+alias sprns='sudo pacman -rns'
+alias spruns='sudo pacman -runs'
+alias spcc='sudo pacman -rns $(pacman -qtdq)'
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias mirror='sudo cachyos-rate-mirrors'
 
 #paru
-alias paruss="paru -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S"
-alias paruscc='paru -Scc' # remove unused cache
-alias parus='paru -S'
-alias parusyyu='paru -Syyu'
+alias paruss="paru -sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -si {1}' --reverse | xargs -ro paru -s"
+alias paruscc='paru -scc' # remove unused cache
+alias parus='paru -s'
+alias parusyyu='paru -syyu'
 
 #eza
 alias ls='eza --color=always --group-directories-first --icons' # better ls
 alias l='eza -al --color=always --group-directories-first --icons --git'  # long format
-alias lt='eza -aT --level=2 --color=always --group-directories-first --icons --git' # tree listing
+alias lt='eza -at --level=2 --color=always --group-directories-first --icons --git' # tree listing
 
 #git
 alias gitc='git clone'
@@ -68,15 +52,15 @@ alias gitc='git clone'
 #tmux
 alias tmuxa='tmux attach'
 
-#Python
+#python
 alias p='python'
 alias pvenv='python -m venv venv'
 alias sopy='source venv/bin/activate'
 
-#Files
+#files
 alias cp='cp -iv'
 alias mv='mv -iv'
-alias rm='rm -Iv'
+alias rm='rm -iv'
 alias mkdir='mkdir -pv'
 
 #cd
@@ -85,17 +69,17 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
 
-#ZSH
+#zsh
 alias sz='. "$HOME/.zshrc"'
-alias zrc='${EDITOR} ~/.zshrc'
+alias zrc='${editor} ~/.zshrc'
 
-#Nvim
+#nvim
 alias snvim='sudoedit'
 alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
-alias lvim='NVIM_APPNAME=lvim nvim'
-alias avim='NVIM_APPNAME=avim nvim'
+alias lvim='nvim_appname=lvim nvim'
+alias avim='nvim_appname=avim nvim'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -106,17 +90,17 @@ python3 -m venv venv
 venv/bin/pip install -r requirements.txt
 sudo venv/bin/python3 main.py'
 
-#Scripts
+#scripts
 alias music='bash ~/.config/hypr/scripts/music.sh'
 alias png='bash ~/.config/hypr/scripts/png.sh'
 alias 25='bash ~/.config/hypr/scripts/25.sh'
-alias xx='bash ~/Documents/xx.sh'
+alias xx='bash ~/documents/xx.sh'
 
-#Random
-alias clock='termdown -z -Z " %I : %M " -f banner3'
-alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-alias weather='curl https://wttr.in/As%20Salt\?format=3'
-alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
+#random
+alias clock='termdown -z -z " %i : %m " -f banner3'
+alias battery='upower -i /org/freedesktop/upower/devices/battery_bat0'
+alias weather='curl https://wttr.in/as%20salt\?format=3'
+alias shizuku='adb shell sh /sdcard/android/data/moe.shizuku.privileged.api/start.sh'
 alias vdl='yt-dlp'
 alias odl='yt-dlp -t mp3'
 alias img2txt='ascii-image-converter'
@@ -126,11 +110,78 @@ alias c+x='chmod +x'
 alias storage='dua i'
 alias termdown='termdown -f roman'
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias rsync='rsync -rPavh'
+alias rsync='rsync -rpavh'
 alias bios='sudo systemctl reboot --firmware-setup'
-alias h='Hyprland'
+alias h='hyprland'
 
-############################# VI Mode ##########################################
+############################# functions ##########################################
+
+# archive extract
+extract () {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1   ;;
+        *.tar.gz)    tar xzf $1   ;;
+        *.bz2)       bunzip2 $1   ;;
+        *.rar)       unrar x $1   ;;
+        *.gz)        gunzip $1    ;;
+        *.tar)       tar xf $1    ;;
+        *.tbz2)      tar xjf $1   ;;
+        *.tgz)       tar xzf $1   ;;
+        *.zip)       unzip $1     ;;
+        *.z)         uncompress $1;;
+        *.7z)        7za e x $1   ;;
+        *.deb)       ar x $1      ;;
+        *.tar.xz)    tar xf $1    ;;
+        *.tar.zst)   unzstd $1    ;;
+        *)           echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# git push all
+gitup() {
+  git add -a
+  git commit -m "$1"
+  git push
+}
+
+# update dotfiles
+dup() {
+  cd $HOME/Documents/Projects/dots/
+  git add -A
+  git commit -m "$1"
+  git push
+}
+
+# dangool
+dngl() {
+  cd $HOME/Videos/dangool/
+  yt-dlp "$1"
+  cd $HOME
+}
+
+# update pkgs
+up() {
+  nh os switch -u ~/Documents/projects/dots/nix
+  flatpak update 
+}
+
+# warp
+warp() {
+  sudo -v || return 1
+  sudo warp-svc >/dev/null 2>&1 &
+  disown
+}
+
+# nix pkgs temp install
+nxtry() {
+  nix shell nixpkgs#"$1"
+}
+
+############################# vi mode ##########################################
 
 bindkey -v 
 export KEYTIMEOUT=1 
@@ -167,78 +218,34 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-############################# FUNCTIONS ##########################################
+############################## Prompt ###############################
 
-# ARCHIVE EXTRACT
-extract () {
-    if [ -f $1 ] ; then
-      case $1 in
-        *.tar.bz2)   tar xjf $1   ;;
-        *.tar.gz)    tar xzf $1   ;;
-        *.bz2)       bunzip2 $1   ;;
-        *.rar)       unrar x $1   ;;
-        *.gz)        gunzip $1    ;;
-        *.tar)       tar xf $1    ;;
-        *.tbz2)      tar xjf $1   ;;
-        *.tgz)       tar xzf $1   ;;
-        *.zip)       unzip $1     ;;
-        *.Z)         uncompress $1;;
-        *.7z)        7za e x $1   ;;
-        *.deb)       ar x $1      ;;
-        *.tar.xz)    tar xf $1    ;;
-        *.tar.zst)   unzstd $1    ;;
-        *)           echo "'$1' cannot be extracted via extract()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+parse_git_dirty() {
+  [[ -n $(git status -s 2> /dev/null) ]] && echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
 }
 
-# git push all
-gitup() {
-  git add -A
-  git commit -m "$1"
-  git push
-}
+PROMPT='%F{green}%2c%F{blue} [%f '
+RPROMPT='%F{blue}] %F{green}%D{%L:%M} %F{yellow}%D{%p}%f'
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{yellow}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%f"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %F{red}*%f"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-# Update dotfiles
-dup() {
-  cd $HOME/Documents/Projects/dots/
-  git add -A
-  git commit -m "$1"
-  git push
-}
+############################ plugins #################################
 
-# Dangool
-dngl() {
-  cd $HOME/Videos/dangool/
-  yt-dlp "$1"
-  cd $HOME
-}
+PLUGINS_DIR="$HOME/.zsh/plugins"
 
-# Update pkgs
-up() {
-  nh os switch -u ~/Documents/Projects/dots/nix
-  flatpak update 
-}
+autoload -U compinit
+compinit
 
-#Warp
-warp() {
-  sudo -v || return 1
-  sudo warp-svc >/dev/null 2>&1 &
-  disown
-}
+eval "$(zoxide init zsh)"
 
-############################## LAUNCH ###############################
+source "$PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
+source "$PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+############################## launch ###############################
 
 #ff
-fastfetch --logo NixOS_small --logo-color-2 red --logo-color-1 red --color-keys red
+fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
 
-#Zoxide
-autoload -Uz add-zsh-hook
-load_zoxide_late() {
-  eval "$(zoxide init zsh)"
-}
-add-zsh-hook precmd load_zoxide_late
-
-export PATH=$PATH:/home/m57/.spicetify

@@ -12,35 +12,45 @@
     ./pkgs.nix
     ./services.nix
   ];
+ 
+  boot = {
+    loader = {
+      timeout = 5; 
+      systemd-boot.enable = true;
+      efi = { 
+        canTouchEfiVariables = true;
+      };
+    };
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "systemd.mask=systemd-vconsole-setup.service"
+      "systemd.mask=dev-tpmrm0.device"
+      "nowatchdog"
+      "modprobe.blacklist=sp5100_tco"
+      "modprobe.blacklist=iTCO_wdt"
+    ];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    initrd = {
+      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+      kernelModules = [];
+    };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [
-    "systemd.mask=systemd-vconsole-setup.service"
-    "systemd.mask=dev-tpmrm0.device"
-    "nowatchdog"
-    "modprobe.blacklist=sp5100_tco"
-    "modprobe.blacklist=iTCO_wdt"
-  ];
+    kernel = {
+      sysctl = {
+        "vm.max_map_count" = 2147483642;
+      };
+    };
 
-  boot.initrd = {
-    availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
-    kernelModules = [];
-  };
-
-  boot.kernel.sysctl = {
-    "vm.max_map_count" = 2147483642;
-  };
-
-  boot.binfmt.registrations.appimage = {
+  binfmt.registrations.appimage = {
     wrapInterpreterInShell = false;
     interpreter = "${pkgs.appimage-run}/bin/appimage-run";
     recognitionType = "magic";
     offset = 0;
     mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
     magicOrExtension = ''\x7fELF....AI\x02'';
+  };
   };
 
   drivers = {
@@ -55,18 +65,19 @@
 
   time.timeZone = "Asia/Amman";
 
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+  i18n = { 
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
   };
 
   security.rtkit.enable = true;
@@ -111,16 +122,18 @@
     };
     gc = {
       automatic = true;
-      dates = "daily";
+      dates = "weekly";
       options = "--delete-older-than 3d";
     };
   };
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.podman = {
-    enable = false;
-    dockerCompat = false;
-    defaultNetwork.settings.dns_enabled = false;
+  virtualisation = {
+    libvirtd.enable = true;
+    podman = {
+      enable = false;
+      dockerCompat = false;
+      defaultNetwork.settings.dns_enabled = false;
+    };
   };
 
   system.stateVersion = "25.05";

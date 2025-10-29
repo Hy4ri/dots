@@ -9,7 +9,8 @@ menu() {
   printf "3. Nix Services\n"
   printf "4. Nix Networking\n"
   printf "5. Nix Flake\n"
-  printf "6. Nix Folder\n"
+  printf "6. Nix Hardware\n"
+  printf "7. Nix Folder\n"
 }
 
 main() {
@@ -31,6 +32,9 @@ main() {
     $term nvim "$Configs/flake.nix"
     ;;
   6)
+    $term nvim "$Configs/hardware-configuration.nix"
+    ;;
+  7)
     $term nvim $Configs
     ;;
   *) ;;

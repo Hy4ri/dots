@@ -53,7 +53,6 @@ read Dotfiles
 case "$Dotfiles" in
 yes | Yes | y | Y)
   [ ! -d ~/Documents ] && mkdir ~/Documents/Projects/dots/ && cp ~/dots -r ~/Documents/Projects/dots/
-  curl -L git.io/antigen >antigen.zsh
   ~/dots/scripts/./symlink.sh
   cd ~/dots
   cp -r .local/share/icons ~/.local/share/icons

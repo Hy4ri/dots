@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-notes_dir=~/Documents/notes
+notes_dir=~/Documents/Notes
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(

@@ -4,38 +4,15 @@ return {
     lazy = false,
     priority = 1000,
   },
-  {
-    "vague-theme/vague.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("vague").setup({
-        colors = {
-          bg = "",
-        },
-      })
-    end
-  },
   { 
-    "catppuccin/nvim",
+    "rebelot/kanagawa.nvim",
     lazy = false,
-    name = "catppuccin",
     priority = 1000,
     config = function()
-      require("catppuccin").setup({
-        falvour = "mocha",
-        transparent_background = true,
-        auto_integrations = true,
+      require("kanagawa").setup({
+        transparent = true,
       })
     end
   },
-  { "ellisonleao/gruvbox.nvim",
-    priority = 1000 ,
-    config = function()
-      require("gruvbox").setup({
-        transparent_mode = true,
-      })
-    end
-  }
 }
 

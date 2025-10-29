@@ -32,7 +32,6 @@ in {
       eza
       equibop
       fastfetch
-      file-roller
       findutils
       ffmpeg
       foot
@@ -57,6 +56,7 @@ in {
       kdePackages.qt6ct
       kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
+      kdePackages.kdeconnect-kde
       kitty
       lutris
       localsend
@@ -67,8 +67,6 @@ in {
       man-db
       man-pages
       mpv
-      nemo-with-extensions
-      nemo-fileroller
       normcap
       neovide
       nodejs_24
@@ -81,10 +79,12 @@ in {
       qalculate-gtk
       rofi
       ripgrep
+      riseup-vpn
       scrcpy
       slurp
       swappy
       swww
+      syncthing
       termdown
       tmux
       unzip
@@ -113,6 +113,7 @@ in {
   fonts = {
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
+      nerd-fonts.victor-mono
     ];
   };
 
@@ -135,8 +136,8 @@ in {
 
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
 

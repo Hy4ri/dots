@@ -3,5 +3,7 @@
 # fi
 
 if [ "$(tty)" = "/dev/tty1" ] && [ -n "$PS1" ]; then
-  hyprland
+  Hyprland
+elif [ "$(tty)" = "/dev/tty2" ] && [ -n "$PS1" ]; then
+  niri
 fi
