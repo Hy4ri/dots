@@ -14,11 +14,12 @@ in {
 
   environment.systemPackages =
     (with pkgs; [
+
       bc
       bat
       brightnessctl
       btop
-      bitwarden
+      bitwarden-desktop
       blueman
       cloudflare-warp
       cliphist
@@ -30,7 +31,6 @@ in {
       dunst
       python313Packages.ds4drv
       eza
-      equibop
       fastfetch
       findutils
       ffmpeg
@@ -94,6 +94,7 @@ in {
       wget
       wl-clipboard
       wev
+      wine
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gnome
       xdg-user-dirs
@@ -131,6 +132,8 @@ in {
     xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
+
+    mango.enable = true;
 
     niri.enable = true;
 
@@ -192,5 +195,6 @@ in {
     "com.obsproject.Studio"
     "org.telegram.desktop"
     "it.mijorus.smile"
+    "org.equicord.equibop"
   ];
 }
