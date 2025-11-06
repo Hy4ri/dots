@@ -110,14 +110,16 @@ layout {
 // Startup
 
 spawn-at-startup "foot" "--server"
+spawn-at-startup "vicinae" "server"
 // spawn-at-startup "waybar" "-c" "~/.config/waybar/configs/Niri.jsonc" "-s" "~/.config/waybar/style/Main.css"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "dunst"
 spawn-at-startup "hypridle"
 spawn-at-startup "swww-daemon"
-spawn-sh-at-startup "wl-paste -t text -w cliphist store -max-items 1000000"
-spawn-sh-at-startup "wl-paste -t image -w cliphist store -max-items 1000000"
+// spawn-sh-at-startup "wl-paste -t text -w cliphist store -max-items 1000000"
+// spawn-sh-at-startup "wl-paste -t image -w cliphist store -max-items 1000000"
 spawn-sh-at-startup "~/.config/niri/scripts/polkit.sh"
+spawn-sh-at-startup "wlsunset -l 32.0346 -L 35.7269"
 
 // Env Vars
 

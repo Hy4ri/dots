@@ -14,9 +14,7 @@ in {
 
   environment.systemPackages =
     (with pkgs; [
-
       bc
-      bat
       brightnessctl
       btop
       bitwarden-desktop
@@ -34,7 +32,6 @@ in {
       fastfetch
       findutils
       ffmpeg
-      foot
       fzf
       gcc
       gdb
@@ -49,17 +46,14 @@ in {
       hyprpicker
       hyprprop
       hyprpolkitagent
-      hyprsunset
       hyprland-qt-support
       imagemagick
       jq
       kdePackages.qt6ct
       kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
-      kdePackages.kdeconnect-kde
       kitty
       lutris
-      localsend
       libappindicator
       libnotify
       libsForQt5.qtstyleplugin-kvantum
@@ -68,7 +62,6 @@ in {
       man-pages
       mpv
       normcap
-      neovide
       nodejs_24
       nsxiv
       nwg-look
@@ -86,13 +79,14 @@ in {
       swww
       syncthing
       termdown
-      tmux
       unzip
+      vicinae
       vivaldi
       vivaldi-ffmpeg-codecs
       wf-recorder
       wget
       wl-clipboard
+      wlsunset
       wev
       wine
       xdg-desktop-portal-hyprland
@@ -104,7 +98,6 @@ in {
       yazi
       yt-dlp
       zathura
-      zoxide
     ])
     ++ [
       python-packages
@@ -119,6 +112,7 @@ in {
   };
 
   programs = {
+    adb.enable = true;
     appimage.enable = true;
     appimage.binfmt = true;
     gamemode.enable = true;
@@ -127,31 +121,63 @@ in {
     firefox.enable = true;
     virt-manager.enable = true;
     hyprlock.enable = true;
-    hyprland.withUWSM = true;
     uwsm.enable = true;
     xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
-
     mango.enable = true;
-
     niri.enable = true;
+    kdeconnect.enable = true;
+
+    bat = {
+      enable = true;
+      settings = {
+        theme = "TwoDark";
+      };
+      extraPackages = 
+        with pkgs.bat-extras; [
+          prettybat
+        ];
+    };
+
+    foot = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
     hyprland = {
       enable = true;
       # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
+      withUWSM = true;
+    };
+
+    localsend = {
+      enable = true;
+      openFirewall = true;
     };
 
     neovim = {
       enable = true;
       defaultEditor = true;
+      vimAlias = true;
+      viAlias = true;
+    };
+
+    tmux = {
+      enable = true;
+      withUtempter = true;
+      shortcut = " ";
+      newSession = true;
+      keyMode = "vi";
+      historyLimit = 10000;
+      baseIndex = 1;
     };
 
     nh = {
       enable = true;
-      flake = "~/Documents/Projects/dots/Nix/";
+      flake = "~/Documents/Projects/dots/nix/";
     };
 
     steam = {
@@ -160,19 +186,30 @@ in {
       remotePlay.openFirewall = false;
       dedicatedServer.openFirewall = false;
       protontricks.enable = false;
+      extraCompatPackages = 
+        with pkgs; [
+          proton-ge-bin
+        ];
     };
 
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+
     git = {
       enable = true;
       config = {
-        user.Name = "hy4ri";
-        user.Email = "hiari45@gmail.com";
+        user.name = "hy4ri";
+        user.email = "hiari45@gmail.com";
         init.defaultBranch = "main";
       };
+    };
+
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
     };
   };
 
@@ -194,7 +231,6 @@ in {
     "it.mijorus.gearlever"
     "com.obsproject.Studio"
     "org.telegram.desktop"
-    "it.mijorus.smile"
     "org.equicord.equibop"
   ];
 }

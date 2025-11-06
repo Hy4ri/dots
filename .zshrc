@@ -18,8 +18,8 @@ SAVEHIST=100000
 ############################ aliases #################################
 
 #nix
-alias nxup='nh os switch -u ~/Documents/Projects/dots/nix'
 alias nxbld='nh os switch ~/Documents/Projects/dots/nix'
+alias nxbldns='nh os build ~/Documents/Projects/dots/nix'
 alias nxcln='sudo nix-collect-garbage --delete-older-than 1d'
 alias nxup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
 
@@ -116,7 +116,7 @@ alias h='Hyprland'
 
 ############################# functions ##########################################
 
-# archive extract
+# Extract
 extract () {
     if [ -f $1 ] ; then
       case $1 in
@@ -141,14 +141,19 @@ extract () {
   fi
 }
 
-# git push all
+#Compress
+compress() {
+  tar -czf "${1%/}.tar.gz" "${1%/}"; 
+}
+
+# Git push all
 gitup() {
   git add -A
   git commit -m "$1"
   git push
 }
 
-# update dotfiles
+# Update dotfiles
 dup() {
   cd $HOME/Documents/Projects/dots/
   git add -A
@@ -163,13 +168,13 @@ dngl() {
   cd $HOME
 }
 
-# update pkgs
+# Update pkgs
 up() {
   nh os switch -u ~/Documents/Projects/dots/nix
   flatpak update 
 }
 
-# warp
+# Warp
 warp() {
   sudo -v || return 1
   sudo warp-svc >/dev/null 2>&1 &

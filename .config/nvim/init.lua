@@ -39,4 +39,4 @@ if vim.fn.filereadable(lockfile) == 0 then
 	})
 end
 
-vim.cmd.colorscheme("vesper")
+vim.cmd.colorscheme("ashen")
