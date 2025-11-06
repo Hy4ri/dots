@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: {
+  # Import hardware and service configurations
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
@@ -13,6 +14,7 @@
     ./services.nix
   ];
  
+  # Boot configuration
   boot = {
     loader = {
       timeout = 5; 
@@ -21,7 +23,11 @@
         canTouchEfiVariables = true;
       };
     };
+    
+    # Use latest kernel packages
     kernelPackages = pkgs.linuxPackages_latest;
+    
+    # Kernel parameters for optimization and compatibility
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
       "systemd.mask=dev-tpmrm0.device"
@@ -37,12 +43,14 @@
       kernelModules = [];
     };
 
+    # System control settings
     kernel = {
       sysctl = {
         "vm.max_map_count" = 2147483642;
       };
     };
 
+  # AppImage support
   binfmt.registrations.appimage = {
     wrapInterpreterInShell = false;
     interpreter = "${pkgs.appimage-run}/bin/appimage-run";
@@ -53,6 +61,7 @@
   };
   };
 
+  # Graphics drivers configuration
   drivers = {
     intel.enable = true;
     nvidia.enable = true;
@@ -63,8 +72,10 @@
     };
   };
 
+  # System locale and timezone
   time.timeZone = "Asia/Amman";
 
+  # Internationalization
   i18n = { 
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -80,8 +91,10 @@
     };
   };
 
+  # Security settings
   security.rtkit.enable = true;
 
+  # User configuration
   users.users.m57 = {
     shell = pkgs.zsh;
     isNormalUser = true;
@@ -89,6 +102,7 @@
     extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio"];
   };
 
+  # Hardware configuration
   hardware = {
     bluetooth = {
       enable = true;
@@ -105,6 +119,7 @@
     };
   };
 
+  # Nix package manager settings
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -127,6 +142,7 @@
     };
   };
 
+  # Virtualization
   virtualisation = {
     libvirtd.enable = true;
     podman = {

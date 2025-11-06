@@ -12,14 +12,17 @@ in {
     intelBusID = mkOption {
       type = types.str;
       default = "PCI:0:2:0";
+      description = "PCI Bus ID for Intel GPU";
     };
     nvidiaBusID = mkOption {
       type = types.str;
       default = "PCI:1:0:0";
+      description = "PCI Bus ID for Nvidia GPU";
     };
   };
 
   config = mkIf cfg.enable {
+    # Nvidia Prime configuration for hybrid graphics
     hardware.nvidia = {
       prime = {
         offload = {

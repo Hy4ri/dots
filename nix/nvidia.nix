@@ -12,8 +12,10 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # Set video drivers
     services.xserver.videoDrivers = ["nvidia"];
 
+    # Graphics hardware acceleration
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
@@ -29,6 +31,7 @@ in {
       ];
     };
 
+    # Nvidia driver configuration
     hardware.nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;

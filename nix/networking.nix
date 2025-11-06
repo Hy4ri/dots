@@ -5,10 +5,15 @@
   ...
 }: {
   networking = {
+    # Hostname
     hostName = "hyari";
+    
+    # Network management
     networkmanager = {
       enable = true;
     };
+    
+    # DNS nameservers (Cloudflare)
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"

@@ -3,6 +3,7 @@
   inputs,
   ...
 }: let
+  # Python with required packages
   python-packages = pkgs.python3.withPackages (
     ps:
       with ps; [
@@ -10,39 +11,81 @@
       ]
   );
 in {
+  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # System packages
   environment.systemPackages =
     (with pkgs; [
-
+      # CLI utilities
       bc
       bat
       brightnessctl
       btop
+      curl
+      dua
+      eza
+      fastfetch
+      findutils
+      fzf
+      jq
+      ripgrep
+      termdown
+      tmux
+      unzip
+      wget
+      yazi
+      yt-dlp
+      zoxide
+
+      # Development tools
+      cargo
+      clang
+      cmake
+      gcc
+      gdb
+      go
+      gnumake
+      nodejs_24
+
+      # Media tools
+      ffmpeg
+      grim
+      imagemagick
+      mpv
+      nsxiv
+      scrcpy
+      slurp
+      swappy
+      swww
+      wf-recorder
+
+      # Desktop applications
       bitwarden-desktop
       blueman
       cloudflare-warp
       cliphist
-      curl
-      cargo
-      clang
-      cmake
-      dua
       dunst
-      python313Packages.ds4drv
-      eza
-      fastfetch
-      findutils
-      ffmpeg
       foot
-      fzf
-      gcc
-      gdb
       gimp3-with-plugins
-      go
-      grim
-      gnumake
       heroic
+      kitty
+      localsend
+      lutris
+      neovide
+      normcap
+      nwg-look
+      pavucontrol
+      polkit_gnome
+      qalculate-gtk
+      rofi
+      syncthing
+      vivaldi
+      vivaldi-ffmpeg-codecs
+      wine
+      zathura
+
+      # Hyprland ecosystem
       hypridle
       hyprcursor
       hyprutils
@@ -51,66 +94,46 @@ in {
       hyprpolkitagent
       hyprsunset
       hyprland-qt-support
-      imagemagick
-      jq
+
+      # Qt/KDE packages
       kdePackages.qt6ct
       kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
       kdePackages.kdeconnect-kde
-      kitty
-      lutris
-      localsend
-      libappindicator
-      libnotify
       libsForQt5.qtstyleplugin-kvantum
       libsForQt5.qt5ct
+
+      # System libraries
+      libappindicator
+      libnotify
+
+      # Documentation
       man-db
       man-pages
-      mpv
-      normcap
-      neovide
-      nodejs_24
-      nsxiv
-      nwg-look
-      pavucontrol
+
+      # Gaming and multimedia
+      python313Packages.ds4drv
       playerctl
       power-profiles-daemon
-      polkit_gnome
-      qalculate-gtk
-      rofi
-      ripgrep
-      riseup-vpn
-      scrcpy
-      slurp
-      swappy
-      swww
-      syncthing
-      termdown
-      tmux
-      unzip
-      vivaldi
-      vivaldi-ffmpeg-codecs
-      wf-recorder
-      wget
+
+      # XDG and Wayland
       wl-clipboard
       wev
-      wine
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gnome
       xdg-user-dirs
       xdg-utils
       xwayland-satellite
+
+      # Utilities
       yad
-      yazi
-      yt-dlp
-      zathura
-      zoxide
+      riseup-vpn
     ])
     ++ [
       python-packages
     ];
 
-  #FONTS
+  # Font configuration
   fonts = {
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
@@ -118,42 +141,14 @@ in {
     ];
   };
 
+  # Program configuration
   programs = {
+    # AppImage support
     appimage.enable = true;
     appimage.binfmt = true;
+    
+    # Gaming
     gamemode.enable = true;
-    zsh.enable = true;
-    waybar.enable = true;
-    firefox.enable = true;
-    virt-manager.enable = true;
-    hyprlock.enable = true;
-    hyprland.withUWSM = true;
-    uwsm.enable = true;
-    xwayland.enable = true;
-    dconf.enable = true;
-    fuse.userAllowOther = true;
-
-    mango.enable = true;
-
-    niri.enable = true;
-
-    hyprland = {
-      enable = true;
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      xwayland.enable = true;
-    };
-
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
-
-    nh = {
-      enable = true;
-      flake = "~/Documents/Projects/dots/Nix/";
-    };
-
     steam = {
       enable = true;
       gamescopeSession.enable = false;
@@ -161,21 +156,63 @@ in {
       dedicatedServer.openFirewall = false;
       protontricks.enable = false;
     };
+    
+    # MangoHud overlay
+    mango.enable = true;
+    
+    # Shell and terminal
+    zsh.enable = true;
+    
+    # Desktop environment
+    waybar.enable = true;
+    niri.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+    hyprlock.enable = true;
+    uwsm.enable = true;
+    hyprland.withUWSM = true;
+    xwayland.enable = true;
+    dconf.enable = true;
+    fuse.userAllowOther = true;
 
+    # Browsers
+    firefox.enable = true;
+    
+    # Virtualization
+    virt-manager.enable = true;
+
+    # Editor
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
+
+    # Nix helper
+    nh = {
+      enable = true;
+      flake = "/home/m57/dots/nix";
+    };
+
+    # Security
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
+    
+    # Git configuration
     git = {
       enable = true;
       config = {
-        user.Name = "hy4ri";
-        user.Email = "hiari45@gmail.com";
+        user.name = "hy4ri";
+        user.email = "hiari45@gmail.com";
         init.defaultBranch = "main";
       };
     };
   };
 
+  # XDG portal configuration
   xdg.portal = {
     enable = true;
     wlr.enable = false;
@@ -188,6 +225,7 @@ in {
     ];
   };
 
+  # Flatpak applications
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
     "io.github.flattool.Warehouse"

@@ -12,11 +12,12 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # Intel VAAPI with hybrid codec support
     nixpkgs.config.packageOverrides = pkgs: {
       vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
     };
 
-    # OpenGL
+    # Graphics hardware acceleration
     hardware.graphics = {
       extraPackages = with pkgs; [
         intel-media-driver
