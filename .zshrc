@@ -19,7 +19,7 @@ SAVEHIST=100000
 
 #nix
 alias nxbld='nh os switch ~/Documents/Projects/dots/nix'
-alias nxbldns='nh os build ~/Documents/Projects/dots/nix'
+alias nxbldns='nh os boot ~/Documents/Projects/dots/nix'
 alias nxcln='sudo nix-collect-garbage --delete-older-than 1d'
 alias nxup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
 

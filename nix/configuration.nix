@@ -137,11 +137,8 @@
   };
 
   documentation = {
-    enable = false;
+    enable = true;
     nixos.enable = false;
-    man.enable = false;
-    info.enable = false;
-    doc.enable = false;
   };
 
   virtualisation = {

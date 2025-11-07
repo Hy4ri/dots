@@ -125,7 +125,7 @@ in {
     xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
-    mango.enable = true;
+    # mango.enable = true;
     niri.enable = true;
     kdeconnect.enable = true;
 
@@ -177,7 +177,7 @@ in {
 
     nh = {
       enable = true;
-      flake = "~/Documents/Projects/dots/nix/";
+      flake = "/Documents/Projects/dots/nix/";
     };
 
     steam = {
