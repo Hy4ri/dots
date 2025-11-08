@@ -1,0 +1,85 @@
+# Emacs temporary files
+*~
+\#*\#
+.\#*
+
+# Auto-save files
+auto-save-list/
+auto-save/
+
+# Backup files
+backups/
+*.bak
+
+# Undo history
+undo/
+
+# Package management
+straight/
+elpa/
+.cache/
+
+# Custom file (auto-generated)
+custom.el
+
+# Compiled files
+*.elc
+*.eln
+
+# Native compilation cache
+eln-cache/
+
+# Transient files
+transient/
+
+# LSP and related caches
+.lsp-session-*
+.cache/
+lsp-cache/
+workspace/
+.dap-breakpoints
+
+# Tree-sitter
+tree-sitter/
+
+# Miscellaneous
+places
+recentf
+projectile*
+bookmarks
+session.*
+.python-environments
+url/
+eshell/
+semanticdb/
+network-security.data
+.org-id-locations
+org-clock-save.el
+
+# Pandoc
+pandoc/
+
+# Server files
+server/
+
+# Anaconda mode
+anaconda-mode/
+
+# TRAMP history
+tramp
+
+# Ignore specific mode files
+abbrev_defs
+smex-items
+ido.last
+
+# Ignore log files
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE-specific
+.vscode/
+.idea/
