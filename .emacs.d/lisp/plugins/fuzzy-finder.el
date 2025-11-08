@@ -182,7 +182,7 @@
     "sb" '(consult-buffer :which-key "Buffer picker")
     "sf" '(project-find-file :which-key "Files picker")
     "sg" '(consult-ripgrep :which-key "Grep picker")
-    "ss" '(consult-line :which-key "Search in buffer")
+    "ss" '(ispell-word :which-key "Spelling picker")
     "so" '(consult-recent-file :which-key "Recent files picker")
     
     ;; File explorer
