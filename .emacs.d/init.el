@@ -420,6 +420,7 @@
   
   ;; Search and replace
   ;; Equivalent to: keymap.set("n", "<leader>r", ":%s/")
+  ;; Equivalent to: keymap.set("x", "<leader>r", ":s/")
   "r" '(query-replace :which-key "Replace in buffer")
   
   ;; Terminal
