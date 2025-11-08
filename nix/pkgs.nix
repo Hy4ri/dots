@@ -20,7 +20,6 @@ in {
       bitwarden-desktop
       blueman
       cloudflare-warp
-      cliphist
       curl
       cargo
       clang
@@ -61,7 +60,6 @@ in {
       man-db
       man-pages
       mpv
-      normcap
       nodejs_24
       nsxiv
       nwg-look

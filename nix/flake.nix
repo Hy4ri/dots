@@ -17,7 +17,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          # mangowc.nixosModules.mangowc
+          # mangowc.nixosModules.mango
           nix-flatpak.nixosModules.nix-flatpak
           ({ pkgs, ... }: {
             nixpkgs.overlays = [
