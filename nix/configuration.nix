@@ -9,7 +9,7 @@
     ./nvidia.nix
     ./intel.nix
     ./prime.nix
-    ./pkgs.nix
+    ./packages.nix
     ./services.nix
     ./mimeapps.nix
   ];

@@ -197,11 +197,6 @@ in {
 
     git = {
       enable = true;
-      config = {
-        user.name = "hy4ri";
-        user.email = "hiari45@gmail.com";
-        init.defaultBranch = "main";
-      };
     };
 
     zoxide = {
