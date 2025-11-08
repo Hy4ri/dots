@@ -142,7 +142,13 @@
 ;; Improve completion matching with fuzzy search
 ;; Equivalent to: fuzzy = { implementation = "lua" }
 
+;; flx provides fuzzy matching algorithm
+(use-package flx
+  :config
+  (setq flx-ido-mode nil))  ; We'll use it with company-fuzzy instead
+
 (use-package company-fuzzy
+  :after flx
   :hook (company-mode . company-fuzzy-mode)
   :config
   (setq company-fuzzy-sorting-backend 'flx)

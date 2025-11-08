@@ -385,7 +385,25 @@
   
   ;; Redo with U
   ;; Equivalent to: keymap.set("n", "U", "<C-r>")
-  (define-key evil-normal-state-map (kbd "U") 'evil-redo))
+  (define-key evil-normal-state-map (kbd "U") 'evil-redo)
+  
+  ;; Move highlighted text up and down
+  ;; Equivalent to: keymap.set("x", "J", ":move '>+1<CR>gv-gv")
+  (define-key evil-visual-state-map (kbd "J")
+    (lambda () (interactive)
+      (evil-move-line (1+ (evil-range-end (evil-visual-range))))
+      (evil-visual-restore)))
+  (define-key evil-visual-state-map (kbd "K")
+    (lambda () (interactive)
+      (evil-move-line (1- (evil-range-beginning (evil-visual-range))))
+      (evil-visual-restore)))
+  
+  ;; Better escape key - clear search highlight
+  ;; Equivalent to: keymap.set({ "i", "s", "n" }, "<esc>", ...)
+  (define-key evil-insert-state-map (kbd "<escape>")
+    (lambda () (interactive) (evil-normal-state) (evil-ex-nohighlight)))
+  (define-key evil-normal-state-map (kbd "<escape>")
+    (lambda () (interactive) (evil-ex-nohighlight))))
 
 ;; ------------------------------------------------------------------------
 ;; Leader Key Mappings
@@ -412,13 +430,31 @@
   ;; Equivalent to: keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
   "x" '((lambda () (interactive) 
           (shell-command (concat "chmod +x " (buffer-file-name))))
-        :which-key "Make executable"))
+        :which-key "Make executable")
+  
+  ;; Fix paste in visual mode - delete to black hole register before paste
+  ;; Equivalent to: keymap.set("x", "<leader>p", "\"_dP")
+  "p" '((lambda () (interactive)
+          (when (evil-visual-state-p)
+            (delete-region (region-beginning) (region-end))
+            (evil-paste-before 1)))
+        :which-key "Paste without yanking")
+  
+  ;; Lazy package manager equivalent (straight.el)
+  ;; Equivalent to: keymap.set("n", "<leader>L", "<cmd>Lazy<cr>")
+  "L" '((lambda () (interactive)
+          (straight-check-all))
+        :which-key "Package manager"))
 
 ;; Buffer navigation
 ;; Equivalent to Shift+h and Shift+l for buffer switching
 (with-eval-after-load 'evil
   (define-key evil-normal-state-map (kbd "H") 'previous-buffer)
-  (define-key evil-normal-state-map (kbd "L") 'next-buffer))
+  (define-key evil-normal-state-map (kbd "L") 'next-buffer)
+  
+  ;; Open file explorer with dash (equivalent to Oil in Neovim)
+  ;; Equivalent to: keymap.set("n", "-", "<CMD>Oil<CR>")
+  (define-key evil-normal-state-map (kbd "-") 'dired-jump))
 
 ;; ========================================================================
 ;; Hooks (Autocmds)
