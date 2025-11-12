@@ -46,6 +46,7 @@ in {
       hyprprop
       hyprpolkitagent
       hyprland-qt-support
+      hyprland-qtutils
       imagemagick
       jq
       kdePackages.qt6ct
@@ -68,6 +69,7 @@ in {
       power-profiles-daemon
       polkit_gnome
       qalculate-gtk
+      qbittorrent
       rofi
       ripgrep
       riseup-vpn
@@ -78,6 +80,9 @@ in {
       syncthing
       termdown
       unzip
+      upower
+      upower-notify
+      usbutils
       vicinae
       vivaldi
       vivaldi-ffmpeg-codecs
@@ -116,7 +121,6 @@ in {
     gamemode.enable = true;
     zsh.enable = true;
     waybar.enable = true;
-    firefox.enable = true;
     virt-manager.enable = true;
     hyprlock.enable = true;
     uwsm.enable = true;
@@ -166,7 +170,6 @@ in {
     tmux = {
       enable = true;
       withUtempter = true;
-      shortcut = " ";
       newSession = true;
       keyMode = "vi";
       historyLimit = 10000;

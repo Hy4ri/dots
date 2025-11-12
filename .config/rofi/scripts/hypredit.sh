@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-Configs="$HOME/.config/hypr/Configs"
+Configs="$HOME/.config/hypr/configs"
 Scripts="$HOME/.config/hypr/scripts"
 hypr="$HOME/.config/hypr/"
 term="foot"
@@ -24,37 +24,37 @@ main() {
   choice=$(menu | rofi -i -dmenu | cut -d. -f1)
   case $choice in
   1)
-    $term nvim "$Configs/Settings.conf"
+    $term nvim "$Configs/settings.conf"
     ;;
   2)
-    $term nvim "$Configs/WindowRules.conf"
+    $term nvim "$Configs/windowrules.conf"
     ;;
   3)
-    $term nvim "$Configs/Keybinds.conf"
+    $term nvim "$Configs/keybinds.conf"
     ;;
   4)
-    $term nvim "$Configs/Appbinds.conf"
+    $term nvim "$Configs/appbinds.conf"
     ;;
   5)
     $term nvim $Scripts
     ;;
   6)
-    $term nvim "$Configs/Startup_Apps.conf"
+    $term nvim "$Configs/autostart.conf"
     ;;
   7)
-    $term nvim "$Configs/ENVariables.conf"
+    $term nvim "$Configs/env.conf"
     ;;
   8)
     $term nvim "$hypr"
     ;;
   9)
-    $term nvim "$Configs/Monitors.conf"
+    $term nvim "$Configs/monitors.conf"
     ;;
   10)
-    $term nvim "$Configs/Laptops.conf"
+    $term nvim "$Configs/laptops.conf"
     ;;
   11)
-    $term nvim "$Configs/Settings-wal.conf"
+    $term nvim "$Configs/settings-wal.conf"
     ;;
   12)
     $term nvim ~/.config/hypr/hyprland.conf

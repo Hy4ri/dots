@@ -29,7 +29,11 @@ powerSaver() {
       keyword decoration:shadow:enabled 0;\
       keyword decoration:blur:enabled 0;\
       keyword general:border_size 0;\
-      keyword decoration:rounding 0";\
+      keyword animation borderangle,0; \
+      keyword decoration:rounding 0; \
+      keyword decoration:fullscreen_opacity 1; \
+      keyword general:gaps_in 0; \
+      keyword general:gaps_out 0" 
     sleep 1
     powerprofilesctl set power-saver
     sleep 1

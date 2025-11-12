@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-OUT() {
-  hyprctl keyword cursor:zoom_factor "$(hyprctl getoption cursor:zoom_factor | grep float | awk '{print $2 - 1}')" #cursor zoom out
+IN() {
+  hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '.float * 1.1')
 }
 
-IN() {
-  hyprctl keyword cursor:zoom_factor "$(hyprctl getoption cursor:zoom_factor | grep float | awk '{print $2 + 1}')" #cursor zoom in
+OUT() {
+  hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor -j | jq '(.float * 0.9) | if . < 1 then 1 else . end')
 }
 
 if [[ "$1" == "--in" ]]; then

@@ -94,6 +94,7 @@ sudo venv/bin/python3 main.py'
 alias music='bash ~/.config/hypr/scripts/music.sh'
 alias png='bash ~/.config/hypr/scripts/png.sh'
 alias 25='bash ~/.config/hypr/scripts/25.sh'
+alias movie='bash ~/.config/hypr/scripts/movie.sh'
 alias xx='bash ~/Documents/xx.sh'
 
 #random

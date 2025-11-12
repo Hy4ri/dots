@@ -20,7 +20,7 @@ main() {
     $term nvim "$Configs/configuration.nix"
     ;;
   2)
-    $term nvim "$Configs/pkgs.nix"
+    $term nvim "$Configs/packages.nix"
     ;;
   3)
     $term nvim "$Configs/services.nix"
