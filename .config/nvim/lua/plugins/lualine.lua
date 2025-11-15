@@ -3,6 +3,32 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     ---------------------------------------------------------------------
+    -- Custom lualine theme (edit colors here)
+    ---------------------------------------------------------------------
+    local theme = {
+      normal = {
+        a = { fg = "#121212", bg = "#990000", gui = "bold" },
+        b = { fg = "#c2c2c2", bg = "#222222" },
+        c = { fg = "#b2b2b2", bg = "#121212" },
+      },
+      insert = {
+        a = { fg = "#e2e2e2", bg = "#990000", gui = "bold" },
+        b = { fg = "#c2c2c2", bg = "#222222" },
+        c = { fg = "#b2b2b2", bg = "#121212" },
+      },
+      visual = {
+        a = { fg = "#990000", bg = "#121212", gui = "bold" },
+        b = { fg = "#c2c2c2", bg = "#222222" },
+        c = { fg = "#b2b2b2", bg = "#121212" },
+      },
+      replace = {
+        a = { fg = "#121212", bg = "#990000", gui = "bold" },
+        b = { fg = "#c2c2c2", bg = "#222222" },
+        c = { fg = "#b2b2b2", bg = "#121212" },
+      },
+    }
+
+    ---------------------------------------------------------------------
     -- Function: Display current file with icon
     ---------------------------------------------------------------------
     local function file_with_icon()
@@ -74,7 +100,7 @@ return {
     ---------------------------------------------------------------------
     require("lualine").setup({
       options = {
-        theme = "auto",
+        theme = theme,
         icons_enabled = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
@@ -112,7 +138,7 @@ return {
         lualine_x = {
           {
             "diagnostics", -- LSP diagnostics (errors, warnings, etc.)
-            sources = {"nvim_diagnostic"},
+            sources = { "nvim_diagnostic" },
             symbols = { error = " ", warn = " ", info = " ", hint = " " },
             colored = true,
           },
@@ -123,10 +149,10 @@ return {
             recording_macro, -- Macro recording indicator
             color = { fg = "#BF616A", gui = "bold" }, -- Red + bold when active
           },
-          {"fileformat"}, -- File format (unix/dos)
+          { "fileformat" }, -- File format (unix/dos)
         },
         lualine_y = {
-          {"location"}, -- Cursor position (line:column)
+          { "location" }, -- Cursor position (line:column)
         },
         lualine_z = {
           {

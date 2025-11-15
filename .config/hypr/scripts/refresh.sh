@@ -3,7 +3,7 @@
 scripts=$HOME/.config/hypr/scripts
 
 # Kill already running processes
-_ps=(waybar rofi hyprsunset)
+_ps=(waybar rofi wlsunset foot dunst)
 for _prs in "${_ps[@]}"; do
   if pidof "${_prs}" >/dev/null; then
     pkill "${_prs}"
@@ -19,7 +19,9 @@ hyprctl dispacth forcerendererreload
 
 #Relunch
 
-# waybar &
-hyprsunset &
+waybar &
+wlsunset &
+dunst &
+foot --server &
 
 exit 0

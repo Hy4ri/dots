@@ -75,6 +75,8 @@ in {
       riseup-vpn
       scrcpy
       slurp
+      socat
+      spice-gtk
       swappy
       swww
       syncthing
@@ -110,7 +112,6 @@ in {
   fonts = {
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
-      nerd-fonts.victor-mono
     ];
   };
 
@@ -119,7 +120,6 @@ in {
     appimage.enable = true;
     appimage.binfmt = true;
     gamemode.enable = true;
-    zsh.enable = true;
     waybar.enable = true;
     virt-manager.enable = true;
     hyprlock.enable = true;
@@ -206,6 +206,13 @@ in {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
+    };
+
+    zsh = {
+      enable = true;
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
+      enableCompletion = true;
     };
   };
 

@@ -22,7 +22,7 @@
         canTouchEfiVariables = true;
       };
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
       "systemd.mask=dev-tpmrm0.device"
@@ -87,7 +87,7 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "hyari";
-    extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio"];
+    extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "libvirt" "kvm"];
   };
 
   hardware = {

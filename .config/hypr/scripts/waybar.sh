@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 
 hypr() {
-  if pgrep -x ".waybar-wrapped" >/dev/null; then
-    pkill -x .waybar-wrapped
-  else
-    waybar &
-  fi
+  pkill -SIGUSR1 .waybar-wrapped
 }
 
 niri() {
   if pgrep -x ".waybar-wrapped" >/dev/null; then
-    pkill -x .waybar-wrapped
+    pkill -SIGUSR1 .waybar-wrapped
   else
     waybar -c ~/.config/waybar/configs/Niri.jsonc -s ~/.config/waybar/style/Main.css &
   fi
@@ -18,7 +14,7 @@ niri() {
 
 mango() {
   if pgrep -x ".waybar-wrapped" >/dev/null; then
-    pkill -x .waybar-wrapped
+    pkill -SIGUSR1 .waybar-wrapped
   else
     waybar -c ~/.config/waybar/configs/Mango.jsonc -s ~/.config/waybar/style/Main.css &
   fi

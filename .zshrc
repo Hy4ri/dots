@@ -9,11 +9,9 @@ export less_termcap_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export less_termcap_me="$(tput sgr0 2> /dev/null)"
 export fzf_default_opts="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
 export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
-# export path=$path:/home/m57/.spicetify
 
 HISTSIZE=100000
 SAVEHIST=100000
-
 
 ############################ aliases #################################
 
@@ -43,8 +41,8 @@ alias parusyyu='paru -Syyu'
 
 #eza
 alias ls='eza --color=always --group-directories-first --icons' # better ls
-alias l='eza -al --color=always --group-directories-first --icons --git'  # long format
-alias lt='eza -aT --level=2 --color=always --group-directories-first --icons --git' # tree listing
+alias l='eza -aHl --color=always --group-directories-first --icons --git' # long format
+alias lt='eza -aHT --level=2 --color=always --group-directories-first --icons --git' # tree listing
 
 #git
 alias gitc='git clone'
@@ -67,6 +65,7 @@ alias mkdir='mkdir -pv'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
 alias ~='cd ~'
 
 #zsh
@@ -78,8 +77,6 @@ alias snvim='sudoedit'
 alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
-alias lvim='NVIM_APPNAME=lvim nvim'
-alias avim='NVIM_APPNAME=avim nvim'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -94,7 +91,7 @@ sudo venv/bin/python3 main.py'
 alias music='bash ~/.config/hypr/scripts/music.sh'
 alias png='bash ~/.config/hypr/scripts/png.sh'
 alias 25='bash ~/.config/hypr/scripts/25.sh'
-alias movie='bash ~/.config/hypr/scripts/movie.sh'
+alias subtitle='bash ~/.config/hypr/scripts/subtitles.sh'
 alias xx='bash ~/Documents/xx.sh'
 
 #random
@@ -114,6 +111,7 @@ alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias rsync='rsync -rPavh'
 alias bios='sudo systemctl reboot --firmware-setup'
 alias h='Hyprland'
+alias ff='fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red'
 
 ############################# functions ##########################################
 
@@ -254,4 +252,3 @@ source "$PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 #ff
 fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
-

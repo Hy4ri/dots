@@ -2,14 +2,11 @@
 
 notes_dir=~/Documents/Notes
 
-# Define menu items as "Label|Function Name"
 MENU_ITEMS=(
   "Note List|list"
   "New note|new"
   "Delete note|remove"
 )
-
-# Define functions for each menu item
 
 new() {
   name=$(rofi -dmenu -p "Note name:")
@@ -36,7 +33,6 @@ remove() {
   [[ -n "$selected" ]] && notify-send "Notes" "Deleted $selected"
 }
 
-# Create Rofi menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"

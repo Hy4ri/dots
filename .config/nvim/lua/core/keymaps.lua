@@ -76,7 +76,7 @@ keymap.set("x", "<leader>r", ":s/", { noremap = true }, { desc = "Replace in fil
 keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
 keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 keymap.set("n", "U", "<C-r>", { desc = "Redo" })
-keymap.set("n", "<leader>uc", "<cmd>copilot toggle<cr>", { desc = "toggle copilot" })
+keymap.set("n", "<leader>uc", "<cmd>Copilot toggle<cr>", { desc = "toggle copilot" })
 keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true})
-
+keymap.set("n", "<leader>sv", "<cmd>source $MYVIMRC<CR>", { desc = "Source Config" })
