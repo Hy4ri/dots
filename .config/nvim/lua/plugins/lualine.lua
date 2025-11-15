@@ -1,194 +1,207 @@
 return {
-  "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
-    ---------------------------------------------------------------------
-    -- Custom lualine theme (edit colors here)
-    ---------------------------------------------------------------------
-    local theme = {
-      normal = {
-        a = { fg = "#121212", bg = "#990000", gui = "bold" },
-        b = { fg = "#c2c2c2", bg = "#222222" },
-        c = { fg = "#b2b2b2", bg = "#121212" },
-      },
-      insert = {
-        a = { fg = "#e2e2e2", bg = "#990000", gui = "bold" },
-        b = { fg = "#c2c2c2", bg = "#222222" },
-        c = { fg = "#b2b2b2", bg = "#121212" },
-      },
-      visual = {
-        a = { fg = "#990000", bg = "#121212", gui = "bold" },
-        b = { fg = "#c2c2c2", bg = "#222222" },
-        c = { fg = "#b2b2b2", bg = "#121212" },
-      },
-      replace = {
-        a = { fg = "#121212", bg = "#990000", gui = "bold" },
-        b = { fg = "#c2c2c2", bg = "#222222" },
-        c = { fg = "#b2b2b2", bg = "#121212" },
-      },
-    }
+	"nvim-lualine/lualine.nvim",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	config = function()
+		---------------------------------------------------------------------
+		-- Custom lualine theme (unchanged)
+		---------------------------------------------------------------------
+		local theme = {
+			normal = {
+				a = { fg = "#121212", bg = "#990000", gui = "bold" },
+				b = { fg = "#c2c2c2", bg = "#222222" },
+				c = { fg = "#b2b2b2", bg = "#121212" },
+			},
+			insert = {
+				a = { fg = "#e2e2e2", bg = "#990000", gui = "bold" },
+				b = { fg = "#c2c2c2", bg = "#222222" },
+				c = { fg = "#b2b2b2", bg = "#121212" },
+			},
+			visual = {
+				a = { fg = "#990000", bg = "#121212", gui = "bold" },
+				b = { fg = "#c2c2c2", bg = "#222222" },
+				c = { fg = "#b2b2b2", bg = "#121212" },
+			},
+			replace = {
+				a = { fg = "#121212", bg = "#990000", gui = "bold" },
+				b = { fg = "#c2c2c2", bg = "#222222" },
+				c = { fg = "#b2b2b2", bg = "#121212" },
+			},
+		}
 
-    ---------------------------------------------------------------------
-    -- Function: Display current file with icon
-    ---------------------------------------------------------------------
-    local function file_with_icon()
-      local filename = vim.fn.expand("%:t")
-      if filename == "" then
-        return "[No Name]"
-      end
-      local ext = vim.fn.expand("%:e")
-      local icon = require("nvim-web-devicons").get_icon(filename, ext, { default = true })
-      return string.format("%s %s", icon, filename)
-    end
+		---------------------------------------------------------------------
+		-- Function: Show current search count (unchanged, already optimized)
+		---------------------------------------------------------------------
+		local function search_count()
+			local search_pat = vim.fn.getreg("/")
+			if search_pat == "" or vim.v.hlsearch == 0 then
+				return ""
+			end
+			local sc = vim.fn.searchcount({ maxcount = 0 })
+			if sc.total == 0 then
+				return ""
+			end
+			return string.format("%d/%d", sc.current, sc.total)
+		end
 
-    ---------------------------------------------------------------------
-    -- Function: Show current search count (e.g., 2/5) only while searching
-    ---------------------------------------------------------------------
-    local function search_count()
-      local search_pat = vim.fn.getreg("/")
-      if search_pat == "" then
-        return ""
-      end
-      if vim.v.hlsearch == 0 then
-        return ""
-      end
-      local sc = vim.fn.searchcount({ maxcount = 0 })
-      if sc.total == 0 then
-        return ""
-      end
-      return string.format("%d/%d", sc.current, sc.total)
-    end
+		---------------------------------------------------------------------
+		-- OPTIMIZATION: Event-driven LSP client display
+		---------------------------------------------------------------------
+		-- This variable will hold our LSP string.
+		-- The lualine component will just read this, not run a function.
+		local lsp_clients_string = ""
 
-    ---------------------------------------------------------------------
-    -- Function: Show active LSP client name (e.g., "lua_ls")
-    ---------------------------------------------------------------------
-    local function lsp_client()
-      local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-      local clients = vim.lsp.get_active_clients()
-      if next(clients) == nil then
-        return "" -- Hide when no LSP attached
-      end
-      for _, client in ipairs(clients) do
-        local filetypes = client.config.filetypes
-        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-          return "" .. client.name
-        end
-      end
-      return "" -- Hide if no LSP supports this filetype
-    end
+		-- This function updates the string.
+		local function update_lsp_clients()
+			local clients = vim.lsp.get_clients({ bufnr = 0 })
+			if next(clients) == nil then
+				lsp_clients_string = ""
+				return
+			end
+			local client_names = {}
+			for _, client in ipairs(clients) do
+				if not vim.tbl_contains(client_names, client.name) then
+					table.insert(client_names, client.name)
+				end
+			end
+			lsp_clients_string = table.concat(client_names, ", ")
+		end
 
-    ---------------------------------------------------------------------
-    -- Function: Display current time (HH:MM)
-    ---------------------------------------------------------------------
-    local function clock()
-      return os.date("%I:%M")
-    end
+		-- We run the update function only on specific events, not every refresh.
+		vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach", "BufEnter" }, {
+			callback = function()
+				-- Defer to ensure LSP state is settled before we query it
+				vim.defer_fn(function()
+					update_lsp_clients()
+					-- Manually refresh lualine to show the change
+					require("lualine").refresh({ place = { "statusline" } })
+				end, 100)
+			end,
+		})
 
-    ---------------------------------------------------------------------
-    -- Function: Show macro recording status (e.g., " q")
-    ---------------------------------------------------------------------
-    local function recording_macro()
-      local reg = vim.fn.reg_recording()
-      if reg == "" then
-        return ""
-      end
-      return " @" .. reg
-    end
+		-- Function to display the cached LSP string
+		local function lsp_client_display()
+			return lsp_clients_string
+		end
 
-    ---------------------------------------------------------------------
-    -- Lualine setup
-    ---------------------------------------------------------------------
-    require("lualine").setup({
-      options = {
-        theme = theme,
-        icons_enabled = true,
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-      },
+		---------------------------------------------------------------------
+		-- Function: Show macro recording status (unchanged)
+		---------------------------------------------------------------------
+		local function recording_macro()
+			local reg = vim.fn.reg_recording()
+			if reg == "" then
+				return ""
+			end
+			return " @" .. reg
+		end
 
-      -------------------------------------------------------------------
-      -- Active sections layout
-      -------------------------------------------------------------------
-      sections = {
-        -- Left side
-        lualine_a = { "mode" }, -- Show current mode (e.g., NORMAL, INSERT)
-        lualine_b = {
-          {
-            file_with_icon, -- Current file with icon
-            file_status = true,
-            path = 0,
-            symbols = { modified = "●", readonly = "", unnamed = "[No Name]" },
-          },
-          { search_count }, -- Dynamic search counter
-        },
-        lualine_c = {
-          { "branch", icon = "" }, -- Git branch
-          {
-            "diff", -- Show added/modified/removed lines from Git
-            symbols = { added = "+", modified = "~", removed = "-" },
-            diff_color = {
-              added = { fg = "#A3BE8C" },
-              modified = { fg = "#EBCB8B" },
-              removed = { fg = "#BF616A" },
-            },
-          },
-        },
+		---------------------------------------------------------------------
+		-- Lualine setup
+		---------------------------------------------------------------------
+		require("lualine").setup({
+			options = {
+				theme = theme,
+				icons_enabled = true,
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+			},
 
-        -- Right side
-        lualine_x = {
-          {
-            "diagnostics", -- LSP diagnostics (errors, warnings, etc.)
-            sources = { "nvim_diagnostic" },
-            symbols = { error = " ", warn = " ", info = " ", hint = " " },
-            colored = true,
-          },
-          {
-            lsp_client, -- Active LSP client name
-          },
-          {
-            recording_macro, -- Macro recording indicator
-            color = { fg = "#BF616A", gui = "bold" }, -- Red + bold when active
-          },
-          { "fileformat" }, -- File format (unix/dos)
-        },
-        lualine_y = {
-          { "location" }, -- Cursor position (line:column)
-        },
-        lualine_z = {
-          {
-            clock, -- Current time
-          },
-        },
-      },
+			-------------------------------------------------------------------
+			-- Active sections layout
+			-------------------------------------------------------------------
+			sections = {
+				-- Left side
+				lualine_a = { "mode" },
+				lualine_b = {
+					-- OPTIMIZATION: Replaced custom 'file_with_icon' function
+					-- with the built-in 'filename' component. It automatically
+					-- uses nvim-web-devicons when 'icons_enabled = true'.
+					{
+						"filename",
+						file_status = true,
+						path = 0, -- Shows filename only
+						symbols = { modified = "●", readonly = "", unnamed = "[No Name]" },
+					},
+					{ search_count },
+				},
+				lualine_c = {
+					{ "branch", icon = "" },
+					{
+						"diff",
+						symbols = { added = "+", modified = "~", removed = "-" },
+						diff_color = {
+							added = { fg = "#A3BE8C" },
+							modified = { fg = "#EBCB8B" },
+							removed = { fg = "#BF616A" },
+						},
+					},
+				},
 
-      -------------------------------------------------------------------
-      -- Inactive window sections (minimal)
-      -------------------------------------------------------------------
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = { file_with_icon },
-        lualine_c = {},
-        lualine_x = { "location" },
-        lualine_y = {},
-        lualine_z = {},
-      },
+				-- Right side
+				lualine_x = {
+					{
+						"diagnostics",
+						sources = { "nvim_diagnostic" },
+						symbols = { error = " ", warn = " ", info = " ", hint = " " },
+						colored = true,
+					},
+					{
+						lsp_client_display, -- Use our optimized display function
+					},
+					{
+						recording_macro,
+						color = { fg = "#BF616A", gui = "bold" },
+					},
+					{ "fileformat" },
+				},
+				lualine_y = {
+					{ "location" },
+				},
+				lualine_z = {
+					-- OPTIMIZATION: Replaced custom 'clock' function
+					-- with the built-in 'datetime' component.
+					-- This is optimized to only update when the time changes.
+					{
+						"datetime",
+						style = "%I:%M", -- Matches your format
+					},
+				},
+			},
 
-      -------------------------------------------------------------------
-      -- No tabline or extensions used
-      -------------------------------------------------------------------
-      tabline = {},
-      extensions = {},
-    })
+			-------------------------------------------------------------------
+			-- Inactive window sections
+			-------------------------------------------------------------------
+			inactive_sections = {
+				lualine_a = {},
+				-- Use the built-in filename component here too
+				lualine_b = {
+					{
+						"filename",
+						file_status = true,
+						path = 1, -- Show relative path for inactive
+					},
+				},
+				lualine_c = {},
+				lualine_x = { "location" },
+				lualine_y = {},
+				lualine_z = {},
+			},
 
-    ---------------------------------------------------------------------
-    -- Auto-update the macro indicator
-    ---------------------------------------------------------------------
-    vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
-      callback = function()
-        vim.defer_fn(function()
-          require("lualine").refresh({ place = { "statusline" } })
-        end, 50)
-      end,
-    })
-  end,
+			-------------------------------------------------------------------
+			-- No tabline or extensions used
+			-------------------------------------------------------------------
+			tabline = {},
+			extensions = {},
+		})
+
+		---------------------------------------------------------------------
+		-- Auto-update the macro indicator (unchanged)
+		---------------------------------------------------------------------
+		vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+			callback = function()
+				vim.defer_fn(function()
+					require("lualine").refresh({ place = { "statusline" } })
+				end, 50)
+			end,
+		})
+	end,
 }

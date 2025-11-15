@@ -1,11 +1,14 @@
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-    event = "VeryLazy",
+		event = "VeryLazy", 
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
-		event = Verylazy,
-		opts = {},
+		opts = {
+			latex = {
+				enabled = false,
+			},
+		},
 	},
 }

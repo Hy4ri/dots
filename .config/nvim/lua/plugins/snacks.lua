@@ -6,6 +6,12 @@ return {
 	---@type snacks.Config
 	opts = {
 		animate = { enabled = false },
+	  bigfile = { enabled = true },
+		scope = { enabled = true },
+		scroll = { enabled = true },
+		statuscolumn = { enabled = true },
+		terminal = { enabled = false },
+		words = { enabled = true },
 		explorer = { enabled = true },
 		notifier = {
 			enabled = true,

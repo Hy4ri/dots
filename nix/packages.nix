@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }: let
   python-packages = pkgs.python3.withPackages (
@@ -26,7 +25,6 @@ in {
       cmake
       dua
       dunst
-      python313Packages.ds4drv
       eza
       fastfetch
       findutils
@@ -38,6 +36,7 @@ in {
       go
       grim
       gnumake
+      gearlever
       heroic
       hypridle
       hyprcursor
@@ -48,12 +47,16 @@ in {
       hyprland-qt-support
       hyprland-qtutils
       imagemagick
+      jdk
       jq
+      julia
       kdePackages.qt6ct
       kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
       kitty
       lutris
+      lua51Packages.lua
+      luarocks
       libappindicator
       libnotify
       libsForQt5.qtstyleplugin-kvantum
@@ -66,6 +69,9 @@ in {
       nwg-look
       pavucontrol
       playerctl
+      php
+      python313Packages.ds4drv
+      python3Packages.pip
       power-profiles-daemon
       polkit_gnome
       qalculate-gtk
@@ -81,6 +87,9 @@ in {
       swww
       syncthing
       termdown
+      trash-cli
+      tree-sitter
+      fd
       unzip
       upower
       upower-notify
@@ -92,10 +101,10 @@ in {
       wget
       wl-clipboard
       wlsunset
+      warehouse
       wev
       wine
       xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gnome
       xdg-user-dirs
       xdg-utils
       xwayland-satellite
@@ -127,7 +136,7 @@ in {
     xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
-    # mango.enable = true;
+    mango.enable = true;
     niri.enable = true;
     kdeconnect.enable = true;
 
@@ -230,10 +239,7 @@ in {
 
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
-    "io.github.flattool.Warehouse"
-    "it.mijorus.gearlever"
     "com.obsproject.Studio"
-    "org.telegram.desktop"
     "org.equicord.equibop"
   ];
 }

@@ -16,7 +16,8 @@ return {
 
 				-- Highlight symbol references
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
-				if client and client.supports_method("textDocument/documentHighlight") then
+				-- VVV FIX HERE VVV
+				if client and client:supports_method("textDocument/documentHighlight") then
 					local hl_group = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
@@ -38,7 +39,8 @@ return {
 				end
 
 				-- Toggle inlay hints
-				if client and client.supports_method("textDocument/inlayHint") then
+				-- VVV FIX HERE VVV
+				if client and client:supports_method("textDocument/inlayHint") then
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "Toggle Inlay Hints")
@@ -80,26 +82,26 @@ return {
 					},
 				},
 			},
-    }
+		}
 
-    -- Tools to install via Mason
-    local ensure_installed = vim.tbl_keys(servers)
-    vim.list_extend(ensure_installed, {})
-    require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+		-- Tools to install via Mason
+		local ensure_installed = vim.tbl_keys(servers)
+		vim.list_extend(ensure_installed, {})
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-    -- Setup LSP servers with capabilities
-    require("mason-lspconfig").setup({
-      handlers = {
-        function(server_name)
-          local opts = vim.tbl_deep_extend(
-            "force",
-            {},
-            { capabilities = capabilities },
-            servers[server_name] or {}
-          )
-          require("lspconfig")[server_name].setup(opts)
-        end,
-      },
-    })
-  end,
+		-- Setup LSP servers with capabilities
+		require("mason-lspconfig").setup({
+			handlers = {
+				function(server_name)
+					local opts = vim.tbl_deep_extend(
+						"force",
+						{},
+						{ capabilities = capabilities },
+						servers[server_name] or {}
+					)
+					require("lspconfig")[server_name].setup(opts)
+				end,
+			},
+		})
+	end,
 }

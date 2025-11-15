@@ -4,20 +4,20 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    # mangowc = {
-    #   url = "github:DreamMaoMao/mangowc";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+     mangowc = {
+       url = "github:DreamMaoMao/mangowc";
+       inputs.nixpkgs.follows = "nixpkgs";
+     };
   };
 
-  outputs = { self, nixpkgs, nix-flatpak,  ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, mangowc, ... }@inputs: {
     nixosConfigurations = {
       hyari = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          # mangowc.nixosModules.mango
+           mangowc.nixosModules.mango
           nix-flatpak.nixosModules.nix-flatpak
           ({ pkgs, ... }: {
             nixpkgs.overlays = [
