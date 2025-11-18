@@ -1,7 +1,7 @@
 {
-  config,
-  pkgs,
-  ...
+config,
+pkgs,
+...
 }: {
   services = {
     power-profiles-daemon.enable = true;
@@ -12,13 +12,14 @@
     envfs.enable = true;
     dbus.enable = true;
     pulseaudio.enable = false;
+    blueman.enable = true;
 
     resolved = {
       enable = true;
       extraConfig = ''
         [Resolve]
         ResolveUnicastSingleLabel=yes
-        '';
+      '';
     };
 
     xserver = {
@@ -42,9 +43,8 @@
       interval = "weekly";
     };
 
-    blueman.enable = true;
     printing = {
-      enable = false;
+      enable = true;
       drivers = [
         pkgs.hplipWithPlugin
       ];
@@ -60,6 +60,12 @@
           };
         };
       };
+    };
+
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
     };
   };
 }

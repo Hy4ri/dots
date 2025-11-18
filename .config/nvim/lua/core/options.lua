@@ -41,7 +41,6 @@ opt.ruler = false -- Hides the cursor position (row/col) from the bottom-right c
 opt.wrap = false -- Disables automatic line wrapping; long lines will scroll horizontally.
 opt.signcolumn = "yes" -- Always displays the "sign column" on the left (used for diagnostics, Git signs, etc.).
 opt.list = true -- Enables the display of invisible characters.
--- opt.listchars = { space = "·", tab = "··", trail = "·" } -- Defines what to show for invisible characters: '·' for spaces/trails, '··' for tabs.
 opt.termguicolors = true -- Enables 24-bit "true color" support (requires a compatible terminal).
 opt.cmdheight = 0 -- Hides the command line area (set to 0 lines).
 opt.showcmdloc = "statusline" -- Shows pending commands in the status line instead of the (hidden) command line.

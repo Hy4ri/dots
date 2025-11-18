@@ -242,9 +242,9 @@ compinit
 
 eval "$(zoxide init zsh)"
 
-source "$PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# source "$PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
-source "$PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# source "$PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 ############################## launch ###############################
 

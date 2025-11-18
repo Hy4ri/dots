@@ -6,9 +6,9 @@ term="foot"
 menu() {
   printf "1. Nix Config\n"
   printf "2. Nix Packages\n"
-  printf "3. Nix Services\n"
+  printf "3. Nix Flake\n"
+  printf "5. Nix Services\n"
   printf "4. Nix Networking\n"
-  printf "5. Nix Flake\n"
   printf "6. Nix Hardware\n"
   printf "7. Nix Folder\n"
 }
@@ -23,13 +23,13 @@ main() {
     $term nvim "$Configs/packages.nix"
     ;;
   3)
-    $term nvim "$Configs/services.nix"
+    $term nvim "$Configs/flake.nix"
     ;;
   4)
     $term nvim "$Configs/networking.nix"
     ;;
   5)
-    $term nvim "$Configs/flake.nix"
+    $term nvim "$Configs/services.nix"
     ;;
   6)
     $term nvim "$Configs/hardware-configuration.nix"

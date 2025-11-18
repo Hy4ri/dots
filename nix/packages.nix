@@ -1,12 +1,13 @@
 {
-  pkgs,
-  ...
+pkgs,
+inputs,
+...
 }: let
   python-packages = pkgs.python3.withPackages (
     ps:
-      with ps; [
-        requests
-      ]
+    with ps; [
+      requests
+    ]
   );
 in {
   nixpkgs.config.allowUnfree = true;
@@ -138,7 +139,6 @@ in {
     fuse.userAllowOther = true;
     mango.enable = true;
     niri.enable = true;
-    kdeconnect.enable = true;
 
     bat = {
       enable = true;
@@ -158,8 +158,8 @@ in {
 
     hyprland = {
       enable = true;
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
       withUWSM = true;
     };

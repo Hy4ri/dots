@@ -2,15 +2,16 @@
   description = "a flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
      mangowc = {
        url = "github:DreamMaoMao/mangowc";
        inputs.nixpkgs.follows = "nixpkgs";
      };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, mangowc, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, hyprland, mangowc, ... }@inputs: {
     nixosConfigurations = {
       hyari = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
