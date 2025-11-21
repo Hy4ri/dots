@@ -35,6 +35,7 @@ in {
       gdb
       gimp3-with-plugins
       go
+      google-antigravity
       grim
       gnumake
       gearlever
@@ -96,8 +97,8 @@ in {
       upower-notify
       usbutils
       vicinae
-      vivaldi
-      vivaldi-ffmpeg-codecs
+      # vivaldi
+      # vivaldi-ffmpeg-codecs
       wf-recorder
       wget
       wl-clipboard

@@ -1,16 +1,29 @@
 #!/usr/bin/env bash
 
-gaps_in=$(hyprctl -j getoption general:gaps_in | jq '.custom' | awk '{print $1}' | cut -c 2-)
-gaps_out=$(hyprctl -j getoption general:gaps_out | jq '.custom' | awk '{print $1}' | cut -c 2-)
+get_gaps_in() {
+  hyprctl -j getoption general:gaps_in \
+    | jq -r '.custom' \
+    | awk '{print $1}'
+}
+
+get_gaps_out() {
+  hyprctl -j getoption general:gaps_out \
+    | jq -r '.custom' \
+    | awk '{print $1}'
+}
 
 inc_gaps() {
-  hyprctl keyword general:gaps_in $((gaps_in + 1))
-  hyprctl keyword general:gaps_out $((gaps_out + 1))
+  local in=$(get_gaps_in)
+  local out=$(get_gaps_out)
+  hyprctl keyword general:gaps_in $((in + 1))
+  hyprctl keyword general:gaps_out $((out + 1))
 }
 
 dec_gaps() {
-  hyprctl keyword general:gaps_in $((gaps_in - 1))
-  hyprctl keyword general:gaps_out $((gaps_out - 1))
+  local in=$(get_gaps_in)
+  local out=$(get_gaps_out)
+  hyprctl keyword general:gaps_in $((in - 1))
+  hyprctl keyword general:gaps_out $((out - 1))
 }
 
 reset() {
@@ -20,19 +33,19 @@ reset() {
 
 while [[ $# -gt 0 ]]; do
   case $1 in
-  --inc_gaps)
-    inc_gaps
-    S
-    ;;
-  --dec_gaps)
-    dec_gaps
-    ;;
-  --reset)
-    reset
-    ;;
-  *)
-    printf "Error: Unknown option %s" "$1"
-    exit 1
-    ;;
+    --inc_gaps)
+      inc_gaps
+      ;;
+    --dec_gaps)
+      dec_gaps
+      ;;
+    --reset)
+      reset
+      ;;
+    *)
+      printf "Error: Unknown option %s\n" "$1"
+      exit 1
+      ;;
   esac
+  shift
 done

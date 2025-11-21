@@ -158,9 +158,9 @@ dup() {
   git push
 }
 
-# dangool
+# dngl
 dngl() {
-  cd $HOME/Videos/dangool/
+  cd $HOME/Videos/dngl/
   yt-dlp "$1"
   cd $HOME
 }
@@ -250,3 +250,5 @@ source "$PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
 
 #ff
 fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
+
+export PATH=$PATH:/home/m57/.spicetify

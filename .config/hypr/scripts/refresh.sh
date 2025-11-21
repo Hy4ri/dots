@@ -20,7 +20,7 @@ hyprctl dispacth forcerendererreload
 #Relunch
 
 waybar &
-wlsunset &
+wlsunset -l 32.0346 -L 35.7269 &
 dunst &
 foot --server &
 

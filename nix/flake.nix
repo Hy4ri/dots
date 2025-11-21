@@ -9,9 +9,13 @@
        inputs.nixpkgs.follows = "nixpkgs";
      };
     hyprland.url = "github:hyprwm/Hyprland";
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, hyprland, mangowc, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, hyprland, mangowc, antigravity-nix, ... }@inputs: {
     nixosConfigurations = {
       hyari = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -22,6 +26,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           ({ pkgs, ... }: {
             nixpkgs.overlays = [
+              inputs.antigravity-nix.overlays.default
               (final: prev: {
                 libvdpau-va-gl = prev.libvdpau-va-gl.overrideAttrs (old: {
                   cmakeFlags = (old.cmakeFlags or []) ++ [
