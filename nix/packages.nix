@@ -14,6 +14,7 @@ in {
 
   environment.systemPackages =
     (with pkgs; [
+      antigravity
       bc
       brightnessctl
       btop
@@ -35,7 +36,6 @@ in {
       gdb
       gimp3-with-plugins
       go
-      google-antigravity
       grim
       gnumake
       gearlever
@@ -48,6 +48,10 @@ in {
       hyprpolkitagent
       hyprland-qt-support
       hyprland-qtutils
+      # hyprland-guiutils
+      hyprwire
+      hyprpwcenter
+      hyprtoolkit
       imagemagick
       jdk
       jq
@@ -67,8 +71,8 @@ in {
       man-pages
       mpv
       nodejs_24
-      nsxiv
       nwg-look
+      oculante
       pavucontrol
       playerctl
       php
@@ -97,8 +101,6 @@ in {
       upower-notify
       usbutils
       vicinae
-      # vivaldi
-      # vivaldi-ffmpeg-codecs
       wf-recorder
       wget
       wl-clipboard

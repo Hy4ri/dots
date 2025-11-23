@@ -34,7 +34,7 @@
     extraModulePackages = [];
 
     initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "i2c-dev"];
       kernelModules = [];
     };
 

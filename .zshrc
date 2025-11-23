@@ -14,10 +14,10 @@ SAVEHIST=100000
 ############################ aliases #################################
 
 #nix
-alias nxbld='nh os switch ~/Documents/Projects/dots/nix'
-alias nxbldns='nh os boot ~/Documents/Projects/dots/nix'
-alias nxcln='sudo nix-collect-garbage --delete-older-than 1d'
-alias nxup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
+alias nbs='nh os switch ~/Documents/Projects/dots/nix'
+alias nb='nh os boot ~/Documents/Projects/dots/nix'
+alias ncln='sudo nix-collect-garbage --delete-older-than 1d'
+alias nup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
 
 #pacman
 alias sps='sudo pacman -S'
@@ -102,7 +102,7 @@ alias odl='yt-dlp -t mp3'
 alias img2txt='ascii-image-converter'
 alias prop='hyprprop'
 alias cp='cp -i'
-alias c+x='chmod +x'
+alias cx='chmod +x'
 alias storage='dua i'
 alias termdown='termdown -f roman'
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
@@ -178,8 +178,8 @@ warp() {
   disown
 }
 
-# nix pkgs temp install
-nxtry() {
+# Nix pkgs temp install
+nt() {
   nix shell nixpkgs#"$1"
 }
 

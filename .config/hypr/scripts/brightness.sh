@@ -1,74 +1,107 @@
 #!/usr/bin/env bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
-# Script for Monitor backlights (if supported) using brightnessctl
 
 iDIR="$HOME/.config/dunst/icons"
-notification_timeout=1000
-step=5 # INCREASE/DECREASE BY THIS VALUE
+step=5
 
-# Get brightness
+# Get brightness for a specific device
+get_device_brightness() {
+  local device=$1
+  if [[ -z "$device" ]]; then
+    echo "0"
+    return
+  fi
+  IFS=, read -r _ _ _ percent _ <<< "$(brightnessctl -m -d "$device")"
+  echo "${percent%\%}"
+}
+
+# Get brightness for the default backlight device
 get_backlight() {
-  brightnessctl -m | cut -d, -f4 | sed 's/%//'
+  IFS=, read -r _ _ _ percent _ <<< "$(brightnessctl -c backlight -m)"
+  echo "${percent%\%}"
 }
 
 # Get icons
 get_icon() {
-  current=$(get_backlight)
-  if [ "$current" -le "20" ]; then
-    icon="$iDIR/brightness-20.png"
-  elif [ "$current" -le "40" ]; then
-    icon="$iDIR/brightness-40.png"
-  elif [ "$current" -le "60" ]; then
-    icon="$iDIR/brightness-60.png"
-  elif [ "$current" -le "80" ]; then
-    icon="$iDIR/brightness-80.png"
-  else
-    icon="$iDIR/brightness-100.png"
+  local current=$1
+  if   (( current <= 20 )); then echo "$iDIR/brightness-20.png"
+  elif (( current <= 40 )); then echo "$iDIR/brightness-40.png"
+  elif (( current <= 60 )); then echo "$iDIR/brightness-60.png"
+  elif (( current <= 80 )); then echo "$iDIR/brightness-80.png"
+  else echo "$iDIR/brightness-100.png"
   fi
 }
 
 # Notify
 notify_user() {
-  notify-send -e -h string:x-canonical-private-synchronous:brightness_notif -h int:value:$current -u low -i "$icon" "Brightness : $current%"
+  local current=$1
+  local icon=$2
+  local type=$3
+  local title="Brightness"
+  
+  if [[ "$type" == "Keyboard" ]]; then
+    title="Keyboard Brightness"
+  fi
+
+  notify-send -e -h string:x-canonical-private-synchronous:brightness_notif \
+    -h "int:value:$current" -u low -i "$icon" "$title : ${current}%"
 }
 
-# Change brightness
+# Change brightness for main monitor only
 change_backlight() {
-  local current_brightness
-  current_brightness=$(get_backlight)
+  local amount="$1"
+  
+  # brightnessctl handles clamping and math natively for the default device
+  brightnessctl set "$amount" > /dev/null
 
-  # Calculate new brightness
-  if [[ "$1" == "+${step}%" ]]; then
-    new_brightness=$((current_brightness + step))
-  elif [[ "$1" == "${step}%-" ]]; then
-    new_brightness=$((current_brightness - step))
+  # Get current brightness of the default device for notification
+  local current
+  current=$(get_backlight)
+  local icon
+  icon=$(get_icon "$current")
+  notify_user "$current" "$icon"
+}
+
+# Change brightness for keyboard
+change_kbd_backlight() {
+  local amount="$1"
+  local kbd_device
+  kbd_device=$(brightnessctl -l -m | grep "kbd_backlight" | head -n1 | cut -d, -f1)
+
+  if [[ -z "$kbd_device" ]]; then
+    return
   fi
 
-  # Ensure new brightness is within valid range
-  if ((new_brightness < 0)); then
-    new_brightness=0
-  elif ((new_brightness > 100)); then
-    new_brightness=100
-  fi
-
-  brightnessctl set "${new_brightness}%"
-  get_icon
-  current=$new_brightness
-  notify_user
+  brightnessctl -d "$kbd_device" set "$amount" > /dev/null
+  
+  local current
+  current=$(get_device_brightness "$kbd_device")
+  local icon
+  icon=$(get_icon "$current")
+  notify_user "$current" "$icon" "Keyboard"
 }
 
 # Execute accordingly
 case "$1" in
-"--get")
-  get_backlight
-  ;;
-"--inc")
-  change_backlight "+${step}%"
-  ;;
-"--dec")
-  change_backlight "${step}%-"
-  ;;
-*)
-  get_backlight
-  ;;
+  "--get")
+    get_backlight
+    ;;
+  "--inc")
+    change_backlight "${step}%+"
+    ;;
+  "--dec")
+    change_backlight "${step}%-"
+    ;;
+  "--kbd-inc")
+    change_kbd_backlight "${step}%+"
+    ;;
+  "--kbd-dec")
+    change_kbd_backlight "${step}%-"
+    ;;
+  "--kbd-get")
+    kbd_device=$(brightnessctl -l -m | grep "kbd_backlight" | head -n1 | cut -d, -f1)
+    get_device_brightness "$kbd_device"
+    ;;
+  *)
+    get_backlight
+    ;;
 esac
