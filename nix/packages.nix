@@ -14,7 +14,7 @@ in {
 
   environment.systemPackages =
     (with pkgs; [
-      antigravity
+      # antigravity
       bc
       brightnessctl
       btop
@@ -36,6 +36,7 @@ in {
       gdb
       gimp3-with-plugins
       go
+      google-antigravity
       grim
       gnumake
       gearlever
@@ -69,9 +70,11 @@ in {
       libsForQt5.qt5ct
       man-db
       man-pages
+      mangowc
       mpv
       nodejs_24
       nwg-look
+      nixd
       oculante
       pavucontrol
       playerctl
@@ -140,7 +143,6 @@ in {
     xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
-    mango.enable = true;
     niri.enable = true;
 
     bat = {

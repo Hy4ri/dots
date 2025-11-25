@@ -1,27 +1,43 @@
 #!/usr/bin/env bash
-
 shopt -s nullglob
 
 video_exts=("mp4" "mkv" "avi" "mov")
 sub_exts=("srt" "ass" "vtt" "sub")
 
+declare -A video_map
+declare -A sub_map
+
 for video in *; do
-  ext="${video##*.}"
-  [[ " ${video_exts[*]} " =~ " ${ext} " ]] || continue
+    ext="${video##*.}"
+    [[ " ${video_exts[*]} " =~ " ${ext} " ]] || continue
 
-  if [[ $video =~ ([Ss][0-9]{2}[Ee][0-9]{2}) ]]; then
-    episode="${BASH_REMATCH[1]}"
+    if [[ $video =~ ([Ss][0-9]{2}[Ee][0-9]{2}) ]]; then
+        key="${BASH_REMATCH[1],,}"
+        video_map["$key"]="$video"
+    fi
+done
+
+for sub in *; do
+    ext="${sub##*.}"
+    [[ " ${sub_exts[*]} " =~ " ${ext} " ]] || continue
+
+    if [[ $sub =~ ([Ss][0-9]{2}[Ee][0-9]{2}) ]]; then
+        key="${BASH_REMATCH[1],,}"
+        sub_map["$key"]="$sub"
+    fi
+done
+
+for key in "${!video_map[@]}"; do
+    video="${video_map[$key]}"
+    sub="${sub_map[$key]}"
+
+    [[ -n "$sub" ]] || continue
+
     base="${video%.*}"
+    ext="${sub##*.}"
 
-    for sub in *; do
-      subext="${sub##*.}"
-      [[ " ${sub_exts[*]} " =~ " ${subext} " ]] || continue
+    new="${base}.${ext}"
 
-      if [[ $sub =~ $episode ]]; then
-        newname="${base}.ar.${subext}"
-        echo "Renaming: '$sub' → '$newname'"
-        mv -i -- "$sub" "$newname"
-      fi
-    done
-  fi
+    echo "Renaming: '$sub' → '$new'"
+    mv -i -- "$sub" "$new"
 done
