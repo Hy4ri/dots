@@ -8,7 +8,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bb2eefc1-9d8c-43a7-a6eb-1da5a7407348";
     fsType = "ext4";
@@ -26,29 +25,42 @@
     options = [
       "defaults"
       "noatime"
-      "errors=remount-ro"
-      "x-systemd.automount"
-      "x-systemd.idle-timeout=0"
     ];
   };
 
   fileSystems."/run/media/m57/SSD-Linux" = {
     device = "/dev/disk/by-uuid/8cfeb7a9-9b4c-442a-9fce-5683fbf58ff3";
     fsType = "ext4";
-    options = ["defaults" "nofail" "noatime"];
+    options = [
+      "defaults"
+      "nofail"
+      "noatime"
+    ];
   };
 
   fileSystems."/run/media/m57/SSD-Shared" = {
     device = "/dev/disk/by-uuid/40D381F06AC618E5";
     fsType = "ntfs";
-    options = ["defaults" "nofail" "uid=1000" "gid=100"];
+    options = [
+      "defaults"
+      "nofail"
+      "uid=1000"
+      "gid=100"
+    ];
   };
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16*1024;
-    }
-  ];
+
+  # swapDevices = [
+  #   {
+  #     device = "/var/lib/swapfile";
+  #     size = 16*1024;
+  #   }
+  # ];
+
+   zramSwap = {
+     enable = true;
+     algorithm = "zstd";
+     memoryPercent = 50;
+   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -17,9 +17,9 @@ pkgs,
         "audio/flac" = "mpv.desktop";
         "audio/ogg" = "mpv.desktop";
         "audio/wav" = "mpv.desktop";
-        "image/jpeg" = "nsxiv.desktop";
-        "image/png" = "nsxiv.desktop";
-        "image/gif" = "nsxiv.desktop";
+        "image/jpeg" = "oculante.desktop";
+        "image/png" = "oculante.desktop";
+        "image/gif" = "oculante.desktop";
         "application/pdf" = "org.pwmt.zathura.desktop";
         "text/html" = "vivaldi-stable.desktop";
         "x-scheme-handler/http" = "vivaldi-stable.desktop";

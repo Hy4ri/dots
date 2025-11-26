@@ -40,4 +40,4 @@ get_icon() {
   fi
 }
 
-notify-send -e -h int:value:"${percent_volume}" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: ${percent_volume}%"
+notify-send -e -h int:value:"${percent_volume}" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Player Volume: ${percent_volume}%"

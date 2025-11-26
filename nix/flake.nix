@@ -9,18 +9,18 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    affinity-nix.url = "github:mrshmllow/affinity-nix";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, hyprland, antigravity-nix, affinity-nix, ... }@inputs: {
+  outputs = { self, nixpkgs, chaotic, nix-flatpak, hyprland, antigravity-nix, ... }@inputs: {
     nixosConfigurations = {
       hyari = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
+          chaotic.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
-          { environment.systemPackages = [affinity-nix.packages.x86_64-linux.v3];}
           ({ pkgs, ... }: {
             nixpkgs.overlays = [
               inputs.antigravity-nix.overlays.default

@@ -25,6 +25,7 @@ in {
       cargo
       clang
       cmake
+      coppwr
       dua
       dunst
       eza
@@ -50,8 +51,6 @@ in {
       hyprland-qt-support
       hyprland-qtutils
       # hyprland-guiutils
-      hyprwire
-      hyprpwcenter
       hyprtoolkit
       imagemagick
       jdk
@@ -61,6 +60,7 @@ in {
       kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
       kitty
+      kew
       lutris
       lua51Packages.lua
       luarocks

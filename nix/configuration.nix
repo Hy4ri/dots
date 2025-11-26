@@ -22,7 +22,7 @@
         canTouchEfiVariables = true;
       };
     };
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
       "systemd.mask=dev-tpmrm0.device"
@@ -83,7 +83,8 @@
 
   security.rtkit.enable = true;
 
-  users.users.m57 = {
+  users.users.m57 = { 
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = "hyari";
     extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "libvirt" "kvm"];
@@ -121,17 +122,19 @@
         "https://hyprland.cachix.org"
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
+        "https://chaotic-nyx.cachix.org/"
       ];
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       ];
     };
     gc = {
-      automatic = true;
+      automatic = false;
       dates = "daily";
-      options = "--delete-older-than 3d";
+      options = "--delete-older-than 7d";
     };
   };
 
