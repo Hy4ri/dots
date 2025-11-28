@@ -35,7 +35,7 @@ main() {
     $term nvim "$Configs/hardware-configuration.nix"
     ;;
   7)
-    $term nvim $Configs
+    $term nvim "$Configs"
     ;;
   *) ;;
   esac

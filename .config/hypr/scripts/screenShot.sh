@@ -1,122 +1,101 @@
 #!/usr/bin/env bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Screenshots scripts
 
-notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
+# Dependencies
+deps=(grim slurp wl-copy jq notify-send hyprctl)
+for dep in "${deps[@]}"; do
+    if ! command -v "$dep" &> /dev/null; then
+        echo "Error: '$dep' is not installed."
+        exit 1
+    fi
+done
 
+# Variables
+notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low"
 time=$(date "+%Y-%m-%d.%I:%M:%S")
-dir="$HOME/Pictures/Screenshots"
+dir="${HOME}/Pictures/Screenshots"
 file="${time}.png"
 
-active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
-active_window_file="Screenshot_${time}_${active_window_class}.png"
-active_window_path="${dir}/${active_window_file}"
+# Ensure directory exists
+mkdir -p "$dir"
 
-# notify and view screenshot
+# Notification function
 notify_view() {
-  if [[ "$1" == "active" ]]; then
-    if [[ -e "${active_window_path}" ]]; then
-      ${notify_cmd_shot} "Screenshot of '${active_window_class}' Saved."
-      "${sDIR}/Sounds.sh" --screenshot
+    local msg="$1"
+    if [[ -e "$dir/$file" ]]; then
+        ${notify_cmd_shot} "$msg"
     else
-      ${notify_cmd_shot} "Screenshot of '${active_window_class}' not Saved"
+        ${notify_cmd_shot} "Screenshot NOT Saved."
     fi
-  elif [[ "$1" == "swappy" ]]; then
-    ${notify_cmd_shot} "Screenshot Captured."
-  else
-    local check_file="$dir/$file"
-    if [[ -e "$check_file" ]]; then
-      ${notify_cmd_shot} "Screenshot Saved."
-      "${sDIR}/Sounds.sh" --screenshot
-    else
-      ${notify_cmd_shot} "Screenshot NOT Saved."
-    fi
-  fi
 }
 
-# countdown
-countdown() {
-  for sec in $(seq $1 -1 1); do
-    notify-send -h string:x-canonical-private-synchronous:shot-notify -t 1000 -i "$iDIR"/timer.png "Taking shot in : $sec"
-    sleep 1
-  done
+# Core screenshot function
+take_shot() {
+    local geom="$1"
+    local output="$2"
+
+    if [[ -n "$geom" ]]; then
+        grim -g "$geom" -l0 "$output"
+    else
+        grim -l0 "$output"
+    fi
 }
 
-# take shots
+# Actions
 shotnow() {
-  cd ${dir} && grim -l0 - | tee "$file" | wl-copy
-  notify_view
+    cd "${dir}" && take_shot "" - | tee "$file" | wl-copy
+    notify_view "Screenshot Saved."
 }
 
-shot5() {
-  countdown '5'
-  sleep 1 && cd ${dir} && grim -l0 - | tee "$file" | wl-copy
-  sleep 1
-  notify_view
-
-}
-
-shot10() {
-  countdown '10'
-  sleep 1 && cd ${dir} && grim -l0 - | tee "$file" | wl-copy
-  notify_view
-}
-
-shotwin() {
-  w_pos=$(hyprctl activewindow | grep 'at:' | cut -d':' -f2 | tr -d ' ' | tail -n1)
-  w_size=$(hyprctl activewindow | grep 'size:' | cut -d':' -f2 | tr -d ' ' | tail -n1 | sed s/,/x/g)
-  cd ${dir} && grim -g -l0 "$w_pos $w_size" - | tee "$file" | wl-copy
-  notify_view
-}
-
-shotarea() {
-  tmpfile=$(mktemp)
-  grim -g -l0 "$(slurp)" - >"$tmpfile"
-  if [[ -s "$tmpfile" ]]; then
-    wl-copy <"$tmpfile"
-    mv "$tmpfile" "$dir/$file"
-  fi
-  rm "$tmpfile"
-  notify_view
-}
-
-shotactive() {
-  active_window_class=$(hyprctl -j activewindow | jq -r '(.class)')
-  active_window_file="Screenshot_${time}_${active_window_class}.png"
-  active_window_path="${dir}/${active_window_file}"
-
-  hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -g -l0 - "${active_window_path}"
-  sleep 1
-  notify_view "active"
+check_swappy_config() {
+    local swappy_config="${HOME}/.config/swappy/config"
+    if [[ ! -f "$swappy_config" ]]; then
+        mkdir -p "${HOME}/.config/swappy"
+        cat > "$swappy_config" <<EOF
+[Default]
+save_dir=$HOME/Pictures/Screenshots
+save_filename_format=%Y-%m-%d.%H:%M:%S.png
+show_panel=false
+line_size=5
+text_size=20
+text_font=JetBrainsMono Nerd Font
+paint_mode=brush
+early_exit=false
+fill_shape=false
+EOF
+    fi
 }
 
 shotswappy() {
-  tmpfile=$(mktemp)
-  grim -l0 -g "$(slurp)" - >"$tmpfile" && "${sDIR}/Sounds.sh" --screenshot && notify_view "swappy"
-  swappy -f - <"$tmpfile"
-  rm "$tmpfile"
+    check_swappy_config
+ 
+    local geometry
+    geometry=$(slurp)
+ 
+    if [[ -z "$geometry" ]]; then
+        return
+    fi
+
+    local tmpfile
+    tmpfile=$(mktemp)
+ 
+    take_shot "$geometry" "$tmpfile" && ${notify_cmd_shot} "Screenshot Captured."
+    swappy -f - < "$tmpfile"
+    rm "$tmpfile"
 }
 
-if [[ ! -d "$dir" ]]; then
-  mkdir -p "$dir"
-fi
-
-if [[ "$1" == "--now" ]]; then
-  shotnow
-elif [[ "$1" == "--in5" ]]; then
-  shot5
-elif [[ "$1" == "--in10" ]]; then
-  shot10
-elif [[ "$1" == "--win" ]]; then
-  shotwin
-elif [[ "$1" == "--area" ]]; then
-  shotarea
-elif [[ "$1" == "--active" ]]; then
-  shotactive
-elif [[ "$1" == "--swappy" ]]; then
-  shotswappy
-else
-  echo -e "Available Options : --now --in5 --in10 --win --area --active --swappy"
-fi
+# Main execution
+case "$1" in
+    --now)
+        shotnow
+        ;;
+    --swappy)
+        shotswappy
+        ;;
+    *)
+        echo -e "Available Options : --now --swappy"
+        exit 1
+        ;;
+esac
 
 exit 0

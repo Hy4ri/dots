@@ -46,7 +46,7 @@ run_cmd() {
     elif [[ $1 == '--suspend' ]]; then
       systemctl suspend
     elif [[ $1 == '--logout' ]]; then
-      loginctl kill-session $XDG_SESSION_ID
+      loginctl kill-session "$XDG_SESSION_ID"
     fi
   else
     exit 0
@@ -56,19 +56,19 @@ run_cmd() {
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-$shutdown)
+"$shutdown")
   run_cmd --shutdown
   ;;
-$reboot)
+"$reboot")
   run_cmd --reboot
   ;;
-$lock)
+"$lock")
   loginctl lock-session
   ;;
-$suspend)
+"$suspend")
   run_cmd --suspend
   ;;
-$logout)
+"$logout")
   run_cmd --logout
   ;;
 esac

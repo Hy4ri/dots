@@ -39,7 +39,7 @@ monitor() {
 
 stop_recording() {
   if [[ -f "$PID_FILE" ]]; then
-    kill "$(cat $PID_FILE)" && rm "$PID_FILE"
+    kill "$(cat "$PID_FILE")" && rm "$PID_FILE"
     notify-send "Screen Recording" "Recording stopped"
   else
     notify-send "Screen Recording" "No recording in progress"

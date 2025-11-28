@@ -67,6 +67,7 @@ find_steam_dirs() {
   printf '%s\n' "${steam_dirs[@]}" | sort -u
 }
 
+
 ######################
 # 1. Steam Games (Multi-Drive)
 ######################

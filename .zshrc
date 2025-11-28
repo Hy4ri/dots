@@ -98,7 +98,7 @@ alias battery='Upower -i /org/freedesktop/Upower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
 alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
 alias vdl='yt-dlp'
-alias odl='yt-dlp -t mp3'
+alias adl='yt-dlp -t mp3'
 alias img2txt='ascii-image-converter'
 alias prop='hyprprop'
 alias cp='cp -i'
@@ -108,8 +108,8 @@ alias termdown='termdown -f roman'
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias rsync='rsync -rPavh'
 alias bios='sudo systemctl reboot --firmware-setup'
-alias h='Hyprland'
 alias ff='fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red'
+alias kew='foot -akew kew'
 
 ############################# functions ##########################################
 

@@ -8,10 +8,10 @@ current_volume=$(playerctl volume)
 # Check argument
 case "$1" in
 --inc)
-  new_volume=$(echo "$current_volume + 0.1" | bc)
+  new_volume=$(echo "$current_volume + $STEP" | bc)
   ;;
 --dec)
-  new_volume=$(echo "$current_volume - 0.1" | bc)
+  new_volume=$(echo "$current_volume - $STEP" | bc)
   ;;
 *)
   echo "Usage: $0 [+|-]"
@@ -26,7 +26,7 @@ elif (($(echo "$new_volume < 0.0" | bc -l))); then
   new_volume=0.0
 fi
 # Set new volume
-playerctl volume $new_volume
+playerctl volume "$new_volume"
 
 percent_volume=$(echo "$new_volume*100" | bc | cut -d'.' -f1)
 

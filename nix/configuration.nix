@@ -1,19 +1,16 @@
 {
-  config,
-  pkgs,
-  ...
+pkgs,
+...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./nvidia.nix
-    ./intel.nix
-    ./prime.nix
+    ./graphics.nix
     ./packages.nix
     ./services.nix
     ./mimeapps.nix
   ];
- 
+
   boot = {
     loader = {
       timeout = 5; 
@@ -22,36 +19,25 @@
         canTouchEfiVariables = true;
       };
     };
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
-      "systemd.mask=systemd-vconsole-setup.service"
-      "systemd.mask=dev-tpmrm0.device"
       "nowatchdog"
       "modprobe.blacklist=sp5100_tco"
       "modprobe.blacklist=iTCO_wdt"
     ];
     kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
 
     initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "i2c-dev"];
-      kernelModules = [];
+      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
     };
-
-    kernel = {
-      sysctl = {
-        "vm.max_map_count" = 2147483642;
-      };
+    binfmt.registrations.appimage = {
+      wrapInterpreterInShell = false;
+      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+      recognitionType = "magic";
+      offset = 0;
+      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+      magicOrExtension = ''\x7fELF....AI\x02'';
     };
-
-  binfmt.registrations.appimage = {
-    wrapInterpreterInShell = false;
-    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-    recognitionType = "magic";
-    offset = 0;
-    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-    magicOrExtension = ''\x7fELF....AI\x02'';
-  };
   };
 
   drivers = {
@@ -88,22 +74,6 @@
     isNormalUser = true;
     description = "hyari";
     extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "libvirt" "kvm"];
-  };
-
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = false;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-          Experimental = true;
-        };
-      };
-    };
-    graphics = {
-      enable = true;
-    };
   };
 
   nix = {

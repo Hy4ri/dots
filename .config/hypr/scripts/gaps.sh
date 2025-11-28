@@ -12,16 +12,15 @@ get_gaps_out() {
     | awk '{print $1}'
 }
 
+in=$(get_gaps_in)
+out=$(get_gaps_out)
+
 inc_gaps() {
-  local in=$(get_gaps_in)
-  local out=$(get_gaps_out)
   hyprctl keyword general:gaps_in $((in + 1))
   hyprctl keyword general:gaps_out $((out + 1))
 }
 
 dec_gaps() {
-  local in=$(get_gaps_in)
-  local out=$(get_gaps_out)
   hyprctl keyword general:gaps_in $((in - 1))
   hyprctl keyword general:gaps_out $((out - 1))
 }

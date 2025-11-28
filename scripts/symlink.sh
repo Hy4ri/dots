@@ -7,7 +7,7 @@ config="$HOME/.config"
 if [ -d "$HOME/Documents/Projects/dots" ]; then
   dots="$HOME/Documents/Projects/dots"
 else 
-  mv $HOME/dots $HOME/Documents/Projects/
+  mv "$HOME/dots" "$HOME/Documents/Projects/"
   dots="$HOME/Documents/Projects/dots"
 fi
 

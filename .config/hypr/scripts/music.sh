@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 update() {
   pkill spotify
   ~/.spicetify/spicetify update

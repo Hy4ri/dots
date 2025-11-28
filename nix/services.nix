@@ -13,7 +13,6 @@ pkgs,
     dbus.enable = true;
     pulseaudio.enable = false;
     blueman.enable = true;
-    scx.enable = true;
 
     resolved = {
       enable = true;

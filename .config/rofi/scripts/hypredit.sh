@@ -36,7 +36,7 @@ main() {
     $term nvim "$Configs/appbinds.conf"
     ;;
   5)
-    $term nvim $Scripts
+    $term nvim "$Scripts"
     ;;
   6)
     $term nvim "$Configs/autostart.conf"

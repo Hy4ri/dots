@@ -16,7 +16,7 @@ cd ~/dots
 
 # Backup
 echo -n "Backup /home? y/n:  "
-read Backup
+read -r Backup
 
 case "$Backup" in
 yes | Yes | y | Y)
@@ -34,7 +34,7 @@ esac
 ### Nix
 
 echo -n "Bulid Nix? y/n:  "
-read Nix
+read -r Nix
 
 case "$Nix" in
 yes | Yes | y | Y)
@@ -48,7 +48,7 @@ esac
 ### Dotfiles
 
 echo -n "Apply Dotfiles? y/n:  "
-read Dotfiles
+read -r Dotfiles
 
 case "$Dotfiles" in
 yes | Yes | y | Y)

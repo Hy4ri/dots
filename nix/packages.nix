@@ -14,7 +14,7 @@ in {
 
   environment.systemPackages =
     (with pkgs; [
-      # antigravity
+      antigravity-fhs
       bc
       brightnessctl
       btop
@@ -37,7 +37,6 @@ in {
       gdb
       gimp3-with-plugins
       go
-      google-antigravity
       grim
       gnumake
       gearlever

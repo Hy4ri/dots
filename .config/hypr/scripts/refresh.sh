@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-scripts=$HOME/.config/hypr/scripts
-
 # Kill already running processes
 _ps=(waybar rofi wlsunset foot dunst)
 for _prs in "${_ps[@]}"; do

@@ -23,13 +23,13 @@ new() {
 }
 
 list() {
-  selected=$(ls -t $notes_dir | rofi -dmenu)
-  [[ -n "$selected" ]] && foot nvim $notes_dir/$selected
+  selected=$(ls -t "$notes_dir" | rofi -dmenu)
+  [[ -n "$selected" ]] && foot nvim "$notes_dir/$selected"
 }
 
 remove() {
-  selected=$(ls -t $notes_dir | rofi -dmenu)
-  [[ -n "$selected" ]] && rm $notes_dir/$selected
+  selected=$(ls -t "$notes_dir" | rofi -dmenu)
+  [[ -n "$selected" ]] && rm "$notes_dir/$selected"
   [[ -n "$selected" ]] && notify-send "Notes" "Deleted $selected"
 }
 

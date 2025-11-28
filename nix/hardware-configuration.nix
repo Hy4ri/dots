@@ -1,9 +1,8 @@
 {
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
+config,
+lib,
+modulesPath,
+...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -49,20 +48,35 @@
     ];
   };
 
-  # swapDevices = [
-  #   {
-  #     device = "/var/lib/swapfile";
-  #     size = 16*1024;
-  #   }
-  # ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8*1024;
+    }
+  ];
 
-   zramSwap = {
-     enable = true;
-     algorithm = "zstd";
-     memoryPercent = 50;
-   };
+  # zramSwap = {
+  #   enable = true;
+  #   algorithm = "zstd";
+  #   memoryPercent = 50;
+  # };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.enableAllFirmware = true;
+
+  hardware = {
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    enableAllFirmware = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
+    graphics = {
+      enable = true;
+    };
+  };
 }
