@@ -132,17 +132,20 @@ in {
 
   programs = {
     adb.enable = true;
-    appimage.enable = true;
-    appimage.binfmt = true;
     gamemode.enable = true;
     waybar.enable = true;
     virt-manager.enable = true;
     hyprlock.enable = true;
-    uwsm.enable = true;
     xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
     niri.enable = true;
+    nix-ld.enable = true;
+
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
 
     bat = {
       enable = true;
@@ -165,7 +168,6 @@ in {
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
-      withUWSM = true;
     };
 
     localsend = {

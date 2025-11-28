@@ -1,5 +1,4 @@
 {
-config,
 pkgs,
 ...
 }: {
@@ -14,6 +13,10 @@ pkgs,
     pulseaudio.enable = false;
     blueman.enable = true;
 
+    displayManager = {
+      enable = true;
+      ly.enable = true;
+    };
     resolved = {
       enable = true;
       extraConfig = ''
@@ -32,21 +35,25 @@ pkgs,
 
     pipewire = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
       pulse.enable = true;
       wireplumber.enable = true;
+      jack.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
     };
 
     fstrim = {
       enable = true;
-      interval = "weekly";
+      interval = "daily";
     };
 
     printing = {
       enable = true;
-      drivers = [
-        pkgs.hplipWithPlugin
+      startWhenNeeded = true;
+      drivers = with pkgs; [
+        hplipWithPlugin
       ];
     };
 

@@ -55,8 +55,8 @@ active   = { bg = "red", bold = true }
 inactive = { fg = "red", bg = "black" }
 
 # Separator
-sep_inner = { open = "", close = "" }
-sep_outer = { open = "", close = "" }
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
 
 # : }}}
 
@@ -82,8 +82,8 @@ unset_alt  = { fg = "red", bg = "gray" }
 
 [status]
 overall   = {}
-sep_left  = { open = "", close = "", fg = "blue", bg = "blue" }
-sep_right = { open = "", close = "", fg = "blue", bg = "blue" }
+sep_left  = { open = "", close = "", fg = "blue", bg = "blue" }
+sep_right = { open = "", close = "", fg = "blue", bg = "blue" }
 
 
 # Permissions

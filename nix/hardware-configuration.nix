@@ -48,18 +48,19 @@ modulesPath,
     ];
   };
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 8*1024;
-    }
-  ];
+  # swapDevices = [
+  #   {
+  #     device = "/var/lib/swapfile";
+  #     size = 8*1024;
+  #   }
+  # ];
 
-  # zramSwap = {
-  #   enable = true;
-  #   algorithm = "zstd";
-  #   memoryPercent = 50;
-  # };
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 25;
+    priority = 5;
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

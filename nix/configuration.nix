@@ -12,6 +12,7 @@ pkgs,
   ];
 
   boot = {
+    tmp.cleanOnBoot = true;
     loader = {
       timeout = 5; 
       systemd-boot.enable = true;
@@ -24,8 +25,23 @@ pkgs,
       "nowatchdog"
       "modprobe.blacklist=sp5100_tco"
       "modprobe.blacklist=iTCO_wdt"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=0"
+      "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+      "usbcore.autosuspend=-1"
     ];
     kernelModules = ["kvm-intel"];
+
+    kernel.sysctl = {
+      "vm.swappiness" = 10;
+      "vm.vfs_cache_pressure" = 50;
+      "vm.max_map_count" = 16777216;
+      "vm.dirty_bytes" = 268435456;
+      "vm.dirty_background_bytes" = 67108864;
+      "vm.dirty_writeback_centisecs" = 1500;
+      "kernel.printk" = "3 3 3 3";
+      "kernel.kptr_restrict" = 2;
+      "kernel.kexec_load_disabled" = 1;
+    };
 
     initrd = {
       availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
@@ -105,6 +121,10 @@ pkgs,
       automatic = false;
       dates = "daily";
       options = "--delete-older-than 7d";
+    };
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
     };
   };
 
