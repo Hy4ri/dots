@@ -37,6 +37,7 @@ in {
       gdb
       gimp3-with-plugins
       go
+      ghostty
       grim
       gnumake
       gearlever
@@ -58,7 +59,6 @@ in {
       kdePackages.qt6ct
       kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
-      kitty
       kew
       lutris
       lua51Packages.lua

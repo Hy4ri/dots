@@ -1,34 +1,32 @@
-font-family = JetBrainsMono Nerd Font
-font-size = 15
+font-family=JetBrainsMono NF ExtraBold
 
+font-size = 15
 cursor-style = bar
 
 background-opacity = 0.7
 
-window-padding-x = 5
-window-padding-y = 5
 window-decoration = false
 window-theme = ghostty
 
 palette = 0=#222222
-palette = 1=#ff000f
-palette = 2=#8ce00a
-palette = 3=#ffb900
-palette = 4=#008df8
-palette = 5=#6c43a5
-palette = 6=#00d7eb
-palette = 7=#ffffff
+palette = 1=#990000
+palette = 2=#7fc13b
+palette = 3=#e6b422
+palette = 4=#1e78c2
+palette = 5=#a3478b
+palette = 6=#22b7b0
+palette = 7=#f2f2f2
 palette = 8=#444444
-palette = 9=#ff273f
-palette = 10=#abe05a
-palette = 11=#ffd141
-palette = 12=#0092ff
-palette = 13=#9a5feb
-palette = 14=#67ffef
+palette = 9=#cc0000
+palette = 10=#a8e063
+palette = 11=#ffd54a
+palette = 12=#3399ff
+palette = 13=#c972b0
+palette = 14=#4ee5dd
 palette = 15=#ffffff
 
-background = 121212
+background = 000000
 foreground = e2e2e2
 selection-foreground = ffffff
-selection-background = 002a3a
+selection-background = 990000
 cursor-color = ffffff
