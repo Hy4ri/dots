@@ -1,4 +1,5 @@
-[{
+[
+  {
     "include": "~/.config/waybar/modules.jsonc",
     "output": "eDP-1",
     "layer": "top",
@@ -10,15 +11,21 @@
     "spacing": 0,
     "fixed-center": false,
     "ipc": true,
-
-    "modules-left": ["custom/launcher", "wlr/taskbar"],
-
-    "modules-center": ["mpris"],
-
-    "modules-right": ["privacy", "tray", "group/sys", "group/time" ]
-},
-
-{
+    "modules-left": [
+      "custom/launcher",
+      "wlr/taskbar"
+    ],
+    "modules-center": [
+      "mpris"
+    ],
+    "modules-right": [
+      "privacy",
+      "tray",
+      "group/sys",
+      "group/time"
+    ]
+  },
+  {
     "include": "~/.config/waybar/modules.jsonc",
     "output": "HDMI-A-3",
     "layer": "top",
@@ -30,12 +37,17 @@
     "spacing": 0,
     "fixed-center": false,
     "ipc": true,
-
-    "modules-left": ["custom/launcher", "wlr/taskbar" ],
-
-    "modules-center": ["mpris"],
-
-    "modules-right": ["tray","group/sys","clock"]
-
-
-}]
+    "modules-left": [
+      "custom/launcher",
+      "wlr/taskbar"
+    ],
+    "modules-center": [
+      "mpris"
+    ],
+    "modules-right": [
+      "tray",
+      "group/sys",
+      "clock"
+    ]
+  }
+]

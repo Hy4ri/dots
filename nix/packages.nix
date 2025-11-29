@@ -69,7 +69,7 @@ in {
       libsForQt5.qt5ct
       man-db
       man-pages
-      mangowc
+      # mangowc
       mpv
       nodejs_24
       nwg-look
@@ -81,7 +81,7 @@ in {
       python313Packages.ds4drv
       python3Packages.pip
       power-profiles-daemon
-      polkit_gnome
+      # polkit_gnome
       qalculate-gtk
       qbittorrent
       rofi
@@ -113,7 +113,7 @@ in {
       xdg-desktop-portal-hyprland
       xdg-user-dirs
       xdg-utils
-      xwayland-satellite
+      # xwayland-satellite
       yad
       yazi
       yt-dlp
@@ -139,7 +139,7 @@ in {
     xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
-    niri.enable = true;
+    niri.enable = false;
     nix-ld.enable = true;
 
     appimage = {
@@ -233,13 +233,15 @@ in {
 
   xdg.portal = {
     enable = true;
-    wlr.enable = false;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
+    xdgOpenUsePortal = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
     ];
-    configPackages = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal
+    configPackages = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
     ];
   };
 

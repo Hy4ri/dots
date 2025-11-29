@@ -28,7 +28,6 @@ opt.diffopt:append("vertical") -- Opens diffs in vertical splits
 opt.diffopt:append("algorithm:patience") -- Uses the "patience" algorithm for better diffs
 opt.diffopt:append("linematch:60") -- Improves diff algorithm for better diffs
 
-
 ---- UI - Visuals & Layout
 opt.cursorline = true -- Highlights the entire line your cursor is currently on.
 opt.laststatus = 3 -- Sets the status line to be *always* visible (global status line).
@@ -68,3 +67,11 @@ opt.completeopt = "menuone,noinsert,noselect" -- Configures the autocompletion p
 
 ---- Plugins
 g.snacks_animate = false
+
+-- diagnostics
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+})

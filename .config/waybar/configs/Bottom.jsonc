@@ -1,4 +1,5 @@
-[{
+[
+  {
     "include": "~/.config/waybar/modules.jsonc",
     "output": "eDP-1",
     "position": "bottom",
@@ -10,15 +11,20 @@
     "spacing": 0,
     "fixed-center": false,
     "ipc": true,
-
-    "modules-left": ["hyprland/workspaces#Num", "hyprland/window" ,"mpris"],
-
+    "modules-left": [
+      "ext/workspaces",
+      "hyprland/window",
+      "mpris"
+    ],
     "modules-center": [],
-
-    "modules-right": ["privacy", "tray", "group/sys", "group/time" ]
-},
-
-{
+    "modules-right": [
+      "privacy",
+      "tray",
+      "group/sys",
+      "group/time"
+    ]
+  },
+  {
     "include": "~/.config/waybar/modules.jsonc",
     "output": "HDMI-A-3",
     "position": "bottom",
@@ -30,12 +36,16 @@
     "spacing": 0,
     "fixed-center": false,
     "ipc": true,
-
-    "modules-left": ["hyprland/workspaces#Num","hyprland/window","mpris"],
-
+    "modules-left": [
+      "ext/workspaces",
+      "hyprland/window",
+      "mpris"
+    ],
     "modules-center": [],
-
-    "modules-right": ["tray","group/sys","clock"]
-
-
-}]
+    "modules-right": [
+      "tray",
+      "group/sys",
+      "clock"
+    ]
+  }
+]

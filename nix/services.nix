@@ -15,7 +15,10 @@ pkgs,
 
     displayManager = {
       enable = true;
-      ly.enable = true;
+      ly = {
+        enable = true;
+        x11Support = false;
+      };
     };
     resolved = {
       enable = true;

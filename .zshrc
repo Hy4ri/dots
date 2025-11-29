@@ -7,6 +7,7 @@ export less_termcap_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export less_termcap_me="$(tput sgr0 2> /dev/null)"
 export fzf_default_opts="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
 export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
+export PATH=$PATH:/home/m57/.spicetify
 
 HISTSIZE=100000
 SAVEHIST=100000
@@ -46,7 +47,8 @@ alias lt='eza -aHT --level=2 --color=always --group-directories-first --icons --
 alias gitc='git clone'
 
 #tmux
-alias tmuxa='tmux attach'
+alias tmuxa='tmux attach -t'
+alias tmuxk='tmux kill-session -t'
 
 #python
 alias p='python'
@@ -247,8 +249,8 @@ source "$PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
 # source "$PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 ############################## launch ###############################
-
-#ff
 fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
 
-export PATH=$PATH:/home/m57/.spicetify
+
+
+

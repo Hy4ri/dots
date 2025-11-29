@@ -4,9 +4,9 @@ profile=$(powerprofilesctl get)
 
 get_profile() {
   case "$profile" in
-    "performance") echo "󱐋";;
-    "balanced") echo "";;
-    "power-saver") echo "";;
+    "performance") echo "";;
+    "balanced") echo "";;
+    "power-saver") echo "";;
     *) echo "❓";;
   esac
 }
