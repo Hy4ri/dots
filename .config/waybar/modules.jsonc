@@ -1,10 +1,30 @@
 {
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "show-special": false,
+    "on-click": "activate",
+    "all-outputs": false,
+    "sort-by-number": false,
+    "active-only": false,
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": ""
+    }
+  },
   "ext/workspaces": {
     "format": "{name}",
     "show-special": false,
     "on-click": "activate",
     "all-outputs": false,
-    "sort-by-number": true,
+    "sort-by-number": false,
     "active-only": false,
     "format-icons": {
       "1": "",
@@ -54,6 +74,15 @@
       "clock",
       "custom/prayers"
     ]
+  },
+  "custom/lyrics": {
+    "format": "{}",
+    "interval": 1,
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/lyrics.sh",
+    "on-click": "playerctl play-pause",
+    "on-click-middle": "playerctl previous",
+    "on-click-right": "playerctl next"
   },
   "battery": {
     "interval": 5,

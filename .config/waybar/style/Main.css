@@ -152,7 +152,7 @@ window#waybar.empty #window {
 }
 
 #mpris {
-  color: @accent;
+  color: @font;
   background: @background;
   padding: 0px 10px 3px 10px;
   margin: 0px 2px 1px 0px;
@@ -165,6 +165,14 @@ window#waybar.empty #window {
   margin: 0;
   padding: 0;
   opacity: 0;
+}
+
+#custom-lyrics {
+  color: @accent;
+  background: @background;
+  padding: 0px 10px;
+  margin: 0px 1px 1px 1px;
+  box-shadow: @shadow 1px 2px 1px 1px;
 }
 
 /* Middle */

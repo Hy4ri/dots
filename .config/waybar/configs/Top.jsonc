@@ -12,13 +12,11 @@
     "fixed-center": false,
     "ipc": true,
     "modules-left": [
-      "ext/workspaces",
+      "hyprland/workspaces",
       "hyprland/window",
-      "mpris"
+      "custom/lyrics"
     ],
-    "modules-center": [
-      "wireplumber"
-    ],
+    "modules-center": [],
     "modules-right": [
       "privacy",
       "tray",
@@ -39,9 +37,9 @@
     "fixed-center": false,
     "ipc": true,
     "modules-left": [
-      "ext/workspaces",
+      "hyprland/workspaces",
       "hyprland/window",
-      "mpris"
+      "custom/lyrics"
     ],
     "modules-center": [],
     "modules-right": [
