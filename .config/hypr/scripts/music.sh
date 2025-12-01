@@ -17,7 +17,7 @@ case "$1" in
   --update)
     update
     ;;
-  *) 
+  *)
     update
     ;;
 esac

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
@@ -6,6 +7,7 @@ MENU_ITEMS=(
   "🟥 Crimson|crimson"
 )
 
+# Define functions for each menu item
 yellow() {
   openrgb -p Yellow
   sleep 0.2
@@ -22,7 +24,7 @@ crimson() {
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "Set RGB Profile")
+done | rofi -dmenu -p "Set RGB Profile" -i)
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do

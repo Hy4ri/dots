@@ -17,8 +17,12 @@ hyprctl dispacth forcerendererreload
 
 #Relunch
 
+# Coordinates for wlsunset
+LAT="32.0346"
+LONG="35.7269"
+
 waybar &
-wlsunset -l 32.0346 -L 35.7269 &
+wlsunset -l "$LAT" -L "$LONG" &
 dunst &
 foot --server &
 

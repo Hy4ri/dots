@@ -1,44 +1,42 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 Configs="$HOME/Documents/Projects/dots/nix/"
 term="foot"
 
-menu() {
-  printf "1. Nix Config\n"
-  printf "2. Nix Packages\n"
-  printf "3. Nix Flake\n"
-  printf "5. Nix Services\n"
-  printf "4. Nix Networking\n"
-  printf "6. Nix Hardware\n"
-  printf "7. Nix Folder\n"
-}
+# Define menu items as "Label|Function Name"
+MENU_ITEMS=(
+  "1. Nix Config|config"
+  "2. Nix Packages|packages"
+  "3. Nix Flake|flake"
+  "4. Nix Networking|networking"
+  "5. Nix Services|services"
+  "6. Nix Hardware|hardware"
+  "7. Nix Folder|folder"
+)
 
-main() {
-  choice=$(menu | rofi -i -dmenu | cut -d. -f1)
-  case $choice in
-  1)
-    $term nvim "$Configs/configuration.nix"
-    ;;
-  2)
-    $term nvim "$Configs/packages.nix"
-    ;;
-  3)
-    $term nvim "$Configs/flake.nix"
-    ;;
-  4)
-    $term nvim "$Configs/networking.nix"
-    ;;
-  5)
-    $term nvim "$Configs/services.nix"
-    ;;
-  6)
-    $term nvim "$Configs/hardware-configuration.nix"
-    ;;
-  7)
-    $term nvim "$Configs"
-    ;;
-  *) ;;
-  esac
-}
+# Define functions for each menu item
+config() { $term nvim "$Configs/configuration.nix"; }
+packages() { $term nvim "$Configs/packages.nix"; }
+flake() { $term nvim "$Configs/flake.nix"; }
+networking() { $term nvim "$Configs/networking.nix"; }
+services() { $term nvim "$Configs/services.nix"; }
+hardware() { $term nvim "$Configs/hardware-configuration.nix"; }
+folder() { $term nvim "$Configs"; }
 
-main
+# Create Rofi menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | rofi -dmenu -p "NixEdit" -i)
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
+exit 1

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
@@ -8,7 +9,6 @@ MENU_ITEMS=(
 )
 
 # Define functions for each menu item
-
 calendar() {
   THEDATE=$(yad --calendar)
   yad --text="You chose $THEDATE"

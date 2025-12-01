@@ -1,31 +1,44 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# Style
-scripts="$HOME/.config/rofi/scripts"
+SCRIPTS="$HOME/.config/rofi/scripts"
 
-# Menu labels
-MENU="⏸️ Powermenu\n📝 Notes\n  HyprEdit\n󱄅  NixEdit\n⌚ Timer\n⚙️ Hyprsettings\n👾 Games\n⚙️ Projects\n🎥 Screen Recorder\n🛜 wifi\n📃 Mans\n🔧 Yad\n💡 Brightness\n🔆 Weather\n🌡️ Temprature\n💻 Pc Stats\n🎨 Waybar Theme\n🎨 Waybar Layout"
+# Define menu items as "Label|Command"
+MENU_ITEMS=(
+  "⏸️ Powermenu|$SCRIPTS/powermenu.sh"
+  "📝 Notes|$SCRIPTS/notes.sh"
+  "  HyprEdit|$SCRIPTS/hypredit.sh"
+  "󱄅  NixEdit|$SCRIPTS/nixedit.sh"
+  "⌚ Timer|$SCRIPTS/timer.sh"
+  "⚙️ Hyprsettings|$SCRIPTS/hyprsettings.sh"
+  "👾 Games|$SCRIPTS/game_launcher.sh"
+  "⚙️ Projects|$SCRIPTS/projects.sh"
+  "🎥 Screen Recorder|$SCRIPTS/screenrecord.sh"
+  "🛜 wifi|$SCRIPTS/wifi.sh"
+  "📃 Mans|$SCRIPTS/man.sh"
+  "🔧 Yad|$SCRIPTS/yad.sh"
+  "💡 Brightness|$SCRIPTS/brightness.sh"
+  "🔆 Weather|$SCRIPTS/weather.sh"
+  "🌡️ Temprature|$SCRIPTS/temps.sh"
+  "💻 Pc Stats|$SCRIPTS/system.sh"
+  "🎨 Waybar Settings|$SCRIPTS/waybarManager.sh"
+  "🟥🟩🟦 RGB Profiles|$SCRIPTS/rgb_profiles.sh"
+  "🔍 Quick Search|$SCRIPTS/quicksearch.sh"
+)
 
-CHOICE=$(echo -e "$MENU" | rofi -dmenu -p "Choose Script")
+# Create Rofi menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | rofi -dmenu -p "Choose Script" -i)
 
-case "$CHOICE" in
-"🟥🟩🟦 RGB Profiles") $scripts/rgb_profiles.sh ;;
-"🔆 Weather") $scripts/weather.sh ;;
-"🎨 Waybar Theme") $scripts/waybarStyles.sh ;;
-"🎨 Waybar Layout") $scripts/waybarLayout.sh ;;
-"👾 Games") $scripts/game_launcher.sh ;;
-"💻 Pc Stats") $scripts/system.sh ;;
-"💡 Brightness") $scripts/brightness.sh ;;
-"📝 Notes") $scripts/notes.sh ;;
-"⌚ Timer") $scripts/timer.sh ;;
-"🎥 Screen Recorder") $scripts/screenrecord.sh ;;
-"🔧 Yad") $scripts/yad.sh ;;
-"📃 Mans") $scripts/man.sh ;;
-"⏸️ Powermenu") $scripts/powermenu.sh ;;
-"  HyprEdit") $scripts/hypredit.sh ;;
-"󱄅  NixEdit") $scripts/nixedit.sh ;;
-"🛜 wifi") $scripts/wifi.sh ;;
-"⚙️ Projects") $scripts/projects.sh ;;
-"🌡️ Temprature") $scripts/temps.sh ;;
-"⚙️ Hyprsettings") $scripts/hyprsettings.sh ;;
-esac
+# Match selection and execute command
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label cmd <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$cmd"
+    exit 0
+  fi
+done
+
+exit 1

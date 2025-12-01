@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# Configs
+# Game Launcher Scriptgs
 HEROIC_INSTALLED_JSON="$HOME/.config/heroic/legendaryConfig/legendary/installed.json"
 ROFI_CMD="rofi -dmenu -i -p Games -show-icons"
 ICON_CACHE="$HOME/.cache/game_launcher_icons"

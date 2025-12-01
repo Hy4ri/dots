@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
@@ -10,63 +11,43 @@ MENU_ITEMS=(
 )
 
 # Define functions for each menu item
-
 web() {
   search=$(rofi -dmenu -i -p "Google Web:")
-
   if [ -n "$search" ]; then
     encoded=$(printf '%s' "$search" | jq -sRr @uri)
-    yad --html --browser \
-      --uri="https://www.google.com/search?q=$encoded&udm=14&tbs=li:1" \
-      --width=1280 \
-      --height=980
+    xdg-open "https://www.google.com/search?q=$encoded&udm=14&tbs=li:1"
   fi
 }
 
 image() {
   search=$(rofi -dmenu -i -p "Google images:")
-
   if [ -n "$search" ]; then
     encoded=$(printf '%s' "$search" | jq -sRr @uri)
-    yad --html --browser \
-      --uri="https://www.google.com/search?q=$encoded&udm=2&tbs=li:1" \
-      --width=1280 \
-      --height=980
+    xdg-open "https://www.google.com/search?q=$encoded&udm=2&tbs=li:1"
   fi
 }
 
 map() {
   search=$(rofi -dmenu -i -p "Google Maps:")
-
   if [ -n "$search" ]; then
     encoded=$(printf '%s' "$search" | jq -sRr @uri)
-    yad --html --browser \
-      --uri="https://www.google.com/maps/search/$encoded" \
-      --width=1280 \
-      --height=980
+    xdg-open "https://www.google.com/maps/search/$encoded"
   fi
 }
 
 video() {
   search=$(rofi -dmenu -i -p "Google videos:")
-
   if [ -n "$search" ]; then
     encoded=$(printf '%s' "$search" | jq -sRr @uri)
-    yad --html --browser \
-      --uri="https://www.google.com/search?q=$encoded&udm=7&tbs=li:1" \
-      --width=1280 \
-      --height=980
+    xdg-open "https://www.google.com/search?q=$encoded&udm=7&tbs=li:1"
   fi
 }
 
 ai() {
-  search=$(rofi -dmenu -i -p "Google videos:")
+  search=$(rofi -dmenu -i -p "Ai search:")
   if [ -n "$search" ]; then
     encoded=$(printf '%s' "$search" | jq -sRr @uri)
-    yad --html --browser \
-      --uri="https://www.perplexity.ai/?q=%s?q=$encoded" \
-      --width=1280 \
-      --height=980
+    xdg-open "https://www.perplexity.ai/?q=$encoded"
   fi
 }
 
@@ -74,7 +55,7 @@ ai() {
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "search" -i)
+done | rofi -dmenu -p "Search" -i)
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do

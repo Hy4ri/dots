@@ -1,5 +1,6 @@
-start=455.872000
+start=4549.211000
 speed=2.000000
-brightness=1.000000
+volume=99.848373
 af=lavfi=graph=%113%lowpass=c=LFE:f=120,volume=1.6,pan=stereo|FL=0.5*FC+0.707*FL+0.707*BL+0.5*LFE|FR=0.5*FC+0.707*FR+0.707*BR+0.5*LFE
-sub-delay=-0.000000
+sid=3
+sub-scale=1.000000

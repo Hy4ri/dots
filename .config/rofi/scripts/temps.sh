@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v bc &>/dev/null; then
+    notify-send "Error" "bc is not installed"
+    exit 1
+fi
 
 MENU_ITEMS=(
   "C to F|cf"
@@ -49,7 +55,7 @@ fk() {
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "Temperature Converter" -i)
+done | rofi -dmenu -p "Temperature Unit Converter" -i)
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do

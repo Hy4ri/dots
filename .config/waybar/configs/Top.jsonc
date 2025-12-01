@@ -19,6 +19,7 @@
     "modules-center": [],
     "modules-right": [
       "privacy",
+      "custom/timer",
       "tray",
       "group/sys",
       "group/time"

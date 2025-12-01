@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# Options
-shutdown=' Shutdown'
-reboot=' Reboot'
-lock=' Lock'
-suspend='󰒲 Suspend'
-logout=' Logout'
-yes=''
-no=''
-
-# Rofi CMD
-rofi_cmd() {
-  rofi -dmenu
-}
+# Define menu items as "Label|Function Name"
+MENU_ITEMS=(
+  " Lock|lock"
+  "󰒲 Suspend|suspend"
+  " Logout|logout"
+  " Reboot|reboot"
+  " Shutdown|shutdown"
+)
 
 # Confirmation CMD
 confirm_cmd() {
@@ -27,50 +23,55 @@ confirm_cmd() {
 
 # Ask for confirmation
 confirm_exit() {
-  echo -e "$yes\n$no" | confirm_cmd
+  echo -e "\n" | confirm_cmd
 }
 
-# Pass variables to rofi dmenu
-run_rofi() {
-  echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi_cmd
+# Functions
+lock() {
+  loginctl lock-session
 }
 
-# Execute Command
-run_cmd() {
+suspend() {
   selected="$(confirm_exit)"
-  if [[ "$selected" == "$yes" ]]; then
-    if [[ $1 == '--shutdown' ]]; then
-      systemctl poweroff -i
-    elif [[ $1 == '--reboot' ]]; then
-      systemctl reboot
-    elif [[ $1 == '--suspend' ]]; then
-      systemctl suspend
-    elif [[ $1 == '--logout' ]]; then
-      loginctl kill-session "$XDG_SESSION_ID"
-    fi
-  else
-    exit 0
+  if [[ "$selected" == "" ]]; then
+    systemctl suspend
   fi
 }
 
-# Actions
-chosen="$(run_rofi)"
-case ${chosen} in
-"$shutdown")
-  run_cmd --shutdown
-  ;;
-"$reboot")
-  run_cmd --reboot
-  ;;
-"$lock")
-  loginctl lock-session
-  ;;
-"$suspend")
-  run_cmd --suspend
-  ;;
-"$logout")
-  run_cmd --logout
-  ;;
-esac
+logout() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "" ]]; then
+    loginctl kill-session "$XDG_SESSION_ID"
+  fi
+}
 
-rofi_run
+reboot() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "" ]]; then
+    systemctl reboot
+  fi
+}
+
+shutdown() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "" ]]; then
+    systemctl poweroff -i
+  fi
+}
+
+# Create Rofi menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | rofi -dmenu -p "Powermenu" -i)
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
+exit 1

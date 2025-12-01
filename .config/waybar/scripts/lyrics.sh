@@ -25,25 +25,17 @@ class PlayerManager:
         try:
             # Get list of players
             result = subprocess.run(['playerctl', '-l'], capture_output=True, text=True)
-            players = result.stdout.strip().split('\n')
+            all_players = result.stdout.strip().split('\n')
             
-            # Priority list
-            priorities = ['spotify', 'com.spotify.Client', 'spotifyd', 'spotify_player']
+            # Filter out ignored players
+            players = [p for p in all_players if p and "vivaldi" not in p.lower() and "chromium" not in p.lower()]
             
             # Check for playing status first
             for p in players:
-                if not p: continue
                 status = self._get_player_status(p)
                 if status == "Playing":
                     self.player = p
                     return p
-
-            # Fallback to priority list if nothing is playing
-            for prio in priorities:
-                for p in players:
-                    if p.startswith(prio):
-                        self.player = p
-                        return p
             
             # Fallback to first available
             if players and players[0]:

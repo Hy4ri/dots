@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# shellcheck disable=SC2317
+# Define menu items as "Label|Function Name"
+MENU_ITEMS=(
+  "🖥️ CPU Usage|get_cpu_usage"
+  "🎮 GPU Usage|get_gpu_usage"
+  "🧠 RAM Usage|get_ram_usage"
+  "💾 Disk Usage|get_disk_usage"
+  "🔋 Battery Status|get_battery_status"
+  "  Show All Stats|show_all_stats"
+)
 
 # System monitoring functions
 get_cpu_usage() {
@@ -104,21 +113,11 @@ show_all_stats() {
   } | rofi -dmenu -p "System Stats" -no-fixed-num-lines
 }
 
-# Define menu entries as arrays: ("Label|Function")
-MENU_ITEMS=(
-  "🖥️ CPU Usage|get_cpu_usage"
-  "🎮 GPU Usage|get_gpu_usage"
-  "🧠 RAM Usage|get_ram_usage"
-  "💾 Disk Usage|get_disk_usage"
-  "🔋 Battery Status|get_battery_status"
-  "  Show All Stats|show_all_stats"
-)
-
 # Create Rofi menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "System Monitor")
+done | rofi -dmenu -p "System Monitor" -i)
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do

@@ -1,37 +1,58 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-menu() {
-  printf "1. Custom Timer\n"
-  printf "2. 1 Minute\n"
-  printf "3. 5 Minutes\n"
-  printf "4. 10 Minutes\n"
-  printf "5. 15 Minutes\n"
-  printf "6. 20 Minutes\n"
-  printf "7. 30 Minutes\n"
-  printf "8. 60 Minutes\n"
-}
+# Define menu items as "Label|Function Name"
+MENU_ITEMS=(
+  "1. Custom Timer|set_custom"
+  "2. 1 Minute|set_1"
+  "3. 5 Minutes|set_5"
+  "4. 10 Minutes|set_10"
+  "5. 15 Minutes|set_15"
+  "6. 20 Minutes|set_20"
+  "7. 30 Minutes|set_30"
+  "8. 60 Minutes|set_60"
+)
 
-set() {
+# Define functions for each menu item
+set_custom() {
   duration=$(rofi -dmenu -p "Timer duration in Minutes:")
-  time=$(echo "$duration * 60" | bc)
-  notify-send "Timer Started" && sleep $time && notify-send --expire-time=9999 "Timer Finshed" "$duration Minute Timer is up!"
+  if [[ -n "$duration" && "$duration" =~ ^[0-9]+$ ]]; then
+    time=$(echo "$duration * 60" | bc)
+    target=$(($(date +%s) + time))
+    echo "$target" > /tmp/rofi_timer_target
+    (notify-send "Timer Started" && sleep $time && notify-send --expire-time=9999 "Timer Finished" "$duration Minute Timer is up!" && rm -f /tmp/rofi_timer_target) &
+  fi
 }
 
-main() {
-  choice=$(menu | rofi -i -dmenu -p "Select Timer:" | cut -d. -f1)
-
-  case $choice in
-    1) set ;;
-    2) notify-send "Timer Started" && sleep 60 && notify-send --expire-time=9999 "Timer Finshed" "1 Minute is up!" ;;
-    3) notify-send "Timer Started" && sleep 300 && notify-send --expire-time=9999 "Timer Finshed" "5 Minutes is up!" ;;
-    4) notify-send "Timer Started" && sleep 600 && notify-send --expire-time=9999 "Timer Finshed" "10 Minutes is up!" ;;
-    5) notify-send "Timer Started" && sleep 900 && notify-send --expire-time=9999 "Timer Finshed" "15 Minutes is up!" ;;
-    6) notify-send "Timer Started" && sleep 1200 && notify-send --expire-time=9999 "Timer Finshed" "20 Minutes is up!" ;;
-    7) notify-send "Timer Started" && sleep 1800 && notify-send --expire-time=9999 "Timer Finshed" "30 Minutes is up!" ;;
-    8) notify-send "Timer Started" && sleep 3600 && notify-send --expire-time=9999 "Timer Finshed" "60 Minutes is up!" ;; 
-    *);;
-  esac
+set_timer() {
+  local duration=$1
+  local time=$((duration * 60))
+  local target=$(($(date +%s) + time))
+  echo "$target" > /tmp/rofi_timer_target
+  (notify-send "Timer Started" && sleep $time && notify-send --expire-time=9999 "Timer Finished" "$duration Minute Timer is up!" && rm -f /tmp/rofi_timer_target) &
 }
 
-main
+set_1() { set_timer 1; }
+set_5() { set_timer 5; }
+set_10() { set_timer 10; }
+set_15() { set_timer 15; }
+set_20() { set_timer 20; }
+set_30() { set_timer 30; }
+set_60() { set_timer 60; }
+
+# Create Rofi menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | rofi -dmenu -p "Select Timer" -i)
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
 exit 1

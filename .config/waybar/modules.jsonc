@@ -36,7 +36,7 @@
       "7": "",
       "8": "",
       "9": "",
-      "10": "",
+      "10": ""
     }
   },
   // GROUPS
@@ -60,7 +60,7 @@
       "pulseaudio#microphone",
       "pulseaudio",
       "bluetooth",
-      "battery",
+      "battery"
     ]
   },
   "group/time": {
@@ -193,7 +193,7 @@
     "separate-outputs": true,
     "icon": true,
     "icon-size": 18,
-    "on-click-middle": "~/.config/hypr/scripts/killActiveProcess.sh",
+    "on-click-middle": "~/.config/hypr/scripts/killActiveProcess.sh"
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -255,7 +255,7 @@
     "on-click-middle": "foot -T nmtui nmtui",
     "on-click-right": "~/.config/rofi/scripts/wifi.sh",
     "tooltip-format": " {bandwidthUpBytes}  {bandwidthDownBytes}",
-    "tooltip-format-wifi": "{essid}\n {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "tooltip-format-wifi": "{essid}\n {bandwidthUpBytes}  {bandwidthDownBytes}"
   },
   "privacy": {
     "icon-spacing": 5,
@@ -377,11 +377,17 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
+  "custom/timer": {
+    "exec": "~/.config/waybar/scripts/waybar-timer.sh",
+    "interval": 1,
+    "return-type": "json",
+    "format": "{}"
+  },
   // WARN: sudo pacman -S pacman-contrib
   "custom/updater": {
     "exec": "echo '{ \"text\": \"'$(checkupdates | wc -l)'\" , \"tooltip\": \"'$(checkupdates | awk '{print $1}' | head -n 50 | sed ':a;N;$!ba;s/\\n/\\\\n/g')'\"}'",
     "return-type": "json",
     "interval": 3600,
-    "on-click": "foot $HOME/.config/waybar/scripts/update.sh; pkill -RTMIN+8 waybar",
-  },
+    "on-click": "foot $HOME/.config/waybar/scripts/update.sh; pkill -RTMIN+8 waybar"
+  }
 }

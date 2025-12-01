@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-notes_dir=~/Documents/Notes
+notes_dir="$HOME/Documents/Notes"
 
+# Define menu items as "Label|Function Name"
 MENU_ITEMS=(
   "Note List|list"
   "New note|new"
   "Delete note|remove"
 )
 
+# Define functions for each menu item
 new() {
   name=$(rofi -dmenu -p "Note name:")
   timestamp=$(date +%d-%m-%Y)
@@ -33,10 +36,11 @@ remove() {
   [[ -n "$selected" ]] && notify-send "Notes" "Deleted $selected"
 }
 
+# Create Rofi menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "Notes")
+done | rofi -dmenu -p "Notes" -i)
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do

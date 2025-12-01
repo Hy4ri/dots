@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
@@ -6,23 +7,22 @@ MENU_ITEMS=(
   "Amman|amman"
 )
 
+# Define functions for each menu item
 salt() {
-  weather=$(curl -s 'v2.wttr.in/As-salt?format=3')
+  weather=$(curl -s --max-time 5 'v2.wttr.in/As-salt?format=3')
   notify-send "Weather" "$weather"
-
 }
 
 amman() {
-  weather=$(curl -s 'v2.wttr.in/amman?format=3')
+  weather=$(curl -s --max-time 5 'v2.wttr.in/amman?format=3')
   notify-send "Weather" "$weather"
-
 }
 
 # Create Rofi menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "Chose a city")
+done | rofi -dmenu -p "Chose a city" -i)
 
 # Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do

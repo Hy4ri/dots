@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+# Check dependencies
+for cmd in slurp wf-recorder; do
+    if ! command -v $cmd &>/dev/null; then
+        notify-send "Error" "$cmd is not installed"
+        exit 1
+    fi
+done
 
 # === Paths ===
 DIR="$HOME/Videos/Screenrecords"
@@ -6,8 +15,9 @@ mkdir -p "$DIR"
 TIMESTAMP=$(date "+%Y-%m-%d.%H-%M-%S")
 OUT="$DIR/$TIMESTAMP.mp4"
 PID_FILE="/tmp/screenrecording.pid"
+FRAME="30"
 
-# === Menu Items ===
+# Define menu items as "Label|Function Name"
 MENU_ITEMS=(
   "Monitor|monitor"
   "Custom Region|region"
@@ -15,9 +25,6 @@ MENU_ITEMS=(
 )
 
 # === Functions ===
-
-FRAME="30"
-
 region() {
   GEO=$(slurp)
   wf-recorder -a -r "$FRAME" -g "$GEO" -f "$OUT" &
@@ -39,20 +46,26 @@ monitor() {
 
 stop_recording() {
   if [[ -f "$PID_FILE" ]]; then
-    kill "$(cat "$PID_FILE")" && rm "$PID_FILE"
-    notify-send "Screen Recording" "Recording stopped"
+    PID=$(cat "$PID_FILE")
+    if ps -p "$PID" > /dev/null; then
+        kill "$PID" && rm "$PID_FILE"
+        notify-send "Screen Recording" "Recording stopped"
+    else
+        rm "$PID_FILE"
+        notify-send "Screen Recording" "Recording process not found (stale PID file removed)"
+    fi
   else
     notify-send "Screen Recording" "No recording in progress"
   fi
 }
 
-# === Rofi Menu ===
+# Create Rofi menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"
-done | rofi -dmenu -p "Screen Recorder")
+done | rofi -dmenu -p "Screen Recorder" -i)
 
-# === Call Matched Function ===
+# Match selection and call corresponding function
 for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label func <<<"$item"
   if [[ "$CHOICE" == "$label" ]]; then

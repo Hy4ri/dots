@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 MENU_ITEMS=(
   "Blur|blur"
@@ -11,27 +12,27 @@ MENU_ITEMS=(
 )
 
 blur() {
-hyprctl dispatch setprop active no_blur toggle
+  hyprctl dispatch setprop active no_blur toggle
 }
 
 opacity_10() {
-hyprctl dispatch setprop active opacity 1
+  hyprctl dispatch setprop active opacity 1
 }
 opacity_9() {
-hyprctl dispatch setprop active opacity 0.9
+  hyprctl dispatch setprop active opacity 0.9
 }
 opacity_8() {
-hyprctl dispatch setprop active opacity 0.8
+  hyprctl dispatch setprop active opacity 0.8
 }
 opacity_2() {
-hyprctl dispatch setprop active opacity 0.2
+  hyprctl dispatch setprop active opacity 0.2
 }
 opacity_0() {
-hyprctl dispatch setprop active opacity 0.0
+  hyprctl dispatch setprop active opacity 0.0
 }
 
 decoration() {
-hyprctl dispatch setprop active decorate toggle
+  hyprctl dispatch setprop active decorate toggle
 }
 
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do

@@ -187,6 +187,12 @@ status() {
 	fi
 }
 
+notify-data() {
+	settimes
+	local remain_seconds=$((epochtimes[next] - epochtimes[now]))
+	printf '{ "next": "%s", "remaining_seconds": %d }\n' "$nextprayer" "$remain_seconds"
+}
+
 case "$1" in
 check)
 	check
@@ -213,6 +219,9 @@ remaining)
 status)
 	status
 	;;
+notify-data)
+	notify-data
+	;;
 yad)
 	yad-toggle
 	;;
@@ -227,6 +236,7 @@ yad)
 	echo "  next       Get the next prayer"
 	echo "  remaining  Get the remaining time for the next prayer"
 	echo "  status     Get the status message indicating the next prayer"
+	echo "  notify-data Get next prayer and remaining seconds in JSON"
 	echo "  yad        Toggle the yad window showing prayer times"
 	exit 1
 	;;

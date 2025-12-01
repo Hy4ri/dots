@@ -1,66 +1,54 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 Configs="$HOME/.config/hypr/configs"
 Scripts="$HOME/.config/hypr/scripts"
 hypr="$HOME/.config/hypr/"
 term="foot"
 
-menu() {
-  printf "1. view Hyprland-Settings\n"
-  printf "2. view Window-Rules\n"
-  printf "3. view Keybinds\n"
-  printf "4. view Appbinds\n"
-  printf "5. view Scripts\n"
-  printf "6. view Startup_Apps\n"
-  printf "7. view Env-variables\n"
-  printf "8. view Hypr Folder\n"
-  printf "9. view Monitors\n"
-  printf "10. view Laptop-Settings\n"
-  printf "11. view Settings-wal\n"
-  printf "12. view Main config \n"
-}
+# Define menu items as "Label|Function Name"
+MENU_ITEMS=(
+  "1. view Hyprland-Settings|settings"
+  "2. view Window-Rules|windowrules"
+  "3. view Keybinds|keybinds"
+  "4. view Appbinds|appbinds"
+  "5. view Scripts|scripts"
+  "6. view Startup_Apps|autostart"
+  "7. view Env-variables|env"
+  "8. view Hypr Folder|hypr_folder"
+  "9. view Monitors|monitors"
+  "10. view Laptop-Settings|laptops"
+  "11. view Settings-wal|settings_wal"
+  "12. view Main config|main_config"
+)
 
-main() {
-  choice=$(menu | rofi -i -dmenu | cut -d. -f1)
-  case $choice in
-  1)
-    $term nvim "$Configs/settings.conf"
-    ;;
-  2)
-    $term nvim "$Configs/windowrules.conf"
-    ;;
-  3)
-    $term nvim "$Configs/keybinds.conf"
-    ;;
-  4)
-    $term nvim "$Configs/appbinds.conf"
-    ;;
-  5)
-    $term nvim "$Scripts"
-    ;;
-  6)
-    $term nvim "$Configs/autostart.conf"
-    ;;
-  7)
-    $term nvim "$Configs/env.conf"
-    ;;
-  8)
-    $term nvim "$hypr"
-    ;;
-  9)
-    $term nvim "$Configs/monitors.conf"
-    ;;
-  10)
-    $term nvim "$Configs/laptops.conf"
-    ;;
-  11)
-    $term nvim "$Configs/settings-wal.conf"
-    ;;
-  12)
-    $term nvim ~/.config/hypr/hyprland.conf
-    ;;
-  *) ;;
-  esac
-}
+# Define functions for each menu item
+settings() { $term nvim "$Configs/settings.conf"; }
+windowrules() { $term nvim "$Configs/windowrules.conf"; }
+keybinds() { $term nvim "$Configs/keybinds.conf"; }
+appbinds() { $term nvim "$Configs/appbinds.conf"; }
+scripts() { $term nvim "$Scripts"; }
+autostart() { $term nvim "$Configs/autostart.conf"; }
+env() { $term nvim "$Configs/env.conf"; }
+hypr_folder() { $term nvim "$hypr"; }
+monitors() { $term nvim "$Configs/monitors.conf"; }
+laptops() { $term nvim "$Configs/laptops.conf"; }
+settings_wal() { $term nvim "$Configs/settings-wal.conf"; }
+main_config() { $term nvim ~/.config/hypr/hyprland.conf; }
 
-main
+# Create Rofi menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | rofi -dmenu -p "HyprEdit" -i)
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
+exit 1
