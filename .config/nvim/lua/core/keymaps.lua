@@ -70,7 +70,6 @@ keymap.set("n", "<leader>so", function() Snacks.picker.recent() end, { desc = "R
 -- Quicker options
 keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Write" })
 keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
-keymap.set("n", "<leader>t", "<cmd>split | terminal<CR>", { desc = "Split Terminal" })
 keymap.set("n", "<leader>r", ":%s/", { noremap = true }, { desc = "Replace in file" })
 keymap.set("x", "<leader>r", ":s/", { noremap = true }, { desc = "Replace in file" })
 keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })

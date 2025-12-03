@@ -29,7 +29,7 @@ safe_link() {
 safe_link "$dots/.zshrc" "$HOME/.zshrc"
 safe_link "$dots/.zprofile" "$HOME/.zprofile"
 
-for dir in hypr foot rofi waybar dunst yazi niri nvim mango mpv tmux; do
+for dir in hypr foot rofi waybar dunst yazi niri nvim mango mpv tmux zathura; do
   safe_link "$dots/.config/$dir" "$config/$dir"
 done
 

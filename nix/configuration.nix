@@ -9,10 +9,12 @@ pkgs,
     ./packages.nix
     ./services.nix
     ./mimeapps.nix
+    ./theme.nix
   ];
 
   boot = {
     tmp.cleanOnBoot = true;
+    tmp.useTmpfs = true;
     loader = {
       timeout = 5; 
       systemd-boot.enable = true;
@@ -20,13 +22,11 @@ pkgs,
         canTouchEfiVariables = true;
       };
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelParams = [
       "nowatchdog"
       "modprobe.blacklist=sp5100_tco"
       "modprobe.blacklist=iTCO_wdt"
-      "nvidia.NVreg_PreserveVideoMemoryAllocations=0"
-      "nvidia.NVreg_TemporaryFilePath=/var/tmp"
       "usbcore.autosuspend=-1"
     ];
     kernelModules = ["kvm-intel"];
@@ -130,6 +130,10 @@ pkgs,
 
   documentation = {
     enable = true;
+    man = {
+      enable = true;
+      generateCaches = false;
+    };
     nixos.enable = false;
   };
 

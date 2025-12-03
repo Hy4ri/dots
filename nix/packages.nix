@@ -2,91 +2,84 @@
 pkgs,
 inputs,
 ...
-}: let
-  python-packages = pkgs.python3.withPackages (
-    ps:
-    with ps; [
-      requests
-    ]
-  );
-in {
+}: {
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages =
     (with pkgs; [
       antigravity-fhs
       bc
+      bitwarden-desktop
       brightnessctl
       btop
-      bitwarden-desktop
-      blueman
-      cloudflare-warp
-      curl
       cargo
       clang
+      cloudflare-warp
       cmake
       coppwr
+      curl
       dua
       dunst
       eza
       fastfetch
-      findutils
+      fd
       ffmpeg
+      findutils
       fzf
       gcc
       gdb
-      gimp3-with-plugins
-      go
-      ghostty
-      grim
-      gnumake
       gearlever
+      ghostty
+      gimp3-with-plugins
+      gnumake
+      go
+      grim
+      groff
       heroic
-      hypridle
       hyprcursor
-      hyprutils
-      hyprpicker
-      hyprprop
-      hyprpolkitagent
+      hypridle
+      # hyprland-guiutils
       hyprland-qt-support
       hyprland-qtutils
-      # hyprland-guiutils
+      hyprpicker
+      hyprpolkitagent
+      hyprprop
       hyprtoolkit
+      hyprutils
       imagemagick
       jdk
       jq
       julia
       kdePackages.qt6ct
-      kdePackages.qtwayland
       kdePackages.qtstyleplugin-kvantum
+      kdePackages.qtwayland
       kew
-      lutris
-      lua51Packages.lua
-      luarocks
       libappindicator
       libnotify
-      libsForQt5.qtstyleplugin-kvantum
       libsForQt5.qt5ct
-      man-db
+      libsForQt5.qtstyleplugin-kvantum
+      lua51Packages.lua
+      luarocks
+      lutris
       man-pages
       # mangowc
       mpv
+      nixd
       nodejs_24
       nwg-look
-      nixd
       oculante
       pavucontrol
-      playerctl
       php
+      playerctl
+      # polkit_gnome
+      python3
       python313Packages.ds4drv
       python3Packages.pip
-      power-profiles-daemon
-      # polkit_gnome
       qalculate-gtk
       qbittorrent
-      rofi
       ripgrep
       riseup-vpn
+      rofi
       scrcpy
       slurp
       socat
@@ -97,19 +90,19 @@ in {
       termdown
       trash-cli
       tree-sitter
-      fd
       unzip
       upower
       upower-notify
       usbutils
+      umu-launcher
       vicinae
-      wf-recorder
-      wget
-      wl-clipboard
-      wlsunset
       warehouse
       wev
+      wf-recorder
+      wget
       wine
+      wl-clipboard
+      wlsunset
       xdg-desktop-portal-hyprland
       xdg-user-dirs
       xdg-utils
@@ -118,10 +111,7 @@ in {
       yazi
       yt-dlp
       zathura
-    ])
-    ++ [
-      python-packages
-    ];
+    ]);
 
   #FONTS
   fonts = {
@@ -132,15 +122,15 @@ in {
 
   programs = {
     adb.enable = true;
-    gamemode.enable = true;
-    waybar.enable = true;
-    virt-manager.enable = true;
-    hyprlock.enable = true;
-    xwayland.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
+    gamemode.enable = true;
+    hyprlock.enable = true;
     niri.enable = false;
     nix-ld.enable = true;
+    virt-manager.enable = true;
+    waybar.enable = true;
+    xwayland.enable = true;
 
     appimage = {
       enable = true;
@@ -163,6 +153,15 @@ in {
       enableZshIntegration = true;
     };
 
+    git = {
+      enable = true;
+    };
+
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -182,15 +181,6 @@ in {
       viAlias = true;
     };
 
-    tmux = {
-      enable = true;
-      withUtempter = true;
-      newSession = true;
-      keyMode = "vi";
-      historyLimit = 10000;
-      baseIndex = 1;
-    };
-
     nh = {
       enable = true;
       flake = "/Documents/Projects/dots/nix/";
@@ -208,13 +198,13 @@ in {
         ];
     };
 
-    gnupg.agent = {
+    tmux = {
       enable = true;
-      enableSSHSupport = true;
-    };
-
-    git = {
-      enable = true;
+      withUtempter = true;
+      newSession = true;
+      keyMode = "vi";
+      historyLimit = 10000;
+      baseIndex = 1;
     };
 
     zoxide = {
@@ -225,8 +215,6 @@ in {
 
     zsh = {
       enable = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
       enableCompletion = true;
     };
   };
@@ -234,14 +222,11 @@ in {
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    wlr.enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
     ];
     configPackages = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
     ];
   };
 

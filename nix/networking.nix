@@ -16,4 +16,6 @@
       "2606:4700:4700::1001"
     ];
   };
+  
+  systemd.services.NetworkManager-wait-online.enable = false;
 }

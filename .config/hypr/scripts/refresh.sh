@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Kill already running processes
-_ps=(waybar rofi wlsunset foot dunst)
+_ps=(waybar rofi wlsunset dunst)
 for _prs in "${_ps[@]}"; do
   if pidof "${_prs}" >/dev/null; then
     pkill "${_prs}"
@@ -24,6 +24,5 @@ LONG="35.7269"
 waybar &
 wlsunset -l "$LAT" -L "$LONG" &
 dunst &
-foot --server &
 
 exit 0

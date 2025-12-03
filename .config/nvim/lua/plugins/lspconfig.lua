@@ -51,6 +51,11 @@ return {
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
           end, "Toggle Inlay Hints")
         end
+
+        map("<leader>rn", vim.lsp.buf.rename, "Rename")
+        map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
+        map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
+        map("[d", vim.diagnostic.goto_prev, "Prev Diagnostic")
       end,
     })
 
@@ -74,6 +79,9 @@ return {
         spacing = 2,
         format = function(d) return d.message end,
       },
+      signs = true,
+      underline = true,
+      update_in_insert = false,
     })
 
     ------------------------------------------------------------------------

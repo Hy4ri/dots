@@ -11,6 +11,10 @@ opt.autoindent = true -- Copies the indentation from the previous line when star
 opt.tabstop = 2 -- Sets the visual width of a <Tab> character to 2 spaces.
 opt.softtabstop = 2 -- Makes the <Tab> key insert 2 spaces (works with `expandtab`).
 opt.formatoptions = "jcroql" -- Controls various automatic formatting options (e.g., 'c' wraps comments).
+opt.smoothscroll = true -- Makes scrolling smoother
+opt.breakindent = true -- Indents wrapped lines to match code indentation
+opt.confirm = true -- Confirm to save changes before exiting modified buffer
+opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 
 ---- Behavior & Performance
 opt.clipboard = "unnamedplus" -- Uses the system clipboard (+) for all copy/paste operations.
@@ -40,6 +44,7 @@ opt.ruler = false -- Hides the cursor position (row/col) from the bottom-right c
 opt.wrap = false -- Disables automatic line wrapping; long lines will scroll horizontally.
 opt.signcolumn = "yes" -- Always displays the "sign column" on the left (used for diagnostics, Git signs, etc.).
 opt.list = true -- Enables the display of invisible characters.
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Defines characters for invisible items
 opt.termguicolors = true -- Enables 24-bit "true color" support (requires a compatible terminal).
 opt.cmdheight = 0 -- Hides the command line area (set to 0 lines).
 opt.showcmdloc = "statusline" -- Shows pending commands in the status line instead of the (hidden) command line.
@@ -67,11 +72,3 @@ opt.completeopt = "menuone,noinsert,noselect" -- Configures the autocompletion p
 
 ---- Plugins
 g.snacks_animate = false
-
--- diagnostics
-vim.diagnostic.config({
-	virtual_text = true,
-	signs = true,
-	underline = true,
-	update_in_insert = false,
-})

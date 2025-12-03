@@ -1,51 +1,4 @@
 {
-  "hyprland/workspaces": {
-    "format": "{name}",
-    "show-special": false,
-    "on-click": "activate",
-    "all-outputs": false,
-    "sort-by-number": false,
-    "active-only": false,
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": "",
-      "10": ""
-    }
-  },
-  "ext/workspaces": {
-    "format": "{name}",
-    "show-special": false,
-    "on-click": "activate",
-    "all-outputs": false,
-    "sort-by-number": false,
-    "active-only": false,
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": "",
-      "10": ""
-    }
-  },
-  // GROUPS
-  "group/sys": {
-    "orientation": "inherit",
-    "modules": [
-      "group/applets"
-    ]
-  },
   "group/applets": {
     "orientation": "horizontal",
     "drawer": {
@@ -63,6 +16,12 @@
       "battery"
     ]
   },
+  "group/sys": {
+    "orientation": "inherit",
+    "modules": [
+      "group/applets"
+    ]
+  },
   "group/time": {
     "orientation": "horizontal",
     "drawer": {
@@ -74,15 +33,6 @@
       "clock",
       "custom/prayers"
     ]
-  },
-  "custom/lyrics": {
-    "format": "{}",
-    "interval": 1,
-    "return-type": "json",
-    "exec": "~/.config/waybar/scripts/lyrics.sh",
-    "on-click": "playerctl play-pause",
-    "on-click-middle": "playerctl previous",
-    "on-click-right": "playerctl next"
   },
   "battery": {
     "interval": 5,
@@ -130,33 +80,6 @@
     "tooltip-format": "{status}",
     "on-click": "blueman-manager"
   },
-  "clock": {
-    "interval": 1,
-    "format": "{:%I:%M}", // AM PM format
-    "timezone": "Asia/Amman",
-    "format-alt": "{:%I:%M %p   %Y, %d %B, %A}",
-    "tooltip-format": "<tt>{calendar}</tt>",
-    "calendar": {
-      "mode": "year",
-      "mode-mon-col": 3,
-      "weeks-pos": "",
-      "on-scroll": 1,
-      "format": {
-        "months": "<span color='#e2e2e2'><b>{}</b></span>",
-        "days": "<span color='#f0ccd2'>{}</span>",
-        "weeks": "<span color='#ddcc66'><b>W{}</b></span>",
-        "weekdays": "<span color='#ddcc66'><b>{}</b></span>",
-        "today": "<span color='#990000'><b><u>{}</u></b></span>"
-      }
-    }
-  },
-  "actions": {
-    "on-click-right": "mode",
-    "on-click-forward": "tz_up",
-    "on-click-backward": "tz_down",
-    "on-scroll-up": "shift_up",
-    "on-scroll-down": "shift_down"
-  },
   "cava": {
     "framerate": 30,
     "autosens": 0,
@@ -187,6 +110,47 @@
       "on-click-right": "mode"
     }
   },
+  "clock": {
+    "interval": 1,
+    "format": "{:%I:%M}", // AM PM format
+    "timezone": "Asia/Amman",
+    "format-alt": "{:%I:%M %p   %Y, %d %B, %A}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#e2e2e2'><b>{}</b></span>",
+        "days": "<span color='#f0ccd2'>{}</span>",
+        "weeks": "<span color='#ddcc66'><b>W{}</b></span>",
+        "weekdays": "<span color='#ddcc66'><b>{}</b></span>",
+        "today": "<span color='#990000'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "ext/workspaces": {
+    "format": "{icon}",
+    "show-special": false,
+    "on-click": "activate",
+    "all-outputs": false,
+    "sort-by-number": false,
+    "active-only": false,
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "special": ""
+    }
+  },
   "hyprland/window": {
     "format": "{}",
     "max-length": 333,
@@ -194,6 +158,27 @@
     "icon": true,
     "icon-size": 18,
     "on-click-middle": "~/.config/hypr/scripts/killActiveProcess.sh"
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "show-special": true,
+    "on-click": "activate",
+    "all-outputs": false,
+    "sort-by-number": false,
+    "active-only": false,
+    "format-icons": {
+      "special": "`",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    }
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -331,9 +316,23 @@
       "rofi"
     ]
   },
+  // This is a custom cava visualizer
+  "custom/cava_mviz": {
+    "exec": "~/.config/hypr/scripts/waybarcava.sh",
+    "format": "{}"
+  },
   "custom/launcher": {
     "format": "",
     "on-click": "rofi -show drun"
+  },
+  "custom/lyrics": {
+    "format": "{}",
+    "interval": 2,
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/lyrics.sh",
+    "on-click": "playerctl play-pause",
+    "on-click-middle": "playerctl previous",
+    "on-click-right": "playerctl next"
   },
   "custom/powerprofile": {
     "format": "{}",
@@ -351,11 +350,6 @@
     "exec": "$HOME/.config/waybar/scripts/prayer-notify.sh ; $HOME/.config/waybar/scripts/prayer-times status",
     "on-click-middle": "$HOME/.config/waybar/scripts/prayer-times yad",
     "on-click": "xdg-open https://timesprayer.com/prayer-times-cities-jordan.html"
-  },
-  // This is a custom cava visualizer
-  "custom/cava_mviz": {
-    "exec": "~/.config/hypr/scripts/waybarcava.sh",
-    "format": "{}"
   },
   "custom/swaync": {
     "tooltip": true,

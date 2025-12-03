@@ -8,6 +8,7 @@ plugins=(
     "Aloxaf/fzf-tab"
     "zsh-users/zsh-syntax-highlighting"
     "zsh-users/zsh-autosuggestions"
+    "zdharma-continuum/fast-syntax-highlighting"
 )
 
 echo "Cloning plugins..."

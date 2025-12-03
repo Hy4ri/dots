@@ -64,6 +64,6 @@ return { -- Autocompletion
 
     fuzzy = { implementation = "lua" },
 
-    signature = { enabled = false },
+    signature = { enabled = true },
   },
 }

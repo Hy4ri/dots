@@ -9,10 +9,36 @@ export fzf_default_opts="--style minimal --color 16 --layout=reverse --height 30
 export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 export PATH=$PATH:/home/m57/.spicetify
 
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+setopt interactive_comments 
+stty stop undef             
+setopt AUTOCD               
+setopt PROMPT_SUBST         
+setopt MENU_COMPLETE        
+setopt LIST_PACKED	    	
+setopt AUTO_LIST            
+setopt COMPLETE_IN_WORD     
 
 ############################ aliases #################################
+
+#temp
+alias andro='npm run build && npx cap sync && npx @capacitor/assets generate && nix-shell android-shell.nix --run "cd android && chmod +x gradlew && ./gradlew assembleDebug"'
+alias math='nix-shell -p typst python3 --run "
+  python3 generate_sheets.py --random-only
+  file=\$(ls -t *.pdf | head -n 1)
+  lpr \"\$file\"
+"'
+
 
 #nix
 alias nbs='nh os switch ~/Documents/Projects/dots/nix'
@@ -115,6 +141,26 @@ alias kew='foot -akew kew'
 
 ############################# functions ##########################################
 
+function plugin-load {
+	local repo plugdir initfile initfiles=()
+	: ${ZPLUGINDIR:=${ZDOTDIR:-$HOME/.zsh}/plugins}
+	for repo in $@; do
+		plugdir=$ZPLUGINDIR/${repo:t}
+		initfile=$plugdir/${repo:t}.plugin.zsh
+		if [[ ! -d $plugdir ]]; then
+			echo "Cloning $repo..."
+			git clone -q --depth 1 --recursive --shallow-submodules \
+				https://github.com/$repo $plugdir
+		fi
+		if [[ ! -e $initfile ]]; then
+			initfiles=($plugdir/*.{plugin.zsh,zsh-theme,zsh,sh}(N))
+			(( $#initfiles )) || { echo >&2 "No init file '$repo'." && continue }
+			ln -sf $initfiles[1] $initfile
+		fi
+		source $initfile
+	done
+}
+
 # Extract
 extract () {
     if [ -f $1 ] ; then
@@ -185,40 +231,58 @@ nt() {
   nix shell nixpkgs#"$1"
 }
 
+# Set last yazi dir as terminal dir
+yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+yazicd_widget() {
+    zle -I
+    yz
+}
+
+zle -N yazicd_widget
+bindkey '^y' yazicd_widget
+
 ############################# vi mode ##########################################
 
-bindkey -v 
-export KEYTIMEOUT=1 
-export VI_MODE_SET_CURSOR=true 
+bindkey -v
+export KEYTIMEOUT=20
 
+# Cursor shape
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]]; then
-    echo -ne '\e[2 q'
+    print -n '\e[2 q' # Block
   else
-    echo -ne '\e[5 q'
+    print -n '\e[5 q' # Blinking bar
   fi
 }
-
 zle -N zle-keymap-select
 
-zle-line-init() {
-  zle -K viins 
-  echo -ne '\e[5 q'
+function zle-line-init {
+  zle -K viins
+  print -n '\e[5 q'
 }
 zle -N zle-line-init
-echo -ne '\e[5 q' 
 
-# Yank to the system clipboard
+# Fix backspace in insert mode
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
+
+# Yank to system clipboard
 function vi-yank-xclip {
   zle vi-yank
   echo "$CUTBUFFER" | wl-copy
 }
-
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
-# Press 'v' in normal mode to launch Nvim with current line
-autoload edit-command-line
+# Edit line in vim
+autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
@@ -239,15 +303,23 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 PLUGINS_DIR="$HOME/.zsh/plugins"
 
-autoload -U compinit
-compinit
+autoload -Uz compinit
+
+# Case insensitive completion & better matching
+zstyle ':completion:*' matcher-list \
+  'm:{a-zA-Z}={A-Za-z}' \
+  '+r:|[._-]=* r:|=*' \
+  '+l:|=*'
 
 eval "$(zoxide init zsh)"
 
-# source "$PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh"
-# source "$PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
+# list of github repos of plugins
+repos=(
+	zsh-users/zsh-autosuggestions
+	Aloxaf/fzf-tab
+	zdharma-continuum/fast-syntax-highlighting
+)
+plugin-load $repos
 ############################## launch ###############################
 fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
 
