@@ -12,13 +12,16 @@ export PATH=$PATH:/home/m57/.spicetify
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
+setopt bang_hist
+setopt extended_history
+setopt share_history
+setopt hist_expire_dups_first
 setopt hist_ignore_dups
+setopt hist_ignore_all_dups
 setopt hist_find_no_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_verify
 
 setopt interactive_comments 
 stty stop undef             
@@ -31,18 +34,9 @@ setopt COMPLETE_IN_WORD
 
 ############################ aliases #################################
 
-#temp
-alias andro='npm run build && npx cap sync && npx @capacitor/assets generate && nix-shell android-shell.nix --run "cd android && chmod +x gradlew && ./gradlew assembleDebug"'
-alias math='nix-shell -p typst python3 --run "
-  python3 generate_sheets.py --random-only
-  file=\$(ls -t *.pdf | head -n 1)
-  lpr \"\$file\"
-"'
-
-
 #nix
-alias nbs='nh os switch ~/Documents/Projects/dots/nix'
-alias nb='nh os boot ~/Documents/Projects/dots/nix'
+alias nrs='nh os switch ~/Documents/Projects/dots/nix'
+alias nr='nh os boot ~/Documents/Projects/dots/nix'
 alias ncln='sudo nix-collect-garbage --delete-older-than 1d'
 alias nup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
 
@@ -71,6 +65,7 @@ alias lt='eza -aHT --level=2 --color=always --group-directories-first --icons --
 
 #git
 alias gitc='git clone'
+alias gc='git clone'
 
 #tmux
 alias tmuxa='tmux attach -t'

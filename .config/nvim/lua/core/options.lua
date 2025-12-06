@@ -13,7 +13,6 @@ opt.softtabstop = 2 -- Makes the <Tab> key insert 2 spaces (works with `expandta
 opt.formatoptions = "jcroql" -- Controls various automatic formatting options (e.g., 'c' wraps comments).
 opt.smoothscroll = true -- Makes scrolling smoother
 opt.breakindent = true -- Indents wrapped lines to match code indentation
-opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 
 ---- Behavior & Performance
@@ -48,6 +47,7 @@ opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Defines character
 opt.termguicolors = true -- Enables 24-bit "true color" support (requires a compatible terminal).
 opt.cmdheight = 0 -- Hides the command line area (set to 0 lines).
 opt.showcmdloc = "statusline" -- Shows pending commands in the status line instead of the (hidden) command line.
+opt.title = true -- Sets the terminal window title to the current file name.
 opt.fillchars = { -- It defines characters for folds, diffs, and hides the '~' at the end of the buffer.
 	foldopen = "", -- Character for an open fold
 	foldclose = "", -- Character for a closed fold
@@ -65,10 +65,15 @@ opt.incsearch = true -- Shows search matches as you type (incremental search).
 opt.inccommand = "split" -- Shows a live preview of a substitute-command (`:s/.../.../`) in a split window.
 
 ---- Command Line & Completion
+-- opt.autocomplete = true
+-- opt.complete = "o,.,w,b,u"
 opt.wildmenu = true -- Enables an enhanced completion menu when typing commands or paths.
 opt.wildmode = "longest:full,full"
-opt.completeopt = "menuone,noinsert,noselect" -- Configures the autocompletion popup: 'menu' (show menu), 'menuone' (show even
+opt.completeopt = "fuzzy,menuone,noselect,popup" -- Configures the autocompletion popup: 'menu' (show menu), 'menuone' (show even
 -- with 1 match), 'noselect' (don't auto-select first entry), 'noinsert' (don't auto-insert text from the selection).
+opt.pumheight = 7 -- Limits the height of the completion popup menu to 10 items.
+-- opt.pummaxwidth = 80 -- Limits the width of the completion popup.
+opt.shortmess:append("c") -- Avoids showing extra messages when using the completion menu.
 
 ---- Plugins
 g.snacks_animate = false

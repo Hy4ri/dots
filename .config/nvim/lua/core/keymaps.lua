@@ -43,8 +43,21 @@ keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 
--- Fix paste and delete
-keymap.set("x", "<leader>p", "\"_dP")
+-- Copy and paste
+keymap.set("x", "p", "zp")
+keymap.set("x", "y", "zy")
+keymap.set("x", "P", "zP")
+keymap.set("n", "yY", function()
+	vim.fn.setreg("+", table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n"))
+end) -- copy all to clipboard
+
+-- Search in selection
+vim.keymap.set("c", "/", function()
+	return vim.fn.getcmdtype():match("[/?]")
+			and vim.fn.getcmdline() == ""
+			and vim.api.nvim_replace_termcodes("<C-c><Esc>/\\%V", true, true, true)
+		or "/"
+end, { expr = true, desc = "Search within visual selection" })
 
 -- Move highlighted text
 keymap.set("x", "J", ":move '>+1<CR>gv-gv", { desc = "Move highlighted text down", silent = true })
@@ -77,5 +90,14 @@ keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 keymap.set("n", "<leader>uc", "<cmd>Copilot toggle<cr>", { desc = "toggle copilot" })
 keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true})
+keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true })
 keymap.set("n", "<leader>sv", "<cmd>source $MYVIMRC<CR>", { desc = "Source Config" })
+
+-- NES next edit suggestion
+keymap.set("i", "<A-i>", function()
+	require("nes").get_suggestion()
+end, { desc = "Get NES suggestion" })
+
+keymap.set("i", "<A-n>", function()
+	require("nes").apply_suggestion(0, { jump = true, trigger = true })
+end, { desc = "apply NES suggestion" })

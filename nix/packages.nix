@@ -38,11 +38,11 @@ inputs,
       heroic
       hyprcursor
       hypridle
-      # hyprland-guiutils
+      hyprland-guiutils
       hyprland-qt-support
-      hyprland-qtutils
       hyprpicker
       hyprpolkitagent
+      hyprpaper
       hyprprop
       hyprtoolkit
       hyprutils
@@ -65,6 +65,7 @@ inputs,
       # mangowc
       mpv
       nixd
+      nix-alien
       nodejs_24
       nwg-look
       oculante
@@ -125,6 +126,7 @@ inputs,
     dconf.enable = true;
     fuse.userAllowOther = true;
     gamemode.enable = true;
+    git.enable = true;
     hyprlock.enable = true;
     niri.enable = false;
     nix-ld.enable = true;
@@ -151,10 +153,6 @@ inputs,
     foot = {
       enable = true;
       enableZshIntegration = true;
-    };
-
-    git = {
-      enable = true;
     };
 
     gnupg.agent = {

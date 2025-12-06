@@ -8,6 +8,15 @@ return {
 		},
 	},
 	{
+		"nendix/zen.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			variant = "dark",
+			transparent = true,
+		},
+	},
+	{
 		"tiagovla/tokyodark.nvim",
 		lazy = false,
 		priority = 1000,

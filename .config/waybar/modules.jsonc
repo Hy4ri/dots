@@ -327,7 +327,7 @@
   },
   "custom/lyrics": {
     "format": "{}",
-    "interval": 2,
+    "interval": 1,
     "return-type": "json",
     "exec": "~/.config/waybar/scripts/lyrics.sh",
     "on-click": "playerctl play-pause",
