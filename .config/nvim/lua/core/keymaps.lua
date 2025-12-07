@@ -10,6 +10,12 @@ keymap.set({ "n", "i" }, "<right>", '<cmd>echo "Use l to move!!"<CR>')
 keymap.set({ "n", "i" }, "<up>", '<cmd>echo "Use k to move!!"<CR>')
 keymap.set({ "n", "i" }, "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
+-- Navigate between splits using Ctrl + h/j/k/l
+keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left split" })
+keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to lower split" })
+keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper split" })
+keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right split" })
+
 --Arabic Support
 keymap.set("n", "<leader>ar", function()
 	if vim.opt.keymap:get() == "arabic" then

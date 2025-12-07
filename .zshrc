@@ -12,6 +12,7 @@ export PATH=$PATH:/home/m57/.spicetify
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTDUP=erase
+stty stop undef
 setopt bang_hist
 setopt extended_history
 setopt share_history
@@ -22,15 +23,13 @@ setopt hist_find_no_dups
 setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_verify
-
 setopt interactive_comments 
-stty stop undef             
-setopt AUTOCD               
-setopt PROMPT_SUBST         
-setopt MENU_COMPLETE        
-setopt LIST_PACKED	    	
-setopt AUTO_LIST            
-setopt COMPLETE_IN_WORD     
+setopt AUTOCD
+setopt PROMPT_SUBST
+setopt MENU_COMPLETE
+setopt LIST_PACKED
+setopt AUTO_LIST
+setopt COMPLETE_IN_WORD
 
 ############################ aliases #################################
 
@@ -39,7 +38,7 @@ alias nrs='nh os switch ~/Documents/Projects/dots/nix'
 alias nr='nh os boot ~/Documents/Projects/dots/nix'
 alias ncln='sudo nix-collect-garbage --delete-older-than 1d'
 alias nup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
-
+alias alien='nix-alien-ld -- '
 #pacman
 alias sps='sudo pacman -S'
 alias spss='sudo pacman -Ss'
@@ -241,7 +240,7 @@ yazicd_widget() {
 }
 
 zle -N yazicd_widget
-bindkey '^y' yazicd_widget
+bindkey '^o' yazicd_widget
 
 ############################# vi mode ##########################################
 

@@ -23,6 +23,15 @@ balanced() {
   notify-send "Balanced mode"
 }
 
+toggle_profile() {
+ case "$profile" in
+    "performance") balanced;;
+    "balanced") performance;;
+    "power-saver") balanced;;
+    *) balanced;;
+  esac
+}
+
 powerSaver() {
   hyprctl --batch "\
     keyword monitor eDP-1,1920x1080@60,0x0,1:\
@@ -41,10 +50,8 @@ powerSaver() {
   notify-send "Powersaving mode"
 }
 
-if [[ "$1" == "--performance" ]]; then
-  performance
-elif [[ "$1" == "--balanced" ]]; then
-  balanced
+if [[ "$1" == "--toggle" ]]; then
+  toggle_profile 
 elif [[ "$1" == "--powersaver" ]]; then
   powerSaver
 else

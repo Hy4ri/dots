@@ -338,9 +338,8 @@
     "format": "{}",
     "exec": "~/.config/hypr/scripts/power.sh",
     "return-type": "json",
-    "on-click": "~/.config/hypr/scripts/power.sh --balanced",
+    "on-click": "~/.config/hypr/scripts/power.sh --toggle",
     "on-click-right": "~/.config/hypr/scripts/power.sh --performance",
-    "on-click-middle": "~/.config/hypr/scripts/power.sh --powersaver",
     "interval": 1
   },
   "custom/prayers": {

@@ -29,7 +29,6 @@ inputs,
       gcc
       gdb
       gearlever
-      ghostty
       gimp3-with-plugins
       gnumake
       go
@@ -40,9 +39,9 @@ inputs,
       hypridle
       hyprland-guiutils
       hyprland-qt-support
+      hyprpaper
       hyprpicker
       hyprpolkitagent
-      hyprpaper
       hyprprop
       hyprtoolkit
       hyprutils
@@ -54,6 +53,7 @@ inputs,
       kdePackages.qtstyleplugin-kvantum
       kdePackages.qtwayland
       kew
+      kitty
       libappindicator
       libnotify
       libsForQt5.qt5ct
@@ -61,11 +61,11 @@ inputs,
       lua51Packages.lua
       luarocks
       lutris
-      man-pages
       # mangowc
+      man-pages
       mpv
-      nixd
       nix-alien
+      nixd
       nodejs_24
       nwg-look
       oculante
@@ -91,11 +91,11 @@ inputs,
       termdown
       trash-cli
       tree-sitter
+      umu-launcher
       unzip
       upower
       upower-notify
       usbutils
-      umu-launcher
       vicinae
       warehouse
       wev
