@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TASK_FILE="/tmp/rofi_task_data"
+
+MENU_ITEMS=(
+  "Create a task |create"
+  "Remove a task |remove"
+)
+
+create() {
+  task=$(rofi -dmenu -p "Enter task:")
+  if [[ -n "$task" ]]; then
+    echo " $task" >>"$TASK_FILE"
+    notify-send "Task Added" "$task"
+  fi
+}
+
+remove() {
+  if [[ ! -f "$TASK_FILE" ]]; then
+    notify-send "No tasks to remove"
+    return
+  else
+    rm -f "$TASK_FILE"
+  fi
+}
+
+# Create Rofi menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | rofi -dmenu -p "Tasks" -i)
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
+exit 1

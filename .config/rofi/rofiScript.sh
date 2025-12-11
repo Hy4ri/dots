@@ -10,10 +10,12 @@ MENU_ITEMS=(
   "  HyprEdit|$SCRIPTS/hypredit.sh"
   "󱄅  NixEdit|$SCRIPTS/nixedit.sh"
   "⌚ Timer|$SCRIPTS/timer.sh"
-  "⚙️ Hyprsettings|$SCRIPTS/hyprsettings.sh"
-  "👾 Games|$SCRIPTS/game_launcher.sh"
-  "⚙️ Projects|$SCRIPTS/projects.sh"
+  "  Tasks|$SCRIPTS/tasks.sh"
   "🎥 Screen Recorder|$SCRIPTS/screenrecord.sh"
+  "🔍 Quick Search|$SCRIPTS/quicksearch.sh"
+  "👾 Games|$SCRIPTS/game_launcher.sh"
+  "⚙️ Hyprsettings|$SCRIPTS/hyprsettings.sh"
+  "⚙️ Projects|$SCRIPTS/projects.sh"
   "🛜 wifi|$SCRIPTS/wifi.sh"
   "📃 Mans|$SCRIPTS/man.sh"
   "🔧 Yad|$SCRIPTS/yad.sh"
@@ -23,7 +25,6 @@ MENU_ITEMS=(
   "💻 Pc Stats|$SCRIPTS/system.sh"
   "🎨 Waybar Settings|$SCRIPTS/waybarManager.sh"
   "🟥🟩🟦 RGB Profiles|$SCRIPTS/rgb_profiles.sh"
-  "🔍 Quick Search|$SCRIPTS/quicksearch.sh"
 )
 
 # Create Rofi menu

@@ -6,7 +6,7 @@ config="$HOME/.config"
 
 if [ -d "$HOME/Documents/Projects/dots" ]; then
   dots="$HOME/Documents/Projects/dots"
-else 
+else
   mv "$HOME/dots" "$HOME/Documents/Projects/"
   dots="$HOME/Documents/Projects/dots"
 fi
@@ -29,7 +29,7 @@ safe_link() {
 safe_link "$dots/.zshrc" "$HOME/.zshrc"
 safe_link "$dots/.zprofile" "$HOME/.zprofile"
 
-for dir in hypr foot rofi waybar dunst yazi niri nvim mango mpv tmux zathura; do
+for dir in dunst foot hypr mango mpv niri nvim rofi tmux vicinae waybar yazi zathura; do
   safe_link "$dots/.config/$dir" "$config/$dir"
 done
 

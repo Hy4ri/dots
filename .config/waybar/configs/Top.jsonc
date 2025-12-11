@@ -14,7 +14,8 @@
     "modules-left": [
       "hyprland/workspaces",
       "hyprland/window",
-      "custom/lyrics"
+      "custom/task",
+      "custom/lyrics",
     ],
     "modules-center": [],
     "modules-right": [
@@ -22,8 +23,8 @@
       "custom/timer",
       "tray",
       "group/sys",
-      "group/time"
-    ]
+      "group/time",
+    ],
   },
   {
     "include": "~/.config/waybar/modules.jsonc",
@@ -40,15 +41,10 @@
     "modules-left": [
       "hyprland/workspaces",
       "hyprland/window",
-      "custom/lyrics"
+      "custom/task",
+      "custom/lyrics",
     ],
     "modules-center": [],
-    "modules-right": [
-      "privacy",
-      "custom/timer",
-      "tray",
-      "group/sys",
-      "clock"
-    ]
-  }
+    "modules-right": ["privacy", "custom/timer", "tray", "group/sys", "clock"],
+  },
 ]

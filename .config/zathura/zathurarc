@@ -17,10 +17,6 @@ set completion-group-bg "#121212"         # Completion group background color
 set completion-group-fg "#e2e2e2"         # Completion group foreground color
 set completion-highlight-bg "#990000"     # Completion highlight background color
 set completion-highlight-fg "#222222"     # Completion highlight foreground color
-set index-bg "#232323"                    # Index mode background color
-set index-fg "#e2e2e2"                    # Index mode foreground color
-set index-active-bg "#9FBC00"             # Index mode active element background color
-set index-active-fg "#232323"             # Index mode active element foreground color
 set render-loading-bg "#e2e2e2"           # Loading text background color
 set render-loading-fg "#121212"           # Loading text foreground color
 set highlight-color "rgba(153,0,0,0.3)"   # Highlight color
@@ -35,66 +31,66 @@ set recolor-darkcolor "#e2e2e2"           # Dark color for recoloring
 # General Settings
 set database "sqlite"                      # Database backend (plain, sqlite, null)
 set filemonitor "glib"                    # File monitor backend
-set selection-clipboard "clipboard"       # Clipboard to use (primary, clipboard)
 set guioptions " "                        # GUI elements to show (c, s, h, v)
 set n-completion-items 15                 # Max completion items
-set show-recent 10                        # Number of recent files to show
+set selection-clipboard "clipboard"       # Clipboard to use (primary, clipboard)
 set show-directories true                 # Show directories in completion
 set show-hidden false                     # Show hidden files in completion
+set show-recent 10                        # Number of recent files to show
 set show-signature-information true       # Show signature info
-set statusbar-h-padding 0                 # Statusbar horizontal padding
-set statusbar-v-padding 0                 # Statusbar vertical padding
 set statusbar-basename true               # Use basename in statusbar
 set statusbar-home-tilde true             # Use ~ for home in statusbar
+set statusbar-h-padding 0                 # Statusbar horizontal padding
 set statusbar-page-percent true           # Show page percentage in statusbar
+set statusbar-v-padding 0                 # Statusbar vertical padding
+set window-height 600                     # Initial window height
+set window-icon-document false            # Use first page as window icon
 set window-title-basename true            # Use basename in window title
 set window-title-home-tilde true          # Use ~ for home in window title
 set window-title-page true                # Show page number in window title
-set window-icon-document false            # Use first page as window icon
 set window-width 800                      # Initial window width
-set window-height 600                     # Initial window height
 
 # Document Settings
-set adjust-open "best-fit"                # Auto adjustment mode (best-fit, width)
-set pages-per-row 1                       # Pages per row
-set first-page-column "1:2"               # Column for first page
-set page-right-to-left false              # Right to left layout
-set page-v-padding 1                      # Vertical page padding
-set page-h-padding 1                      # Horizontal page padding
-set page-cache-size 30                    # Max pages in cache
-set page-thumbnail-size 4194304           # Max thumbnail size in bytes
-set scroll-step 40                        # Scroll step size
-set scroll-hstep -1                       # Horizontal scroll step size
-set scroll-full-overlap 0.0               # Scroll overlap
-set scroll-wrap false                     # Wrap scrolling
-set scroll-page-aware true                # Stop scrolling at page boundaries
-set zoom-min 10                           # Min zoom level
-set zoom-max 1000                         # Max zoom level
-set zoom-step 10                          # Zoom step size
-set zoom-center false                     # Center zooming
-set vertical-center true                  # Center page vertically
-set render-loading true                   # Show loading text
-set link-zoom true                        # Allow zoom change when following links
-set link-hadjust true                     # Align internal link targets
-set search-hadjust true                   # Center search results horizontally
-set incremental-search true               # Incremental search
-set nohlsearch false                      # Disable search highlighting
 set abort-clear-search true               # Clear search on abort
+set adjust-open "best-fit"                # Auto adjustment mode (best-fit, width)
+set advance-pages-per-row false           # Advance pages per row
+set continuous-hist-save false            # Save history on every page change
+set dbus-raise-window true                # Raise window on D-Bus command
+set dbus-service true                     # Enable D-Bus service
+set double-click-follow true              # Follow link on double click
+set first-page-column "1:2"               # Column for first page
+set highlighter-modifier "shift"          # Modifier for highlighter
+set incremental-search true               # Incremental search
+set jumplist-size 2000                    # Jumplist size
+set link-hadjust true                     # Align internal link targets
+set link-zoom true                        # Allow zoom change when following links
+set nohlsearch false                      # Disable search highlighting
+set open-first-page false                 # Always open first page
+set page-cache-size 30                    # Max pages in cache
+set page-h-padding 1                      # Horizontal page padding
+set page-right-to-left false              # Right to left layout
+set pages-per-row 1                       # Pages per row
+set page-thumbnail-size 4194304           # Max thumbnail size in bytes
+set page-v-padding 1                      # Vertical page padding
+set recolor-adjust-lightness true         # Adjust lightness when recoloring
 set recolor false                         # Enable recoloring
 set recolor-keephue true                 # Keep hue when recoloring
 set recolor-reverse-video true            # Keep original image colors
-set recolor-adjust-lightness true         # Adjust lightness when recoloring
-set continuous-hist-save false            # Save history on every page change
-set jumplist-size 2000                    # Jumplist size
-set open-first-page false                 # Always open first page
+set render-loading true                   # Show loading text
+set scroll-full-overlap 0.0               # Scroll overlap
+set scroll-hstep -1                       # Horizontal scroll step size
+set scroll-page-aware true                # Stop scrolling at page boundaries
+set scroll-step 40                        # Scroll step size
+set scroll-wrap false                     # Wrap scrolling
+set search-hadjust true                   # Center search results horizontally
 set selection-notification false          # Notify on selection
-set synctex true                          # Enable SyncTeX
 set synctex-edit-modifier "ctrl"          # Modifier for SyncTeX
-set dbus-service true                     # Enable D-Bus service
-set dbus-raise-window true                # Raise window on D-Bus command
-set double-click-follow true              # Follow link on double click
-set highlighter-modifier "shift"          # Modifier for highlighter
-set advance-pages-per-row false           # Advance pages per row
+set synctex true                          # Enable SyncTeX
+set vertical-center true                  # Center page vertically
+set zoom-center false                     # Center zooming
+set zoom-max 1000                         # Max zoom level
+set zoom-min 10                           # Min zoom level
+set zoom-step 10                          # Zoom step size
 
 # Navigation
 map j scroll full-down

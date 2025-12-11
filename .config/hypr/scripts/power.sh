@@ -44,7 +44,7 @@ powerSaver() {
     keyword decoration:fullscreen_opacity 1; \
     keyword general:gaps_in 0; \
     keyword general:gaps_out 0" 
-  sleep 1
+  sleep 1 
   powerprofilesctl set power-saver
   sleep 1
   notify-send "Powersaving mode"

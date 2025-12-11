@@ -58,12 +58,12 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 })
 
 -- Disable automatic comment continuation
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "*",
-	callback = function()
-		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
-	end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+-- 	end,
+-- })
 
 -- Open help in vertical split
 vim.api.nvim_create_autocmd("FileType", {

@@ -1,5 +1,7 @@
 local keymap = vim.keymap
 
+-- stylua: ignore start
+
 --leader Space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -16,7 +18,11 @@ keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to lower split" })
 keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper split" })
 keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right split" })
 
---Arabic Support
+-- splits
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split Vertically" })
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split Horizontally" })
+
+-- Arabic Support
 keymap.set("n", "<leader>ar", function()
 	if vim.opt.keymap:get() == "arabic" then
 		vim.cmd("set noarabic")
@@ -25,7 +31,7 @@ keymap.set("n", "<leader>ar", function()
 	end
 end)
 
---Keeping the cursor centered.
+-- Keeping the cursor centered.
 keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("n", "n", "nzzzv")
@@ -73,17 +79,11 @@ keymap.set("x", "K", ":move '<-2<CR>gv-gv", { desc = "Move highlighted text up",
 keymap.set("n", "J", "mzJ`z")
 
 --Snacks
--- stylua: ignore
 keymap.set("n", "<leader>sp", function() Snacks.picker() end, { desc = "Pickers" })
--- stylua: ignore
 keymap.set("n", "<leader>sb", function() Snacks.picker.buffers() end, { desc = "Buffer Picker" })
--- stylua: ignore
 keymap.set("n", "<leader>sf", function() Snacks.picker.files() end, { desc = "Files Picker" })
--- stylua: ignore
 keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Grep Pickers" })
--- stylua: ignore
 keymap.set("n", "<leader>ss", function() Snacks.picker.spelling() end, { desc = "Spelling Pickers" })
--- stylua: ignore
 keymap.set("n", "<leader>so", function() Snacks.picker.recent() end, { desc = "Recent files Pickers" })
 
 -- Quicker options
@@ -94,16 +94,19 @@ keymap.set("x", "<leader>r", ":s/", { noremap = true }, { desc = "Replace in fil
 keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
 keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 keymap.set("n", "U", "<C-r>", { desc = "Redo" })
+keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true })
+keymap.set("n", "-", "<CMD>Yazi<CR>", { desc = "Open parent directory" })
+
+-- Toggle options
 keymap.set("n", "<leader>uc", "<cmd>Copilot toggle<cr>", { desc = "toggle copilot" })
-keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true })
-keymap.set("n", "<leader>sv", "<cmd>source $MYVIMRC<CR>", { desc = "Source Config" })
+keymap.set("n", "<leader>ug", ":lua MiniDiff.toggle_overlay()<cr>", { desc = "Source Config" })
+keymap.set("n", "<leader>ut", "<cmd>TransparentToggle<CR>", { desc = "Transparancy Toggle" })
+keymap.set('n', '<leader>uw', ':set invwrap<CR>', { desc = 'Toggle Word Wrap' })
+keymap.set('n', '<leader>ud', function()
+    local is_enabled = vim.diagnostic.is_enabled()
+    vim.diagnostic.enable(not is_enabled)
+    local status = is_enabled and "Disabled" or "Enabled"
+    vim.notify("Diagnostics " .. status, vim.log.levels.INFO)
+end, { desc = 'Toggle All Diagnostics' })
 
--- NES next edit suggestion
-keymap.set("i", "<A-i>", function()
-	require("nes").get_suggestion()
-end, { desc = "Get NES suggestion" })
-
-keymap.set("i", "<A-n>", function()
-	require("nes").apply_suggestion(0, { jump = true, trigger = true })
-end, { desc = "apply NES suggestion" })
+-- stylua: ignore end

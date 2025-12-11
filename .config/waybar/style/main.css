@@ -25,24 +25,10 @@ tooltip label {
 
 window#waybar {
   background: transparent;
+  all: unset;
 }
 
 /* left */
-
-#window {
-  color: @font;
-  background: @background;
-  padding: 0px 10px 3px 10px;
-  margin: 0px 2px 1px 0px;
-  box-shadow: @shadow 1px 2px 1px 1px;
-}
-
-window#waybar.empty #window {
-  font-size: 0;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
-}
 
 #workspaces button,
 #tags button,
@@ -115,6 +101,29 @@ window#waybar.empty #window {
   100% {
     background: #990000;
   }
+}
+
+#window {
+  color: @font;
+  background: @background;
+  padding: 0px 10px 3px 10px;
+  margin: 0px 2px 1px 0px;
+  box-shadow: @shadow 1px 2px 1px 1px;
+}
+
+window#waybar.empty #window {
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+#custom-task {
+  color: @font;
+  background: @background;
+  padding: 0px 10px 3px 10px;
+  margin: 0px 1px 1px 1px;
+  box-shadow: @shadow 1px 2px 1px 1px;
 }
 
 #mpris {
@@ -232,7 +241,7 @@ window#waybar.empty #window {
   background: @background;
 }
 
-#tray>.passive {
+#tray > .passive {
   color: red;
 }
 

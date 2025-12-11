@@ -1,79 +1,81 @@
 local opt = vim.opt
 local g = vim.g
 
----- Text Editing & Indentation
 opt.arabicshape = true -- Correctly displays Arabic characters' shapes.
-opt.copyindent = true -- When auto-indenting, copies the indentation structure from the previous line.
-opt.expandtab = true -- Converts all <Tab> key presses into spaces.
-opt.shiftwidth = 2 -- Sets the width for indentation operations (like >> or <<) to 2 spaces.
-opt.smartindent = true -- Enables "smart" indentation (e.g., automatically indenting after '{' in C-like files).
 opt.autoindent = true -- Copies the indentation from the previous line when starting a new line.
-opt.tabstop = 2 -- Sets the visual width of a <Tab> character to 2 spaces.
-opt.softtabstop = 2 -- Makes the <Tab> key insert 2 spaces (works with `expandtab`).
-opt.formatoptions = "jcroql" -- Controls various automatic formatting options (e.g., 'c' wraps comments).
-opt.smoothscroll = true -- Makes scrolling smoother
-opt.breakindent = true -- Indents wrapped lines to match code indentation
-opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
-
----- Behavior & Performance
-opt.clipboard = "unnamedplus" -- Uses the system clipboard (+) for all copy/paste operations.
-opt.mouse = "a" -- Enables mouse support in all modes (clicking, scrolling, resizing splits).
-opt.undofile = true -- Saves undo history to a file, allowing you to undo *after* closing and reopening a file.
-opt.timeoutlen = 500 -- Reduces the time (to 500ms) Vim waits for you to complete a mapping (e.g., 'gd').
-opt.ttimeoutlen = 10 -- Reduces the time (to 10ms) Vim waits for an ambiguous terminal key code.
-opt.shortmess = "filnxtToOFc" -- Shortens the messages Vim displays (e.g., hiding the intro message).
-opt.iskeyword:append("-") -- Treats hyphenated words as a single word for motions and text objects
 opt.autoread = true -- Automatically reloads a file if it was changed outside of Neovim
 opt.autowrite = false -- Automatically writes changes to a file when switching buffers or exiting Neovim
-opt.splitbelow = true -- Makes new horizontal splits (e.g., :split) open *below* the current window.
-opt.splitright = true -- Makes new vertical splits (e.g., :vsplit) open to the *right* of the current window.
-opt.diffopt:append("vertical") -- Opens diffs in vertical splits
+opt.breakindent = true -- Indents wrapped lines to match code indentation
+opt.clipboard = "unnamedplus" -- Uses the system clipboard (+) for all copy/paste operations.
+opt.cmdheight = 0 -- Hides the command line area (set to 0 lines).
+opt.colorcolumn = "+1" -- Draw column on the right of maximum width
+opt.completeopt = "menuone,noselect,fuzzy,nosort" -- Configures the autocompletion popup
+opt.complete = ".,w,b,kspell" -- Use less sources
+opt.copyindent = true -- When auto-indenting, copies the indentation structure from the previous line.
+opt.cursorline = true -- Highlights the entire line your cursor is currently on.
 opt.diffopt:append("algorithm:patience") -- Uses the "patience" algorithm for better diffs
 opt.diffopt:append("linematch:60") -- Improves diff algorithm for better diffs
-
----- UI - Visuals & Layout
-opt.cursorline = true -- Highlights the entire line your cursor is currently on.
-opt.laststatus = 3 -- Sets the status line to be *always* visible (global status line).
-opt.showmode = false -- Disables the mode indicator (e.g., -- INSERT --) at the bottom.
-opt.scrolloff = 8 -- Keeps 8 lines of context visible above and below the cursor when scrolling.
-opt.number = true -- Shows absolute line numbers for every line.
-opt.relativenumber = true -- Shows line numbers relative to the cursor (e.g., 1, 2, 3... away).
-opt.numberwidth = 2 -- Sets the width of the line number column to 2 characters.
-opt.ruler = false -- Hides the cursor position (row/col) from the bottom-right corner.
-opt.wrap = false -- Disables automatic line wrapping; long lines will scroll horizontally.
-opt.signcolumn = "yes" -- Always displays the "sign column" on the left (used for diagnostics, Git signs, etc.).
-opt.list = true -- Enables the display of invisible characters.
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Defines characters for invisible items
-opt.termguicolors = true -- Enables 24-bit "true color" support (requires a compatible terminal).
-opt.cmdheight = 0 -- Hides the command line area (set to 0 lines).
-opt.showcmdloc = "statusline" -- Shows pending commands in the status line instead of the (hidden) command line.
-opt.title = true -- Sets the terminal window title to the current file name.
-opt.fillchars = { -- It defines characters for folds, diffs, and hides the '~' at the end of the buffer.
-	foldopen = "", -- Character for an open fold
-	foldclose = "", -- Character for a closed fold
-	fold = " ", -- Character for the fold column
-	foldsep = " ", -- Character for fold separator
-	diff = "╱", -- Character for diff mode
-	eob = " ", -- Character for end-of-buffer lines (hides the '~')
+opt.diffopt:append("vertical") -- Opens diffs in vertical splits
+opt.expandtab = true -- Converts all <Tab> key presses into spaces.
+opt.fillchars = {
+	eob = " ",
+	fold = " ",
+	foldclose = "",
+	foldopen = "",
+	foldsep = " ",
+	msgsep = "─",
 }
-
----- Search & Replace
-opt.ignorecase = true -- Makes all searches case-insensitive.
-opt.smartcase = true -- Overrides 'ignorecase' if your search term contains an uppercase letter.
+opt.foldlevel = 0 -- Fold nothing by default; set to 0 or 1 to fold
+opt.foldmethod = "marker" -- Fold based on marker level
+opt.foldnestmax = 10 -- Limit number of fold levels
+opt.foldtext = "" -- Show text under fold with its highlighting
+opt.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
+opt.formatoptions = "rqnl1j" -- Controls various automatic formatting options (e.g., 'c' wraps comments).
+opt.formatoptions:remove({ "o", "c", "r" }) -- Don't continue comments with 'o' or 'O' or Enter
 opt.hlsearch = true -- Automatically highlights all matches for your last search.
-opt.incsearch = true -- Shows search matches as you type (incremental search).
+opt.ignorecase = true -- Makes all searches case-insensitive.
 opt.inccommand = "split" -- Shows a live preview of a substitute-command (`:s/.../.../`) in a split window.
+opt.incsearch = true -- Shows search matches as you type (incremental search).
+opt.infercase = true -- Infer case in built-in completion
+opt.iskeyword = "@,48-57,192-255,-" -- Treats hyphenated words as a single word for motions and text objects
+opt.laststatus = 3 -- Sets the status line to be *always* visible (global status line).
+opt.linebreak = true -- Wrap lines at 'breakat' (if 'wrap' is set)
+opt.listchars = { tab = " ↦", trail = "·", nbsp = "␣" } -- Defines characters for invisible items
+opt.list = true -- Enables the display of invisible characters.
+opt.mouse = "a" -- Enables mouse support in all modes (clicking, scrolling, resizing splits).
+opt.number = true -- Shows absolute line numbers for every line.
+opt.numberwidth = 2 -- Sets the width of the line number column to 2 characters.
+opt.pumheight = 10 -- Limits the height of the completion popup menu to 10 items.
+opt.relativenumber = true -- Shows line numbers relative to the cursor (e.g., 1, 2, 3... away).
+opt.ruler = false -- Hides the cursor position (row/col) from the bottom-right corner.
+opt.scrolloff = 8 -- Keeps 8 lines of context visible above and below the cursor when scrolling.
+opt.shiftwidth = 2 -- Sets the width for indentation operations (like >> or <<) to 2 spaces.
+opt.shortmess = "filnxtToOFc" -- Shortens the messages Vim displays (e.g., hiding the intro message).
+opt.showcmdloc = "statusline" -- Shows pending commands in the status line instead of the (hidden) command line.
+opt.showmode = false -- Disables the mode indicator (e.g., -- INSERT --) at the bottom.
+opt.signcolumn = "yes" -- Always displays the "sign column" on the left (used for diagnostics, Git signs, etc.).
+opt.smartcase = true -- Overrides 'ignorecase' if your search term contains an uppercase letter.
+opt.smartindent = true -- Enables "smart" indentation (e.g., automatically indenting after '{' in C-like files).
+opt.smoothscroll = true -- Makes scrolling smoother
+opt.softtabstop = 2 -- Makes the <Tab> key insert 2 spaces (works with `expandtab`).
+opt.spelloptions = "camel" -- Treat camelCase word parts as separate words
+opt.splitbelow = true -- Makes new horizontal splits (e.g., :split) open *below* the current window.
+opt.splitkeep = "screen" -- Reduce scroll during window split
+opt.splitright = true -- Makes new vertical splits (e.g., :vsplit) open to the *right* of the current window.
+opt.tabstop = 2 -- Sets the visual width of a <Tab> character to 2 spaces.
+opt.termguicolors = true -- Enables 24-bit "true color" support (requires a compatible terminal).
+opt.timeoutlen = 500 -- Reduces the time (to 500ms) Vim waits for you to complete a mapping (e.g., 'gd').
+opt.title = true -- Sets the terminal window title to the current file name.
+opt.ttimeoutlen = 10 -- Reduces the time (to 10ms) Vim waits for an ambiguous terminal key code.
+opt.undofile = true -- Saves undo history to a file, allowing you to undo *after* closing and reopening a file.
+opt.updatetime = 300 -- Reduces the time (to 300ms) of inactivity before writing swap files and triggering CursorHold events.
+opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+opt.wildmenu = true -- Enables an enhanced completion menu when typing commands or paths.
+opt.wildmode = "longest:full,full"
+opt.wrap = false -- Disables automatic line wrapping; long lines will scroll horizontally.
 
 ---- Command Line & Completion
 -- opt.autocomplete = true
 -- opt.complete = "o,.,w,b,u"
-opt.wildmenu = true -- Enables an enhanced completion menu when typing commands or paths.
-opt.wildmode = "longest:full,full"
-opt.completeopt = "fuzzy,menuone,noselect,popup" -- Configures the autocompletion popup: 'menu' (show menu), 'menuone' (show even
--- with 1 match), 'noselect' (don't auto-select first entry), 'noinsert' (don't auto-insert text from the selection).
-opt.pumheight = 7 -- Limits the height of the completion popup menu to 10 items.
 -- opt.pummaxwidth = 80 -- Limits the width of the completion popup.
-opt.shortmess:append("c") -- Avoids showing extra messages when using the completion menu.
-
----- Plugins
 g.snacks_animate = false

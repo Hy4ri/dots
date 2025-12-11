@@ -44,7 +44,7 @@ return {
 		end
 
 		---------------------------------------------------------------------
-		-- OPTIMIZATION: Event-driven LSP client display
+		-- Event-driven LSP client display
 		---------------------------------------------------------------------
 		-- This variable will hold our LSP string.
 		-- The lualine component will just read this, not run a function.
@@ -84,7 +84,7 @@ return {
 		end
 
 		---------------------------------------------------------------------
-		-- Function: Show macro recording status (unchanged)
+		-- Function: Show macro recording status
 		---------------------------------------------------------------------
 		local function recording_macro()
 			local reg = vim.fn.reg_recording()
@@ -92,6 +92,19 @@ return {
 				return ""
 			end
 			return " @" .. reg
+		end
+
+
+		---------------------------------------------------------------------
+		-- Component functions for custom location
+		---------------------------------------------------------------------
+		local function loc_line() return vim.fn.line(".") end
+		local function loc_total() return ":" .. vim.fn.line("$") .. "|" end
+		local function loc_col() return vim.fn.col(".") end
+		local function loc_max_col()
+			local max_col = vim.fn.col("$") - 1
+			if max_col < 0 then max_col = 0 end
+			return ":" .. max_col
 		end
 
 		---------------------------------------------------------------------
@@ -112,9 +125,6 @@ return {
 				-- Left side
 				lualine_a = { "mode" },
 				lualine_b = {
-					-- OPTIMIZATION: Replaced custom 'file_with_icon' function
-					-- with the built-in 'filename' component. It automatically
-					-- uses nvim-web-devicons when 'icons_enabled = true'.
 					{
 						"filename",
 						file_status = true,
@@ -145,7 +155,7 @@ return {
 						colored = true,
 					},
 					{
-						lsp_client_display, -- Use our optimized display function
+						lsp_client_display,
 					},
 					{
 						recording_macro,
@@ -154,12 +164,12 @@ return {
 					{ "fileformat" },
 				},
 				lualine_y = {
-					{ "location" },
+					{ loc_line, color = { fg = "#990000" }, padding = { left = 1, right = 0 }, separator = "" },
+					{ loc_total, padding = { left = 0, right = 0 }, separator = "" },
+					{ loc_col, color = { fg = "#990000" }, padding = { left = 0, right = 0 }, separator = "" },
+					{ loc_max_col, padding = { left = 0, right = 1 } },
 				},
 				lualine_z = {
-					-- OPTIMIZATION: Replaced custom 'clock' function
-					-- with the built-in 'datetime' component.
-					-- This is optimized to only update when the time changes.
 					{
 						"datetime",
 						style = "%I:%M", -- Matches your format

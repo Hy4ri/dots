@@ -36,9 +36,9 @@ apply_style() {
 menu_layout() {
   options=$(find "$WAYBAR_LAYOUTS" -maxdepth 1 -type f -exec basename {} \; | sort)
   options="no panel"$'\n'"$options"
-  
+
   choice=$(echo "$options" | rofi -dmenu -p "Select Layout" -i)
-  
+
   if [[ -n "$choice" ]]; then
     if [[ "$choice" == "no panel" ]]; then
       pgrep -x "waybar" && pkill waybar || true
@@ -50,9 +50,9 @@ menu_layout() {
 
 menu_style() {
   options=$(find "$WAYBAR_STYLES" -maxdepth 1 -type f -name '*.css' -exec basename {} .css \; | sort)
-  
+
   choice=$(echo "$options" | rofi -dmenu -p "Select Style" -i)
-  
+
   if [[ -n "$choice" ]]; then
     apply_style "$choice"
   fi

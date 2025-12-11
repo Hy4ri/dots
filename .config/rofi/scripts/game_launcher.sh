@@ -117,10 +117,10 @@ while IFS= read -r steam_dir; do
     label="Steam ($steam_location): $name"
 
     # Avoid duplicate entries
-    if [[ -z "${GAME_MAP["$label"]}" ]]; then
-      GAME_MAP["$label"]="steam -applaunch $id"
-      rofi_entries+=("$label\x00icon\x1f$icon")
-    fi
+    # if [[ -z "${GAME_MAP["$label"]}" ]]; then
+    #   GAME_MAP["$label"]="steam -applaunch $id"
+    #   rofi_entries+=("$label\x00icon\x1f$icon")
+    # fi
   done
 
 done < <(find_steam_dirs)

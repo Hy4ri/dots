@@ -1,29 +1,36 @@
 return {
-	"github/copilot.vim",
+	"zbirenbaum/copilot.lua",
+	event = "InsertEnter",
+	cmd = "Copilot",
+	dependencies = {
+		"copilotlsp-nvim/copilot-lsp",
+	},
 	config = function()
-		-- Disable the default <Tab> accept mapping so we can bind our own keys
-		vim.g.copilot_no_tab_map = true
-
-		-- Common opts for keymaps
-		local opts = { noremap = true, silent = true }
-
-		-- Insert mode mappings
-		-- Accept next suggested word: Alt-w  (Meta-w)
-		vim.keymap.set("i", "<M-w>", "<Plug>(copilot-accept-word)", opts)
-		-- Accept entire suggested line: Alt-y  (Meta-y)
-		vim.keymap.set("i", "<M-y>", "<Plug>(copilot-accept-line)", opts)
-
-		-- Cycle suggestions: Alt-] = next, Alt-[ = previous
-		vim.keymap.set("i", "<M-]>", "<Plug>(copilot-next)", opts)
-		vim.keymap.set("i", "<M-[>", "<Plug>(copilot-previous)", opts)
-
-		-- Dismiss current suggestion (followed from docs)
-		vim.keymap.set("i", "<C-]>", "<Plug>(copilot-dismiss)", opts)
-
-		-- Explicitly request a suggestion (if you want to trigger one manually)
-		vim.keymap.set("i", "<M-\\>", "<Plug>(copilot-suggest)", opts)
-
-		-- Visual polish: subtle suggestion highlight (adjust hex color as you like)
-		vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#555555", ctermfg = 8, force = true })
+		require("copilot").setup({
+			panel = {
+				enabled = false,
+			},
+			suggestion = {
+				auto_trigger = true,
+				hide_during_completion = false,
+				keymap = {
+					accept_line = "<M-y>",
+					next = "<M-]>",
+					prev = "<M-[>",
+					dismiss = "<C-]>",
+				},
+			},
+			nes = {
+				enabled = false,
+				auto_trigger = true,
+				keymap = {
+					accept = "<c-y>",
+					dismiss = "<C-[>",
+				},
+			},
+			workspace_folders = { "~/Documents/Projects" },
+			copilot_model = "GPT-5.1-Codex",
+			disable_limit_reached_message = false,
+		})
 	end,
 }

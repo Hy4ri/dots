@@ -1,21 +1,106 @@
 #!/usr/bin/env bash
 
-if [ -f /tmp/rofi_timer_target ]; then
-    target=$(cat /tmp/rofi_timer_target)
-    now=$(date +%s)
-    remaining=$((target - now))
+TIMER_FILE="/tmp/rofi_timer_data"
+STOPWATCH_FILE="/tmp/rofi_stopwatch_data"
 
-    if [ $remaining -gt 0 ]; then
-        if [ $remaining -ge 3600 ]; then
-            output=$(date -u -d "@${remaining}" +%H:%M:%S)
+timer_text=""
+timer_tooltip=""
+stopwatch_text=""
+stopwatch_tooltip=""
+any_running=0
+any_paused=0
+
+now=$(date +%s)
+
+# Process Timer
+if [ -f "$TIMER_FILE" ]; then
+    readarray -t lines < <(head -n 4 "$TIMER_FILE")
+    mode="${lines[0]}"
+    target="${lines[1]}"
+    status="${lines[2]}"
+    paused_val="${lines[3]}"
+    
+    if [[ "$status" == "RUNNING" ]]; then
+        remaining=$((target - now))
+        if [ $remaining -gt 0 ]; then
+            if [ $remaining -ge 3600 ]; then
+                 output=$(date -u -d "@${remaining}" +%H:%M:%S)
+            else
+                 output=$(date -u -d "@${remaining}" +%M:%S)
+            fi
+            timer_text=" $output"
+            timer_tooltip="Timer expires at $(date -d @$target +'%H:%M:%S')"
+            any_running=1
         else
-            output=$(date -u -d "@${remaining}" +%M:%S)
+            timer_text=" 00:00"
+            timer_tooltip="Timer Expired"
         fi
-        echo "{\"text\": \" $output\", \"tooltip\": \"Timer expires at $(date -d @$target +'%H:%M:%S')\", \"class\": \"running\"}"
-    else
-        rm -f /tmp/rofi_timer_target
-        echo "{\"text\": \"\", \"tooltip\": \"\", \"class\": \"stopped\"}"
+    else # PAUSED
+         if [ $paused_val -ge 3600 ]; then
+             output=$(date -u -d "@${paused_val}" +%H:%M:%S)
+         else
+             output=$(date -u -d "@${paused_val}" +%M:%S)
+         fi
+         timer_text=" $output (P)"
+         timer_tooltip="Timer Paused"
+         any_paused=1
     fi
-else
-    echo "{\"text\": \"\", \"tooltip\": \"\", \"class\": \"stopped\"}"
 fi
+
+# Process Stopwatch
+if [ -f "$STOPWATCH_FILE" ]; then
+    readarray -t lines < <(head -n 4 "$STOPWATCH_FILE")
+    mode="${lines[0]}"
+    start="${lines[1]}"
+    status="${lines[2]}"
+    paused_val="${lines[3]}"
+    
+    if [[ "$status" == "RUNNING" ]]; then
+        elapsed=$((now - start))
+         if [ $elapsed -ge 3600 ]; then
+             output=$(date -u -d "@${elapsed}" +%H:%M:%S)
+         else
+             output=$(date -u -d "@${elapsed}" +%M:%S)
+         fi
+         stopwatch_text="⏱ $output"
+         stopwatch_tooltip="Stopwatch Running"
+         any_running=1
+    else # PAUSED
+         if [ $paused_val -ge 3600 ]; then
+             output=$(date -u -d "@${paused_val}" +%H:%M:%S)
+         else
+             output=$(date -u -d "@${paused_val}" +%M:%S)
+         fi
+         stopwatch_text="⏱ $output (P)"
+         stopwatch_tooltip="Stopwatch Paused"
+         any_paused=1
+    fi
+fi
+
+# Combine Output
+final_text=""
+final_tooltip=""
+final_class="stopped"
+
+if [[ -n "$timer_text" ]]; then
+    final_text="$timer_text"
+    final_tooltip="$timer_tooltip"
+fi
+
+if [[ -n "$stopwatch_text" ]]; then
+    if [[ -n "$final_text" ]]; then
+        final_text="$final_text  $stopwatch_text"
+        final_tooltip="$final_tooltip | $stopwatch_tooltip"
+    else
+        final_text="$stopwatch_text"
+        final_tooltip="$stopwatch_tooltip"
+    fi
+fi
+
+if [ "$any_running" -eq 1 ]; then
+    final_class="running"
+elif [ "$any_paused" -eq 1 ]; then
+    final_class="paused"
+fi
+
+echo "{\"text\": \"$final_text\", \"tooltip\": \"$final_tooltip\", \"class\": \"$final_class\"}"

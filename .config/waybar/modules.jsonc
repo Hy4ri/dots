@@ -4,7 +4,7 @@
     "drawer": {
       "transition-duration": 300,
       "transition-left-to-right": false,
-      "click-to-reveal": false
+      "click-to-reveal": false,
     },
     "modules": [
       "network",
@@ -13,26 +13,21 @@
       "pulseaudio#microphone",
       "pulseaudio",
       "bluetooth",
-      "battery"
-    ]
+      "battery",
+    ],
   },
   "group/sys": {
     "orientation": "inherit",
-    "modules": [
-      "group/applets"
-    ]
+    "modules": ["group/applets"],
   },
   "group/time": {
     "orientation": "horizontal",
     "drawer": {
       "transition-duration": 300,
       "transition-left-to-right": false,
-      "click-to-reveal": false
+      "click-to-reveal": false,
     },
-    "modules": [
-      "clock",
-      "custom/prayers"
-    ]
+    "modules": ["clock", "custom/prayers"],
   },
   "battery": {
     "interval": 5,
@@ -45,7 +40,7 @@
     "states": {
       "good": 95,
       "warning": 30,
-      "critical": 20
+      "critical": 20,
     },
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
@@ -53,32 +48,20 @@
     "format-alt-click": "click",
     "format-full": "{icon}",
     "format-alt": "{icon} {time}",
-    "format-icons": [
-      "󰂎",
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
-    ],
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format-time": "{H}h {M}min",
     "tooltip": true,
     "tooltip-format": "{timeTo} {power}w",
     "on-click-middle": "~/.config/hypr/scripts/power.sh --powersaver",
     "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
-    "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec"
+    "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
   },
   "bluetooth": {
     "format": "",
     "format-disabled": "",
     "format-connected": " {num_connections}",
     "tooltip-format": "{status}",
-    "on-click": "blueman-manager"
+    "on-click": "blueman-manager",
   },
   "cava": {
     "framerate": 30,
@@ -96,19 +79,10 @@
     "monstercat": true,
     "waves": true,
     "input_delay": 2,
-    "format-icons": [
-      "▁",
-      "▂",
-      "▃",
-      "▄",
-      "▅",
-      "▆",
-      "▇",
-      "█"
-    ],
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "actions": {
-      "on-click-right": "mode"
-    }
+      "on-click-right": "mode",
+    },
   },
   "clock": {
     "interval": 1,
@@ -126,9 +100,9 @@
         "days": "<span color='#f0ccd2'>{}</span>",
         "weeks": "<span color='#ddcc66'><b>W{}</b></span>",
         "weekdays": "<span color='#ddcc66'><b>{}</b></span>",
-        "today": "<span color='#990000'><b><u>{}</u></b></span>"
-      }
-    }
+        "today": "<span color='#990000'><b><u>{}</u></b></span>",
+      },
+    },
   },
   "ext/workspaces": {
     "format": "{icon}",
@@ -148,8 +122,8 @@
       "8": "8",
       "9": "9",
       "10": "10",
-      "special": ""
-    }
+      "special": "",
+    },
   },
   "hyprland/window": {
     "format": "{}",
@@ -157,7 +131,7 @@
     "separate-outputs": true,
     "icon": true,
     "icon-size": 18,
-    "on-click-middle": "~/.config/hypr/scripts/killActiveProcess.sh"
+    "on-click-middle": "~/.config/hypr/scripts/killActiveProcess.sh",
   },
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -177,16 +151,16 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      "10": "10"
-    }
+      "10": "10",
+    },
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "deactivated": "",
-      "activated": ""
+      "activated": "",
     },
-    "on-click-right": "~/.config/hypr/scripts/LockScreen.sh"
+    "on-click-right": "~/.config/hypr/scripts/LockScreen.sh",
   },
   "mpris": {
     "interval": 1,
@@ -207,21 +181,15 @@
       "mopidy": " ",
       "mpv": "󰐹 ",
       "spotify": " ",
-      "vlc": "󰕼 "
+      "vlc": "󰕼 ",
     },
     "status-icons": {
       "paused": "",
       "playing": "",
-      "stopped": ""
+      "stopped": "",
     },
-    "ignored-players": [
-      "chromium",
-      "vivaldi",
-      "mpv",
-      "brave",
-      "firefox"
-    ],
-    "max-length": 300
+    "ignored-players": ["chromium", "vivaldi", "mpv", "brave", "firefox"],
+    "max-length": 300,
   },
   "network": {
     "interval": "1",
@@ -229,18 +197,12 @@
     "format-wifi": "{icon}",
     "format-disconnected": "",
     "format-disabled": "",
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "on-click": "nm-connection-editor",
     "on-click-middle": "foot -T nmtui nmtui",
     "on-click-right": "~/.config/rofi/scripts/wifi.sh",
     "tooltip-format": " {bandwidthUpBytes}  {bandwidthDownBytes}",
-    "tooltip-format-wifi": "{essid}\n {bandwidthUpBytes}  {bandwidthDownBytes}"
+    "tooltip-format-wifi": "{essid}\n {bandwidthUpBytes}  {bandwidthDownBytes}",
   },
   "privacy": {
     "icon-spacing": 5,
@@ -250,14 +212,14 @@
       {
         "type": "screenshare",
         "tooltip": true,
-        "tooltip-icon-size": 24
+        "tooltip-icon-size": 24,
       },
       {
         "type": "audio-in",
         "tooltip": true,
-        "tooltip-icon-size": 24
-      }
-    ]
+        "tooltip-icon-size": 24,
+      },
+    ],
   },
   "pulseaudio": {
     "format": "{icon}",
@@ -270,14 +232,8 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ],
-      "ignored-sinks": [
-        "Easy Effects Sink"
-      ]
+      "default": ["", "", ""],
+      "ignored-sinks": ["Easy Effects Sink"],
     },
     "scroll-step": 5.0,
     "on-click": "~/.config/hypr/scripts/volume.sh --toggle",
@@ -286,7 +242,7 @@
     "on-scroll-up": "~/.config/hypr/scripts/volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/volume.sh --dec",
     "tooltip-format": "󰋋 {desc} | {icon} {volume}%",
-    "smooth-scrolling-threshold": 1
+    "smooth-scrolling-threshold": 1,
   },
   "pulseaudio#microphone": {
     "format": "{format_source}",
@@ -297,12 +253,12 @@
     "on-scroll-up": "~/.config/hypr/scripts/volume.sh --mic-inc",
     "on-scroll-down": "~/.config/hypr/scripts/volume.sh --mic-dec",
     "tooltip-format": "{source_desc} | {source_volume}%",
-    "scroll-step": 5
+    "scroll-step": 5,
   },
   "tray": {
     "icon-size": 15,
     "show-passive-items": true,
-    "spacing": 10
+    "spacing": 10,
   },
   "wlr/taskbar": {
     "format": "{icon} {name}",
@@ -311,19 +267,16 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": [
-      "wofi",
-      "rofi"
-    ]
+    "ignore-list": ["wofi", "rofi"],
   },
   // This is a custom cava visualizer
   "custom/cava_mviz": {
     "exec": "~/.config/hypr/scripts/waybarcava.sh",
-    "format": "{}"
+    "format": "{}",
   },
   "custom/launcher": {
     "format": "",
-    "on-click": "rofi -show drun"
+    "on-click": "rofi -show drun",
   },
   "custom/lyrics": {
     "format": "{}",
@@ -332,15 +285,15 @@
     "exec": "~/.config/waybar/scripts/lyrics.sh",
     "on-click": "playerctl play-pause",
     "on-click-middle": "playerctl previous",
-    "on-click-right": "playerctl next"
+    "on-click-right": "playerctl next",
   },
   "custom/powerprofile": {
     "format": "{}",
     "exec": "~/.config/hypr/scripts/power.sh",
     "return-type": "json",
     "on-click": "~/.config/hypr/scripts/power.sh --toggle",
-    "on-click-right": "~/.config/hypr/scripts/power.sh --performance",
-    "interval": 1
+    "on-click-right": "~/.config/hypr/scripts/power.sh --power-saver",
+    "interval": 1,
   },
   "custom/prayers": {
     "format": "{}",
@@ -348,7 +301,7 @@
     "return-type": "json",
     "exec": "$HOME/.config/waybar/scripts/prayer-notify.sh ; $HOME/.config/waybar/scripts/prayer-times status",
     "on-click-middle": "$HOME/.config/waybar/scripts/prayer-times yad",
-    "on-click": "xdg-open https://timesprayer.com/prayer-times-cities-jordan.html"
+    "on-click": "xdg-open https://timesprayer.com/prayer-times-cities-jordan.html",
   },
   "custom/swaync": {
     "tooltip": true,
@@ -361,26 +314,35 @@
       "inhibited-notification": "<span foreground='red'><sup></sup></span>",
       "inhibited-none": "",
       "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-inhibited-none": ""
+      "dnd-inhibited-none": "",
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "escape": true
+    "escape": true,
+  },
+  "custom/task": {
+    "exec": "~/.config/waybar/scripts/task.sh",
+    "format": "{}",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "~/.config/waybar/scripts/task.sh --remove",
   },
   "custom/timer": {
     "exec": "~/.config/waybar/scripts/waybar-timer.sh",
     "interval": 1,
     "return-type": "json",
-    "format": "{}"
+    "format": "{}",
+    "on-click": "~/.config/rofi/scripts/timer.sh --toggle-pause",
+    "on-click-right": "~/.config/rofi/scripts/timer.sh --stop",
   },
   // WARN: sudo pacman -S pacman-contrib
   "custom/updater": {
     "exec": "echo '{ \"text\": \"'$(checkupdates | wc -l)'\" , \"tooltip\": \"'$(checkupdates | awk '{print $1}' | head -n 50 | sed ':a;N;$!ba;s/\\n/\\\\n/g')'\"}'",
     "return-type": "json",
     "interval": 3600,
-    "on-click": "foot $HOME/.config/waybar/scripts/update.sh; pkill -RTMIN+8 waybar"
-  }
+    "on-click": "foot $HOME/.config/waybar/scripts/update.sh; pkill -RTMIN+8 waybar",
+  },
 }

@@ -4,7 +4,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		opts = {
-			transparent = true,
+			-- transparent = true,
 		},
 	},
 	{
@@ -13,7 +13,7 @@ return {
 		priority = 1000,
 		opts = {
 			variant = "dark",
-			transparent = true,
+			-- transparent = true,
 		},
 	},
 	{
@@ -21,7 +21,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		opts = {
-			transparent_background = true,
+			-- transparent_background = true,
 		},
 	},
 }

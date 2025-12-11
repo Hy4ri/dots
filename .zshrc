@@ -97,6 +97,7 @@ alias snvim='sudoedit'
 alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
+alias nmax='NVIM_APPNAME=nvim-minimax nvim'
 
 #waydroid
 alias wayon='waydroid show-full-ui '

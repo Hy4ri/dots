@@ -4,16 +4,6 @@ return {
 	lazy = true,
 	event = { "BufWritePre" },
 	cmd = "ConformInfo",
-	keys = {
-		{
-			"<leader>f",
-			function()
-				require("conform").format({ async = true, lsp_format = "fallback" })
-			end,
-			mode = "",
-			desc = "[F]ormat buffer",
-		},
-	},
 	opts = {
 		notify_on_error = false,
 		format_on_save = function(bufnr)
@@ -31,7 +21,14 @@ return {
 			lua = { "stylua" },
 			sh = { "shfmt" },
 			python = { "isort", "black" },
-			javascript = { "prettierd", "prettier", stop_after_first = true },
+			javascript = { "prettier" },
+			nix = { "alejandra" },
+			scss = { "prettier" },
+			css = { "prettier" },
+			json = { "prettier" },
+			jsonc = { "prettier" },
+			markdown = { "prettier" },
+			["_"] = { "trim_whitespace", "trim_newlines" },
 		},
 	},
 }
