@@ -51,8 +51,8 @@ keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr
 keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- buffers
-keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+keymap.set({"n","t"}, "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+keymap.set({"n","t"}, "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 
 -- Copy and paste
@@ -79,23 +79,31 @@ keymap.set("x", "K", ":move '<-2<CR>gv-gv", { desc = "Move highlighted text up",
 keymap.set("n", "J", "mzJ`z")
 
 --Snacks
-keymap.set("n", "<leader>sp", function() Snacks.picker() end, { desc = "Pickers" })
-keymap.set("n", "<leader>sb", function() Snacks.picker.buffers() end, { desc = "Buffer Picker" })
-keymap.set("n", "<leader>sf", function() Snacks.picker.files() end, { desc = "Files Picker" })
-keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Grep Pickers" })
-keymap.set("n", "<leader>ss", function() Snacks.picker.spelling() end, { desc = "Spelling Pickers" })
-keymap.set("n", "<leader>so", function() Snacks.picker.recent() end, { desc = "Recent files Pickers" })
+-- keymap.set("n", "<leader>sp", function() Snacks.picker() end, { desc = "Pickers" })
+-- keymap.set("n", "<leader>sb", function() Snacks.picker.buffers() end, { desc = "Buffer Picker" })
+-- keymap.set("n", "<leader>sf", function() Snacks.picker.files() end, { desc = "Files Picker" })
+-- keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Grep Pickers" })
+-- keymap.set("n", "<leader>ss", function() Snacks.picker.spelling() end, { desc = "Spelling Pickers" })
+-- keymap.set("n", "<leader>so", function() Snacks.picker.recent() end, { desc = "Recent files Pickers" })
 
 -- Quicker options
 keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Write" })
 keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
 keymap.set("n", "<leader>r", ":%s/", { noremap = true }, { desc = "Replace in file" })
 keymap.set("x", "<leader>r", ":s/", { noremap = true }, { desc = "Replace in file" })
-keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
+keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true })
 keymap.set("n", "-", "<CMD>Yazi<CR>", { desc = "Open parent directory" })
+
+-- terminal in a new buffer
+keymap.set("n", "<leader>t",
+function ()
+    vim.cmd("enew")
+    vim.cmd("terminal")
+end
+  , { desc = "Open parent directory" })
 
 -- Toggle options
 keymap.set("n", "<leader>uc", "<cmd>Copilot toggle<cr>", { desc = "toggle copilot" })

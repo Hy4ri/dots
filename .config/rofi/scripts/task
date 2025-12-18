@@ -11,7 +11,7 @@ MENU_ITEMS=(
 create() {
   task=$(rofi -dmenu -p "Enter task:")
   if [[ -n "$task" ]]; then
-    echo " $task" >>"$TASK_FILE"
+    echo "  $task" >>"$TASK_FILE"
     notify-send "Task Added" "$task"
   fi
 }

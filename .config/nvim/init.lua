@@ -1,9 +1,11 @@
 ---@diagnostic disable: undefined-field
 -- These modules are not loaded by lazy
-require("core.options")
-require("core.keymaps")
-require("core.autocmd")
-require("core.neovide")
+require("options")
+require("keymaps")
+require("autocmd")
+require("neovide")
+require("statusline")
+require("tabline")
 
 -- Bootstrap lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

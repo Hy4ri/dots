@@ -39,7 +39,7 @@ read -r Nix
 case "$Nix" in
 yes | Yes | y | Y)
   echo "Building Nix"
-  ~/dots/scripts/./nix.sh
+  ~/dots/scripts/./nix
   ;;
 No | no | n | N) ;;
 *) ;;
@@ -53,7 +53,7 @@ read -r Dotfiles
 case "$Dotfiles" in
 yes | Yes | y | Y)
   [ ! -d ~/Documents ] && mkdir ~/Documents/Projects/dots/ && cp ~/dots -r ~/Documents/Projects/dots/
-  ~/dots/scripts/./symlink.sh
+  ~/dots/scripts/./symlink
   cd ~/dots
   cp -r .local/share/icons ~/.local/share/icons
   cp -r.local/share/themes ~/.local/share/themes

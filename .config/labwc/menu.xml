@@ -464,7 +464,7 @@
   </menu> <!-- System -->
   <menu id="Other" label="Other">
     <item label="BakkesMod" icon="742F_BakkesMod.0">
-      <action name="Execute"><command>bash -c '~/.config/hypr/UserScripts/bakkasmod.sh'</command></action>
+      <action name="Execute"><command>bash -c '~/.config/hypr/UserScripts/bakkasmod'</command></action>
     </item>
     <item label="Excalidraw" icon="ftwa-excalidraw">
       <action name="Execute"><command>/usr/bin/brave --app='https://excalidraw.com'</command></action>

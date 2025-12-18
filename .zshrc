@@ -2,12 +2,12 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export CSCOPE_EDITOR="nvim"
 export MANPAGER="nvim +Man!"
-export helper="paru"
 export less_termcap_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export less_termcap_me="$(tput sgr0 2> /dev/null)"
 export fzf_default_opts="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
 export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 export PATH=$PATH:/home/m57/.spicetify
+
 
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -23,7 +23,7 @@ setopt hist_find_no_dups
 setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_verify
-setopt interactive_comments 
+setopt interactive_comments
 setopt AUTOCD
 setopt PROMPT_SUBST
 setopt MENU_COMPLETE
@@ -39,6 +39,7 @@ alias nr='nh os boot ~/Documents/Projects/dots/nix'
 alias ncln='sudo nix-collect-garbage --delete-older-than 1d'
 alias nup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
 alias alien='nix-alien-ld -- '
+
 #pacman
 alias sps='sudo pacman -S'
 alias spss='sudo pacman -Ss'
@@ -98,6 +99,7 @@ alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
 alias nmax='NVIM_APPNAME=nvim-minimax nvim'
+alias mvim='NVIM_APPNAME=mvim nvim'
 
 #waydroid
 alias wayon='waydroid show-full-ui '
@@ -109,10 +111,10 @@ venv/bin/pip install -r requirements.txt
 sudo venv/bin/python3 main.py'
 
 #scripts
-alias music='bash ~/.config/hypr/scripts/music.sh'
-alias png='bash ~/.config/hypr/scripts/png.sh'
-alias 25='bash ~/.config/hypr/scripts/25.sh'
-alias subtitle='bash ~/.config/hypr/scripts/subtitles.sh'
+alias music='bash ~/.config/hypr/scripts/music'
+alias png='bash ~/.config/hypr/scripts/png'
+alias 25='bash ~/.config/hypr/scripts/25'
+alias subtitle='bash ~/.config/hypr/scripts/subtitles'
 alias xx='bash ~/Documents/xx.sh'
 
 #random
@@ -156,25 +158,31 @@ function plugin-load {
 	done
 }
 
+# z&l
+zl() {
+  z "$@"
+  l
+}
+
 # Extract
 extract () {
-    if [ -f $1 ] ; then
-      case $1 in
-        *.tar.bz2)   tar xjf $1   ;;
-        *.tar.gz)    tar xzf $1   ;;
-        *.bz2)       bunzip2 $1   ;;
-        *.rar)       unrar x $1   ;;
-        *.gz)        gunzip $1    ;;
-        *.tar)       tar xf $1    ;;
-        *.tbz2)      tar xjf $1   ;;
-        *.tgz)       tar xzf $1   ;;
-        *.zip)       unzip $1     ;;
-        *.Z)         uncompress $1;;
-        *.7z)        7za e x $1   ;;
-        *.deb)       ar x $1      ;;
-        *.tar.xz)    tar xf $1    ;;
-        *.tar.zst)   unzstd $1    ;;
-        *)           echo "'$1' cannot be extracted via extract()" ;;
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1;;
+      *.tar.gz)    tar xzf $1;;
+      *.bz2)       bunzip2 $1;;
+      *.rar)       unrar x $1;;
+      *.gz)        gunzip $1;;
+      *.tar)       tar xf $1;;
+      *.tbz2)      tar xjf $1;;
+      *.tgz)       tar xzf $1;;
+      *.zip)       unzip $1;;
+      *.Z)         uncompress $1;;
+      *.7z)        7za e x $1;;
+      *.deb)       ar x $1;;
+      *.tar.xz)    tar xf $1;;
+      *.tar.zst)   unzstd $1;;
+      *)           echo "'$1' cannot be extracted via extract()";;
     esac
   else
     echo "'$1' is not a valid file"
@@ -183,7 +191,7 @@ extract () {
 
 #Compress
 compress() {
-  tar -czf "${1%/}.tar.gz" "${1%/}"; 
+  tar -czf "${1%/}.tar.gz" "${1%/}";
 }
 
 # Git push all
@@ -211,7 +219,7 @@ dngl() {
 # Update pkgs
 up() {
   nh os switch -u ~/Documents/Projects/dots/nix
-  flatpak update 
+  flatpak update
 }
 
 # Warp
@@ -243,10 +251,21 @@ yazicd_widget() {
 zle -N yazicd_widget
 bindkey '^o' yazicd_widget
 
+############################# fzf ##########################################
+
+if [ -f /run/current-system/sw/share/fzf/key-bindings.zsh ]; then
+    source /run/current-system/sw/share/fzf/key-bindings.zsh
+elif command -v fzf &>/dev/null; then
+    source <(fzf --zsh) 2>/dev/null || true
+fi
+
 ############################# vi mode ##########################################
 
 bindkey -v
 export KEYTIMEOUT=20
+
+bindkey -M viins '^r' fzf-history-widget
+bindkey -M vicmd '^r' fzf-history-widget
 
 # Cursor shape
 function zle-keymap-select {
@@ -315,9 +334,6 @@ repos=(
 	zdharma-continuum/fast-syntax-highlighting
 )
 plugin-load $repos
+
 ############################## launch ###############################
 fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
-
-
-
-

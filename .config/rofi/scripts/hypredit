@@ -9,15 +9,14 @@ term="foot"
 # Define menu items as "Label|Function Name"
 MENU_ITEMS=(
   "1. view Hyprland-Settings|settings"
-  "2. view Window-Rules|windowrules"
+  "2. view WindowRules|windowrules"
   "3. view Keybinds|keybinds"
   "4. view Appbinds|appbinds"
   "5. view Scripts|scripts"
-  "6. view Startup_Apps|autostart"
+  "6. view Autostart|autostart"
   "7. view Env-variables|env"
   "8. view Hypr Folder|hypr_folder"
   "9. view Monitors|monitors"
-  "10. view Laptop-Settings|laptops"
   "11. view Settings-wal|settings_wal"
   "12. view Main config|main_config"
 )
@@ -32,7 +31,6 @@ autostart() { $term nvim "$Configs/autostart.conf"; }
 env() { $term nvim "$Configs/env.conf"; }
 hypr_folder() { $term nvim "$hypr"; }
 monitors() { $term nvim "$Configs/monitors.conf"; }
-laptops() { $term nvim "$Configs/laptops.conf"; }
 settings_wal() { $term nvim "$Configs/settings-wal.conf"; }
 main_config() { $term nvim ~/.config/hypr/hyprland.conf; }
 

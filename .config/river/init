@@ -18,7 +18,7 @@ riverctl map normal Super E spawn thunar
 
 riverctl map normal Super Z spawn "pkill rofi || ~/.config/rofi/launchers/type-3/launcher.sh"
 
-riverctl map normal Super P spawn "~/.config/rofi/powermenu/type-2/powermenu.sh"
+riverctl map normal Super P spawn "~/.config/rofi/powermenu/type-2/powermenu"
 
 # Super+Return to start an instance of foot (https://codeberg.org/dnkl/foot)
 riverctl map normal Super Return spawn foot

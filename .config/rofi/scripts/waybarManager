@@ -14,7 +14,7 @@ restart_waybar() {
     pkill waybar
     sleep 0.1
   fi
-  "${SCRIPTSDIR}/refresh.sh" &
+  "${SCRIPTSDIR}/refresh" &
   notify-send "Waybar" "Restarted"
 }
 

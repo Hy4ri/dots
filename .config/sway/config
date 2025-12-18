@@ -64,10 +64,10 @@ set $configs $HOME/.config/hypr/configs
   exec blumean-manager
   exec hypridle
   exec foor --server
-  exec ~/.config/hypr/Scripts/openrgb.sh
+  exec ~/.config/hypr/Scripts/openrgb
   exec wl-paste --type text --watch cliphist store
   exec wl-paste --type image --watch cliphist store
-  exec_always ~/.config/hypr/Scripts/WallpaperRandom-sway.sh
+  exec_always ~/.config/hypr/Scripts/WallpaperRandom-sway
 
 #Setting
   mouse_warping container
@@ -169,11 +169,11 @@ set $configs $HOME/.config/hypr/configs
 #
 #MY keyBinds
 #
-    bindsym Ctrl+Alt+w exec ~/.config/hypr/UserScripts/WallpaperRandom-sway.sh
+    bindsym Ctrl+Alt+w exec ~/.config/hypr/UserScripts/WallpaperRandom-sway
     bindsym $mod+alt+v exec ~/.config/hypr/scripts/ClipManager.sh
     bindsym $mod+alt+r exec $scriptsDir/Refresh.sh
     bindsym $mod+B exec killall -SIGUSR1 waybar  
-    bindsym $mod+p exec ~/.config/rofi/powermenu/type-1/powermenu.sh
+    bindsym $mod+p exec ~/.config/rofi/powermenu/type-1/powermenu
     #SceenShot
     bindsym Print exec $scriptsDir/ScreenShot.sh --now
     bindsym $mod+SHIFT+S exec $scriptsDir/ScreenShot.sh --swappy
@@ -187,7 +187,7 @@ set $configs $HOME/.config/hypr/configs
     bindsym  xf86Search exec $scriptsDir/Volume.sh --toggle-mic #mute mic
     bindsym  xf86audiomute exec $scriptsDir/Volume.sh --toggle
     bindsym  xf86Sleep exec systemctl suspend  # sleep button
-    bindsym  xf86Rfkill exec $scriptsDir/AirplaneMode.sh #Airplane mode
+    bindsym  xf86Rfkill exec $scriptsDir/AirplaneMode #Airplane mode
     bindsym  xf86AudioPause exec $scriptsDir/MediaCtrl.sh --pause
     bindsym  xf86AudioPlay exec $scriptsDir/MediaCtrl.sh --pause
     bindsym  xf86AudioNext exec $scriptsDir/MediaCtrl.sh --nxt

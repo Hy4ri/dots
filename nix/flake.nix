@@ -9,9 +9,10 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, hyprland, hyprland-guiutils, nix-alien, aagl, determinate, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, hyprland, hyprland-guiutils, nix-alien, aagl, determinate, nvim-nightly, ... }@inputs: {
     nixosConfigurations = {
       hyari = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
@@ -28,7 +29,8 @@
           ({ self, ... }: {
             nixpkgs.overlays = [
               self.inputs.nix-alien.overlays.default
-               self.inputs.hyprland-guiutils.overlays.default
+              self.inputs.hyprland-guiutils.overlays.default
+              self.inputs.nvim-nightly.overlays.default
             ];
           })
         ];

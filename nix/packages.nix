@@ -94,9 +94,10 @@ inputs,
       umu-launcher
       unzip
       upower
-      upower-notify
+      upscayl
       usbutils
       vicinae
+      vesktop
       warehouse
       wev
       wf-recorder
@@ -175,8 +176,6 @@ inputs,
     neovim = {
       enable = true;
       defaultEditor = true;
-      vimAlias = true;
-      viAlias = true;
     };
 
     nh = {
@@ -231,6 +230,5 @@ inputs,
   services.flatpak.packages = [
     "com.github.tchx84.Flatseal"
     "com.obsproject.Studio"
-    "org.equicord.equibop"
   ];
 }

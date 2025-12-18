@@ -1,5 +1,9 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter-textobjects",
+	},
+	lazy = false,
 	build = ":TSUpdate",
 	event = { "BufReadPost", "BufNewFile" },
 	config = function()
@@ -15,17 +19,24 @@ return {
 
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
-				"lua",
 				"bash",
+				"comment",
+				"css",
+				"diff",
+				"html",
 				"json",
-				"yaml",
+				"lua",
+				"luadoc",
+				"make",
 				"markdown",
 				"markdown_inline",
-				"html",
-				"xml",
 				"php",
-				"css",
 				"python",
+				"toml",
+				"vim",
+				"vimdoc",
+				"xml",
+				"yaml",
 			},
 			ignore_install = {},
 			sync_install = false,

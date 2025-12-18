@@ -1,5 +1,5 @@
 # Set background color.
-$HOME/.config/hypr/UserScripts/hyprwallRandom-Swww.sh &
+$HOME/.config/hypr/UserScripts/hyprwallRandom-Swww &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names
@@ -47,8 +47,8 @@ wl-paste --type image --watch cliphist store
 gammastep-indicator &
 nm-applet --indicator &
 blueman-applet &
-$HOME/.config/hypr/UserScripts/openrgb.sh &
-$HOME/.config/hypr/UserScripts/hyprwallRandom-Swww.sh &
+$HOME/.config/hypr/UserScripts/openrgb &
+$HOME/.config/hypr/UserScripts/hyprwallRandom-Swww &
 xremap ~/.config/xremap/config.yaml &
 vivaldi &
 ~/AppImages/./todoist.appimage &

@@ -8,7 +8,7 @@ update() {
 
 install() {
   pkill spotify
-  curl -fssl https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
+  curl -fssl https://raw.githubusercontent.com/spicetify/cli/main/install | sh
 }
 case "$1" in
   --install)

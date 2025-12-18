@@ -22,7 +22,8 @@ pkgs,
         canTouchEfiVariables = true;
       };
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
+    # kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "nowatchdog"
       "modprobe.blacklist=sp5100_tco"

@@ -40,4 +40,4 @@ if [ "$ln_success" = true ]; then
 fi
 
 sleep 0.2
-${SCRIPTSDIR}/RefreshNoWaybar.sh
+${SCRIPTSDIR}/RefreshNoWaybar

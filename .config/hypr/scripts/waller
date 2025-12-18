@@ -29,8 +29,7 @@ Auto_Change() {
 }
 
 Restore_wallpaper() {
-  local current_wall
-  current_wall=$(swww query | jq -r '.current_img')
+  current_wall=$(swww query | grep eDP-1 | cut -d : -f 6 | xargs echo)
   if [[ -f "$current_wall" ]]; then
     swww img "$current_wall" --outputs $MONITORS --transition-type none --transition-duration 0
   else
@@ -38,9 +37,9 @@ Restore_wallpaper() {
   fi
 }
 
-Mini() {
-  mini_wall=~/Pictures/wallpapers/roseCenterPink.png
-  swww img "$mini_wall" --outputs HDMI-A-3 --transition-type none --transition-duration 0
+mini() {
+  local wall=~/Pictures/wallpapers/roseCenterPink.png
+  swww img "$wall" --outputs HDMI-A-3 --transition-type none --transition-duration 0
 }
 
 case "$1" in
@@ -57,10 +56,10 @@ case "$1" in
   Restore_wallpaper
   ;;
 --mini)
-  Mini
+  mini
   ;;
 *)
-  echo "Usage: $0 --select | --select-wal | --random | --random-wal | --auto | --restore | --mini"
+  echo "Usage: $0 --select | --random | --auto | --restore | --mini"
   exit 1
   ;;
 esac

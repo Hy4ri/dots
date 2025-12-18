@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+# Configuration
+THRESHOLD_LOW=20
+STATE_FILE="${XDG_RUNTIME_DIR:-/tmp}/battery_notify_state"
+ICON="battery-level-10-symbolic" # You can change this to a valid icon name
+URGENCY="critical"
+
+# Function to send notification
+notify_user() {
+  local level=$1
+  local title="Battery Low"
+  local message="Battery level is at ${level}%!"
+
+  notify-send -u "$URGENCY" -i "$ICON" "$title" "$message"
+}
+
+# specific battery path detection
+find_battery_path() {
+  for b in /sys/class/power_supply/BAT*; do
+    if [ -d "$b" ]; then
+      echo "$b"
+      return
+    fi
+  done
+}
+
+BAT_PATH=$(find_battery_path)
+
+# Variables
+capacity=""
+status=""
+
+# Get Battery Info
+if [ -n "$BAT_PATH" ]; then
+  capacity=$(cat "$BAT_PATH/capacity" 2>/dev/null)
+  status=$(cat "$BAT_PATH/status" 2>/dev/null)
+elif command -v acpi &>/dev/null; then
+  # Fallback to ACPI
+  acpi_out=$(acpi -b 2>/dev/null)
+  if [ -n "$acpi_out" ]; then
+    capacity=$(echo "$acpi_out" | grep -oP '\d+%' | tr -d '%')
+    if echo "$acpi_out" | grep -q "Discharging"; then
+      status="Discharging"
+    else
+      status="Charging"
+    fi
+  fi
+fi
+
+if [ -z "$capacity" ] || [ -z "$status" ]; then
+  exit 0
+fi
+
+# Read previous state
+last_notified_level=101
+if [ -f "$STATE_FILE" ]; then
+  last_notified_level=$(cat "$STATE_FILE")
+fi
+
+if [ "$status" != "Discharging" ]; then
+  echo "101" >"$STATE_FILE"
+  exit 0
+fi
+
+if [ "$capacity" -le "$THRESHOLD_LOW" ]; then
+  current_tier="none"
+
+  if [ "$capacity" -le 5 ]; then
+    current_tier=5
+  elif [ "$capacity" -le 10 ]; then
+    current_tier=10
+  elif [ "$capacity" -le 20 ]; then
+    current_tier=20
+  fi
+
+  if [ "$current_tier" != "none" ]; then
+    should_notify=0
+
+    if [ "$capacity" -le 20 ] && [ "$last_notified_level" -gt 20 ]; then
+      should_notify=1
+    elif [ "$capacity" -le 10 ] && [ "$last_notified_level" -gt 10 ]; then
+      should_notify=1
+    elif [ "$capacity" -le 5 ] && [ "$last_notified_level" -gt 5 ]; then
+      should_notify=1
+    fi
+
+    if [ "$should_notify" -eq 1 ]; then
+      notify_user "$capacity"
+      echo "$capacity" >"$STATE_FILE"
+    fi
+  fi
+else
+  echo "$capacity" >"$STATE_FILE"
+fi

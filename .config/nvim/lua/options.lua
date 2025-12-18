@@ -1,13 +1,14 @@
 local opt = vim.opt
-local g = vim.g
 
 opt.arabicshape = true -- Correctly displays Arabic characters' shapes.
+-- opt.autocomplete = true --
 opt.autoindent = true -- Copies the indentation from the previous line when starting a new line.
 opt.autoread = true -- Automatically reloads a file if it was changed outside of Neovim
 opt.autowrite = false -- Automatically writes changes to a file when switching buffers or exiting Neovim
 opt.breakindent = true -- Indents wrapped lines to match code indentation
 opt.clipboard = "unnamedplus" -- Uses the system clipboard (+) for all copy/paste operations.
 opt.cmdheight = 0 -- Hides the command line area (set to 0 lines).
+-- opt.complete = "o,.,w,b,u"
 opt.colorcolumn = "+1" -- Draw column on the right of maximum width
 opt.completeopt = "menuone,noselect,fuzzy,nosort" -- Configures the autocompletion popup
 opt.complete = ".,w,b,kspell" -- Use less sources
@@ -23,6 +24,7 @@ opt.fillchars = {
 	foldclose = "",
 	foldopen = "",
 	foldsep = " ",
+	foldinner = " ",
 	msgsep = "─",
 }
 opt.foldlevel = 0 -- Fold nothing by default; set to 0 or 1 to fold
@@ -31,7 +33,6 @@ opt.foldnestmax = 10 -- Limit number of fold levels
 opt.foldtext = "" -- Show text under fold with its highlighting
 opt.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 opt.formatoptions = "rqnl1j" -- Controls various automatic formatting options (e.g., 'c' wraps comments).
-opt.formatoptions:remove({ "o", "c", "r" }) -- Don't continue comments with 'o' or 'O' or Enter
 opt.hlsearch = true -- Automatically highlights all matches for your last search.
 opt.ignorecase = true -- Makes all searches case-insensitive.
 opt.inccommand = "split" -- Shows a live preview of a substitute-command (`:s/.../.../`) in a split window.
@@ -46,6 +47,7 @@ opt.mouse = "a" -- Enables mouse support in all modes (clicking, scrolling, resi
 opt.number = true -- Shows absolute line numbers for every line.
 opt.numberwidth = 2 -- Sets the width of the line number column to 2 characters.
 opt.pumheight = 10 -- Limits the height of the completion popup menu to 10 items.
+opt.pummaxwidth = 80 -- Limits the width of the completion popup.
 opt.relativenumber = true -- Shows line numbers relative to the cursor (e.g., 1, 2, 3... away).
 opt.ruler = false -- Hides the cursor position (row/col) from the bottom-right corner.
 opt.scrolloff = 8 -- Keeps 8 lines of context visible above and below the cursor when scrolling.
@@ -73,9 +75,3 @@ opt.virtualedit = "block" -- Allow cursor to move where there is no text in visu
 opt.wildmenu = true -- Enables an enhanced completion menu when typing commands or paths.
 opt.wildmode = "longest:full,full"
 opt.wrap = false -- Disables automatic line wrapping; long lines will scroll horizontally.
-
----- Command Line & Completion
--- opt.autocomplete = true
--- opt.complete = "o,.,w,b,u"
--- opt.pummaxwidth = 80 -- Limits the width of the completion popup.
-g.snacks_animate = false

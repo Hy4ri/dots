@@ -118,7 +118,7 @@ spawn-at-startup "hypridle"
 spawn-at-startup "swww-daemon"
 // spawn-sh-at-startup "wl-paste -t text -w cliphist store -max-items 1000000"
 // spawn-sh-at-startup "wl-paste -t image -w cliphist store -max-items 1000000"
-spawn-sh-at-startup "~/.config/niri/scripts/polkit.sh"
+spawn-sh-at-startup "~/.config/niri/scripts/polkit"
 spawn-sh-at-startup "wlsunset -l 32.0346 -L 35.7269"
 
 // Env Vars
@@ -183,25 +183,25 @@ hotkey-overlay {
 binds {
   Mod+return { spawn "foot"; }
   Mod+Z { spawn "rofi" "-show" "drun" "-p"; }
-  Mod+Shift+Z { spawn "~/.config/rofi/rofiScript.sh"; }
+  Mod+Shift+Z { spawn "~/.config/rofi/rofiScript"; }
   Mod+E { spawn "nemo"; }
   Mod+v { spawn "vivaldi"; }
   Mod+Alt+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
   Ctrl+Shift+escape { spawn "foot" "btop"; }
 
-  xf86audioraisevolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--inc"; }
-  xf86audiolowervolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume.sh" "--dec"; }
-  Shift+xf86audioraisevolume { spawn "~/.config/hypr/scripts/brightness.sh" "--inc"; }
-  Shift+xf86audiolowervolume { spawn "~/.config/hypr/scripts/brightness.sh" "--dec"; }
-  xf86Search { spawn "~/.config/hypr/scripts/volume.sh" "--toggle-mic"; }
-  xf86audiomute { spawn "~/.config/hypr/scripts/volume.sh" "--toggle"; }
+  xf86audioraisevolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume" "--inc"; }
+  xf86audiolowervolume allow-when-locked=true { spawn "~/.config/hypr/scripts/volume" "--dec"; }
+  Shift+xf86audioraisevolume { spawn "~/.config/hypr/scripts/brightness" "--inc"; }
+  Shift+xf86audiolowervolume { spawn "~/.config/hypr/scripts/brightness" "--dec"; }
+  xf86Search { spawn "~/.config/hypr/scripts/volume" "--toggle-mic"; }
+  xf86audiomute { spawn "~/.config/hypr/scripts/volume" "--toggle"; }
   xf86Sleep { spawn "systemctl suspend"; }
   xf86Rfkill { spawn "~/.config/hypr/scripts/airplaneMode.sh"; }
-  xf86AudioPlay allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--pause"; }
-  xf86AudioPause allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--pause"; }
-  xf86AudioNext allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--nxt"; }
-  xf86AudioPrev allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--prv"; }
-  xf86audiostop allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl.sh" "--stop"; }
+  xf86AudioPlay allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl" "--pause"; }
+  xf86AudioPause allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl" "--pause"; }
+  xf86AudioNext allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl" "--nxt"; }
+  xf86AudioPrev allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl" "--prv"; }
+  xf86audiostop allow-when-locked=true { spawn "~/.config/hypr/scripts/mediaCtrl" "--stop"; }
 
   Mod+Q { close-window; }
 
@@ -262,11 +262,11 @@ binds {
 
   Mod+Ctrl+P { power-off-monitors; }
 
-  Mod+W { spawn "~/.config/hypr/scripts/waller.sh" "--select"; }
-  Ctrl+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--random"; }  
-  Mod+Alt+W { spawn "~/.config/hypr/scripts/waller.sh" "--mini"; } 
+  Mod+W { spawn "~/.config/hypr/scripts/waller" "--select"; }
+  Ctrl+Alt+W { spawn "~/.config/hypr/scripts/waller" "--random"; }  
+  Mod+Alt+W { spawn "~/.config/hypr/scripts/waller" "--mini"; } 
 
-  Mod+B { spawn "~/.config/hypr/scripts/waybar.sh" "--niri"; }
+  Mod+B { spawn "~/.config/hypr/scripts/waybar" "--niri"; }
 }
 
 // WindowRules
