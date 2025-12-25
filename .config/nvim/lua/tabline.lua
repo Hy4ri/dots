@@ -3,7 +3,7 @@ local M = {}
 -- Colors
 vim.api.nvim_set_hl(0, "oTabLineSel", { bg = "#990000", fg = "#e2e2e2", bold = true, italic = true }) -- Active Tab
 vim.api.nvim_set_hl(0, "oTabLine", { bg = "#121212", fg = "#b2b2b2" }) -- Inactive Tabs
-vim.api.nvim_set_hl(0, "oTabLineFill", { bg = "#000000" }) -- Background Line
+vim.api.nvim_set_hl(0, "oTabLineFill", { bg = "#121212" }) -- Background Line
 
 _G.inactive = function()
 	return ""

@@ -39,11 +39,11 @@ return {
 			local hi_words = require("mini.extra").gen_highlighter.words
 			require("mini.hipatterns").setup({
 				highlighters = {
-					todo = hi_words({ "TODO", "Todo", "todo" }, "MiniHipatternsTodo"),
-					fixme = hi_words({ "FIXME", "Fixme", "fixme" }, "MiniHipatternsFixme"),
-					note = hi_words({ "NOTE", "Note", "note" }, "MiniHipatternsNote"),
-					hack = hi_words({ "HACK", "Hack", "hack" }, "MiniHipatternsHack"),
-					warn = hi_words({ "WARN", "Warn", "warn" }, "MiniHipatternsHack"),
+					todo = hi_words({ "TODO" }, "MiniHipatternsTodo"),
+					fixme = hi_words({ "FIXME" }, "MiniHipatternsFixme"),
+					note = hi_words({ "NOTE" }, "MiniHipatternsNote"),
+					hack = hi_words({ "HACK" }, "MiniHipatternsHack"),
+					warn = hi_words({ "WARN" }, "MiniHipatternsHack"),
 
 					hex_color = hipatterns.gen_highlighter.hex_color(),
 					rgb_color = {

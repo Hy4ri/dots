@@ -1,119 +1,121 @@
 {
-pkgs,
-inputs,
-...
+  pkgs,
+  inputs,
+  ...
 }: {
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages =
-    (with pkgs; [
-      antigravity-fhs
-      bc
-      bitwarden-desktop
-      brightnessctl
-      btop
-      cargo
-      clang
-      cloudflare-warp
-      cmake
-      coppwr
-      curl
-      dua
-      dunst
-      eza
-      fastfetch
-      fd
-      ffmpeg
-      findutils
-      fzf
-      gcc
-      gdb
-      gearlever
-      gimp3-with-plugins
-      gnumake
-      go
-      grim
-      groff
-      heroic
-      hyprcursor
-      hypridle
-      hyprland-guiutils
-      hyprland-qt-support
-      hyprpaper
-      hyprpicker
-      hyprpolkitagent
-      hyprprop
-      hyprtoolkit
-      hyprutils
-      imagemagick
-      jdk
-      jq
-      julia
-      kdePackages.qt6ct
-      kdePackages.qtstyleplugin-kvantum
-      kdePackages.qtwayland
-      kew
-      kitty
-      libappindicator
-      libnotify
-      libsForQt5.qt5ct
-      libsForQt5.qtstyleplugin-kvantum
-      lua51Packages.lua
-      luarocks
-      lutris
-      # mangowc
-      man-pages
-      mpv
-      nix-alien
-      nixd
-      nodejs_24
-      nwg-look
-      oculante
-      pavucontrol
-      php
-      playerctl
-      # polkit_gnome
-      python3
-      python313Packages.ds4drv
-      python3Packages.pip
-      qalculate-gtk
-      qbittorrent
-      ripgrep
-      riseup-vpn
-      rofi
-      scrcpy
-      slurp
-      socat
-      spice-gtk
-      swappy
-      swww
-      syncthing
-      termdown
-      trash-cli
-      tree-sitter
-      umu-launcher
-      unzip
-      upower
-      upscayl
-      usbutils
-      vicinae
-      vesktop
-      warehouse
-      wev
-      wf-recorder
-      wget
-      wine
-      wl-clipboard
-      wlsunset
-      xdg-desktop-portal-hyprland
-      xdg-user-dirs
-      xdg-utils
-      # xwayland-satellite
-      yad
-      yazi
-      yt-dlp
-      zathura
-    ]);
+  environment.systemPackages = with pkgs; [
+    android-tools
+    antigravity-fhs
+    bc
+    bitwarden-desktop
+    brightnessctl
+    btop
+    cargo
+    clang
+    cloudflare-warp
+    cmake
+    coppwr
+    curl
+    distrobox
+    dua
+    dunst
+    eza
+    fastfetch
+    fd
+    ffmpeg
+    findutils
+    fzf
+    gcc
+    gdb
+    gearlever
+    gimp3-with-plugins
+    gnumake
+    go
+    grim
+    groff
+    heroic
+    hyprcursor
+    hypridle
+    hyprland-guiutils
+    hyprland-qt-support
+    hyprpaper
+    hyprpicker
+    hyprpolkitagent
+    hyprprop
+    hyprtoolkit
+    hyprutils
+    imagemagick
+    jdk
+    jq
+    julia
+    kdePackages.qt6ct
+    kdePackages.qtstyleplugin-kvantum
+    kdePackages.qtwayland
+    kew
+    kitty
+    libappindicator
+    libnotify
+    libsForQt5.qt5ct
+    libsForQt5.qtstyleplugin-kvantum
+    lua51Packages.lua
+    luarocks
+    lutris
+    # mangowc
+    man-pages
+    mpv
+    nix-alien
+    nixd
+    nodejs_24
+    nwg-look
+    oculante
+    onlyoffice-desktopeditors
+    pavucontrol
+    php
+    playerctl
+    # polkit_gnome
+    python3
+    python313Packages.ds4drv
+    python3Packages.pip
+    qalculate-gtk
+    qbittorrent
+    ripgrep
+    riseup-vpn
+    rofi
+    scrcpy
+    slurp
+    socat
+    spice-gtk
+    swappy
+    swww
+    syncthing
+    termdown
+    trash-cli
+    tree-sitter
+    umu-launcher
+    unzip
+    upower
+    upscayl
+    usbutils
+    vicinae
+    vesktop
+    warehouse
+    wev
+    wf-recorder
+    wget
+    wine
+    wl-clipboard
+    wlsunset
+    xdg-desktop-portal-hyprland
+    xdg-user-dirs
+    xdg-utils
+    # xwayland-satellite
+    yad
+    yazi
+    yt-dlp
+    zathura
+  ];
 
   #FONTS
   fonts = {
@@ -145,10 +147,9 @@ inputs,
       settings = {
         theme = "TwoDark";
       };
-      extraPackages = 
-        with pkgs.bat-extras; [
-          prettybat
-        ];
+      extraPackages = with pkgs.bat-extras; [
+        prettybat
+      ];
     };
 
     foot = {
@@ -189,10 +190,9 @@ inputs,
       remotePlay.openFirewall = false;
       dedicatedServer.openFirewall = false;
       protontricks.enable = false;
-      extraCompatPackages = 
-        with pkgs; [
-          proton-ge-bin
-        ];
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
     };
 
     tmux = {

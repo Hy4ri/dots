@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+PID_DIR=/tmp/hypr_sendkey
+mkdir -p "$PID_DIR"
+
+repeat() {
+  local pid_file="${PID_DIR}/repeat.pid"
+  local class="$1"
+  local key="$2"
+
+  if [ "$class" = "active" ]; then
+    class=$(hyprctl -j activewindow 2>/dev/null | jq -r '.class')
+  fi
+
+  if [ -f "$pid_file" ]; then
+    pid=$(cat "$pid_file")
+    if ps -p "$pid" >/dev/null 2>&1; then
+      kill "$pid"
+    fi
+
+    hyprctl dispatch sendkeystate ,"$key",up,class:"$class"
+    rm -f "$pid_file"
+    notify-send "Key $key repeating OFF"
+  else
+    (
+      while true; do
+        hyprctl --batch \
+          "dispatch sendkeystate ,$key,down,class:$class; \
+           dispatch sendkeystate ,$key,up,class:$class"
+        sleep 0.005
+      done
+    ) &
+
+    echo $! >"$pid_file"
+    notify-send "Key $key is repeating on $class"
+  fi
+}
+
+hold() {
+  local pid_file="${PID_DIR}/hold.pid"
+  local class="$1"
+  local key="$2"
+
+  if [ "$class" = "active" ]; then
+    class=$(hyprctl -j activewindow 2>/dev/null | jq -r '.class')
+  fi
+
+  if [ -f "$pid_file" ]; then
+    pid=$(cat "$pid_file")
+    if ps -p "$pid" >/dev/null 2>&1; then
+      kill "$pid"
+    fi
+
+    hyprctl dispatch sendkeystate ,"$key",up,class:"$class"
+    rm -f "$pid_file"
+    notify-send "Holding key $key OFF"
+  else
+    (
+      hyprctl dispatch sendkeystate ,"$key",down,class:"$class"
+      while sleep 1; do :; done
+    ) &
+
+    echo $! >"$pid_file"
+    notify-send "Holding key $key ON"
+  fi
+}
+
+# usage: pass to the script the function name and the class and key
+# example: ./sendkey repeat foot y
+
+case "$1" in
+repeat)
+  repeat "$2" "$3"
+  ;;
+hold)
+  hold "$2" "$3"
+  ;;
+*)
+  echo "Usage: $0 {repeat|hold} <class> <key>"
+  exit 1
+  ;;
+esac

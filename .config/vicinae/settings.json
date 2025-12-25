@@ -1,0 +1,224 @@
+// This configuration is merged with the default vicinae configuration file, which you can obtain by running the `vicinae config default` command.
+// Every item defined in this file takes precedence over the values defined in the default config or any other imported file.
+//
+// You can make manual edits to this file, however you should keep in mind that this file may be written to by vicinae when a configuration change is made through the GUI.
+// When that happens, any custom comments or formatting will be lost.
+//
+// If you want to maintain a configuration file with your own comments and formatting, you should create a separate file and add it to the 'imports' array.
+//
+// Learn more about configuration at https://docs.vicinae.com/config
+
+{
+  "imports": [],
+  "close_on_focus_loss": false,
+  "consider_preedit": false,
+  "pop_to_root_on_close": true,
+  "favicon_service": "twenty",
+  "keybinding": "default",
+  "search_files_in_root": false,
+  "font": {
+    "normal": {
+      "family": "auto",
+      "size": 10.5
+    }
+  },
+  "theme": {
+    "light": {
+      "name": "vicinae-light",
+      "icon_theme": "auto"
+    },
+    "dark": {
+      "name": "M57",
+      "icon_theme": "auto"
+    }
+  },
+  "launcher_window": {
+    "opacity": 0.98,
+    "client_side_decorations": {
+      "enabled": true,
+      "rounding": 2,
+      "border_width": 3
+    },
+    "size": {
+      "width": 847,
+      "height": 576
+    },
+    "layer_shell": {
+      "scope": "vicinae",
+      "layer": "top",
+      "keyboard_interactivity": "exclusive",
+      "enabled": true
+    }
+  },
+  "keybinds": {
+    "action.copy": "control+C",
+    "action.copy-name": "control+shift+.",
+    "action.copy-path": "control+shift+,",
+    "action.dangerous-remove": "control+shift+X",
+    "action.duplicate": "control+D",
+    "action.edit": "control+E",
+    "action.edit-secondary": "control+shift+E",
+    "action.move-down": "control+shift+ARROWDOWN",
+    "action.move-up": "control+shift+ARROWUP",
+    "action.new": "control+N",
+    "action.open": "control+O",
+    "action.pin": "control+shift+P",
+    "action.refresh": "control+R",
+    "action.remove": "control+X",
+    "action.save": "control+S",
+    "open-search-filter": "control+P",
+    "open-settings": "control+,",
+    "toggle-action-panel": "alt+Z"
+  },
+  "favorites": ["clipboard:history"],
+  "fallbacks": ["files:search"],
+  "providers": {
+    "@EvanZhouDev/store.raycast.raycast-gemini": {
+      "entrypoints": {
+        "aiChat": {
+          "enabled": false
+        },
+        "askAboutScreen": {
+          "enabled": false
+        },
+        "askAboutSelectedScreen": {
+          "enabled": false
+        },
+        "askAboutSelectedText": {
+          "enabled": false
+        },
+        "comment": {
+          "enabled": false
+        },
+        "explain": {
+          "enabled": false
+        },
+        "friendly": {
+          "enabled": false
+        },
+        "grammar": {
+          "enabled": false
+        },
+        "history": {
+          "enabled": false
+        },
+        "longer": {
+          "enabled": false
+        },
+        "professional": {
+          "enabled": false
+        },
+        "shorter": {
+          "enabled": false
+        },
+        "summarize": {
+          "enabled": false
+        },
+        "synonym": {
+          "enabled": false
+        },
+        "translate": {
+          "enabled": false
+        }
+      }
+    },
+    "@thomaslombart/store.raycast.todoist": {
+      "entrypoints": {
+        "create-task": {
+          "enabled": false
+        },
+        "home": {
+          "enabled": false
+        },
+        "quick-add-task": {
+          "enabled": true
+        },
+        "search": {
+          "enabled": false
+        },
+        "show-filters": {
+          "enabled": false
+        },
+        "show-labels": {
+          "enabled": false
+        },
+        "show-projects": {
+          "enabled": false
+        }
+      }
+    },
+    "applications": {
+      "entrypoints": {
+        "anime-game-launcher": {
+          "alias": "aagl"
+        }
+      }
+    },
+    "core": {
+      "entrypoints": {
+        "about": {
+          "enabled": false
+        },
+        "documentation": {
+          "enabled": false
+        },
+        "keybind-settings": {
+          "enabled": false
+        },
+        "list-extensions": {
+          "enabled": true
+        },
+        "manage-fallback": {
+          "enabled": false
+        },
+        "oauth-token-store": {
+          "enabled": false
+        },
+        "open-config-file": {
+          "enabled": false
+        },
+        "open-default-config": {
+          "enabled": false
+        },
+        "refresh-apps": {
+          "enabled": true
+        },
+        "report-bug": {
+          "enabled": false
+        },
+        "sponsor": {
+          "enabled": false
+        }
+      }
+    },
+    "developer": {
+      "enabled": false
+    },
+    "font": {
+      "enabled": false
+    },
+    "shortcuts": {
+      "entrypoints": {
+        "0081d2fe-d201-4fc5-9cd6-8be230ae5c61": {
+          "enabled": true
+        },
+        "142bcf2f-fa04-43b7-b370-5f130c25cd1e": {
+          "enabled": true
+        },
+        "6ecc2932-bb40-4c75-91bb-c9cb19e2fb50": {
+          "enabled": true
+        },
+        "8a49cce4-db78-40e9-af21-ce848b9a7afb": {
+          "enabled": true
+        }
+      }
+    },
+    "system": {
+      "enabled": false
+    },
+    "theme": {
+      "enabled": false
+    }
+  }
+}
+

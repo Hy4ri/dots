@@ -3,6 +3,7 @@ set -euo pipefail
 
 # Vars
 config="$HOME/.config"
+local="$HOME/.local"
 
 if [ -d "$HOME/Documents/Projects/dots" ]; then
   dots="$HOME/Documents/Projects/dots"
@@ -10,8 +11,6 @@ else
   mv "$HOME/dots" "$HOME/Documents/Projects/"
   dots="$HOME/Documents/Projects/dots"
 fi
-
-echo "Linking configs from: $dots"
 
 safe_link() {
   local src=$1
@@ -26,11 +25,17 @@ safe_link() {
   echo "Linked: $dest → $src"
 }
 
+echo "Linking configs from: $dots"
+
 safe_link "$dots/.zshrc" "$HOME/.zshrc"
 safe_link "$dots/.zprofile" "$HOME/.zprofile"
 
 for dir in dunst foot hypr mango mpv niri nvim rofi tmux vicinae waybar yazi zathura; do
   safe_link "$dots/.config/$dir" "$config/$dir"
+done
+
+for dir in bin share; do
+  safe_link "$dots/.local/$dir" "$local/$dir"
 done
 
 echo "Done :)"

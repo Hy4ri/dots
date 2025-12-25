@@ -1,3 +1,4 @@
+# exports {{{
 export EDITOR="nvim"
 export VISUAL="nvim"
 export CSCOPE_EDITOR="nvim"
@@ -7,8 +8,10 @@ export less_termcap_me="$(tput sgr0 2> /dev/null)"
 export fzf_default_opts="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
 export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 export PATH=$PATH:/home/m57/.spicetify
+export PATH=$PATH:$HOME/.local/bin
+# }}}
 
-
+# options {{{
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTDUP=erase
@@ -30,9 +33,9 @@ setopt MENU_COMPLETE
 setopt LIST_PACKED
 setopt AUTO_LIST
 setopt COMPLETE_IN_WORD
+# }}}
 
-############################ aliases #################################
-
+# aliases {{{
 #nix
 alias nrs='nh os switch ~/Documents/Projects/dots/nix'
 alias nr='nh os boot ~/Documents/Projects/dots/nix'
@@ -83,11 +86,9 @@ alias rm='rm -Iv'
 alias mkdir='mkdir -pv'
 
 #cd
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ~='cd ~'
+alias ...='../..'
+alias ....='../../..'
+alias .....='../../../..'
 
 #zsh
 alias sz='. "$HOME/.zshrc"'
@@ -111,10 +112,6 @@ venv/bin/pip install -r requirements.txt
 sudo venv/bin/python3 main.py'
 
 #scripts
-alias music='bash ~/.config/hypr/scripts/music'
-alias png='bash ~/.config/hypr/scripts/png'
-alias 25='bash ~/.config/hypr/scripts/25'
-alias subtitle='bash ~/.config/hypr/scripts/subtitles'
 alias xx='bash ~/Documents/xx.sh'
 
 #random
@@ -136,7 +133,9 @@ alias bios='sudo systemctl reboot --firmware-setup'
 alias ff='fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red'
 alias kew='foot -akew kew'
 
-############################# functions ##########################################
+# }}}
+
+# functions {{{
 
 function plugin-load {
 	local repo plugdir initfile initfiles=()
@@ -156,6 +155,11 @@ function plugin-load {
 		fi
 		source $initfile
 	done
+}
+
+#math
+math() {
+  echo "scale=3; $*" | bc -l
 }
 
 # z&l
@@ -251,15 +255,18 @@ yazicd_widget() {
 zle -N yazicd_widget
 bindkey '^o' yazicd_widget
 
-############################# fzf ##########################################
+# }}}
+
+# fzf {{{
 
 if [ -f /run/current-system/sw/share/fzf/key-bindings.zsh ]; then
     source /run/current-system/sw/share/fzf/key-bindings.zsh
 elif command -v fzf &>/dev/null; then
     source <(fzf --zsh) 2>/dev/null || true
 fi
+# }}}
 
-############################# vi mode ##########################################
+# vi {{{
 
 bindkey -v
 export KEYTIMEOUT=20
@@ -300,7 +307,9 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-############################## Prompt ###############################
+# }}}
+
+# Prompt {{{
 
 parse_git_dirty() {
   [[ -n $(git status -s 2> /dev/null) ]] && echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
@@ -313,8 +322,9 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%f"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %F{red}*%f"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-############################ plugins #################################
+# }}}
 
+# plugins {{{
 PLUGINS_DIR="$HOME/.zsh/plugins"
 
 autoload -Uz compinit
@@ -335,5 +345,11 @@ repos=(
 )
 plugin-load $repos
 
-############################## launch ###############################
+# }}}
+
+# startup {{{
+
 fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
+# }}}
+
+# vim:set et sw=4 ts=4 fdm=marker:

@@ -1,61 +1,14 @@
-{
-pkgs,
-...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    ./boot.nix
     ./graphics.nix
     ./packages.nix
     ./services.nix
     ./mimeapps.nix
     ./theme.nix
   ];
-
-  boot = {
-    tmp.cleanOnBoot = true;
-    tmp.useTmpfs = true;
-    loader = {
-      timeout = 5; 
-      systemd-boot.enable = true;
-      efi = { 
-        canTouchEfiVariables = true;
-      };
-    };
-    kernelPackages = pkgs.linuxPackages_zen;
-    # kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [
-      "nowatchdog"
-      "modprobe.blacklist=sp5100_tco"
-      "modprobe.blacklist=iTCO_wdt"
-      "usbcore.autosuspend=-1"
-    ];
-    kernelModules = ["kvm-intel"];
-
-    kernel.sysctl = {
-      "vm.swappiness" = 10;
-      "vm.vfs_cache_pressure" = 50;
-      "vm.max_map_count" = 16777216;
-      "vm.dirty_bytes" = 268435456;
-      "vm.dirty_background_bytes" = 67108864;
-      "vm.dirty_writeback_centisecs" = 1500;
-      "kernel.printk" = "3 3 3 3";
-      "kernel.kptr_restrict" = 2;
-      "kernel.kexec_load_disabled" = 1;
-    };
-
-    initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
-    };
-    binfmt.registrations.appimage = {
-      wrapInterpreterInShell = false;
-      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-      recognitionType = "magic";
-      offset = 0;
-      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-      magicOrExtension = ''\x7fELF....AI\x02'';
-    };
-  };
 
   drivers = {
     intel.enable = true;
@@ -69,7 +22,7 @@ pkgs,
 
   time.timeZone = "Asia/Amman";
 
-  i18n = { 
+  i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
@@ -86,7 +39,7 @@ pkgs,
 
   security.rtkit.enable = true;
 
-  users.users.m57 = { 
+  users.users.m57 = {
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "hyari";
@@ -105,7 +58,7 @@ pkgs,
         "nix-command"
         "flakes"
       ];
-      substituters = [ 
+      substituters = [
         "https://hyprland.cachix.org"
         "https://cache.nixos.org"
         "https://nix-community.cachix.org"
@@ -129,7 +82,7 @@ pkgs,
     };
     optimise = {
       automatic = true;
-      dates = [ "weekly" ];
+      dates = ["weekly"];
     };
   };
 
@@ -145,8 +98,8 @@ pkgs,
   virtualisation = {
     libvirtd.enable = true;
     podman = {
-      enable = false;
-      dockerCompat = false;
+      enable = true;
+      dockerCompat = true;
       defaultNetwork.settings.dns_enabled = false;
     };
   };

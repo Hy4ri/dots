@@ -57,6 +57,9 @@ play = [
 pdf = [
   { run = "zathura \"$1\"", orphan = true, desc = "Open with Zathura", for = "unix" },
 ]
+image = [
+  { run = "oculante \"$1\"", orphan = true, desc = "Open with Oculante", for = "unix" },
+]
 
 [open]
 rules = [
@@ -65,7 +68,7 @@ rules = [
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image
-	{ mime = "image/*", use = [ "open", "reveal" ] },
+	{ mime = "image/*", use = "image" },
 	# Media
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 	# Archive

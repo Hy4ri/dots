@@ -279,13 +279,21 @@
     "on-click": "rofi -show drun",
   },
   "custom/lyrics": {
-    "format": "{}",
-    "interval": 1,
+    // source: https://github.com/Nadim147c/waybar-lyric
     "return-type": "json",
-    "exec": "~/.config/waybar/scripts/lyrics",
-    "on-click": "playerctl play-pause",
-    "on-click-middle": "playerctl previous",
-    "on-click-right": "playerctl next",
+    "format": "{icon} {0}",
+    "hide-empty-text": true,
+    "exec-if": "~/.config/waybar/scripts/which lyrics-go",
+    "exec": "~/.config/waybar/scripts/lyrics-go --quiet",
+    "on-click": "~/.config/waybar/scripts/lyrics-go play-pause",
+    "format-icons": {
+      "playing": "",
+      "paused": "",
+      "lyric": "",
+      "music": "󰝚",
+      "no_lyric": " ",
+      "getting": "",
+    },
   },
   "custom/powerprofile": {
     "format": "{}",

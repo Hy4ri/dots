@@ -120,12 +120,6 @@ map zI zoom in
 map zO zoom out
 map z0 zoom 100
 
-# Searching
-map / search forward
-map ? search backward
-map n search forward
-map N search backward
-
 # Actions
 map q quit
 map r rotate rotate-cw

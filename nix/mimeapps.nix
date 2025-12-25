@@ -1,12 +1,13 @@
 {
-lib,
-config,
-...
+  lib,
+  config,
+  ...
 }: {
   xdg = {
     mime = {
       enable = true;
       defaultApplications = {
+        "x-scheme-handler/terminal" = "foot.desktop";
         "text/html" = "vivaldi-stable.desktop";
         "x-scheme-handler/http" = "vivaldi-stable.desktop";
         "x-scheme-handler/https" = "vivaldi-stable.desktop";

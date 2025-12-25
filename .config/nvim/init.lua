@@ -41,4 +41,4 @@ if vim.fn.filereadable(lockfile) == 0 then
 	})
 end
 
-vim.cmd.colorscheme("ashen")
+vim.cmd.colorscheme("kanagawa")

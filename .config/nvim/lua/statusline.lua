@@ -9,6 +9,8 @@ local colors = {
 	c_bg = "#121212",
 	c_fg = "#b2b2b2",
 
+	sep_fg = "#990000",
+
 	vis_bg = "#121212",
 	vis_fg = "#990000",
 
@@ -23,9 +25,9 @@ local colors = {
 
 	macro_fg = "#BF616A",
 
-	loc_line = "#990000",
-	loc_total = "#770000",
-	loc_col = "#b2b2b2",
+	loc_number = "#e2e2e2",
+	loc_total = "#990000",
+	loc_letter = "#b2b2b2",
 }
 
 local modes = {
@@ -89,6 +91,9 @@ local function setup_highlights()
 	get_hl("SecB", { fg = colors.b_fg, bg = colors.b_bg })
 	get_hl("SecC", { fg = colors.c_fg, bg = colors.c_bg })
 
+	-- Separator
+	get_hl("Sep", { fg = colors.sep_fg })
+
 	-- git diff
 	get_hl("DiffAdd", { fg = colors.diff_add, bg = colors.c_bg })
 	get_hl("DiffMod", { fg = colors.diff_mod, bg = colors.c_bg })
@@ -101,14 +106,18 @@ local function setup_highlights()
 	-- Macro indicator
 	get_hl("Macro", { fg = colors.macro_fg, bg = colors.c_bg, bold = true })
 	-- Line and column
-	get_hl("LocLine", { fg = colors.loc_line, bg = colors.b_bg, bold = true, italic = true })
+	get_hl("LocNumber", { fg = colors.loc_number, bg = colors.b_bg, bold = true, italic = true })
 	get_hl("LocTotal", { fg = colors.loc_total, bg = colors.b_bg, italic = true })
-	get_hl("LocCol", { fg = colors.loc_col, bg = colors.b_bg, italic = true })
+	get_hl("LocLetter", { fg = colors.loc_letter, bg = colors.b_bg, italic = true })
 end
 
 ---- COMPONENTS
 
 -- modes
+local function seperator_comp()
+	return "%#StlSep#/"
+end
+
 local function mode_comp()
 	local mode = vim.api.nvim_get_mode().mode
 	local txt = modes[mode] or "UNKNOWN"
@@ -257,7 +266,7 @@ local function macro_comp()
 	if macro_cached == "" then
 		return ""
 	end
-	return "%#StlMacro#" .. macro_cached
+	return "%#StlMacro#/ " .. macro_cached .. " "
 end
 
 -- file format
@@ -280,9 +289,11 @@ local function loc_comp()
 	local total = vim.api.nvim_buf_line_count(0)
 	local col = vim.fn.virtcol(".")
 	return table.concat({
-		"%#StlLocLine# l: " .. line,
+		"%#StlLocLetter# l:",
+		"%#StlLocNumber#" .. line,
 		"%#StlLocTotal#/" .. total,
-		"%#StlLocCol# c:" .. col .. " ", -- Added space
+		"%#StlLocLetter# c:",
+		"%#StlLocNumber#" .. col .. " ",
 	})
 end
 
@@ -316,6 +327,7 @@ function M.active()
 		diag_comp(),
 		lsp_comp(),
 		macro_comp(),
+		seperator_comp(),
 		filefmt_comp(),
 		loc_comp(),
 		time_comp(),

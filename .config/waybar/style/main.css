@@ -17,6 +17,7 @@ tooltip {
   background: @background;
   opacity: 0.9;
   border: 2px solid @accent;
+  box-shadow: 2px 2px 8px @shadow;
 }
 
 tooltip label {
@@ -38,6 +39,7 @@ window#waybar {
   padding: 0px 10px;
   margin: 0px 2px 1px 0px;
   box-shadow: @shadow 1px 2px 1px 1px;
+  transition: all 0.3s ease;
 }
 
 #workspaces button.active,
@@ -176,6 +178,7 @@ window#waybar.empty #window {
   padding: 0px 10px 3px 10px;
   margin: 0px 2px 1px 0px;
   box-shadow: @shadow 1px 2px 1px 1px;
+  transition: all 10s ease;
 }
 
 #battery {

@@ -3,25 +3,16 @@ return {
 		"ficcdaf/ashen.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {
-			-- transparent = true,
+		opt = {
+			transparent = true,
 		},
 	},
 	{
-		"nendix/zen.nvim",
+		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
 		opts = {
-			variant = "dark",
-			-- transparent = true,
-		},
-	},
-	{
-		"tiagovla/tokyodark.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {
-			-- transparent_background = true,
+			transparent = true,
 		},
 	},
 }
