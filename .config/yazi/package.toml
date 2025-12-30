@@ -1,0 +1,54 @@
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "c264639"
+hash = "e17c11b605d989568a1d1741ca17c584"
+
+[[plugin.deps]]
+use = "ourongxing/fast-enter"
+rev = "738356f"
+hash = "b209b5db91df69bdc6a4656cb8276cd9"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "da5b695"
+hash = "e2d4bfccf31e5ab05f46fee4797c5215"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "da5b695"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mime-ext"
+rev = "da5b695"
+hash = "48a77ab785d1ee73bc2d7bbe2a4c2090"
+
+[[plugin.deps]]
+use = "simla33/ucp"
+rev = "96f54af"
+hash = "2011ef145f7d4aaa23cbc64c05cd6a7f"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "da5b695"
+hash = "82376c3381ae915fd799d40f4dd4c6cd"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "da5b695"
+hash = "73788c7dc5827ef4677c502c3ea8fa19"
+
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "88bd1c5"
+hash = "981acbe9b758b1af3a8154c932bb936d"
+
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "a0b1d9d"
+hash = "b33673cdc5d3d68b478085e3e06182d9"
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-dark"
+rev = "28e1977"
+hash = "bc4620db89cf55bd91906c239f8fa1a8"

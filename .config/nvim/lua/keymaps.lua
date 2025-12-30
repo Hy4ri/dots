@@ -95,7 +95,7 @@ map("x", "<leader>r", ":s/", { noremap = true }, { desc = "Replace in file" })
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "U", "<C-r>", { desc = "Redo" })
 map("n", "<leader>X", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true })
-map("n", "-", "<CMD>Yazi<CR>", { desc = "Open parent directory" })
+map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- terminal in a new buffer
 map("n", "<leader>t",

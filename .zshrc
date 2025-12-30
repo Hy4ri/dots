@@ -11,7 +11,7 @@ export PATH=$PATH:/home/m57/.spicetify
 export PATH=$PATH:$HOME/.local/bin
 # }}}
 
-# options {{{
+#options {{{
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTDUP=erase
@@ -36,14 +36,16 @@ setopt COMPLETE_IN_WORD
 # }}}
 
 # aliases {{{
-#nix
+
+#nix {{{{
 alias nrs='nh os switch ~/Documents/Projects/dots/nix'
 alias nr='nh os boot ~/Documents/Projects/dots/nix'
 alias ncln='sudo nix-collect-garbage --delete-older-than 1d'
 alias nup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
 alias alien='nix-alien-ld -- '
+# }}}}
 
-#pacman
+#pacman {{{{
 alias sps='sudo pacman -S'
 alias spss='sudo pacman -Ss'
 alias spfzf="pacman -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -Si {1}' --reverse | xargs -ro sudo pacman -S"
@@ -54,55 +56,66 @@ alias spruns='sudo pacman -Runs'
 alias spcc='sudo pacman -Rns $(pacman -Qtdq)'
 alias unlock='sudo rm /var/lib/pacman/db.lck'
 alias mirror='sudo cachyos-rate-mirrors'
+# }}}}
 
-#paru
+#paru {{{{
 alias paruss="paru -Sl | awk '{print \$2 (\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S"
 alias paruscc='paru -Scc' # remove unused cache
 alias parus='paru -S'
 alias parusyyu='paru -Syyu'
+# }}}}
 
-#eza
+#eza {{{{
 alias ls='eza --color=always --group-directories-first --icons' # better ls
 alias l='eza -aHl --color=always --group-directories-first --icons --git' # long format
 alias lt='eza -aHT --level=2 --color=always --group-directories-first --icons --git' # tree listing
+# }}}}
 
-#git
+#git {{{{
 alias gitc='git clone'
 alias gc='git clone'
+alias gp='git pull'
+# }}}}
 
-#tmux
+#tmux {{{{
 alias tmuxa='tmux attach -t'
 alias tmuxk='tmux kill-session -t'
+# }}}}
 
-#python
+#python {{{{
 alias p='python'
 alias pvenv='python -m venv venv'
 alias sopy='source venv/bin/activate'
+# }}}}
 
-#files
+#files {{{{
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -Iv'
 alias mkdir='mkdir -pv'
+# }}}}
 
-#cd
+#cd {{{{
 alias ...='../..'
 alias ....='../../..'
 alias .....='../../../..'
+# }}}}
 
-#zsh
+#zsh {{{{
 alias sz='. "$HOME/.zshrc"'
 alias zrc='${EDITOR} ~/.zshrc'
+# }}}}
 
-#nvim
+#nvim {{{{
 alias snvim='sudoedit'
 alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
 alias nmax='NVIM_APPNAME=nvim-minimax nvim'
 alias mvim='NVIM_APPNAME=mvim nvim'
+# }}}}
 
-#waydroid
+#waydroid {{{{
 alias wayon='waydroid show-full-ui '
 alias wayoff='waydroid session stop'
 alias waypatch='git clone https://github.com/casualsnek/waydroid_script
@@ -110,11 +123,13 @@ cd waydroid_script
 python3 -m venv venv
 venv/bin/pip install -r requirements.txt
 sudo venv/bin/python3 main.py'
+# }}}}
 
-#scripts
+#scripts {{{{
 alias xx='bash ~/Documents/xx.sh'
+# }}}}
 
-#random
+#random {{{{
 alias clock='termdown -z -Z " %I : %M " -f banner3'
 alias battery='Upower -i /org/freedesktop/Upower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
@@ -132,119 +147,122 @@ alias rsync='rsync -rPavh'
 alias bios='sudo systemctl reboot --firmware-setup'
 alias ff='fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red'
 alias kew='foot -akew kew'
+alias bmenu='~/.local/bin/bmenu'
+# }}}}
 
 # }}}
 
 # functions {{{
 
 function plugin-load {
-	local repo plugdir initfile initfiles=()
-	: ${ZPLUGINDIR:=${ZDOTDIR:-$HOME/.zsh}/plugins}
-	for repo in $@; do
-		plugdir=$ZPLUGINDIR/${repo:t}
-		initfile=$plugdir/${repo:t}.plugin.zsh
-		if [[ ! -d $plugdir ]]; then
-			echo "Cloning $repo..."
-			git clone -q --depth 1 --recursive --shallow-submodules \
-				https://github.com/$repo $plugdir
-		fi
-		if [[ ! -e $initfile ]]; then
-			initfiles=($plugdir/*.{plugin.zsh,zsh-theme,zsh,sh}(N))
-			(( $#initfiles )) || { echo >&2 "No init file '$repo'." && continue }
-			ln -sf $initfiles[1] $initfile
-		fi
-		source $initfile
-	done
+    local repo plugdir initfile initfiles=()
+    : ${ZPLUGINDIR:=${ZDOTDIR:-$HOME/.zsh}/plugins}
+    for repo in $@; do
+        plugdir=$ZPLUGINDIR/${repo:t}
+        initfile=$plugdir/${repo:t}.plugin.zsh
+        if [[ ! -d $plugdir ]]; then
+            echo "Cloning $repo..."
+            git clone -q --depth 1 --recursive --shallow-submodules \
+                https://github.com/$repo $plugdir
+        fi
+        if [[ ! -e $initfile ]]; then
+            initfiles=($plugdir/*.{plugin.zsh,zsh-theme,zsh,sh}(N))
+            (( $#initfiles )) || { echo >&2 "No init file '$repo'." && continue }
+            ln -sf $initfiles[1] $initfile
+        fi
+        source $initfile
+    done
 }
 
 #math
 math() {
-  echo "scale=3; $*" | bc -l
+    echo "scale=3; $*" | bc -l
 }
 
 # z&l
 zl() {
-  z "$@"
-  l
+    z "$@"
+    l
 }
 
 # Extract
 extract () {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1;;
-      *.tar.gz)    tar xzf $1;;
-      *.bz2)       bunzip2 $1;;
-      *.rar)       unrar x $1;;
-      *.gz)        gunzip $1;;
-      *.tar)       tar xf $1;;
-      *.tbz2)      tar xjf $1;;
-      *.tgz)       tar xzf $1;;
-      *.zip)       unzip $1;;
-      *.Z)         uncompress $1;;
-      *.7z)        7za e x $1;;
-      *.deb)       ar x $1;;
-      *.tar.xz)    tar xf $1;;
-      *.tar.zst)   unzstd $1;;
-      *)           echo "'$1' cannot be extracted via extract()";;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+    if [ -f $1 ] ; then
+        case $1 in
+            *.xz)    unxz $1;;
+            *.bz2)       bunzip2 $1;;
+            *.rar)       unrar x $1;;
+            *.gz)        gunzip $1;;
+            *.tbz2)      tar xjf $1;;
+            *.tgz)       tar xzf $1;;
+            *.zip)       unzip $1;;
+            *.Z)         uncompress $1;;
+            *.7z)        7za e x $1;;
+            *.deb)       ar x $1;;
+            *.tar)       tar xf $1;;
+            *.tar.bz2)   tar xjf $1;;
+            *.tar.gz)    tar xzf $1;;
+            *.tar.xz)    tar xf $1;;
+            *.tar.zst)   unzstd $1;;
+            *)           echo "'$1' cannot be extracted via extract()";;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
 #Compress
 compress() {
-  tar -czf "${1%/}.tar.gz" "${1%/}";
+    tar -czf "${1%/}.tar.gz" "${1%/}";
 }
 
 # Git push all
 gitup() {
-  git add -A
-  git commit -m "$1"
-  git push
+    git add -A
+    git commit -m "$1"
+    git push
 }
 
 # Update dotfiles
 dup() {
-  cd $HOME/Documents/Projects/dots/
-  git add -A
-  git commit -m "$1"
-  git push
+    cd $HOME/Documents/Projects/dots/
+    git add -A
+    git commit -m "$1"
+    git push
 }
 
 # dngl
 dngl() {
-  cd $HOME/Videos/dngl/
-  yt-dlp "$1"
-  cd $HOME
+    cd $HOME/Videos/dngl/
+    yt-dlp "$1"
+    cd $HOME
 }
 
 # Update pkgs
 up() {
-  nh os switch -u ~/Documents/Projects/dots/nix
-  flatpak update
+    nh os switch -u ~/Documents/Projects/dots/nix
+    flatpak update
 }
 
 # Warp
 warp() {
-  sudo -v || return 1
-  sudo warp-svc >/dev/null 2>&1 &
-  disown
+    sudo -v || return 1
+    sudo warp-svc >/dev/null 2>&1 &
+    disown
 }
 
 # Nix pkgs temp install
 nt() {
-  nix shell nixpkgs#"$1"
+    nix shell nixpkgs#"$1"
 }
 
 # Set last yazi dir as terminal dir
 yz() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
 }
 
 yazicd_widget() {
@@ -276,17 +294,17 @@ bindkey -M vicmd '^r' fzf-history-widget
 
 # Cursor shape
 function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]]; then
-    print -n '\e[2 q' # Block
-  else
-    print -n '\e[5 q' # Blinking bar
-  fi
+    if [[ ${KEYMAP} == vicmd ]]; then
+        print -n '\e[2 q' # Block
+    else
+        print -n '\e[5 q' # Blinking bar
+    fi
 }
 zle -N zle-keymap-select
 
 function zle-line-init {
-  zle -K viins
-  print -n '\e[5 q'
+    zle -K viins
+    print -n '\e[5 q'
 }
 zle -N zle-line-init
 
@@ -296,8 +314,8 @@ bindkey -M viins '^H' backward-delete-char
 
 # Yank to system clipboard
 function vi-yank-xclip {
-  zle vi-yank
-  echo "$CUTBUFFER" | wl-copy
+    zle vi-yank
+    echo "$CUTBUFFER" | wl-copy
 }
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
@@ -312,7 +330,7 @@ bindkey -M vicmd v edit-command-line
 # Prompt {{{
 
 parse_git_dirty() {
-  [[ -n $(git status -s 2> /dev/null) ]] && echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+    [[ -n $(git status -s 2> /dev/null) ]] && echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
 }
 
 PROMPT='%F{green}%2c%F{blue} [%f '
@@ -331,17 +349,17 @@ autoload -Uz compinit
 
 # Case insensitive completion & better matching
 zstyle ':completion:*' matcher-list \
-  'm:{a-zA-Z}={A-Za-z}' \
-  '+r:|[._-]=* r:|=*' \
-  '+l:|=*'
+    'm:{a-zA-Z}={A-Za-z}' \
+    '+r:|[._-]=* r:|=*' \
+    '+l:|=*'
 
 eval "$(zoxide init zsh)"
 
 # list of github repos of plugins
 repos=(
-	zsh-users/zsh-autosuggestions
-	Aloxaf/fzf-tab
-	zdharma-continuum/fast-syntax-highlighting
+    zsh-users/zsh-autosuggestions
+    Aloxaf/fzf-tab
+    zdharma-continuum/fast-syntax-highlighting
 )
 plugin-load $repos
 

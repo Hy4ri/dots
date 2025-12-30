@@ -9,6 +9,7 @@
     android-tools
     antigravity-fhs
     bc
+    bemenu
     bitwarden-desktop
     brightnessctl
     btop
@@ -93,6 +94,7 @@
     termdown
     trash-cli
     tree-sitter
+    ty
     umu-launcher
     unzip
     upower
@@ -100,6 +102,7 @@
     usbutils
     vicinae
     vesktop
+    waller
     warehouse
     wev
     wf-recorder
@@ -115,6 +118,11 @@
     yazi
     yt-dlp
     zathura
+    zathuraPkgs.zathura_cb
+    zathuraPkgs.zathura_djvu
+    zathuraPkgs.zathura_pdf_mupdf
+    zathuraPkgs.zathura_djvu
+    zenity
   ];
 
   #FONTS

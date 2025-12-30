@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-task=/tmp/rofi_task_data
+task=/tmp/task_data
 output=$(cat "$task")
 tooltip="Tasks to do"
 

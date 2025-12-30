@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+file=/tmp/vimwere
+id="float_vim_capture"
+
+hyprctl keyword windowrule "match:class ${id},float 1" >/dev/null
+hyprctl keyword windowrule "match:class ${id},size 1000 500" >/dev/null
+hyprctl keyword windowrule "match:class ${id},move 500 60" >/dev/null
+
+foot --app-id="$id" nvim "$file"
+
+if [[ -f "$file" ]]; then
+  wl-copy <"$file"
+  rm "$file"
+fi

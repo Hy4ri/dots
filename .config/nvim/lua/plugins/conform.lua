@@ -20,7 +20,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			sh = { "shfmt" },
-			python = { "isort", "black" },
+			python = { "black" },
 			javascript = { "prettier" },
 			nix = { "alejandra" },
 			scss = { "prettier" },
@@ -28,6 +28,7 @@ return {
 			json = { "prettier" },
 			jsonc = { "prettier" },
 			markdown = { "prettier" },
+			go = { "gofumpt" },
 			["_"] = { "trim_whitespace", "trim_newlines" },
 		},
 	},

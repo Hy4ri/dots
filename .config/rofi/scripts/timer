@@ -14,8 +14,8 @@ MENU_ITEMS=(
   "9. Stopwatch|set_stopwatch"
 )
 
-TIMER_FILE="/tmp/rofi_timer_data"
-STOPWATCH_FILE="/tmp/rofi_stopwatch_data"
+TIMER_FILE="/tmp/timer_data"
+STOPWATCH_FILE="/tmp/stopwatch_data"
 
 # manage_timer background process
 # $1: duration in seconds
@@ -30,21 +30,21 @@ set_timer() {
   local duration=$1
   local time=$((duration * 60))
   local target=$(($(date +%s) + time))
-  
+
   # Kill existing timer process if it exists
   if [ -f "$TIMER_FILE" ]; then
     local old_pid=$(sed -n '5p' "$TIMER_FILE")
     if [[ -n "$old_pid" && "$old_pid" -gt 0 ]] && kill -0 "$old_pid" 2>/dev/null; then
-       kill "$old_pid"
+      kill "$old_pid"
     fi
   fi
 
   # Start background process
   (manage_timer "$time" "$duration") &
   local pid=$!
-  
+
   # Write state: MODE, TARGET, STATUS, PAUSED_VAL, PID
-  printf "TIMER\n%s\nRUNNING\n0\n%s" "$target" "$pid" > "$TIMER_FILE"
+  printf "TIMER\n%s\nRUNNING\n0\n%s" "$target" "$pid" >"$TIMER_FILE"
   notify-send "Timer Started" "$duration Minutes"
 }
 
@@ -69,18 +69,18 @@ set_stopwatch() {
     # Stopwatches usually have PID 0 in state file, but check anyway
     local old_pid=$(sed -n '5p' "$STOPWATCH_FILE")
     if [[ -n "$old_pid" && "$old_pid" -gt 0 ]] && kill -0 "$old_pid" 2>/dev/null; then
-       kill "$old_pid"
+      kill "$old_pid"
     fi
   fi
-  
+
   local start=$(date +%s)
-  printf "STOPWATCH\n%s\nRUNNING\n0\n0" "$start" > "$STOPWATCH_FILE"
+  printf "STOPWATCH\n%s\nRUNNING\n0\n0" "$start" >"$STOPWATCH_FILE"
   notify-send "Stopwatch Started"
 }
 
 toggle_pause() {
   local active=0
-  
+
   # Toggle Timer
   if [ -f "$TIMER_FILE" ]; then
     active=1
@@ -92,20 +92,20 @@ toggle_pause() {
     local now=$(date +%s)
 
     if [[ "$status" == "RUNNING" ]]; then
-       # Pause Timer
-       local remaining=$((target - now))
-       if [[ -n "$pid" && "$pid" -gt 0 ]] && kill -0 "$pid" 2>/dev/null; then
-         kill "$pid"
-       fi
-       printf "TIMER\n0\nPAUSED\n%s\n0" "$remaining" > "$TIMER_FILE"
+      # Pause Timer
+      local remaining=$((target - now))
+      if [[ -n "$pid" && "$pid" -gt 0 ]] && kill -0 "$pid" 2>/dev/null; then
+        kill "$pid"
+      fi
+      printf "TIMER\n0\nPAUSED\n%s\n0" "$remaining" >"$TIMER_FILE"
     else
-       # Resume Timer
-       local new_target=$((now + paused_val))
-       local duration_minutes=$((paused_val / 60)) 
-       if [ "$duration_minutes" -eq 0 ]; then duration_minutes="<1"; fi
-       (manage_timer "$paused_val" "$duration_minutes") &
-       local new_pid=$!
-       printf "TIMER\n%s\nRUNNING\n0\n%s" "$new_target" "$new_pid" > "$TIMER_FILE"
+      # Resume Timer
+      local new_target=$((now + paused_val))
+      local duration_minutes=$((paused_val / 60))
+      if [ "$duration_minutes" -eq 0 ]; then duration_minutes="<1"; fi
+      (manage_timer "$paused_val" "$duration_minutes") &
+      local new_pid=$!
+      printf "TIMER\n%s\nRUNNING\n0\n%s" "$new_target" "$new_pid" >"$TIMER_FILE"
     fi
   fi
 
@@ -120,16 +120,16 @@ toggle_pause() {
     if [[ "$status" == "RUNNING" ]]; then
       # Pause Stopwatch
       local elapsed=$((now - start))
-      printf "STOPWATCH\n0\nPAUSED\n%s\n0" "$elapsed" > "$STOPWATCH_FILE"
+      printf "STOPWATCH\n0\nPAUSED\n%s\n0" "$elapsed" >"$STOPWATCH_FILE"
     else
       # Resume Stopwatch
       local new_start=$((now - paused_val))
-      printf "STOPWATCH\n%s\nRUNNING\n0\n0" "$new_start" > "$STOPWATCH_FILE"
+      printf "STOPWATCH\n%s\nRUNNING\n0\n0" "$new_start" >"$STOPWATCH_FILE"
     fi
   fi
 
   if [ "$active" -eq 0 ]; then
-     notify-send "No active timer/stopwatch"
+    notify-send "No active timer/stopwatch"
   fi
 }
 
@@ -143,7 +143,7 @@ stop_timer() {
     rm -f "$TIMER_FILE"
     stopped=1
   fi
-  
+
   if [ -f "$STOPWATCH_FILE" ]; then
     # Stopwatch usually has PID 0, but check just in case
     local pid=$(sed -n '5p' "$STOPWATCH_FILE")
@@ -177,12 +177,12 @@ fi
 
 if [[ "${1:-}" == "--timer" ]]; then
   if [[ -n "${2:-}" ]]; then
-      set_timer "$2"
-      exit 0
+    set_timer "$2"
+    exit 0
   fi
 fi
 
-# Create Rofi menu
+# Create menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
   IFS="|" read -r label _ <<<"$item"
   echo "$label"

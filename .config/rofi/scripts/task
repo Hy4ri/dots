@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TASK_FILE="/tmp/rofi_task_data"
+TASK_FILE="/tmp/task_data"
 
 MENU_ITEMS=(
   "Create a task |create"

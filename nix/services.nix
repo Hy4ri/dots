@@ -14,9 +14,9 @@ pkgs,
     blueman.enable = true;
 
     displayManager = {
-      enable = true;
+      enable = false;
       ly = {
-        enable = true;
+        enable = false;
         x11Support = false;
       };
     };

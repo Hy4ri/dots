@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPTS="$HOME/.config/bemenu/scripts"
+
+# Define menu items as "Label|Command"
+MENU_ITEMS=(
+  "⏸️ Powermenu|$SCRIPTS/powermenu"
+  "📝 Notes|$SCRIPTS/notes"
+  "  HyprEdit|$SCRIPTS/hypredit"
+  "󱄅  NixEdit|$SCRIPTS/nixedit"
+  "⌚ Timer|$SCRIPTS/timer"
+  "  Tasks|$SCRIPTS/task"
+  "🎥 Screen Recorder|$SCRIPTS/screenrecord"
+  "🔍 Quick Search|$SCRIPTS/quicksearch"
+  "👾 Games|$SCRIPTS/game_launcher"
+  "⚙️ Hyprsettings|$SCRIPTS/hyprsettings"
+  "⚙️ Projects|$SCRIPTS/projects"
+  "🛜 wifi|$SCRIPTS/wifi"
+  "📃 Mans|$SCRIPTS/man"
+  "🔧 Yad|$SCRIPTS/yad"
+  "💡 Brightness|$SCRIPTS/brightness"
+  "🔆 Weather|$SCRIPTS/weather"
+  "🌡️ Temprature|$SCRIPTS/temps"
+  "💻 Pc Stats|$SCRIPTS/system"
+  "🎨 Waybar Settings|$SCRIPTS/waybarManager"
+  "🟥🟩🟦 RGB Profiles|$SCRIPTS/rgb_profiles"
+)
+
+# Create menu
+CHOICE=$(
+  for item in "${MENU_ITEMS[@]}"; do
+    IFS="|" read -r label _ <<<"$item"
+    echo "$label"
+  done | bmenu "Scripts"
+)
+
+# Match selection and execute command
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label cmd <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$cmd"
+    exit 0
+  fi
+done
+
+exit 1

@@ -10,15 +10,23 @@ install() {
   pkill spotify
   curl -fssl https://raw.githubusercontent.com/spicetify/cli/main/install | sh
 }
-case "$1" in
-  --install)
-    install
-    ;;
-  --update)
-    update
-    ;;
-  *)
-    update
-    ;;
-esac
 
+market() {
+  pkill spotify
+  curl -fsSL https://raw.githubusercontent.com/spicetify/spicetify-marketplace/main/resources/install.sh | sh
+}
+
+case "$1" in
+--install)
+  install
+  ;;
+--update)
+  update
+  ;;
+--market)
+  market
+  ;;
+*)
+  update
+  ;;
+esac

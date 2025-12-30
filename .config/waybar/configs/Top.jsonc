@@ -45,6 +45,12 @@
       "custom/lyrics",
     ],
     "modules-center": [],
-    "modules-right": ["privacy", "custom/timer", "tray", "group/sys", "clock"],
+    "modules-right": [
+      "privacy",
+      "custom/timer",
+      "tray",
+      "group/sys",
+      "clock"
+    ],
   },
 ]

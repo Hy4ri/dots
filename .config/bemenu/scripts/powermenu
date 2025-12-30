@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Define menu items as "Label|Function Name"
+MENU_ITEMS=(
+  " Lock|lock"
+  "󰒲 Suspend|suspend"
+  " Logout|logout"
+  " Reboot|reboot"
+  " Shutdown|shutdown"
+)
+
+# Ask for confirmation
+confirm_exit() {
+  echo -e "\n" | bmenu
+}
+
+# Functions
+lock() {
+  loginctl lock-session
+}
+
+suspend() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "" ]]; then
+    systemctl suspend
+  fi
+}
+
+logout() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "" ]]; then
+    loginctl kill-session "$XDG_SESSION_ID"
+  fi
+}
+
+reboot() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "" ]]; then
+    systemctl reboot
+  fi
+}
+
+shutdown() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "" ]]; then
+    systemctl poweroff -i
+  fi
+}
+
+# Create menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | bmenu "Powermenu")
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
+exit 1

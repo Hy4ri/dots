@@ -28,10 +28,12 @@ MENU_ITEMS=(
 )
 
 # Create Rofi menu
-CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
-  IFS="|" read -r label _ <<<"$item"
-  echo "$label"
-done | rofi -dmenu -p "Choose Script" -i)
+CHOICE=$(
+  for item in "${MENU_ITEMS[@]}"; do
+    IFS="|" read -r label _ <<<"$item"
+    echo "$label"
+  done | rofi -dmenu -p "Choose Script" -i
+)
 
 # Match selection and execute command
 for item in "${MENU_ITEMS[@]}"; do

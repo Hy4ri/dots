@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+TITLE="${1:-Run:}"
+
+bemenu \
+  -i \
+  -l 10 \
+  -p "$TITLE" \
+  --scrollbar autohide \
+  --counter always \
+  -c \
+  -W 0.5 \
+  -B 1 \
+  -R 2 \
+  --bdr "#990000" \
+  --fn "JetBrainsMonoNF Bold 15" \
+  --tb "#121212" \
+  --tf "#e2e2e2" \
+  --fb "#121212" \
+  --ff "#ffffff" \
+  --cb "#ffffff" \
+  --cf "#990000" \
+  --nb "#121212" \
+  --nf "#e2e2e2" \
+  --hb "#990000" \
+  --hf "#ffffff" \
+  --fbb "#121212" \
+  --fbf "#e2e2e2" \
+  --sb "#990000" \
+  --sf "#ffffff" \
+  --ab "#161616" \
+  --af "#e2e2e2" \
+  --scb "#121212" \
+  --scf "#990000"

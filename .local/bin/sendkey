@@ -3,23 +3,35 @@
 PID_DIR=/tmp/hypr_sendkey
 mkdir -p "$PID_DIR"
 
-repeat() {
-  local pid_file="${PID_DIR}/repeat.pid"
-  local class="$1"
-  local key="$2"
-
-  if [ "$class" = "active" ]; then
-    class=$(hyprctl -j activewindow 2>/dev/null | jq -r '.class')
-  fi
-
+stop_process() {
+  local pid_file="$1"
   if [ -f "$pid_file" ]; then
     pid=$(cat "$pid_file")
-    if ps -p "$pid" >/dev/null 2>&1; then
-      kill "$pid"
-    fi
-
-    hyprctl dispatch sendkeystate ,"$key",up,class:"$class"
+    ps -p "$pid" >/dev/null 2>&1 && kill "$pid"
     rm -f "$pid_file"
+    return 0
+  fi
+  return 1
+}
+
+resolve_class() {
+  local class="$1"
+  if [ "$class" = "active" ]; then
+    hyprctl -j activewindow 2>/dev/null | jq -r '.class'
+  else
+    printf '%s\n' "$class"
+  fi
+}
+
+repeat() {
+  local pid_file="${PID_DIR}/repeat.pid"
+  local class key
+
+  class=$(resolve_class "$1")
+  key="$2"
+
+  if stop_process "$pid_file"; then
+    hyprctl dispatch sendkeystate ,"$key",up,class:"$class"
     notify-send "Key $key repeating OFF"
   else
     (
@@ -38,21 +50,13 @@ repeat() {
 
 hold() {
   local pid_file="${PID_DIR}/hold.pid"
-  local class="$1"
-  local key="$2"
+  local class key
 
-  if [ "$class" = "active" ]; then
-    class=$(hyprctl -j activewindow 2>/dev/null | jq -r '.class')
-  fi
+  class=$(resolve_class "$1")
+  key="$2"
 
-  if [ -f "$pid_file" ]; then
-    pid=$(cat "$pid_file")
-    if ps -p "$pid" >/dev/null 2>&1; then
-      kill "$pid"
-    fi
-
+  if stop_process "$pid_file"; then
     hyprctl dispatch sendkeystate ,"$key",up,class:"$class"
-    rm -f "$pid_file"
     notify-send "Holding key $key OFF"
   else
     (
@@ -65,7 +69,7 @@ hold() {
   fi
 }
 
-# usage: pass to the script the function name and the class and key
+# usage: script function class key
 # example: ./sendkey repeat foot y
 
 case "$1" in

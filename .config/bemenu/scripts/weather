@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Define menu items as "Label|Function Name"
+MENU_ITEMS=(
+  "As-Salt|salt"
+  "Amman|amman"
+)
+
+# Define functions for each menu item
+salt() {
+  weather=$(curl -s --max-time 5 'v2.wttr.in/As-salt?format=3')
+  notify-send "Weather" "$weather"
+}
+
+amman() {
+  weather=$(curl -s --max-time 5 'v2.wttr.in/amman?format=3')
+  notify-send "Weather" "$weather"
+}
+
+# Create menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | bmenu "Chose a city")
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
+exit 1

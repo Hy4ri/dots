@@ -29,8 +29,9 @@ echo "Linking configs from: $dots"
 
 safe_link "$dots/.zshrc" "$HOME/.zshrc"
 safe_link "$dots/.zprofile" "$HOME/.zprofile"
+safe_link "$dots/.bashrc" "$HOME/.bashrc"
 
-for dir in dunst foot hypr mango mpv niri nvim rofi tmux vicinae waybar yazi zathura; do
+for dir in bemenu dunst foot hypr mango mpv niri nvim rofi tmux vicinae waybar yazi zathura; do
   safe_link "$dots/.config/$dir" "$config/$dir"
 done
 

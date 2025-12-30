@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v bc &>/dev/null; then
+  notify-send "Error" "bc is not installed"
+  exit 1
+fi
+
+MENU_ITEMS=(
+  "C to F|cf"
+  "C to K|ck"
+  "K to C|kc"
+  "K to F|kf"
+  "F to C|fc"
+  "F to K|fk"
+)
+
+cf() {
+  temp=$(printf "" | bmenu "Temperature (°C):")
+  result=$(echo "scale=2; (9/5) * $temp + 32" | bc -l)
+  notify-send "Temperature" "$result °F"
+}
+
+ck() {
+  temp=$(printf "" | bmenu "Temperature (°C):")
+  result=$(echo "scale=2; $temp + 273.15" | bc -l)
+  notify-send "Temperature" "$result K"
+}
+
+kc() {
+  temp=$(printf "" | bmenu "Temperature (K):")
+  result=$(echo "scale=2; $temp - 273.15" | bc -l)
+  notify-send "Temperature" "$result °C"
+}
+
+kf() {
+  temp=$(printf "" | bmenu "Temperature (K):")
+  result=$(echo "scale=2; (9/5)*($temp - 273.15) + 32" | bc -l)
+  notify-send "Temperature" "$result °F"
+}
+
+fc() {
+  temp=$(printf "" | bmenu "Temperature (°F):")
+  result=$(echo "scale=2; (5/9) * ($temp - 32)" | bc -l)
+  notify-send "Temperature" "$result °C"
+}
+
+fk() {
+  temp=$(printf "" | bmenu "Temperature (°F):")
+  result=$(echo "scale=2; (5/9) * ($temp - 32) + 273.15" | bc -l)
+  notify-send "Temperature" "$result K"
+}
+
+# Create menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | bmenu "Temperature Unit Converter")
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
+exit 1

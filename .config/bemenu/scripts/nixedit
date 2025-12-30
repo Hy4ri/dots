@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+Configs="$HOME/Documents/Projects/dots/nix/"
+term="foot"
+
+# Define menu items as "Label|Function Name"
+MENU_ITEMS=(
+  "1. Nix Config|config"
+  "2. Nix Packages|packages"
+  "3. Nix Flake|flake"
+  "4. Nix Boot|boot"
+  "5. Nix Networking|networking"
+  "6. Nix Services|services"
+  "7. Nix Hardware|hardware"
+  "8. Nix Folder|folder"
+)
+
+# Define functions for each menu item
+config() { $term nvim "$Configs/configuration.nix"; }
+packages() { $term nvim "$Configs/packages.nix"; }
+flake() { $term nvim "$Configs/flake.nix"; }
+boot() { $term nvim "$Configs/boot.nix"; }
+networking() { $term nvim "$Configs/networking.nix"; }
+services() { $term nvim "$Configs/services.nix"; }
+hardware() { $term nvim "$Configs/hardware-configuration.nix"; }
+folder() { $term nvim "$Configs"; }
+
+# Create menu
+CHOICE=$(for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label _ <<<"$item"
+  echo "$label"
+done | bmenu "NixEdit")
+
+# Match selection and call corresponding function
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label func <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$func"
+    exit 0
+  fi
+done
+
+exit 1

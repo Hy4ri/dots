@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   networking = {
     hostName = "hyari";
     networkmanager = {
@@ -15,7 +10,10 @@
       "2606:4700:4700::1111"
       "2606:4700:4700::1001"
     ];
+    firewall = {
+      enable = true;
+    };
   };
-  
+
   systemd.services.NetworkManager-wait-online.enable = false;
 }

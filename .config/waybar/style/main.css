@@ -39,7 +39,7 @@ window#waybar {
   padding: 0px 10px;
   margin: 0px 2px 1px 0px;
   box-shadow: @shadow 1px 2px 1px 1px;
-  transition: all 0.3s ease;
+  transition: all 0.2s;
 }
 
 #workspaces button.active,
@@ -144,11 +144,12 @@ window#waybar.empty #window {
   opacity: 0;
 }
 
+#custom-lyrics-go,
 #custom-lyrics {
   color: @accent;
   background: @background;
   padding: 0px 10px;
-  margin: 0px 1px 1px 1px;
+  margin: 0px 2px 1px 0px;
   box-shadow: @shadow 1px 2px 1px 1px;
 }
 
@@ -178,7 +179,6 @@ window#waybar.empty #window {
   padding: 0px 10px 3px 10px;
   margin: 0px 2px 1px 0px;
   box-shadow: @shadow 1px 2px 1px 1px;
-  transition: all 10s ease;
 }
 
 #battery {
@@ -244,7 +244,7 @@ window#waybar.empty #window {
   background: @background;
 }
 
-#tray > .passive {
+#tray>.passive {
   color: red;
 }
 

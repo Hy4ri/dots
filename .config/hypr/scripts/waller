@@ -6,7 +6,8 @@ rConfig=~/.config/rofi/waller/config.rasi
 rStyle=~/.config/rofi/waller/style.rasi
 
 Select_wallpaper() {
-  wall=$(for a in ~/Pictures/wallpapers/*.png; do echo -en "$a\0icon\x1f$a\n"; done | rofi -dmenu -config $rConfig -theme $rStyle -p "Select Wallpaper:")
+  wall=$(for a in ~/Pictures/wallpapers/*.png; do echo -en "$a\0icon\x1f$a\n"; done | bmenu "Select Wallpaper:")
+  # wall=$(for a in ~/Pictures/wallpapers/*.png; do echo -en "$a\0icon\x1f$a\n"; done | rofi -dmenu -config $rConfig -theme $rStyle -p "Select Wallpaper:")
   if [[ -n "$wall" && -f "$wall" ]]; then
     swww img "$wall" --outputs $MONITORS --transition-type none --transition-duration 0
   else
@@ -31,7 +32,7 @@ Auto_Change() {
 }
 
 Restore_wallpaper() {
-  current_wall=$(swww query | grep eDP-1 | cut -d : -f 6)
+  current_wall=$(swww query | grep eDP-1 | cut -d : -f 6 | xargs echo)
   if [[ -f "$current_wall" ]]; then
     swww img "$current_wall" --outputs $MONITORS --transition-type none --transition-duration 0
   else
