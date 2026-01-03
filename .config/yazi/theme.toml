@@ -1,2 +1,14 @@
 [flavor]
 dark = "kanagawa"
+
+[indicator]
+current = { fg = "#ffffff", bg = "#990000", bold = true }
+padding = { open = "█", close = "█" }
+
+[tabs]
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+[status]
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }

@@ -2,10 +2,15 @@
   pkgs,
   inputs,
   ...
-}: {
-  nixpkgs.config.allowUnfree = true;
+}: let
+  unstable-small = import inputs.nixpkgs-unstable-small {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
 
-  environment.systemPackages = with pkgs; [
+  # Packages from nixos-unstable
+  unstablePackages = with pkgs; [
+    alejandra
     android-tools
     antigravity-fhs
     bc
@@ -26,7 +31,9 @@
     fastfetch
     fd
     ffmpeg
+    file
     findutils
+    frame
     fzf
     gcc
     gdb
@@ -39,7 +46,7 @@
     heroic
     hyprcursor
     hypridle
-    hyprland-guiutils
+    # hyprland-guiutils
     hyprland-qt-support
     hyprpaper
     hyprpicker
@@ -50,7 +57,6 @@
     imagemagick
     jdk
     jq
-    julia
     kdePackages.qt6ct
     kdePackages.qtstyleplugin-kvantum
     kdePackages.qtwayland
@@ -70,7 +76,6 @@
     nixd
     nodejs_24
     nwg-look
-    oculante
     onlyoffice-desktopeditors
     pavucontrol
     php
@@ -100,7 +105,6 @@
     upower
     upscayl
     usbutils
-    vicinae
     vesktop
     waller
     warehouse
@@ -122,8 +126,17 @@
     zathuraPkgs.zathura_djvu
     zathuraPkgs.zathura_pdf_mupdf
     zathuraPkgs.zathura_djvu
-    zenity
   ];
+
+  # nixos-unstable-small
+  unstableSmallPackages = with unstable-small; [
+    hyprlang
+    vicinae
+  ];
+in {
+  nixpkgs.config.allowUnfree = true;
+
+  environment.systemPackages = unstablePackages ++ unstableSmallPackages;
 
   #FONTS
   fonts = {
@@ -172,8 +185,8 @@
 
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
 

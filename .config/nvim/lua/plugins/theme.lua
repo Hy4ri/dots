@@ -15,4 +15,9 @@ return {
 			transparent = true,
 		},
 	},
+	{
+		"oskarnurm/chiefdog.nvim",
+		lazy = false,
+		priority = 1000,
+	},
 }

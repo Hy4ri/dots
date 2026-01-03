@@ -7,6 +7,7 @@ MENU_ITEMS=(
   "󰒲 Suspend|suspend"
   " Logout|logout"
   " Reboot|reboot"
+  " Windows|windows"
   " Shutdown|shutdown"
 )
 
@@ -38,6 +39,13 @@ reboot() {
   selected="$(confirm_exit)"
   if [[ "$selected" == "" ]]; then
     systemctl reboot
+  fi
+}
+
+windows() {
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "" ]]; then
+    systemctl reboot --boot-loader-entry=auto-windows
   fi
 }
 

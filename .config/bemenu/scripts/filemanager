@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Check if file is text-based using MIME type
+is_text_file() {
+  local mime
+  mime=$(file --mime-type -b "$1" 2>/dev/null)
+  [[ "$mime" == text/* || "$mime" == application/json || "$mime" == application/xml || "$mime" == application/javascript ]]
+}
+
+open_file() {
+  local filepath="$1"
+
+  if is_text_file "$filepath"; then
+    foot nvim "$filepath" &
+  else
+    xdg-open "$filepath" &
+  fi
+}
+
+browse() {
+  local current_path="$HOME"
+
+  while true; do
+    local selected
+    selected=$(
+      (echo ".." && fd --base-directory "$current_path" --hidden --max-depth 5 \
+        -E .cache -E .local/share/Trash -E .local/share/Steam \
+        -E node_modules -E .git -E .npm -E .cargo -E .rustup \
+        -E __pycache__ -E .venv -E venv -E .nix-defexpr -E .nix-profile \
+        -E .mozilla -E .thunderbird -E .steam -E .wine \
+        -E target -E build -E dist -E .gradle -E .m2) |
+        bmenu "📁 ${current_path/#$HOME/\~}/"
+    ) || return
+
+    [[ -z "$selected" ]] && return
+
+    local full_path="$current_path/$selected"
+
+    if [[ -d "$full_path" ]]; then
+      if [[ "$selected" == ".." ]]; then
+        current_path=$(dirname "$current_path")
+      else
+        current_path="$full_path"
+      fi
+    else
+      open_file "$full_path"
+      break
+    fi
+  done
+}
+
+browse

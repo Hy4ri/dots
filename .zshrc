@@ -111,7 +111,6 @@ alias snvim='sudoedit'
 alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
-alias nmax='NVIM_APPNAME=nvim-minimax nvim'
 alias mvim='NVIM_APPNAME=mvim nvim'
 # }}}}
 
@@ -180,8 +179,7 @@ math() {
 }
 
 # z&l
-zl() {
-    z "$@"
+chpwd() {
     l
 }
 
