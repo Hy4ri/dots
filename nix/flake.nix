@@ -10,7 +10,7 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     waller.url = "github:hy4ri/waller";
     frame.url = "github:hy4ri/Frame";
-    #nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = {
@@ -39,21 +39,10 @@
           }
           ({self, ...}: {
             nixpkgs.overlays = [
-              (final: prev: {
-                pythonPackagesExtensions =
-                  prev.pythonPackagesExtensions
-                  ++ [
-                    (python-final: python-prev: {
-                      deal = python-prev.deal.overridePythonAttrs (oldAttrs: {
-                        doCheck = false;
-                      });
-                    })
-                  ];
-              })
               self.inputs.nix-alien.overlays.default
               self.inputs.waller.overlays.default
               self.inputs.frame.overlays.default
-              #self.inputs.nvim-nightly.overlays.default
+              self.inputs.nvim-nightly.overlays.default
             ];
           })
         ];

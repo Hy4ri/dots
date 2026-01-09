@@ -1,17 +1,13 @@
 local opt = vim.opt
-
 opt.arabicshape = true -- Correctly displays Arabic characters' shapes.
--- opt.autocomplete = true --
 opt.autoindent = true -- Copies the indentation from the previous line when starting a new line.
 opt.autoread = true -- Automatically reloads a file if it was changed outside of Neovim
 opt.autowrite = false -- Automatically writes changes to a file when switching buffers or exiting Neovim
 opt.breakindent = true -- Indents wrapped lines to match code indentation
 opt.clipboard = "unnamedplus" -- Uses the system clipboard (+) for all copy/paste operations.
 opt.cmdheight = 0 -- Hides the command line area (set to 0 lines).
--- opt.complete = "o,.,w,b,u"
 opt.colorcolumn = "+1" -- Draw column on the right of maximum width
 opt.completeopt = "menuone,noselect,fuzzy,nosort" -- Configures the autocompletion popup
-opt.complete = ".,w,b,kspell" -- Use less sources
 opt.copyindent = true -- When auto-indenting, copies the indentation structure from the previous line.
 opt.cursorline = true -- Highlights the entire line your cursor is currently on.
 opt.diffopt:append("algorithm:patience") -- Uses the "patience" algorithm for better diffs
@@ -25,7 +21,7 @@ opt.fillchars = {
 	foldclose = "",
 	foldopen = "",
 	foldsep = " ",
-	-- foldinner = " ",
+	foldinner = " ",
 	msgsep = "─",
 }
 opt.foldlevel = 0 -- Fold nothing by default; set to 0 or 1 to fold
@@ -47,13 +43,14 @@ opt.list = true -- Enables the display of invisible characters.
 opt.mouse = "a" -- Enables mouse support in all modes (clicking, scrolling, resizing splits).
 opt.number = true -- Shows absolute line numbers for every line.
 opt.numberwidth = 2 -- Sets the width of the line number column to 2 characters.
-opt.pumheight = 10 -- Limits the height of the completion popup menu to 10 items.
--- opt.pummaxwidth = 80 -- Limits the width of the completion popup.
+opt.pumborder = "bold" -- Adds a border to the completion popup menu. {"bold", "rounded", "single", "double"}
+opt.pumheight = 15 -- Limits the height of the completion popup menu to 10 items.
+opt.pummaxwidth = 80 -- Limits the width of the completion popup.
 opt.relativenumber = true -- Shows line numbers relative to the cursor (e.g., 1, 2, 3... away).
 opt.ruler = false -- Hides the cursor position (row/col) from the bottom-right corner.
 opt.scrolloff = 8 -- Keeps 8 lines of context visible above and below the cursor when scrolling.
 opt.shiftwidth = 2 -- Sets the width for indentation operations (like >> or <<) to 2 spaces.
-opt.shortmess = "loOstTWAIcF" -- Shortens the messages Vim displays (e.g., hiding the intro message).
+opt.shortmess = "loOstTWAcF" -- Shortens the messages Vim displays (e.g., I: hiding the intro message).
 opt.showbreak = "↪ " -- string to put at the start of wrapped lines
 opt.showcmdloc = "statusline" -- Shows pending commands in the status line instead of the (hidden) command line.
 opt.showmatch = true -- show matching parenthesis with a quick jump

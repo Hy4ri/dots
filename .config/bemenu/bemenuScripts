@@ -25,6 +25,7 @@ MENU_ITEMS=(
   "💻 Pc Stats|$SCRIPTS/system"
   "🎨 Waybar Settings|$SCRIPTS/waybarManager"
   "🟥🟩🟦 RGB Profiles|$SCRIPTS/rgb_profiles"
+  "󰜎 Run|$SCRIPTS/run"
 )
 
 # Create menu

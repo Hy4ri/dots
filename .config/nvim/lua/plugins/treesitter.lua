@@ -1,53 +1,32 @@
-return {
-	"nvim-treesitter/nvim-treesitter",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-	},
-	lazy = false,
-	build = ":TSUpdate",
-	event = { "BufReadPost", "BufNewFile" },
-	config = function()
-		-- 🛠 Warn if compilers are missing (for auto-install to succeed)
-		if vim.fn.executable("gcc") == 0 or vim.fn.executable("make") == 0 then
-			vim.schedule(function()
-				vim.notify(
-					"⚠️  Tree-sitter: Missing 'gcc' or 'make'. Auto-install may fail for some languages.\n install build-essential",
-					vim.log.levels.WARN
-				)
-			end)
-		end
+vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
 
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = {
-				"bash",
-				"comment",
-				"css",
-				"diff",
-				"html",
-				"json",
-				"lua",
-				"luadoc",
-				"make",
-				"markdown",
-				"markdown_inline",
-				"php",
-				"python",
-				"toml",
-				"vim",
-				"vimdoc",
-				"xml",
-				"yaml",
-			},
-			ignore_install = {},
-			sync_install = false,
-			auto_install = true,
-			highlight = {
-				enable = true,
-			},
+vim.cmd("packadd nvim-treesitter")
 
-			indent = {
-				enable = true,
-			},
-		})
-	end,
-}
+local ok, configs = pcall(require, "nvim-treesitter.configs")
+if ok then
+	configs.setup({
+		ensure_installed = {
+			"bash",
+			"css",
+			"go",
+			"html",
+			"json",
+			"lua",
+			"markdown",
+			"markdown_inline",
+			"python",
+			"vim",
+			"vimdoc",
+			"yaml",
+		},
+		auto_install = true,
+		highlight = { enable = true },
+		indent = { enable = true },
+	})
+else
+	vim.api.nvim_create_autocmd("FileType", {
+		callback = function()
+			pcall(vim.treesitter.start)
+		end,
+	})
+end

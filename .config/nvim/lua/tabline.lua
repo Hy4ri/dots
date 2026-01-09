@@ -1,13 +1,18 @@
 local M = {}
 
--- Colors
-vim.api.nvim_set_hl(0, "oTabLineSel", { bg = "#990000", fg = "#e2e2e2", bold = true, italic = true }) -- Active Tab
-vim.api.nvim_set_hl(0, "oTabLine", { bg = "#121212", fg = "#b2b2b2" }) -- Inactive Tabs
-vim.api.nvim_set_hl(0, "oTabLineFill", { bg = "#121212" }) -- Background Line
-
-_G.inactive = function()
-	return ""
+-- Set highlights after colorscheme loads
+local function set_highlights()
+	vim.api.nvim_set_hl(0, "oTabLineSel", { bg = "#990000", fg = "#e2e2e2", bold = true, italic = true })
+	vim.api.nvim_set_hl(0, "oTabLine", { bg = "#121212", fg = "#b2b2b2" })
+	vim.api.nvim_set_hl(0, "oTabLineFill", { bg = "#121212" })
 end
+
+set_highlights()
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		vim.schedule(set_highlights)
+	end,
+})
 
 -- Unified Click Handler
 _G.TabLineHandler = function(bufnr, click, button, mode)

@@ -11,7 +11,7 @@ export PATH=$PATH:/home/m57/.spicetify
 export PATH=$PATH:$HOME/.local/bin
 # }}}
 
-#options {{{
+# options {{{
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTDUP=erase
@@ -68,7 +68,7 @@ alias parusyyu='paru -Syyu'
 #eza {{{{
 alias ls='eza --color=always --group-directories-first --icons' # better ls
 alias l='eza -aHl --color=always --group-directories-first --icons --git' # long format
-alias lt='eza -aHT --level=2 --color=always --group-directories-first --icons --git' # tree listing
+alias lt='eza -aHT --level=3 --color=always --group-directories-first --icons --git' # tree listing
 # }}}}
 
 #git {{{{

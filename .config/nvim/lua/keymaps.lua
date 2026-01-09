@@ -1,7 +1,6 @@
 local map = vim.keymap.set
 
 -- stylua: ignore start
-
 --leader Space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -18,9 +17,13 @@ map("n", "<M-j>", "<C-w>j", { desc = "Move to lower split" })
 map("n", "<M-k>", "<C-w>k", { desc = "Move to upper split" })
 map("n", "<M-l>", "<C-w>l", { desc = "Move to right split" })
 
--- splits
+-- Splits
 map("n", "<leader>sv", "<C-w>v", { desc = "Split Vertically" })
 map("n", "<leader>sh", "<C-w>s", { desc = "Split Horizontally" })
+
+-- Clean x and c 
+map("n", "x", '"_x')
+map("n", "c", '"_c')
 
 -- Arabic Support
 map("n", "<leader>ar", function()
@@ -95,7 +98,7 @@ map("x", "<leader>r", ":s/", { noremap = true }, { desc = "Replace in file" })
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "U", "<C-r>", { desc = "Redo" })
 map("n", "<leader>X", "<cmd>!chmod +x %<CR>", { desc = "Executable script", silent = true })
-map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+map("n", "-", "<CMD>Yazi<CR>", { desc = "Open parent directory" })
 
 -- terminal in a new buffer
 map("n", "<leader>t",

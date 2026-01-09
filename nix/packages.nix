@@ -8,7 +8,6 @@
     config.allowUnfree = true;
   };
 
-  # Packages from nixos-unstable
   unstablePackages = with pkgs; [
     alejandra
     android-tools
@@ -48,6 +47,7 @@
     hypridle
     # hyprland-guiutils
     hyprland-qt-support
+    hyprlang
     hyprpaper
     hyprpicker
     hyprpolkitagent
@@ -88,13 +88,11 @@
     qbittorrent
     ripgrep
     riseup-vpn
-    rofi
     scrcpy
     slurp
     socat
     spice-gtk
     swappy
-    swww
     syncthing
     termdown
     trash-cli
@@ -105,7 +103,7 @@
     upower
     upscayl
     usbutils
-    vesktop
+    vicinae
     waller
     warehouse
     wev
@@ -130,8 +128,7 @@
 
   # nixos-unstable-small
   unstableSmallPackages = with unstable-small; [
-    hyprlang
-    vicinae
+    vesktop
   ];
 in {
   nixpkgs.config.allowUnfree = true;
@@ -142,11 +139,12 @@ in {
   fonts = {
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
     ];
   };
 
   programs = {
-    adb.enable = true;
     dconf.enable = true;
     fuse.userAllowOther = true;
     gamemode.enable = true;
@@ -171,6 +169,12 @@ in {
       extraPackages = with pkgs.bat-extras; [
         prettybat
       ];
+    };
+
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
     };
 
     foot = {

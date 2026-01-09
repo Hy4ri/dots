@@ -81,6 +81,7 @@ local function setup_highlights()
 	get_hl("ModeIns", { fg = colors.a_fg_ins, bg = colors.a_bg, bold = true })
 	get_hl("ModeVis", { fg = colors.vis_fg, bg = colors.vis_bg, bold = true }) -- Inverted
 	get_hl("ModeRep", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
+
 	-- Time
 	get_hl("TimeNorm", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
 	get_hl("TimeIns", { fg = colors.a_fg_ins, bg = colors.a_bg, bold = true })
@@ -92,19 +93,22 @@ local function setup_highlights()
 	get_hl("SecC", { fg = colors.c_fg, bg = colors.c_bg })
 
 	-- Separator
-	get_hl("Sep", { fg = colors.sep_fg })
+	get_hl("Sep", { fg = colors.sep_fg, bg = colors.c_bg })
 
 	-- git diff
 	get_hl("DiffAdd", { fg = colors.diff_add, bg = colors.c_bg })
 	get_hl("DiffMod", { fg = colors.diff_mod, bg = colors.c_bg })
 	get_hl("DiffRem", { fg = colors.diff_rem, bg = colors.c_bg })
+
 	-- diagnostics
 	get_hl("DiagErr", { fg = colors.diag_err, bg = colors.c_bg })
 	get_hl("DiagWarn", { fg = colors.diag_warn, bg = colors.c_bg })
 	get_hl("DiagInfo", { fg = colors.diag_info, bg = colors.c_bg })
 	get_hl("DiagHint", { fg = colors.diag_hint, bg = colors.c_bg })
+
 	-- Macro indicator
 	get_hl("Macro", { fg = colors.macro_fg, bg = colors.c_bg, bold = true })
+
 	-- Line and column
 	get_hl("LocNumber", { fg = colors.loc_number, bg = colors.b_bg, bold = true, italic = true })
 	get_hl("LocTotal", { fg = colors.loc_total, bg = colors.b_bg, italic = true })
@@ -112,11 +116,6 @@ local function setup_highlights()
 end
 
 ---- COMPONENTS
-
--- modes
-local function seperator_comp()
-	return "%#StlSep#/"
-end
 
 local function mode_comp()
 	local mode = vim.api.nvim_get_mode().mode
@@ -174,21 +173,52 @@ local function search_comp()
 end
 
 -- git branch
+local branch_cached = ""
+local function update_branch()
+	-- gitsigns first
+	if vim.b.gitsigns_head and vim.b.gitsigns_head ~= "" then
+		branch_cached = vim.b.gitsigns_head
+		return
+	end
+	-- fallback to git command
+	local result = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null")
+	if vim.v.shell_error == 0 and result and result ~= "" then
+		branch_cached = vim.trim(result)
+	else
+		branch_cached = ""
+	end
+end
+
 local function branch_comp()
+	-- check gitsigns in real-time in case it loaded after init
 	local head = vim.b.gitsigns_head
-	if not head then
+	if head and head ~= "" then
+		return "%#StlSecC#  " .. head .. " "
+	end
+	if branch_cached == "" then
 		return ""
 	end
-	return "%#StlSecC#  " .. head .. " "
+	return "%#StlSecC#  " .. branch_cached .. " "
 end
 
 -- git diff
 local function diff_comp()
-	if not vim.b.gitsigns_head then
-		return ""
+	local a, m, r = 0, 0, 0
+
+	-- gitsigns first
+	local gs = vim.b.gitsigns_status_dict
+	if gs then
+		a, m, r = gs.added or 0, gs.changed or 0, gs.removed or 0
+	else
+		-- fallback to mini.diff
+		local md = vim.b.minidiff_summary
+		if md then
+			a, m, r = md.add or 0, md.change or 0, md.delete or 0
+		else
+			return ""
+		end
 	end
-	local s = vim.b.gitsigns_status_dict or {}
-	local a, m, r = s.added or 0, s.changed or 0, s.removed or 0
+
 	local ret = ""
 	if a > 0 then
 		ret = ret .. "%#StlDiffAdd#+" .. a .. " "
@@ -327,7 +357,7 @@ function M.active()
 		diag_comp(),
 		lsp_comp(),
 		macro_comp(),
-		seperator_comp(),
+		"%#StlSep#/",
 		filefmt_comp(),
 		loc_comp(),
 		time_comp(),
@@ -360,11 +390,13 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
 	group = grp,
 	callback = function()
 		vim.wo.statusline = "%!v:lua.require'statusline'.active()"
+		update_branch()
 	end,
 })
 
 -- Init
 update_lsp()
 update_macro()
+update_branch()
 
 return M
