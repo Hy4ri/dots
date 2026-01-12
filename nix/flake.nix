@@ -11,7 +11,6 @@
     waller.url = "github:hy4ri/waller";
     frame.url = "github:hy4ri/Frame";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    vivaldi-snapshot.url = "github:hy4ri/vivaldi-snapshot-flake";
   };
 
   outputs = {
@@ -23,7 +22,6 @@
     determinate,
     waller,
     frame,
-    vivaldi-snapshot,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -41,11 +39,10 @@
           }
           ({self, ...}: {
             nixpkgs.overlays = [
-              self.inputs.nix-alien.overlays.default #alien
-              self.inputs.waller.overlays.default  #Waller
-              self.inputs.frame.overlays.default #frame
-              self.inputs.nvim-nightly.overlays.default #nvim
-              self.inputs.vivaldi-snapshot.overlays.default #vivaldi-snapshot
+              self.inputs.nix-alien.overlays.default
+              self.inputs.waller.overlays.default
+              self.inputs.frame.overlays.default
+              self.inputs.nvim-nightly.overlays.default
             ];
           })
         ];

@@ -3,17 +3,7 @@ vim.pack.add({ "https://github.com/nvim-lua/plenary.nvim" })
 
 require("codecompanion").setup({
 	strategies = {
-		chat = {
-			adapter = "gemini_cli",
-			keymaps = {
-				clear = {
-					modes = { n = "gX" },
-					description = "Clear chat",
-				},
-			},
-		},
 		inline = {
-			adapter = "gemini_cli",
 			keymaps = {
 				accept_change = {
 					modes = { n = "<leader>ay" },
@@ -26,6 +16,14 @@ require("codecompanion").setup({
 				reject_change = {
 					modes = { n = "<leader>an" },
 					description = "Reject the suggested change",
+				},
+			},
+		},
+		chat = {
+			keymaps = {
+				clear = {
+					modes = { n = "gX" },
+					description = "Clear chat",
 				},
 			},
 		},

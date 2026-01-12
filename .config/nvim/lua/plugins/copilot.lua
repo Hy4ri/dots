@@ -6,20 +6,20 @@ require("copilot").setup({
 		enabled = false,
 	},
 	suggestion = {
-		auto_trigger = false,
+		auto_trigger = true,
 		hide_during_completion = false,
 		keymap = {
-			-- accept_line = "<M-y>",
+			accept_line = "<M-y>",
 			next = "<M-]>",
 			prev = "<M-[>",
 			dismiss = "<C-]>",
 		},
 	},
 	nes = {
-		enabled = true,
+		enabled = false,
 		auto_trigger = true,
 		keymap = {
-			accept = "<M-y>",
+			accept = "<c-y>",
 			dismiss = "<C-[>",
 		},
 	},

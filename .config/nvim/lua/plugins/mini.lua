@@ -13,8 +13,26 @@ require("mini.cmdline").setup({
 -- Extra
 require("mini.extra").setup()
 
+-- HiPatterns
+local hi_words = require("mini.extra").gen_highlighter.words
+require("mini.hipatterns").setup({
+	highlighters = {
+		todo = hi_words({ "TODO" }, "MiniHipatternsTodo"),
+		fixme = hi_words({ "FIXME" }, "MiniHipatternsFixme"),
+		note = hi_words({ "NOTE" }, "MiniHipatternsNote"),
+		hack = hi_words({ "HACK" }, "MiniHipatternsHack"),
+		warn = hi_words({ "WARN" }, "MiniHipatternsHack"),
+	},
+})
+
 -- Icons
 require("mini.icons").setup()
+
+-- Indent Scope
+require("mini.indentscope").setup({
+	draw = { animation = nil, priority = 5, delay = 0 },
+	symbol = "│",
+})
 
 -- Notify
 require("mini.notify").setup()
