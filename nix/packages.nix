@@ -18,6 +18,7 @@
     brightnessctl
     btop
     cargo
+    google-chrome
     clang
     cloudflare-warp
     cmake
@@ -37,6 +38,7 @@
     gcc
     gdb
     gearlever
+    gemini-cli
     gimp3-with-plugins
     gnumake
     go
@@ -104,6 +106,7 @@
     upscayl
     usbutils
     vicinae
+    vivaldi-snapshot
     waller
     warehouse
     wev

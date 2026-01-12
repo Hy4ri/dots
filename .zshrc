@@ -5,10 +5,13 @@ export CSCOPE_EDITOR="nvim"
 export MANPAGER="nvim +Man!"
 export less_termcap_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
 export less_termcap_me="$(tput sgr0 2> /dev/null)"
+
+# FZF
 export fzf_default_opts="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
-export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
-export PATH=$PATH:/home/m57/.spicetify
-export PATH=$PATH:$HOME/.local/bin
+export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview"
+
+# PATH
+export PATH="$HOME/.local/bin:$HOME/.spicetify:$PATH"
 # }}}
 
 # options {{{
@@ -16,23 +19,24 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 HISTDUP=erase
 stty stop undef
+
+setopt AUTOCD
+setopt AUTO_LIST
 setopt bang_hist
+setopt COMPLETE_IN_WORD
 setopt extended_history
-setopt share_history
 setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_ignore_all_dups
 setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_verify
 setopt interactive_comments
-setopt AUTOCD
-setopt PROMPT_SUBST
-setopt MENU_COMPLETE
 setopt LIST_PACKED
-setopt AUTO_LIST
-setopt COMPLETE_IN_WORD
+setopt MENU_COMPLETE
+setopt PROMPT_SUBST
+setopt share_history
 # }}}
 
 # aliases {{{
@@ -117,11 +121,6 @@ alias mvim='NVIM_APPNAME=mvim nvim'
 #waydroid {{{{
 alias wayon='waydroid show-full-ui '
 alias wayoff='waydroid session stop'
-alias waypatch='git clone https://github.com/casualsnek/waydroid_script
-cd waydroid_script
-python3 -m venv venv
-venv/bin/pip install -r requirements.txt
-sudo venv/bin/python3 main.py'
 # }}}}
 
 #scripts {{{{
@@ -137,7 +136,6 @@ alias vdl='yt-dlp'
 alias adl='yt-dlp -t mp3'
 alias img2txt='ascii-image-converter'
 alias prop='hyprprop'
-alias cp='cp -i'
 alias cx='chmod +x'
 alias storage='dua i'
 alias termdown='termdown -f roman'
@@ -247,6 +245,14 @@ warp() {
     sudo -v || return 1
     sudo warp-svc >/dev/null 2>&1 &
     disown
+}
+
+waypatch() {
+    git clone https://github.com/casualsnek/waydroid_script
+    cd waydroid_script || return
+    python3 -m venv venv
+    venv/bin/pip install -r requirements.txt
+    sudo venv/bin/python3 main.py
 }
 
 # Nix pkgs temp install

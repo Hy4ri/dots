@@ -4,7 +4,6 @@ require("keymaps")
 require("autocmd")
 require("neovide")
 require("statusline")
-require("tabline")
 
 -- Load all plugin configurations independently
 local plugins_path = vim.fn.stdpath("config") .. "/lua/plugins"
