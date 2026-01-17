@@ -1,2 +1,0 @@
-start=67.519944
-vf=@autodeint-detect:idet,@autodeint-dominance:setfield=mode=auto,@autodeint:lavfi-pullup,@autodeint-ivtc-detect:idet
