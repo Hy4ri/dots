@@ -8,6 +8,11 @@ end, {})
 
 require("conform").setup({
 	notify_on_error = false,
+	formatters = {
+		alejandra = {
+			command = vim.fn.exepath("alejandra"),
+		},
+	},
 	format_on_save = function(bufnr)
 		local disable_filetypes = { c = true, cpp = true }
 		if disable_filetypes[vim.bo[bufnr].filetype] then

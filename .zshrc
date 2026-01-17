@@ -374,4 +374,4 @@ plugin-load $repos
 fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
 # }}}
 
-# vim:set et sw=4 ts=4 fdm=marker:
+# vim: fdm=marker fdl=0

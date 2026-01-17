@@ -64,10 +64,9 @@ pkgs,
 
     resolved = {
       enable = true;
-      extraConfig = ''
-        [Resolve]
-        ResolveUnicastSingleLabel=yes
-      '';
+      settings.Resolve = {
+        ResolveUnicastSingleLabel = true;
+      };
     };
 
     xserver = {

@@ -38,8 +38,8 @@
     gcc
     gdb
     gearlever
-    gemini-cli
     gimp3-with-plugins
+    github-copilot-cli
     gnumake
     go
     grim
@@ -50,7 +50,6 @@
     # hyprland-guiutils
     hyprland-qt-support
     hyprlang
-    hyprpaper
     hyprpicker
     hyprpolkitagent
     hyprprop

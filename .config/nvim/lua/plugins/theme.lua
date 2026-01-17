@@ -1,26 +1,24 @@
 vim.pack.add({ "https://github.com/oskarnurm/koda.nvim" })
-vim.pack.add({ "https://github.com/rebelot/kanagawa.nvim" })
 
 require("koda").setup({
-	transparent = false, -- enable for transparent backgrounds
+	transparent = false,
 
 	styles = {
 		functions = { bold = true, italic = true },
-		keywords = {},
-		comments = {},
-		strings = {},
-		constants = {}, -- includes numbers, booleans
+		keywords = { bold = false, italic = false },
+		comments = { bold = true, italic = true },
+		strings = { bold = true, italic = false },
+		constants = { bold = true, italic = false },
 	},
 
 	-- Override colors
 	colors = {
 		bg = "#121212", -- editor background
 		fg = "#b0b0b0", -- primary text color
+		dim = "#222222", -- dimmer bg
 		line = "#272727", -- line highlights
-		paren = "#4d4d4d", -- matching brackets highlight
 		keyword = "#777777", -- language syntax
-		dim = "#50585d", -- line numbers, inlay hints
-		comment = "#50585d", -- code comments
+		comment = "#50585d", -- code comments, line numbers,inlay hints
 		border = "#ffffff", -- floating window borders
 		emphasis = "#ffffff", -- bold text and prominent UI elements
 		func = "#ffffff", -- function names and headings
@@ -34,9 +32,4 @@ require("koda").setup({
 	},
 })
 
-require("kanagawa").setup({
-	transparent = true,
-})
-
--- Apply theme
 vim.cmd.colorscheme("koda")

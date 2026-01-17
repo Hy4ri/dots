@@ -1,52 +1,80 @@
-vim.pack.add({ "https://github.com/MeanderingProgrammer/render-markdown.nvim" })
-vim.pack.add({ "https://github.com/nvim-tree/nvim-web-devicons" })
+vim.pack.add({
+	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
+	"https://github.com/nvim-mini/mini.icons",
+})
 
 require("render-markdown").setup({
 	render_modes = { "n", "no", "c", "t", "i", "ic" },
-	checkbox = {
-		-- enable = true, -- Deprecated/Removed option causing error
-		-- position = "inline", -- Deprecated/Removed option causing error
-		-- defaults are usually fine, or check docs.
-		-- Replacing with valid config if known, otherwise commenting out to rely on defaults.
+	heading = {
 		enabled = true,
-	},
-	latex = { enabled = false }, -- Missing parser, disable to silence warning
-	-- html = { enabled = false }, -- Keeping html enabled, will fix parser in treesitter
-	-- yaml = { enabled = false }, -- Keep yaml, fix parser
-	code = {
 		sign = true,
-		border = "thin",
-		position = "right",
+		-- icons = { -- position = right
+		-- 	"",
+		-- 	"",
+		-- 	"",
+		-- 	"",
+		-- 	"",
+		-- 	"",
+		-- },
+		icons = { "󰼏 ", "󰼐 ", "󰼑 ", "󰼒 ", "󰼓 ", "󰼔 ", "󰼕 ", "󰼖 ", "󰼗 ", "󰿪 " },
+		position = "inline",
+		signs = { "󱅿 " },
 		width = "block",
-		above = "▁",
-		below = "▔",
-		language_left = "█",
-		language_right = "█",
+		left_pad = 0,
+		right_pad = 1,
+		border = false,
+		above = "",
+		below = "",
+		-- backgrounds = {
+		-- 	"MiniStatusLineModeNormal",
+		-- 	"MiniStatusLineModeInsert",
+		-- 	"MiniStatusLineModeReplace",
+		-- 	"MiniStatusLineModeVisual",
+		-- 	"MiniStatusLineModeCommand",
+		-- 	"MiniStatusLineModeOther",
+		-- },
+	},
+	code = {
+		enabled = true,
+		sign = true,
+		conceal_delimiters = true,
+		language = true,
+		position = "right",
+		language_icon = true,
+		language_name = true,
+		language_info = true,
+		disable_background = { "diff" },
+		width = "block",
+		min_width = 0,
+		border = "thin",
 		language_border = "▁",
 		left_pad = 1,
 		right_pad = 1,
+		language_left = "█",
+		language_right = "█",
+		above = "▁",
+		below = "▔",
+		inline = true,
+		style = "full",
 	},
-	heading = {
-		width = "block",
-		backgrounds = {
-			"MiniStatusLineModeNormal",
-			"MiniStatusLineModeInsert",
-			"MiniStatusLineModeReplace",
-			"MiniStatusLineModeVisual",
-			"MiniStatusLineModeCommand",
-			"MiniStatusLineModeOther",
+	bullet = {
+		icons = { "●", "", "◆", "◇", "", "" },
+	},
+	checkbox = {
+		enabled = true,
+		unchecked = {
+			icon = "󰄱 ",
 		},
-		sign = true,
-		left_pad = 1,
-		right_pad = 0,
-		position = "right",
-		icons = {
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
+		checked = {
+			icon = "󰱒 ",
+		},
+		custom = {
+			todo = { raw = "[-]", rendered = "", highlight = "RenderMarkdownTodo", scope_highlight = nil },
 		},
 	},
+
+	indent = { enabled = true },
+	latex = { enabled = false },
+	html = { enabled = true },
+	yaml = { enabled = true },
 })

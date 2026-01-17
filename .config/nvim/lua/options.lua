@@ -24,8 +24,8 @@ opt.fillchars = {
 	foldinner = " ",
 	msgsep = "─",
 }
-opt.foldlevel = 0 -- Fold nothing by default; set to 0 or 1 to fold
-opt.foldmethod = "marker" -- Fold based on marker level
+opt.foldlevel = 999 -- Fold nothing by default; set to 0 or 1 to fold
+opt.foldmethod = "indent" -- Fold method used
 opt.foldnestmax = 10 -- Limit number of fold levels
 opt.foldtext = "" -- Show text under fold with its highlighting
 opt.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]

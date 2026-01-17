@@ -4,7 +4,7 @@ vim.pack.add({ "https://github.com/nvim-lua/plenary.nvim" })
 require("codecompanion").setup({
 	strategies = {
 		chat = {
-			adapter = "gemini_cli",
+			adapter = "copilot",
 			keymaps = {
 				clear = {
 					modes = { n = "gX" },
@@ -13,7 +13,7 @@ require("codecompanion").setup({
 			},
 		},
 		inline = {
-			adapter = "gemini_cli",
+			adapter = "copilot",
 			keymaps = {
 				accept_change = {
 					modes = { n = "<leader>ay" },
@@ -34,4 +34,4 @@ require("codecompanion").setup({
 
 -- Keymaps
 vim.keymap.set("n", "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle CodeCompanion chat" })
-vim.keymap.set("x", "<leader>aa", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add to CodeCompanion chat" })
+vim.keymap.set("x", "<leader>aa", ":'<,'>CodeCompanionChat Add<cr>", { desc = "Add to CodeCompanion chat" })
