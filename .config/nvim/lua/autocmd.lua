@@ -10,9 +10,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("close_with_q", { clear = true }),
 	pattern = {
-		"git",
+		"gitcommit",
+		"gitrebase",
+		"gitconfig",
 		"help",
 		"man",
+		"qf",
+		"lspinfo",
+		"startuptime",
 	},
 	callback = function(args)
 		vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = args.buf })
@@ -35,10 +40,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function(event)
 		local exclude = { "gitcommit" }
 		local buf = event.buf
-		if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+		if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].last_loc then
 			return
 		end
-		vim.b[buf].lazyvim_last_loc = true
+		vim.b[buf].last_loc = true
 		local mark = vim.api.nvim_buf_get_mark(buf, '"')
 		local lcount = vim.api.nvim_buf_line_count(buf)
 		if mark[1] > 0 and mark[1] <= lcount then
@@ -48,6 +53,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- Check if we need to reload the file when it changed
+-- Note: May cause issues if you frequently switch between terminal and Neovim
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	group = vim.api.nvim_create_augroup("checktime", { clear = true }),
 	callback = function()
@@ -59,6 +65,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 
 -- Disable automatic comment continuation
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("disable_comment_continuation", { clear = true }),
 	pattern = "*",
 	callback = function()
 		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
@@ -67,6 +74,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Open help in vertical split
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("help_vertical_split", { clear = true }),
 	pattern = "help",
 	command = "wincmd L",
 })
@@ -102,7 +110,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- Smart Line Numbers
 local line_numbers_group = vim.api.nvim_create_augroup("toggle_line_numbers", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
 	group = line_numbers_group,
 	desc = "Toggle relative line numbers on",
 	callback = function()
@@ -112,18 +120,12 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "Cmdline
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
 	group = line_numbers_group,
 	desc = "Toggle relative line numbers off",
-	callback = function(args)
+	callback = function()
 		if vim.wo.nu then
 			vim.wo.relativenumber = false
-		end
-		-- Redraw to ensure update
-		if args.event == "CmdlineEnter" then
-			if not vim.tbl_contains({ "@", "-" }, vim.v.event.cmdtype) then
-				vim.cmd.redraw()
-			end
 		end
 	end,
 })

@@ -24,8 +24,11 @@ tooltip label {
 }
 
 window#waybar {
+  background: @background;
+}
+
+window#waybar.empty {
   background: transparent;
-  all: unset;
 }
 
 /* left */
@@ -273,4 +276,3 @@ window#waybar.empty #window {
 #privacy-item.screenshare {
   color: @accent;
 }
-

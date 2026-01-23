@@ -1,5 +1,6 @@
 [flavor]
-dark = "kanagawa"
+ # dark = "flexoki-dark"
+ # dark = "ashen"
 
 [indicator]
 current = { fg = "#ffffff", bg = "#990000", bold = true }

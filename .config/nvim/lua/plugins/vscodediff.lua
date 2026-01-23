@@ -1,5 +1,4 @@
-vim.pack.add({ "https://github.com/esmuellert/vscode-diff.nvim" })
-vim.pack.add({ "https://github.com/MunifTanjim/nui.nvim" })
+vim.pack.add({ "https://github.com/esmuellert/vscode-diff.nvim", "https://github.com/MunifTanjim/nui.nvim" })
 
 require("codediff").setup({
 	-- Highlight configuration

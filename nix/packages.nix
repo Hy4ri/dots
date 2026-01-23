@@ -39,7 +39,6 @@
     gdb
     gearlever
     gimp3-with-plugins
-    github-copilot-cli
     gnumake
     go
     grim
@@ -78,6 +77,7 @@
     nodejs_24
     nwg-look
     onlyoffice-desktopeditors
+    opencode
     pavucontrol
     php
     playerctl

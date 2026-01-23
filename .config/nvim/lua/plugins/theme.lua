@@ -2,6 +2,8 @@ vim.pack.add({ "https://github.com/oskarnurm/koda.nvim" })
 
 require("koda").setup({
 	transparent = false,
+	auto = true,
+	cache = true,
 
 	styles = {
 		functions = { bold = true, italic = true },
@@ -29,6 +31,12 @@ require("koda").setup({
 		success = "#A3BE8C", -- added git lines and positive diagnostics
 		warning = "#EBCB8B", -- modified git lines and warning diagnostics
 		danger = "#BF616A", -- removed git lines and error diagnostics
+		green = "#14ba19",
+		orange = "#f54d27",
+		red = "#701516",
+		yellow = "#d0bf41",
+		pink = "#f2a4db",
+		cyan = "#5abfb5",
 	},
 })
 

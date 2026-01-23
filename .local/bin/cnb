@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+build_go() {
+  local name="$1"
+  if [ -e "$name" ]; then
+    rm "$name"
+    go build -o "$name"
+  else
+    go build -o "$name"
+  fi
+}
+
+case "$1" in
+go)
+  build_go "$2"
+  ;;
+*)
+  echo "Usage: language filename"
+  exit 1
+  ;;
+esac

@@ -1,5 +1,4 @@
-vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
-vim.pack.add({ "https://github.com/williamboman/mason.nvim" })
+vim.pack.add({ "https://github.com/stevearc/conform.nvim", "https://github.com/williamboman/mason.nvim" })
 
 -- Pre-config command
 vim.api.nvim_create_user_command("ConformInfo", function()

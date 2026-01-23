@@ -1,22 +1,28 @@
-vim.pack.add({ "https://github.com/zbirenbaum/copilot.lua" })
-vim.pack.add({ "https://github.com/copilotlsp-nvim/copilot-lsp" })
+vim.pack.add({ "https://github.com/zbirenbaum/copilot.lua", "https://github.com/copilotlsp-nvim/copilot-lsp" })
 
-require("copilot").setup({
-	panel = {
-		enabled = true,
-	},
-	suggestion = {
-		auto_trigger = true,
-		hide_during_completion = false,
-		keymap = {
-			accept_line = "<M-y>",
-			next = "<M-]>",
-			prev = "<M-[>",
-			dismiss = "<C-]>",
-		},
-	},
-	workspace_folders = { "~/Documents/Projects" },
-	disable_limit_reached_message = false,
+-- Defer copilot setup to after UI is ready
+vim.api.nvim_create_autocmd("InsertEnter", {
+	once = true,
+	callback = function()
+		require("copilot").setup({
+			panel = {
+				enabled = false,
+			},
+			suggestion = {
+				enabled = true,
+				auto_trigger = false,
+				hide_during_completion = false,
+				keymap = {
+					accept_line = "<M-y>",
+					next = "<M-]>",
+					prev = "<M-[>",
+					dismiss = "<C-]>",
+				},
+			},
+			workspace_folders = { "~/Documents/Projects" },
+			disable_limit_reached_message = false,
+		})
+	end,
 })
 
 -- override copilot highlight groups

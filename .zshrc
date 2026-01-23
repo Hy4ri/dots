@@ -115,7 +115,7 @@ alias snvim='sudoedit'
 alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
-alias mvim='NVIM_APPNAME=mvim nvim'
+alias cvim='NVIM_APPNAME=cvim nvim'
 # }}}}
 
 #waydroid {{{{

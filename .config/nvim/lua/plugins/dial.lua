@@ -1,13 +1,22 @@
 vim.pack.add({ "https://github.com/monaqa/dial.nvim" })
 
 local augend = require("dial.augend")
+
+local quote_augend = augend.constant.new({
+	elements = { "'", '"' },
+	word = false,
+	cyclic = true,
+})
+
 require("dial.config").augends:register_group({
 	default = {
 		augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
 		augend.integer.alias.hex, -- nonnegative hex number  (0x01, 0x1a1f, etc.)
 		augend.date.alias["%Y/%m/%d"], -- date (2022/02/19, etc.)
 		augend.constant.alias.bool, -- true <-> false
+		augend.constant.alias.Bool, -- true <-> false
 		augend.semver.alias.semver, -- semantic versioning (1.2.3, etc.)
+		quote_augend,
 	},
 })
 

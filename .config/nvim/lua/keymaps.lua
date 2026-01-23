@@ -1,11 +1,10 @@
 local map = vim.keymap.set
 
--- stylua: ignore start
---leader Space
+-- Leader to Space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
---Disable arrows
+-- Disable arrows
 map({ "n", "i" }, "<left>", '<cmd>echo "Use h to move!!"<CR>')
 map({ "n", "i" }, "<right>", '<cmd>echo "Use l to move!!"<CR>')
 map({ "n", "i" }, "<up>", '<cmd>echo "Use k to move!!"<CR>')
@@ -21,7 +20,7 @@ map("n", "<M-l>", "<C-w>l", { desc = "Move to right split" })
 map("n", "<leader>sv", "<C-w>v", { desc = "Split Vertically" })
 map("n", "<leader>sh", "<C-w>s", { desc = "Split Horizontally" })
 
--- Clean x and c 
+-- Clean x and c
 map("n", "x", '"_x')
 map("n", "c", '"_c')
 
@@ -54,9 +53,8 @@ map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- buffers
-map({"n","t"}, "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map({"n","t"}, "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
--- map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
+map({ "n", "t" }, "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map({ "n", "t" }, "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 
 -- Copy and paste
 map("x", "p", "zp")
@@ -84,11 +82,11 @@ map("x", "<", "<gv", { desc = "Indent highlighted text left" })
 map("n", "J", "mzJ`z")
 
 -- Picker
- map("n", "<leader>sp","<cmd>FzfLua builtin<cr>", { desc = "Pickers" })
- map("n", "<leader>sb", "<cmd>FzfLua buffers<cr>", { desc = "Buffer Picker" })
- map("n", "<leader>sf","<cmd>FzfLua files<cr>" , { desc = "Files Picker" })
- map("n", "<leader>sg", "<cmd>FzfLua live_grep_native<cr>", { desc = "Grep Pickers" })
- map("n", "<leader>ss", "<cmd>FzfLua spellcheck<cr>" , { desc = "Spelling Pickers" })
+map("n", "<leader>sp", "<cmd>FzfLua builtin<cr>", { desc = "Pickers" })
+map("n", "<leader>sb", "<cmd>FzfLua buffers<cr>", { desc = "Buffer Picker" })
+map("n", "<leader>sf", "<cmd>FzfLua files<cr>", { desc = "Files Picker" })
+map("n", "<leader>sg", "<cmd>FzfLua live_grep_native<cr>", { desc = "Grep Pickers" })
+map("n", "<leader>ss", "<cmd>FzfLua spellcheck<cr>", { desc = "Spelling Pickers" })
 
 -- Quicker options
 map("n", "<leader>w", "<cmd>w<CR>", { desc = "Write" })
@@ -100,34 +98,28 @@ map("n", "<leader>X", "<cmd>!chmod +x %<CR>", { desc = "Executable script", sile
 map("n", "-", "<CMD>Yazi<CR>", { desc = "Open parent directory" })
 
 -- terminal in a new buffer
-map("n", "<leader>t",
-function ()
-    vim.cmd("enew")
-    vim.cmd("terminal")
-end
-  , { desc = "Open parent directory" })
+map("n", "<leader>t", function()
+	vim.cmd("enew")
+	vim.cmd("terminal")
+end, { desc = "Open parent directory" })
 
 -- do math with bc on selected text
 vim.keymap.set("v", "<Leader>b", function()
-  local _, ls, cs = unpack(vim.fn.getpos("'<"))
-  local _, le, ce = unpack(vim.fn.getpos("'>"))
-  local lines = vim.api.nvim_buf_get_text(0, ls-1, cs-1, le-1, ce, {})
-  local text = table.concat(lines, "\n")
-  local output = vim.fn.system("echo '" .. text .. "' | bc -l"):gsub("\n", "")
+	local _, ls, cs = unpack(vim.fn.getpos("'<"))
+	local _, le, ce = unpack(vim.fn.getpos("'>"))
+	local lines = vim.api.nvim_buf_get_text(0, ls - 1, cs - 1, le - 1, ce, {})
+	local text = table.concat(lines, "\n")
+	local output = vim.fn.system("echo '" .. text .. "' | bc -l"):gsub("\n", "")
 
-  vim.api.nvim_buf_set_text(0, ls-1, cs-1, le-1, ce, {output})
+	vim.api.nvim_buf_set_text(0, ls - 1, cs - 1, le - 1, ce, { output })
 end, { desc = "Calculate selection with bc" })
 
 -- Toggle options
 map("n", "<leader>uc", "<cmd>Copilot toggle<cr>", { desc = "toggle copilot" })
-map("n", "<leader>ug", ":lua MiniDiff.toggle_overlay()<cr>", { desc = "Source Config" })
-map("n", "<leader>ut", "<cmd>TransparentToggle<CR>", { desc = "Transparancy Toggle" })
-map('n', '<leader>uw', ':set invwrap<CR>', { desc = 'Toggle Word Wrap' })
-map('n', '<leader>ud', function()
-    local is_enabled = vim.diagnostic.is_enabled()
-    vim.diagnostic.enable(not is_enabled)
-    local status = is_enabled and "Disabled" or "Enabled"
-    vim.notify("Diagnostics " .. status, vim.log.levels.INFO)
-end, { desc = 'Toggle All Diagnostics' })
-
--- stylua: ignore end
+map("n", "<leader>uw", ":set invwrap<CR>", { desc = "Toggle Word Wrap" })
+map("n", "<leader>ud", function()
+	local is_enabled = vim.diagnostic.is_enabled()
+	vim.diagnostic.enable(not is_enabled)
+	local status = is_enabled and "Disabled" or "Enabled"
+	vim.notify("Diagnostics " .. status, vim.log.levels.INFO)
+end, { desc = "Toggle All Diagnostics" })

@@ -1,8 +1,10 @@
-vim.pack.add({ "https://github.com/saghen/blink.cmp" })
-vim.pack.add({ "https://github.com/L3MON4D3/LuaSnip" })
-vim.pack.add({ "https://github.com/rafamadriz/friendly-snippets" })
-vim.pack.add({ "https://github.com/folke/lazydev.nvim" })
-vim.pack.add({ "https://github.com/saghen/blink.indent" })
+vim.pack.add({
+	"https://github.com/saghen/blink.cmp",
+	"https://github.com/L3MON4D3/LuaSnip",
+	"https://github.com/rafamadriz/friendly-snippets",
+	"https://github.com/folke/lazydev.nvim",
+	"https://github.com/saghen/blink.indent",
+})
 
 -- Load lazydev integration
 require("lazydev").setup({

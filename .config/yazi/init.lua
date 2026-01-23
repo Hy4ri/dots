@@ -10,7 +10,7 @@ require("session"):setup({
 	sync_yanked = true,
 })
 
-require("mime-ext"):setup({
+require("mime-ext.local"):setup({
 	with_exts = require("mime-preview"):get_mime_data(),
 	fallback_file1 = true,
 })

@@ -69,51 +69,60 @@ local modes = {
 	["t"] = "TERMINAL",
 }
 
-local function get_hl(name, opts)
-	local hl_name = "Stl" .. name
-	vim.api.nvim_set_hl(0, hl_name, opts)
-	return "%#" .. hl_name .. "#"
-end
+local highlights_set = false
 
 local function setup_highlights()
+	if highlights_set then
+		return
+	end
+	highlights_set = true
+
 	-- Modes
-	get_hl("ModeNorm", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
-	get_hl("ModeIns", { fg = colors.a_fg_ins, bg = colors.a_bg, bold = true })
-	get_hl("ModeVis", { fg = colors.vis_fg, bg = colors.vis_bg, bold = true }) -- Inverted
-	get_hl("ModeRep", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlModeNorm", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlModeIns", { fg = colors.a_fg_ins, bg = colors.a_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlModeVis", { fg = colors.vis_fg, bg = colors.vis_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlModeRep", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
 
 	-- Time
-	get_hl("TimeNorm", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
-	get_hl("TimeIns", { fg = colors.a_fg_ins, bg = colors.a_bg, bold = true })
-	get_hl("TimeVis", { fg = colors.vis_fg, bg = colors.vis_bg, bold = true })
-	get_hl("TimeRep", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlTimeNorm", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlTimeIns", { fg = colors.a_fg_ins, bg = colors.a_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlTimeVis", { fg = colors.vis_fg, bg = colors.vis_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlTimeRep", { fg = colors.a_fg_norm, bg = colors.a_bg, bold = true })
 
 	-- Sections
-	get_hl("SecB", { fg = colors.b_fg, bg = colors.b_bg })
-	get_hl("SecC", { fg = colors.c_fg, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlSecB", { fg = colors.b_fg, bg = colors.b_bg })
+	vim.api.nvim_set_hl(0, "StlSecC", { fg = colors.c_fg, bg = colors.c_bg })
 
 	-- Separator
-	get_hl("Sep", { fg = colors.sep_fg, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlSep", { fg = colors.sep_fg, bg = colors.c_bg })
 
 	-- git diff
-	get_hl("DiffAdd", { fg = colors.diff_add, bg = colors.c_bg })
-	get_hl("DiffMod", { fg = colors.diff_mod, bg = colors.c_bg })
-	get_hl("DiffRem", { fg = colors.diff_rem, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlDiffAdd", { fg = colors.diff_add, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlDiffMod", { fg = colors.diff_mod, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlDiffRem", { fg = colors.diff_rem, bg = colors.c_bg })
 
 	-- diagnostics
-	get_hl("DiagErr", { fg = colors.diag_err, bg = colors.c_bg })
-	get_hl("DiagWarn", { fg = colors.diag_warn, bg = colors.c_bg })
-	get_hl("DiagInfo", { fg = colors.diag_info, bg = colors.c_bg })
-	get_hl("DiagHint", { fg = colors.diag_hint, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlDiagErr", { fg = colors.diag_err, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlDiagWarn", { fg = colors.diag_warn, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlDiagInfo", { fg = colors.diag_info, bg = colors.c_bg })
+	vim.api.nvim_set_hl(0, "StlDiagHint", { fg = colors.diag_hint, bg = colors.c_bg })
 
 	-- Macro indicator
-	get_hl("Macro", { fg = colors.macro_fg, bg = colors.c_bg, bold = true })
+	vim.api.nvim_set_hl(0, "StlMacro", { fg = colors.macro_fg, bg = colors.c_bg, bold = true })
 
 	-- Line and column
-	get_hl("LocNumber", { fg = colors.loc_number, bg = colors.b_bg, bold = true, italic = true })
-	get_hl("LocTotal", { fg = colors.loc_total, bg = colors.b_bg, italic = true })
-	get_hl("LocLetter", { fg = colors.loc_letter, bg = colors.b_bg, italic = true })
+	vim.api.nvim_set_hl(0, "StlLocNumber", { fg = colors.loc_number, bg = colors.b_bg, bold = true, italic = true })
+	vim.api.nvim_set_hl(0, "StlLocTotal", { fg = colors.loc_total, bg = colors.b_bg, italic = true })
+	vim.api.nvim_set_hl(0, "StlLocLetter", { fg = colors.loc_letter, bg = colors.b_bg, italic = true })
 end
+
+-- Reset highlights on colorscheme change
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		highlights_set = false
+		setup_highlights()
+	end,
+})
 
 ---- COMPONENTS
 
@@ -313,12 +322,40 @@ local function filefmt_comp()
 	return "%#StlSecC#" .. icon .. " "
 end
 
+-- buffer indicator (only shows when >1 buffer)
+local function buf_comp()
+	local bufs = vim.tbl_filter(function(b)
+		return vim.api.nvim_buf_is_valid(b) and vim.bo[b].buflisted
+	end, vim.api.nvim_list_bufs())
+
+	local total = #bufs
+	if total <= 1 then
+		return ""
+	end
+
+	local current = vim.api.nvim_get_current_buf()
+	local idx = 1
+	for i, b in ipairs(bufs) do
+		if b == current then
+			idx = i
+			break
+		end
+	end
+
+	return table.concat({
+		"%#StlLocLetter# b:",
+		"%#StlLocNumber#" .. idx,
+		"%#StlLocTotal#/" .. total,
+	})
+end
+
 -- line and column
 local function loc_comp()
 	local line = vim.fn.line(".")
 	local total = vim.api.nvim_buf_line_count(0)
 	local col = vim.fn.virtcol(".")
 	return table.concat({
+		buf_comp(),
 		"%#StlLocLetter# l:",
 		"%#StlLocNumber#" .. line,
 		"%#StlLocTotal#/" .. total,
@@ -346,7 +383,6 @@ end
 local M = {}
 
 function M.active()
-	setup_highlights()
 	return table.concat({
 		mode_comp(),
 		file_comp(false),
@@ -395,6 +431,7 @@ vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
 })
 
 -- Init
+setup_highlights()
 update_lsp()
 update_macro()
 update_branch()
