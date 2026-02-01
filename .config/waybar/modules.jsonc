@@ -9,7 +9,9 @@
     "modules": [
       "network",
       "idle_inhibitor",
+      "custom/lock",
       "custom/powerprofile",
+      "custom/todoist",
       "pulseaudio#microphone",
       "pulseaudio",
       "battery",
@@ -156,8 +158,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "deactivated": "",
-      "activated": "",
+      "deactivated": "󰒲",
+      "activated": "󰒳",
     },
     "on-click-right": "~/.config/hypr/scripts/LockScreen",
   },
@@ -277,6 +279,10 @@
     "format": "",
     "on-click": "rofi -show drun",
   },
+  "custom/lock": {
+    "format": "󰌾",
+    "on-click": "loginctl lock-session",
+  },
   "custom/lyrics": {
     // source: https://github.com/Nadim147c/waybar-lyric
     "return-type": "json",
@@ -344,6 +350,11 @@
     "format": "{}",
     "on-click": "~/.config/rofi/scripts/timer --toggle-pause",
     "on-click-right": "~/.config/rofi/scripts/timer --stop",
+  },
+  "custom/todoist": {
+    "exec": "todoist-tui --json",
+    "return-type": "json",
+    "interval": 3600,
   },
   // WARN: sudo pacman -S pacman-contrib
   "custom/updater": {

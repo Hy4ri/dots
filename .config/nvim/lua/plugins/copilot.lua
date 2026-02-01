@@ -1,6 +1,5 @@
 vim.pack.add({ "https://github.com/zbirenbaum/copilot.lua", "https://github.com/copilotlsp-nvim/copilot-lsp" })
 
--- Defer copilot setup to after UI is ready
 vim.api.nvim_create_autocmd("InsertEnter", {
 	once = true,
 	callback = function()
@@ -10,7 +9,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 			},
 			suggestion = {
 				enabled = true,
-				auto_trigger = false,
+				auto_trigger = true,
 				hide_during_completion = false,
 				keymap = {
 					accept_line = "<M-y>",

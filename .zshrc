@@ -145,6 +145,7 @@ alias bios='sudo systemctl reboot --firmware-setup'
 alias ff='fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red'
 alias kew='foot -akew kew'
 alias bmenu='~/.local/bin/bmenu'
+alias grant_time="/home/m57/Documents/Projects/micro-saftey/venv/bin/python3 /home/m57/Documents/Projects/micro-saftey/ms_safety.py --grant 10800"
 # }}}}
 
 # }}}

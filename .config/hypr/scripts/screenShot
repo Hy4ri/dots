@@ -4,10 +4,10 @@
 # Dependencies
 deps=(grim slurp wl-copy jq notify-send hyprctl)
 for dep in "${deps[@]}"; do
-    if ! command -v "$dep" &> /dev/null; then
-        echo "Error: '$dep' is not installed."
-        exit 1
-    fi
+  if ! command -v "$dep" &>/dev/null; then
+    echo "Error: '$dep' is not installed."
+    exit 1
+  fi
 done
 
 # Variables
@@ -21,37 +21,39 @@ mkdir -p "$dir"
 
 # Notification function
 notify_view() {
-    local msg="$1"
-    if [[ -e "$dir/$file" ]]; then
-        ${notify_cmd_shot} "$msg"
-    else
-        ${notify_cmd_shot} "Screenshot NOT Saved."
-    fi
+  local msg="$1"
+  if [[ -e "$dir/$file" ]]; then
+    ${notify_cmd_shot} "$msg"
+  else
+    ${notify_cmd_shot} "Screenshot NOT Saved."
+  fi
 }
 
-# Core screenshot function
 take_shot() {
-    local geom="$1"
-    local output="$2"
+  local target="$1"
+  local output="$2"
 
-    if [[ -n "$geom" ]]; then
-        grim -g "$geom" -l0 "$output"
-    else
-        grim -l0 "$output"
-    fi
+  if [[ "$target" =~ ^[0-9] ]]; then
+    grim -g "$target" -l0 "$output"
+  elif [[ -n "$target" ]]; then
+    grim -o "$target" -l0 "$output"
+  else
+    grim -l0 "$output"
+  fi
 }
 
-# Actions
 shotnow() {
-    cd "${dir}" && take_shot "" - | tee "$file" | wl-copy
-    notify_view "Screenshot Saved."
+  local monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
+
+  cd "${dir}" && take_shot "$monitor" - | tee "$file" | wl-copy
+  notify_view "Screenshot Saved."
 }
 
 check_swappy_config() {
-    local swappy_config="${HOME}/.config/swappy/config"
-    if [[ ! -f "$swappy_config" ]]; then
-        mkdir -p "${HOME}/.config/swappy"
-        cat > "$swappy_config" <<EOF
+  local swappy_config="${HOME}/.config/swappy/config"
+  if [[ ! -f "$swappy_config" ]]; then
+    mkdir -p "${HOME}/.config/swappy"
+    cat >"$swappy_config" <<EOF
 [Default]
 save_dir=$HOME/Pictures/Screenshots
 save_filename_format=%Y-%m-%d.%H:%M:%S.png
@@ -63,39 +65,39 @@ paint_mode=brush
 early_exit=false
 fill_shape=false
 EOF
-    fi
+  fi
 }
 
 shotswappy() {
-    check_swappy_config
- 
-    local geometry
-    geometry=$(slurp)
- 
-    if [[ -z "$geometry" ]]; then
-        return
-    fi
+  check_swappy_config
 
-    local tmpfile
-    tmpfile=$(mktemp)
- 
-    take_shot "$geometry" "$tmpfile" && ${notify_cmd_shot} "Screenshot Captured."
-    swappy -f - < "$tmpfile"
-    rm "$tmpfile"
+  local geometry
+  geometry=$(slurp)
+
+  if [[ -z "$geometry" ]]; then
+    return
+  fi
+
+  local tmpfile
+  tmpfile=$(mktemp)
+
+  take_shot "$geometry" "$tmpfile" && ${notify_cmd_shot} "Screenshot Captured."
+  swappy -f - <"$tmpfile"
+  rm "$tmpfile"
 }
 
 # Main execution
 case "$1" in
-    --now)
-        shotnow
-        ;;
-    --swappy)
-        shotswappy
-        ;;
-    *)
-        echo -e "Available Options : --now --swappy"
-        exit 1
-        ;;
+--now)
+  shotnow
+  ;;
+--swappy)
+  shotswappy
+  ;;
+*)
+  echo -e "Available Options : --now --swappy"
+  exit 1
+  ;;
 esac
 
 exit 0

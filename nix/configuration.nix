@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   imports = [
-    ./hardware-configuration.nix
-    ./networking.nix
     ./boot.nix
     ./graphics.nix
+    ./hardware-configuration.nix
+    ./mimeapps.nix
+    ./networking.nix
     ./packages.nix
     ./services.nix
-    ./mimeapps.nix
     ./theme.nix
   ];
 
@@ -49,10 +49,10 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      max-jobs = "auto";
       cores = 0;
-      sandbox = true;
       download-buffer-size = 104857600;
+      max-jobs = "auto";
+      sandbox = true;
       warn-dirty = false;
       experimental-features = [
         "nix-command"

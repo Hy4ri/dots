@@ -14,10 +14,10 @@
       themePackages = [pkgs.adi1090x-plymouth-themes];
       theme = "sliced";
     };
-      kernelPackages = pkgs.linuxPackages_lqx;
     # kernelPackages = pkgs.linuxPackages_zen;
+    # kernelPackages = pkgs.linuxPackages_lqx;
     # kernelPackages = pkgs.linux_xanmod_latest;
-    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "nowatchdog"
       "modprobe.blacklist=sp5100_tco"

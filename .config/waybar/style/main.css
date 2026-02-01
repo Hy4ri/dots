@@ -220,10 +220,36 @@ window#waybar.empty #window {
   padding-right: 7px;
 }
 
+#custom-todoist {
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+#custom-todoist.p1 {
+  color: @font;
+}
+
+#custom-todoist.p2 {
+  color: #296fdf;
+}
+
+#custom-todoist.p3 {
+  color: #ea8811;
+}
+
+#custom-todoist.p4 {
+  color: #d0473d;
+}
+
 #custom-powerprofile {
   margin-left: 7px;
   margin-right: 7px;
   color: @font;
+}
+
+#custom-lock {
+  margin-left: 7px;
+  margin-right: 7px;
 }
 
 #idle_inhibitor {

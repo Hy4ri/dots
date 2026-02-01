@@ -11,7 +11,6 @@
   unstablePackages = with pkgs; [
     alejandra
     android-tools
-    antigravity-fhs
     bc
     bemenu
     bitwarden-desktop
@@ -22,7 +21,6 @@
     clang
     cloudflare-warp
     cmake
-    coppwr
     curl
     distrobox
     dua
@@ -55,7 +53,6 @@
     hyprtoolkit
     hyprutils
     imagemagick
-    jdk
     jq
     kdePackages.qt6ct
     kdePackages.qtstyleplugin-kvantum
@@ -74,12 +71,10 @@
     mpv
     nix-alien
     nixd
-    nodejs_24
+    nodejs_25
     nwg-look
-    onlyoffice-desktopeditors
     opencode
     pavucontrol
-    php
     playerctl
     # polkit_gnome
     python3
@@ -88,11 +83,9 @@
     qalculate-gtk
     qbittorrent
     ripgrep
-    riseup-vpn
     scrcpy
     slurp
     socat
-    spice-gtk
     swappy
     syncthing
     termdown
@@ -125,11 +118,11 @@
     zathuraPkgs.zathura_cb
     zathuraPkgs.zathura_djvu
     zathuraPkgs.zathura_pdf_mupdf
-    zathuraPkgs.zathura_djvu
   ];
 
   # nixos-unstable-small
   unstableSmallPackages = with unstable-small; [
+    antigravity-fhs
     vesktop
   ];
 in {
@@ -152,6 +145,7 @@ in {
     gamemode.enable = true;
     git.enable = true;
     hyprlock.enable = true;
+    nano.enable = false;
     niri.enable = false;
     nix-ld.enable = true;
     virt-manager.enable = true;
@@ -191,6 +185,7 @@ in {
 
     hyprland = {
       enable = true;
+      package = unstable-small.hyprland;
       # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
@@ -208,7 +203,7 @@ in {
 
     nh = {
       enable = true;
-      flake = "/Documents/Projects/dots/nix/";
+      flake = "$HOME/Documents/Projects/dots/nix/";
     };
 
     steam = {
@@ -224,11 +219,6 @@ in {
 
     tmux = {
       enable = true;
-      withUtempter = true;
-      newSession = true;
-      keyMode = "vi";
-      historyLimit = 10000;
-      baseIndex = 1;
     };
 
     zoxide = {

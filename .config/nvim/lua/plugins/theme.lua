@@ -15,28 +15,14 @@ require("koda").setup({
 
 	-- Override colors
 	colors = {
-		bg = "#121212", -- editor background
-		fg = "#b0b0b0", -- primary text color
-		dim = "#222222", -- dimmer bg
-		line = "#272727", -- line highlights
-		keyword = "#777777", -- language syntax
-		comment = "#50585d", -- code comments, line numbers,inlay hints
-		border = "#ffffff", -- floating window borders
-		emphasis = "#ffffff", -- bold text and prominent UI elements
-		func = "#ffffff", -- function names and headings
-		string = "#e2e2e2", -- string literals
-		const = "#990000", -- numbers, booleans, and constants
-		highlight = "#770000", -- search results and selection base
-		info = "#8ebeec", -- diagnostic hints and informative icons
-		success = "#A3BE8C", -- added git lines and positive diagnostics
-		warning = "#EBCB8B", -- modified git lines and warning diagnostics
-		danger = "#BF616A", -- removed git lines and error diagnostics
-		green = "#14ba19",
-		orange = "#f54d27",
-		red = "#701516",
-		yellow = "#d0bf41",
-		pink = "#f2a4db",
-		cyan = "#5abfb5",
+		bg = "#121212",
+		dim = "#222222",
+		string = "#e2e2e2",
+		const = "#990000",
+		highlight = "#770000",
+		success = "#A3BE8C",
+		warning = "#EBCB8B",
+		danger = "#BF616A",
 	},
 })
 

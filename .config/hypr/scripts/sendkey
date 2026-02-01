@@ -25,7 +25,10 @@ parse_key() {
       esac
     done
     if [[ ${#mod_list[@]} -gt 0 ]]; then
-      MOD=$(IFS='+'; echo "${mod_list[*]}")
+      MOD=$(
+        IFS='+'
+        echo "${mod_list[*]}"
+      )
     else
       MOD="0"
     fi

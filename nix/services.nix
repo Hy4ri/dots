@@ -1,7 +1,4 @@
-{
-pkgs,
-...
-}: {
+{pkgs, ...}: {
   services = {
     blueman.enable = true;
     dbus.enable = true;
