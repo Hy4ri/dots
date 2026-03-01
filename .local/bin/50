@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+run50() {
+  termdown 3000 && notify-send "Grind Done"
+  termdown 600 && notify-send "Break Finshed"
+}
+
+while true; do
+  run50
+done

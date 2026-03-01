@@ -90,7 +90,10 @@
     enable = true;
     man = {
       enable = true;
-      generateCaches = false;
+      cache = {
+        generateAtRuntime = false;
+        enable = false;
+      };
     };
     nixos.enable = false;
   };

@@ -8,6 +8,11 @@
     config.allowUnfree = true;
   };
 
+  stable = import inputs.nixpkgs-stable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
+
   unstablePackages = with pkgs; [
     alejandra
     android-tools
@@ -19,7 +24,6 @@
     cargo
     google-chrome
     clang
-    cloudflare-warp
     cmake
     curl
     distrobox
@@ -35,7 +39,6 @@
     fzf
     gcc
     gdb
-    gearlever
     gimp3-with-plugins
     gnumake
     go
@@ -44,7 +47,6 @@
     heroic
     hyprcursor
     hypridle
-    # hyprland-guiutils
     hyprland-qt-support
     hyprlang
     hyprpicker
@@ -66,9 +68,9 @@
     lua51Packages.lua
     luarocks
     lutris
-    # mangowc
     man-pages
     mpv
+    nextcloud-client
     nix-alien
     nixd
     nodejs_25
@@ -76,7 +78,6 @@
     opencode
     pavucontrol
     playerctl
-    # polkit_gnome
     python3
     python313Packages.ds4drv
     python3Packages.pip
@@ -89,12 +90,10 @@
     swappy
     syncthing
     termdown
-    trash-cli
     tree-sitter
     ty
     umu-launcher
     unzip
-    upower
     upscayl
     usbutils
     vicinae
@@ -110,7 +109,6 @@
     xdg-desktop-portal-hyprland
     xdg-user-dirs
     xdg-utils
-    # xwayland-satellite
     yad
     yazi
     yt-dlp
@@ -125,10 +123,15 @@
     antigravity-fhs
     vesktop
   ];
+
+  # nixos-stable
+  stablePackages = with stable; [
+    modrinth-app
+  ];
 in {
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = unstablePackages ++ unstableSmallPackages;
+  environment.systemPackages = unstablePackages ++ unstableSmallPackages ++ stablePackages;
 
   #FONTS
   fonts = {
@@ -185,9 +188,9 @@ in {
 
     hyprland = {
       enable = true;
-      package = unstable-small.hyprland;
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # package = unstable-small.hyprland;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
 
@@ -208,13 +211,6 @@ in {
 
     steam = {
       enable = true;
-      gamescopeSession.enable = false;
-      remotePlay.openFirewall = false;
-      dedicatedServer.openFirewall = false;
-      protontricks.enable = false;
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-      ];
     };
 
     tmux = {

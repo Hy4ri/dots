@@ -8,6 +8,12 @@ local quote_augend = augend.constant.new({
 	cyclic = true,
 })
 
+local slash_augend = augend.constant.new({
+	elements = { "/", "\\" },
+	word = false,
+	cyclic = true,
+})
+
 require("dial.config").augends:register_group({
 	default = {
 		augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
@@ -17,6 +23,7 @@ require("dial.config").augends:register_group({
 		augend.constant.alias.Bool, -- true <-> false
 		augend.semver.alias.semver, -- semantic versioning (1.2.3, etc.)
 		quote_augend,
+		slash_augend,
 	},
 })
 

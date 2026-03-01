@@ -20,6 +20,8 @@ require("luasnip.loaders.from_vscode").lazy_load()
 require("blink.cmp").setup({
 	keymap = {
 		preset = "super-tab",
+		-- ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+		-- ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 	},
 	cmdline = { enabled = true },
 	completion = {

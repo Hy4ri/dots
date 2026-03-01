@@ -103,16 +103,8 @@ map("n", "<leader>t", function()
 	vim.cmd("terminal")
 end, { desc = "Open parent directory" })
 
--- do math with bc on selected text
-vim.keymap.set("v", "<Leader>b", function()
-	local _, ls, cs = unpack(vim.fn.getpos("'<"))
-	local _, le, ce = unpack(vim.fn.getpos("'>"))
-	local lines = vim.api.nvim_buf_get_text(0, ls - 1, cs - 1, le - 1, ce, {})
-	local text = table.concat(lines, "\n")
-	local output = vim.fn.system("echo '" .. text .. "' | bc -l"):gsub("\n", "")
-
-	vim.api.nvim_buf_set_text(0, ls - 1, cs - 1, le - 1, ce, { output })
-end, { desc = "Calculate selection with bc" })
+-- do math on selected text
+map("x", "<Leader>b", 'c<C-r>=<C-r>"<CR><Esc>', { desc = "Calculate selection" })
 
 -- Toggle options
 map("n", "<leader>uc", "<cmd>Copilot toggle<cr>", { desc = "toggle copilot" })

@@ -95,7 +95,7 @@ alias sopy='source venv/bin/activate'
 #files {{{{
 alias cp='cp -iv'
 alias mv='mv -iv'
-alias rm='rm -Iv'
+# alias rm='rm -Iv'
 alias mkdir='mkdir -pv'
 # }}}}
 
@@ -129,7 +129,7 @@ alias xx='bash ~/Documents/xx.sh'
 
 #random {{{{
 alias clock='termdown -z -Z " %I : %M " -f banner3'
-alias battery='Upower -i /org/freedesktop/Upower/devices/battery_BAT0'
+alias battery='upower -i /org/freedesktop/Upower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
 alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
 alias vdl='yt-dlp'
@@ -372,7 +372,7 @@ plugin-load $repos
 
 # startup {{{
 
-fastfetch --logo nixos_small --logo-color-2 red --logo-color-1 red --color-keys red
+fastfetch --logo nixos_small --logo-color-1 red --logo-color-2 red --logo-color-3 red --logo-color-4 red --logo-color-5 red --logo-color-6 red --color-keys red
 # }}}
 
 # vim: fdm=marker fdl=0
