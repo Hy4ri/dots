@@ -7,7 +7,6 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     nix-alien.url = "github:thiagokokada/nix-alien";
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     waller.url = "github:hy4ri/waller";
     frame.url = "github:hy4ri/Frame";
@@ -21,7 +20,6 @@
     nixpkgs,
     nix-flatpak,
     nix-alien,
-    aagl,
     determinate,
     waller,
     frame,
@@ -37,11 +35,6 @@
           ./configuration.nix
           nix-flatpak.nixosModules.nix-flatpak
           determinate.nixosModules.default
-          {
-            imports = [aagl.nixosModules.default];
-            nix.settings = aagl.nixConfig;
-            programs.anime-game-launcher.enable = true;
-          }
           ({self, ...}: {
             nixpkgs.overlays = [
               self.inputs.nix-alien.overlays.default #alien

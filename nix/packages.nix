@@ -22,7 +22,6 @@
     brightnessctl
     btop
     cargo
-    google-chrome
     clang
     cmake
     curl
