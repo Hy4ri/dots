@@ -1,8 +1,9 @@
 {
-config,
-lib,
-modulesPath,
-...
+  config,
+  pkgs,
+  lib,
+  modulesPath,
+  ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -48,12 +49,12 @@ modulesPath,
     ];
   };
 
-   swapDevices = [
-     {
-       device = "/var/lib/swapfile";
-       size = 8*1024;
-     }
-   ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8 * 1024;
+    }
+  ];
 
   zramSwap = {
     enable = true;

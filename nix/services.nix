@@ -73,5 +73,11 @@
         variant = "";
       };
     };
+
+    udev = {
+      packages = with pkgs; [
+        game-devices-udev-rules
+      ];
+    };
   };
 }

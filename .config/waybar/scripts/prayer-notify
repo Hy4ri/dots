@@ -4,13 +4,9 @@ set -euo pipefail
 # Store the path to the prayer-times script
 script="$HOME/.config/waybar/scripts/prayer-times"
 
-#sync
-"$script" check
-
 # Get data in one go
 data=$("$script" notify-data)
-next=$(echo "$data" | jq -r '.next')
-remaining_seconds=$(echo "$data" | jq -r '.remaining_seconds')
+read -r next remaining_seconds < <(jq -r '[.next, .remaining_seconds] | @tsv' <<< "$data")
 
 # Check if remaining time is between 0 and 30 seconds
 if [ "$remaining_seconds" -le 30 ] && [ "$remaining_seconds" -ge 0 ]; then

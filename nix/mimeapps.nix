@@ -13,7 +13,8 @@
         "x-scheme-handler/https" = "vivaldi-snapshot.desktop";
         "x-scheme-handler/about" = "vivaldi-snapshot.desktop";
         "x-scheme-handler/unknown" = "vivaldi-snapshot.desktop";
-        "x-scheme-handler/discord" = "equibop.desktop";
+        "inode/directory" = "yazi.desktop";
+        "x-scheme-handler/discord" = "vesktop.desktop";
         "video/mpeg" = "mpv.desktop";
         "video/vnd.rn-realvideo" = "mpv.desktop";
         "video/3gpp2" = "mpv.desktop";

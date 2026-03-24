@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "KKV9/compress"
-rev = "13e89fb"
-hash = "b6e2e69e13ba419f68140910900cbbcd"
+rev = "cb6e8ec"
+hash = "424ada4807b20ccd4fc85d1d7c26d1e4"
 
 [[plugin.deps]]
 use = "ourongxing/fast-enter"
@@ -10,18 +10,18 @@ hash = "7ac02a3fa73cd734ddf4ac85af4c0507"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "de33976"
-hash = "e2d4bfccf31e5ab05f46fee4797c5215"
+rev = "1962818"
+hash = "91937a4a9b779eabc6983e258befdfe9"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "de33976"
-hash = "3996fc74044bc44144b323686f887e1"
+rev = "1962818"
+hash = "6fa6a05a81c98dd000fbca3cca6e9682"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mime-ext"
-rev = "de33976"
-hash = "7b7dc677b58371da6fc63e4fcd134651"
+rev = "1962818"
+hash = "8b177921e50732b2c8e9d71aa5956270"
 
 [[plugin.deps]]
 use = "simla33/ucp"
@@ -30,23 +30,23 @@ hash = "2011ef145f7d4aaa23cbc64c05cd6a7f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "de33976"
-hash = "492e4757f332e29f982556bf507e043c"
+rev = "1962818"
+hash = "8b1af6b5a69797ee951f2a80ce570818"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "de33976"
-hash = "36a484acf6a0a0219c543ccb4cee218f"
+rev = "1962818"
+hash = "26db011a778f261d730d4f5f8bf24b3f"
 
 [[plugin.deps]]
 use = "imsi32/yatline"
-rev = "3227a30"
-hash = "8bd477fb2deadf9c00f28f8e7669834b"
+rev = "c5d4b48"
+hash = "e6e98d12b1648d1894c2b560d85eeaa7"
 
 [[plugin.deps]]
 use = "llanosrocas/yaziline"
-rev = "6266926"
-hash = "9917ab5cb9bdbab7ca7f2501f84f0f11"
+rev = "d9cc2cb"
+hash = "b6073aadf2f9a1d5389a6d389f33f69c"
 
 [[flavor.deps]]
 use = "dangooddd/kanagawa"
@@ -55,10 +55,10 @@ hash = "c69a63981e254a3a06a11c2bf0e6af1d"
 
 [[flavor.deps]]
 use = "gosxrgxx/flexoki-dark"
-rev = "28e1977"
-hash = "bc4620db89cf55bd91906c239f8fa1a8"
+rev = "25d28ce"
+hash = "8e6dd7e42a127173e4535993d3e0e393"
 
 [[flavor.deps]]
 use = "ficd0/ashen:ashen"
-rev = "4a05b16"
+rev = "7d18c13"
 hash = "65b56e9ee65dd33eec62d6ca4209611b"

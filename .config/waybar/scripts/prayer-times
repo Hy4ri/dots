@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ----- Parameters ------ #
 # Coordinates: https://www.mapcoordinates.net/en
@@ -11,233 +11,402 @@ prayers=("Fajr" "Dhuhr" "Asr" "Maghrib" "Isha")
 prayers_json="$HOME/.local/share/prayers.json"
 declare -A epochtimes
 declare -A date
+declare -A timings
+declare -A hijri_data
+day_data_loaded=0
+
 date=(
-	[day_idx]=$(($(date +%-d) - 1))
-	[weekday]=$(date +%a)
-	[month]=$(date +%-m)
-	[year]=$(date +%Y)
+  [day]=$(date +%-d)
+  [day_idx]=$(($(date +%-d) - 1))
+  [weekday]=$(date +%a)
+  [month]=$(date +%-m)
+  [year]=$(date +%Y)
 )
 
 check() {
-	local available_month
-	if [[ -r $prayers_json ]]; then
-		available_month=$(jq -r ".data[0].date.gregorian.month.number" "$prayers_json")
-	else
-		local fetch_prayers=1
-	fi
+  local fetch_prayers=0
+  local available_month=""
+  local available_year=""
 
-	if [[ "$fetch_prayers" || "$available_month" != "${date[month]}" ]]; then
-		echo "-- fetching current month (${date[month]}) prayer calendar"
-		# Documentation: https://aladhan.com/prayer-times-api#GetCalendar
-		wget -O "$prayers_json" "http://api.aladhan.com/v1/calendar/${date[year]}/${date[month]}?latitude=$lat&longitude=$long&method=$method"
-	fi
+  if [[ -r $prayers_json ]]; then
+    if ! read -r available_month available_year < <(
+      jq -r '[.data[0].date.gregorian.month.number, .data[0].date.gregorian.year] | @tsv' "$prayers_json" 2>/dev/null
+    ); then
+      fetch_prayers=1
+    elif [[ -z "$available_month" || -z "$available_year" || "$available_month" == "null" || "$available_year" == "null" ]]; then
+      fetch_prayers=1
+    fi
+  else
+    fetch_prayers=1
+  fi
+
+  if [[ "$fetch_prayers" -eq 0 && ("$available_month" != "${date[month]}" || "$available_year" != "${date[year]}") ]]; then
+    fetch_prayers=1
+  fi
+
+  if [[ "$fetch_prayers" -eq 1 ]]; then
+    echo "-- fetching current month (${date[month]}) prayer calendar"
+    # Documentation: https://aladhan.com/prayer-times-api#GetCalendar
+    local tmp_file
+    local url
+
+    mkdir -p "$(dirname "$prayers_json")"
+    tmp_file=$(mktemp "${prayers_json}.tmp.XXXXXX") || return 1
+    url="https://api.aladhan.com/v1/calendar/${date[year]}/${date[month]}?latitude=$lat&longitude=$long&method=$method"
+
+    if wget -q --timeout=15 --tries=2 -O "$tmp_file" "$url" \
+      && jq -e '.code == 200 and (.data | type == "array" and length > 0)' "$tmp_file" >/dev/null 2>&1; then
+      mv "$tmp_file" "$prayers_json"
+      day_data_loaded=0
+      timings=()
+      hijri_data=()
+      epochtimes=()
+    else
+      rm -f "$tmp_file"
+      echo "failed to fetch prayer calendar" >&2
+      return 1
+    fi
+  fi
+}
+
+extract-day-data() {
+  jq -r --argjson day_idx "${date[day_idx]}" '
+    .data[$day_idx] as $d
+    | select($d != null)
+    | [
+        ($d.timings.Fajr // ""),
+        ($d.timings.Sunrise // ""),
+        ($d.timings.Dhuhr // ""),
+        ($d.timings.Asr // ""),
+        ($d.timings.Maghrib // ""),
+        ($d.timings.Isha // ""),
+        ($d.date.hijri.weekday.ar // ""),
+        ($d.date.hijri.day // ""),
+        ($d.date.hijri.month.ar // ""),
+        ($d.date.hijri.year // ""),
+        ($d.date.gregorian.month.number // ""),
+        ($d.date.gregorian.year // "")
+      ]
+    | @tsv
+  ' "$prayers_json" 2>/dev/null
+}
+
+load-day-data() {
+  [[ "$day_data_loaded" -eq 1 ]] && return 0
+
+  if [[ ! -r "$prayers_json" ]]; then
+    check || return 1
+  fi
+
+  local day_data
+  local fajr
+  local sunrise
+  local dhuhr
+  local asr
+  local maghrib
+  local isha
+  local h_weekday
+  local h_day
+  local h_month
+  local h_year
+  local g_month
+  local g_year
+
+  day_data=$(extract-day-data)
+  if [[ -z "$day_data" ]]; then
+    check || return 1
+    day_data=$(extract-day-data)
+  fi
+
+  if [[ -z "$day_data" ]]; then
+    echo "failed to load prayer data for today" >&2
+    return 1
+  fi
+
+  IFS=$'\t' read -r fajr sunrise dhuhr asr maghrib isha h_weekday h_day h_month h_year g_month g_year <<< "$day_data"
+
+  if [[ "$g_month" != "${date[month]}" || "$g_year" != "${date[year]}" ]]; then
+    if check; then
+      day_data=$(extract-day-data)
+      if [[ -n "$day_data" ]]; then
+        IFS=$'\t' read -r fajr sunrise dhuhr asr maghrib isha h_weekday h_day h_month h_year g_month g_year <<< "$day_data"
+      fi
+    fi
+  fi
+
+  if [[ -z "$fajr" || -z "$sunrise" || -z "$dhuhr" || -z "$asr" || -z "$maghrib" || -z "$isha" \
+    || "$fajr" == "null" || "$sunrise" == "null" || "$dhuhr" == "null" || "$asr" == "null" || "$maghrib" == "null" || "$isha" == "null" ]]; then
+    echo "invalid prayer data for today" >&2
+    return 1
+  fi
+
+  timings=(
+    [Fajr]="$fajr"
+    [Sunrise]="$sunrise"
+    [Dhuhr]="$dhuhr"
+    [Asr]="$asr"
+    [Maghrib]="$maghrib"
+    [Isha]="$isha"
+  )
+
+  hijri_data=(
+    [weekday]="$h_weekday"
+    [day]="$h_day"
+    [month]="$h_month"
+    [year]="$h_year"
+  )
+
+  day_data_loaded=1
 }
 
 add-jobs() {
-	local kill_cmd="kill -1 \$(ps aux | grep qatami | awk 'FNR==1{print \$2}')"
+  load-day-data || return 1
 
-	# WARNING: THIS SCRIPTS REMOVES ALL JOBS IN QUEUE "P" SCHEDULED USING AT (ADJUST ACCORDINGLY)
-	echo "-- removing all jobs in queue 'p'"
-	if [[ "$(at -q p -l | wc -l)" != "0" ]]; then
-		for i in $(at -q p -l | awk '{ print $1 }'); do
-			atrm "$i"
-		done
-	fi
+  local kill_cmd='pkill -HUP -x qatami >/dev/null 2>&1 || true'
+  local job_tag='# prayer-times-waybar'
+  local legacy_job_marker='"Prayer Times" "It is time for '
 
-	for prayer in "${prayers[@]}"; do
-		echo "-- creating at job for $prayer prayer"
-		printf '[ "$(dunstify --icon="clock-applet-symbolic" --action="Reply,reply" "Prayer Times" "It is time for %s prayer 🕌" -t 30000)" = "2" ] && %s' "$prayer" "$kill_cmd" | at -q p "$(timeof "$prayer" '%H:%M %F')"
-	done
+  echo "-- removing prayer-times jobs in queue 'p'"
+  if at -q p -l >/dev/null 2>&1; then
+    while read -r job_id _; do
+      [[ -z "$job_id" ]] && continue
+      local job_script
+      job_script=$(at -c "$job_id" 2>/dev/null) || continue
+
+      if grep -Fq "$job_tag" <<< "$job_script" || grep -Fq "$legacy_job_marker" <<< "$job_script"; then
+        atrm "$job_id"
+      fi
+    done < <(at -q p -l 2>/dev/null)
+  fi
+
+  for prayer in "${prayers[@]}"; do
+    echo "-- creating at job for $prayer prayer"
+    printf '%s\n[ "$(dunstify --icon="clock-applet-symbolic" --action="Reply,reply" "Prayer Times" "It is time for %s prayer 🕌" -t 30000)" = "2" ] && %s\n' \
+      "$job_tag" \
+      "$prayer" \
+      "$kill_cmd" \
+      | at -q p "$(timeof "$prayer" '%H:%M %F')"
+  done
 }
 
 timeof() {
-	[[ "$#" -lt "1" ]] && echo "atleast 1 argument is needed" && return 1
-	echo -n "$(date -d "$(jq -r ".data[${date[day_idx]}].timings.$1" "$prayers_json")" "+${2:-%I:%M}")"
+  [[ "$#" -lt "1" ]] && echo "atleast 1 argument is needed" && return 1
+
+  load-day-data || return 1
+
+  local prayer="$1"
+  local value="${timings[$prayer]}"
+  local format="${2:-%I:%M}"
+
+  if [[ -z "$value" ]]; then
+    echo "unsupported argument: $prayer" && return 1
+  fi
+
+  printf '%s' "$(date -d "$value" "+$format")"
 }
 
 hijri() {
-	case "$1" in
-	weekday)
-		echo -n "$(jq -r ".data[${date[day_idx]}].date.hijri.weekday.ar" "$prayers_json")"
-		;;
-	day)
-		echo -n "$(jq -r ".data[${date[day_idx]}].date.hijri.day" "$prayers_json")"
-		;;
-	month)
-		echo -n "$(jq -r ".data[${date[day_idx]}].date.hijri.month.ar" "$prayers_json")"
-		;;
-	year)
-		echo -n "$(jq -r ".data[${date[day_idx]}].date.hijri.year" "$prayers_json")"
-		;;
-	*)
-		echo "unsupported argument: $1" && return 1
-		;;
-	esac
+  load-day-data || return 1
+
+  case "$1" in
+  weekday)
+    printf '%s' "${hijri_data[weekday]}"
+    ;;
+  day)
+    printf '%s' "${hijri_data[day]}"
+    ;;
+  month)
+    printf '%s' "${hijri_data[month]}"
+    ;;
+  year)
+    printf '%s' "${hijri_data[year]}"
+    ;;
+  *)
+    echo "unsupported argument: $1" && return 1
+    ;;
+  esac
 }
 
 settimes() {
-	# return if array already populated
-	[[ "${#epochtimes[@]}" -gt 0 ]] && return 0
+  # return if array already populated
+  [[ "${#epochtimes[@]}" -gt 0 ]] && return 0
 
-	epochtimes=(
-		[now]=$(date +%s)
-		[fajr]=$(timeof Fajr %s)
-		[dhuhr]=$(timeof Dhuhr %s)
-		[asr]=$(timeof Asr %s)
-		[maghrib]=$(timeof Maghrib %s)
-		[isha]=$(timeof Isha %s)
-	)
+  load-day-data || return 1
 
-	if [[ ${epochtimes[now]} -ge ${epochtimes[fajr]} && ${epochtimes[now]} -lt ${epochtimes[dhuhr]} ]]; then
-		epochtimes[next]=${epochtimes[dhuhr]}
-		currentprayer="Fajr"
-		if [[ "${date[weekday]}" == "Fri" ]]; then
-			nextprayer="Jumuaa"
-		else
-			nextprayer="Dhuhr"
-		fi
+  epochtimes=(
+    [now]=$(date +%s)
+    [fajr]=$(date -d "${timings[Fajr]}" +%s)
+    [dhuhr]=$(date -d "${timings[Dhuhr]}" +%s)
+    [asr]=$(date -d "${timings[Asr]}" +%s)
+    [maghrib]=$(date -d "${timings[Maghrib]}" +%s)
+    [isha]=$(date -d "${timings[Isha]}" +%s)
+  )
 
-	elif [[ ${epochtimes[now]} -ge ${epochtimes[dhuhr]} && ${epochtimes[now]} -lt ${epochtimes[asr]} ]]; then
-		epochtimes[next]=${epochtimes[asr]}
-		currentprayer="Dhuhr"
-		nextprayer="Asr"
+  if ((epochtimes[now] < epochtimes[fajr])); then
+    epochtimes[next]=${epochtimes[fajr]}
+    currentprayer="Isha"
+    nextprayer="Fajr"
 
-	elif [[ ${epochtimes[now]} -ge ${epochtimes[asr]} && ${epochtimes[now]} -lt ${epochtimes[maghrib]} ]]; then
-		epochtimes[next]=${epochtimes[maghrib]}
-		currentprayer="Asr"
-		nextprayer="Maghrib"
+  elif ((epochtimes[now] < epochtimes[dhuhr])); then
+    epochtimes[next]=${epochtimes[dhuhr]}
+    currentprayer="Fajr"
+    if [[ "${date[weekday]}" == "Fri" ]]; then
+      nextprayer="Jumuaa"
+    else
+      nextprayer="Dhuhr"
+    fi
 
-	elif [[ ${epochtimes[now]} -ge ${epochtimes[maghrib]} && ${epochtimes[now]} -lt ${epochtimes[isha]} ]]; then
-		epochtimes[next]=${epochtimes[isha]}
-		currentprayer="Maghrib"
-		nextprayer="Isha"
+  elif ((epochtimes[now] < epochtimes[asr])); then
+    epochtimes[next]=${epochtimes[asr]}
+    currentprayer="Dhuhr"
+    nextprayer="Asr"
 
-	elif [[ ${epochtimes[now]} -ge ${epochtimes[isha]} || ${epochtimes[now]} -lt ${epochtimes[fajr]} ]]; then
-		epochtimes[next]=${epochtimes[fajr]}
-		currentprayer="Isha"
-		nextprayer="Fajr"
-	fi
+  elif ((epochtimes[now] < epochtimes[maghrib])); then
+    epochtimes[next]=${epochtimes[maghrib]}
+    currentprayer="Asr"
+    nextprayer="Maghrib"
+
+  elif ((epochtimes[now] < epochtimes[isha])); then
+    epochtimes[next]=${epochtimes[isha]}
+    currentprayer="Maghrib"
+    nextprayer="Isha"
+
+  else
+    epochtimes[next]=$(date -d "tomorrow ${timings[Fajr]}" +%s)
+    currentprayer="Isha"
+    nextprayer="Fajr"
+  fi
 }
 
 print() {
-	printf "📅 %s،%s\n۞ الفجر\t%s\n۞ الشروق\t%s\n۞ الظهر\t%s\n۞ العصر\t%s\n۞ المغرب\t%s\n۞ العشاء\t%s" \
-		"$(hijri weekday)" \
-		"$(hijri day)-$(hijri month)-$(hijri year)" \
-		"$(timeof Fajr)" \
-		"$(timeof Sunrise)" \
-		"$(timeof Dhuhr)" \
-		"$(timeof Asr)" \
-		"$(timeof Maghrib)" \
-		"$(timeof Isha)"
+  printf "📅 %s،%s\n۞ الفجر\t%s\n۞ الشروق\t%s\n۞ الظهر\t%s\n۞ العصر\t%s\n۞ المغرب\t%s\n۞ العشاء\t%s" \
+    "$(hijri weekday)" \
+    "$(hijri day)-$(hijri month)-$(hijri year)" \
+    "$(timeof Fajr)" \
+    "$(timeof Sunrise)" \
+    "$(timeof Dhuhr)" \
+    "$(timeof Asr)" \
+    "$(timeof Maghrib)" \
+    "$(timeof Isha)"
 }
 
 yad-text() {
-	printf "<span font-size='large'>📅 <b>%s،%s</b>\n۞ الفجر\t\t%s\n۞ الشروق\t%s\n۞ الظهر\t\t%s\n۞ العصر\t\t%s\n۞ المغرب\t%s\n۞ العشاء\t\t%s</span>" \
-		"$(hijri weekday)" \
-		"$(hijri day)-$(hijri month)-$(hijri year)" \
-		"$(timeof Fajr)" \
-		"$(timeof Sunrise)" \
-		"$(timeof Dhuhr)" \
-		"$(timeof Asr)" \
-		"$(timeof Maghrib)" \
-		"$(timeof Isha)"
+  printf "<span font-size='large'>📅 <b>%s،%s</b>\n۞ الفجر\t\t%s\n۞ الشروق\t%s\n۞ الظهر\t\t%s\n۞ العصر\t\t%s\n۞ المغرب\t%s\n۞ العشاء\t\t%s</span>" \
+    "$(hijri weekday)" \
+    "$(hijri day)-$(hijri month)-$(hijri year)" \
+    "$(timeof Fajr)" \
+    "$(timeof Sunrise)" \
+    "$(timeof Dhuhr)" \
+    "$(timeof Asr)" \
+    "$(timeof Maghrib)" \
+    "$(timeof Isha)"
 }
 
 yad-toggle() {
-	if [[ "$XDG_SESSION_TYPE" == "x11" ]]; then
-		yad_pid=$(xprop _NET_WM_PID -name Prayers 2>/dev/null | awk '{print $3}')
-	elif [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
-		yad_pid=$(hyprctl clients | awk '/title: Prayers/ {found=1} found && $0 ~ /pid/ {print $2}')
-	fi
+  if [[ "$XDG_SESSION_TYPE" == "x11" ]]; then
+    yad_pid=$(xprop _NET_WM_PID -name Prayers 2>/dev/null | awk '{print $3}')
+  elif [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]]; then
+    yad_pid=$(hyprctl clients | awk '/title: Prayers/ {found=1} found && $0 ~ /pid/ {print $2}')
+  fi
 
-	if [[ -z "$yad_pid" ]]; then
-		yad --no-buttons --text-width=10 --text "$(yad-text)" --title "Prayers"
-	else
-		kill "$yad_pid"
-	fi
+  if [[ -z "$yad_pid" ]]; then
+    yad --no-buttons --text-width=10 --text "$(yad-text)" --title "Prayers"
+  else
+    kill "$yad_pid"
+  fi
 }
 
 current() {
-	settimes
-	echo "$currentprayer"
+  settimes || return 1
+  echo "$currentprayer"
 }
 
 next() {
-	settimes
-	echo "$nextprayer"
+  settimes || return 1
+  echo "$nextprayer"
+}
+
+remaining-seconds() {
+  local remain_seconds=$((epochtimes[next] - epochtimes[now]))
+  if ((remain_seconds < 0)); then
+    remain_seconds=0
+  fi
+
+  echo "$remain_seconds"
 }
 
 remaining() {
-	settimes
-	local remain
-	remain=$(date -u -d "@$((epochtimes[next] - epochtimes[now]))" "+%H:%M:%S")
-	echo "$remain"
+  settimes || return 1
+  local remain
+  remain=$(date -u -d "@$(remaining-seconds)" "+%H:%M:%S")
+  echo "$remain"
 }
 
 status() {
-	settimes
-	local remain
-	remain=$(date -u -d "@$((epochtimes[next] - epochtimes[now]))" "+%H:%M")
-	local next_text="$nextprayer in $remain"
+  settimes || return 1
+  local remain
+  remain=$(date -u -d "@$(remaining-seconds)" "+%H:%M")
+  local next_text="$nextprayer in $remain"
 
-	if [[ "$XDG_SESSION_TYPE" == "x11" ]]; then
-		echo -n "$next_text"
-	else
-		printf '{ "text": "%s", "class": "%s" }\n' "$next_text" "$nextprayer"
-	fi
+  if [[ "$XDG_SESSION_TYPE" == "x11" ]]; then
+    echo -n "$next_text"
+  else
+    printf '{ "text": "%s", "class": "%s" }\n' "$next_text" "$nextprayer"
+  fi
 }
 
 notify-data() {
-	settimes
-	local remain_seconds=$((epochtimes[next] - epochtimes[now]))
-	printf '{ "next": "%s", "remaining_seconds": %d }\n' "$nextprayer" "$remain_seconds"
+  settimes || return 1
+  local remain_seconds
+  remain_seconds=$(remaining-seconds)
+  printf '{ "next": "%s", "remaining_seconds": %d }\n' "$nextprayer" "$remain_seconds"
 }
 
 case "$1" in
 check)
-	check
-	;;
+  check
+  ;;
 jobs)
-	add-jobs
-	;;
+  add-jobs
+  ;;
 sync)
-	check
-	add-jobs
-	;;
+  check
+  add-jobs
+  ;;
 print)
-	print
-	;;
+  print
+  ;;
 current)
-	current
-	;;
+  current
+  ;;
 next)
-	next
-	;;
+  next
+  ;;
 remaining)
-	remaining
-	;;
+  remaining
+  ;;
 status)
-	status
-	;;
+  status
+  ;;
 notify-data)
-	notify-data
-	;;
+  notify-data
+  ;;
 yad)
-	yad-toggle
-	;;
+  yad-toggle
+  ;;
 *)
-	echo "Usage: $(basename "$0") [command]"
-	echo "Command:"
-	echo "  check      Check if prayer time data needs to be fetched"
-	echo "  jobs       Add prayer time notifications as at jobs"
-	echo "  sync       Check and sync prayer time data, and add notifications"
-	echo "  print      Print prayer times"
-	echo "  current    Get the current prayer"
-	echo "  next       Get the next prayer"
-	echo "  remaining  Get the remaining time for the next prayer"
-	echo "  status     Get the status message indicating the next prayer"
-	echo "  notify-data Get next prayer and remaining seconds in JSON"
-	echo "  yad        Toggle the yad window showing prayer times"
-	exit 1
-	;;
+  echo "Usage: $(basename "$0") [command]"
+  echo "Command:"
+  echo "  check      Check if prayer time data needs to be fetched"
+  echo "  jobs       Add prayer time notifications as at jobs"
+  echo "  sync       Check and sync prayer time data, and add notifications"
+  echo "  print      Print prayer times"
+  echo "  current    Get the current prayer"
+  echo "  next       Get the next prayer"
+  echo "  remaining  Get the remaining time for the next prayer"
+  echo "  status     Get the status message indicating the next prayer"
+  echo "  notify-data Get next prayer and remaining seconds in JSON"
+  echo "  yad        Toggle the yad window showing prayer times"
+  exit 1
+  ;;
 esac

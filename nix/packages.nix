@@ -16,9 +16,9 @@
   unstablePackages = with pkgs; [
     alejandra
     android-tools
+    aria2
     bc
     bemenu
-    bitwarden-desktop
     brightnessctl
     btop
     cargo
@@ -34,16 +34,17 @@
     ffmpeg
     file
     findutils
+    foot
     frame
     fzf
     gcc
     gdb
+    ghostty
     gimp3-with-plugins
     gnumake
     go
     grim
     groff
-    heroic
     hyprcursor
     hypridle
     hyprland-qt-support
@@ -59,7 +60,6 @@
     kdePackages.qtstyleplugin-kvantum
     kdePackages.qtwayland
     kew
-    kitty
     libappindicator
     libnotify
     libsForQt5.qt5ct
@@ -69,7 +69,6 @@
     lutris
     man-pages
     mpv
-    nextcloud-client
     nix-alien
     nixd
     nodejs_25
@@ -78,16 +77,13 @@
     pavucontrol
     playerctl
     python3
-    python313Packages.ds4drv
     python3Packages.pip
     qalculate-gtk
-    qbittorrent
     ripgrep
     scrcpy
     slurp
     socat
     swappy
-    syncthing
     termdown
     tree-sitter
     ty
@@ -97,6 +93,7 @@
     usbutils
     vicinae
     vivaldi-snapshot
+    vlc
     waller
     warehouse
     wev
@@ -125,6 +122,8 @@
 
   # nixos-stable
   stablePackages = with stable; [
+    bitwarden-desktop
+    heroic
     modrinth-app
   ];
 in {
@@ -157,6 +156,9 @@ in {
     appimage = {
       enable = true;
       binfmt = true;
+      package = pkgs.appimage-run.override {
+        extraPkgs = pkgs: [pkgs.zstd];
+      };
     };
 
     bat = {
@@ -173,11 +175,6 @@ in {
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
-    };
-
-    foot = {
-      enable = true;
-      enableZshIntegration = true;
     };
 
     gnupg.agent = {

@@ -3,12 +3,12 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export CSCOPE_EDITOR="nvim"
 export MANPAGER="nvim +Man!"
-export less_termcap_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
-export less_termcap_me="$(tput sgr0 2> /dev/null)"
+export LESS_TERMCAP_MD="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
+export LESS_TERMCAP_ME="$(tput sgr0 2> /dev/null)"
 
 # FZF
-export fzf_default_opts="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
-export fzf_ctrl_r_opts="--style minimal --color 16 --info inline --no-sort --no-preview"
+export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
+export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview"
 
 # PATH
 export PATH="$HOME/.local/bin:$HOME/.spicetify:$PATH"
@@ -17,7 +17,7 @@ export PATH="$HOME/.local/bin:$HOME/.spicetify:$PATH"
 # options {{{
 HISTSIZE=10000000
 SAVEHIST=10000000
-HISTDUP=erase
+
 stty stop undef
 
 setopt AUTOCD
@@ -28,7 +28,7 @@ setopt extended_history
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
 setopt hist_ignore_all_dups
-setopt hist_ignore_dups
+
 setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_verify
@@ -76,7 +76,7 @@ alias lt='eza -aHT --level=3 --color=always --group-directories-first --icons --
 # }}}}
 
 #git {{{{
-alias gitc='git clone'
+
 alias gc='git clone'
 alias gp='git pull'
 # }}}}
@@ -95,7 +95,6 @@ alias sopy='source venv/bin/activate'
 #files {{{{
 alias cp='cp -iv'
 alias mv='mv -iv'
-# alias rm='rm -Iv'
 alias mkdir='mkdir -pv'
 # }}}}
 
@@ -133,7 +132,7 @@ alias battery='upower -i /org/freedesktop/Upower/devices/battery_BAT0'
 alias weather='curl https://wttr.in/As%20Salt\?format=3'
 alias shizuku='adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/start.sh'
 alias vdl='yt-dlp'
-alias adl='yt-dlp -t mp3'
+alias adl='yt-dlp -x --audio-format mp3'
 alias img2txt='ascii-image-converter'
 alias prop='hyprprop'
 alias cx='chmod +x'
@@ -154,7 +153,7 @@ alias grant_time="/home/m57/Documents/Projects/micro-saftey/venv/bin/python3 /ho
 
 function plugin-load {
     local repo plugdir initfile initfiles=()
-    : ${ZPLUGINDIR:=${ZDOTDIR:-$HOME/.zsh}/plugins}
+    : ${ZPLUGINDIR:=$PLUGINS_DIR}
     for repo in $@; do
         plugdir=$ZPLUGINDIR/${repo:t}
         initfile=$plugdir/${repo:t}.plugin.zsh
@@ -184,23 +183,23 @@ chpwd() {
 
 # Extract
 extract () {
-    if [ -f $1 ] ; then
-        case $1 in
-            *.xz)    unxz $1;;
-            *.bz2)       bunzip2 $1;;
-            *.rar)       unrar x $1;;
-            *.gz)        gunzip $1;;
-            *.tbz2)      tar xjf $1;;
-            *.tgz)       tar xzf $1;;
-            *.zip)       unzip $1;;
-            *.Z)         uncompress $1;;
-            *.7z)        7za e x $1;;
-            *.deb)       ar x $1;;
-            *.tar)       tar xf $1;;
-            *.tar.bz2)   tar xjf $1;;
-            *.tar.gz)    tar xzf $1;;
-            *.tar.xz)    tar xf $1;;
-            *.tar.zst)   unzstd $1;;
+    if [ -f "$1" ] ; then
+        case "$1" in
+            *.xz)        unxz "$1";;
+            *.bz2)       bunzip2 "$1";;
+            *.rar)       unrar x "$1";;
+            *.gz)        gunzip "$1";;
+            *.tbz2)      tar xjf "$1";;
+            *.tgz)       tar xzf "$1";;
+            *.zip)       unzip "$1";;
+            *.Z)         uncompress "$1";;
+            *.7z)        7za x "$1";;
+            *.deb)       ar x "$1";;
+            *.tar)       tar xf "$1";;
+            *.tar.bz2)   tar xjf "$1";;
+            *.tar.gz)    tar xzf "$1";;
+            *.tar.xz)    tar xf "$1";;
+            *.tar.zst)   unzstd "$1";;
             *)           echo "'$1' cannot be extracted via extract()";;
         esac
     else
@@ -222,7 +221,7 @@ gitup() {
 
 # Update dotfiles
 dup() {
-    cd $HOME/Documents/Projects/dots/
+    cd "$HOME/Documents/Projects/dots/" || return 1
     git add -A
     git commit -m "$1"
     git push
@@ -230,9 +229,10 @@ dup() {
 
 # dngl
 dngl() {
-    cd $HOME/Videos/dngl/
-    yt-dlp "$1"
-    cd $HOME
+    (
+        cd "$HOME/Videos/dngl/" || return 1
+        yt-dlp "$1"
+    )
 }
 
 # Update pkgs
@@ -351,6 +351,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 PLUGINS_DIR="$HOME/.zsh/plugins"
 
 autoload -Uz compinit
+compinit -C
 
 # Case insensitive completion & better matching
 zstyle ':completion:*' matcher-list \
@@ -372,7 +373,7 @@ plugin-load $repos
 
 # startup {{{
 
-fastfetch --logo nixos_small --logo-color-1 red --logo-color-2 red --logo-color-3 red --logo-color-4 red --logo-color-5 red --logo-color-6 red --color-keys red
+[[ -o interactive ]] && fastfetch --logo nixos_small --logo-color-1 red --logo-color-2 red --logo-color-3 red --logo-color-4 red --logo-color-5 red --logo-color-6 red --color-keys red
 # }}}
 
 # vim: fdm=marker fdl=0
