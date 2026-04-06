@@ -3,36 +3,61 @@ set -euo pipefail
 
 MENU_ITEMS=(
   "Blur|blur"
-  "Opacity 1.0|opacity_10"
-  "Opacity 0.9|opacity_9"
-  "Opacity 0.8|opacity_8"
-  "Opacity 0.2|opacity_2"
-  "Opacity 0.0|opacity_0"
   "Decoration|decoration"
+  "Fullscreen|fullscreen"
+  "Master|master"
+  "Dwindle|dwindle"
+  "Scrolling|scrolling"
+  "Monocle|monocle"
+  "Opacity 1.0|opacity_10"
+  "Opacity 0.95|opacity_9"
+  "Opacity 0.1|opacity_1"
 )
 
 blur() {
   hyprctl dispatch setprop active no_blur toggle
 }
 
+decoration() {
+  hyprctl dispatch setprop active decorate toggle
+}
+
+fullscreen() {
+  classes=$(hyprctl clients -j | jq -r '.[].class' | sort -u)
+  selected_class=$(echo "$classes" | bmenu -p "Select Class:")
+
+  if [ -z "$selected_class" ]; then
+    return
+  fi
+
+  hyprctl dispatch focuswindow "class:^(${selected_class})$"
+  hyprctl dispatch fullscreen 0
+}
+
+master() {
+  hyprctl keyword general:layout master
+}
+
+dwindle() {
+  hyprctl keyword general:layout dwindle
+}
+
+scrolling() {
+  hyprctl keyword general:layout scrolling
+}
+
+monocle() {
+  hyprctl keyword general:layout monocle
+}
+
 opacity_10() {
   hyprctl dispatch setprop active opacity 1
 }
 opacity_9() {
-  hyprctl dispatch setprop active opacity 0.9
+  hyprctl dispatch setprop active opacity 0.95
 }
-opacity_8() {
-  hyprctl dispatch setprop active opacity 0.8
-}
-opacity_2() {
-  hyprctl dispatch setprop active opacity 0.2
-}
-opacity_0() {
-  hyprctl dispatch setprop active opacity 0.0
-}
-
-decoration() {
-  hyprctl dispatch setprop active decorate toggle
+opacity_1() {
+  hyprctl dispatch setprop active opacity 0.1
 }
 
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do

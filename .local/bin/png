@@ -8,28 +8,28 @@ FORCE=false
 # Parse arguments
 while [[ $# -gt 0 ]]; do
   case $1 in
-    --res)
-      RES="$2"
-      shift 2
-      ;;
-    --force)
-      FORCE=true
-      shift
-      ;;
-    *)
-      echo "Usage: $0 [--res WIDTHxHEIGHT] [--force]"
-      exit 1
-      ;;
+  --res)
+    RES="$2"
+    shift 2
+    ;;
+  --force)
+    FORCE=true
+    shift
+    ;;
+  *)
+    echo "Usage: $0 [--res WIDTHxHEIGHT] [--force]"
+    exit 1
+    ;;
   esac
 done
 
 if [ "$FORCE" = false ]; then
-    read -p "This script will convert images to PNG, resize them to $RES, rename them, and DELETE original files. Continue? (y/N) " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo "Aborted."
-        exit 1
-    fi
+  read -p "This script will convert images to PNG, resize them to $RES, rename them, and Backup original files. Continue? (y/N) " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Aborted."
+    exit 1
+  fi
 fi
 
 # Create a backup directory
@@ -67,7 +67,7 @@ echo ""
 echo "**Renaming files sequentially**"
 counter=1000
 for item in *.png; do
-    mv "$item" "$counter.png"
-    counter=$((counter + 1))
+  mv "$item" "$counter.png"
+  counter=$((counter + 1))
 done
 echo "Done"

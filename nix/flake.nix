@@ -13,6 +13,7 @@
     frame.url = "github:hy4ri/Frame";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     vivaldi-snapshot.url = "github:hy4ri/vivaldi-snapshot-flake";
+    vivaldi-stable.url = "github:hy4ri/vivaldi-snapshot-flake/stable";
     hyprland.url = "github:hyprwm/hyprland";
   };
 
@@ -25,6 +26,7 @@
     determinate,
     waller,
     frame,
+    vivaldi-stable,
     vivaldi-snapshot,
     hyprland,
     ...
@@ -45,6 +47,7 @@
               self.inputs.waller.overlays.default #Waller
               self.inputs.frame.overlays.default #frame
               self.inputs.nvim-nightly.overlays.default #nvim
+              self.inputs.vivaldi-stable.overlays.default #vivaldi
               self.inputs.vivaldi-snapshot.overlays.default #vivaldi-snapshot
             ];
           })

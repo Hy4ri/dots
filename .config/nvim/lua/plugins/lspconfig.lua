@@ -76,15 +76,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 			end, "Toggle Inlay Hints")
 		end
-
-		map("<leader>rn", vim.lsp.buf.rename, "Rename")
-		map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-		map("]d", function()
-			vim.diagnostic.jump({ count = 1 })
-		end, "Next Diagnostic")
-		map("[d", function()
-			vim.diagnostic.jump({ count = -1 })
-		end, "Previous Diagnostic")
 	end,
 })
 

@@ -8,11 +8,11 @@
       enable = true;
       defaultApplications = {
         "x-scheme-handler/terminal" = "foot.desktop";
-        "text/html" = "vivaldi-snapshot.desktop";
-        "x-scheme-handler/http" = "vivaldi-snapshot.desktop";
-        "x-scheme-handler/https" = "vivaldi-snapshot.desktop";
-        "x-scheme-handler/about" = "vivaldi-snapshot.desktop";
-        "x-scheme-handler/unknown" = "vivaldi-snapshot.desktop";
+        "text/html" = "vivaldi-stable.desktop";
+        "x-scheme-handler/http" = "vivaldi-stable.desktop";
+        "x-scheme-handler/https" = "vivaldi-stable.desktop";
+        "x-scheme-handler/about" = "vivaldi-stable.desktop";
+        "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
         "inode/directory" = "yazi.desktop";
         "x-scheme-handler/discord" = "vesktop.desktop";
         "video/mpeg" = "mpv.desktop";

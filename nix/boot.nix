@@ -24,7 +24,7 @@
       "modprobe.blacklist=iTCO_wdt"
       "usbcore.autosuspend=-1"
     ];
-    kernelModules = ["kvm-intel"];
+    kernelModules = ["kvm-intel" "ntsync"];
 
     kernel.sysctl = {
       "vm.swappiness" = 10;

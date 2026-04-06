@@ -16,7 +16,6 @@
   unstablePackages = with pkgs; [
     alejandra
     android-tools
-    aria2
     bc
     bemenu
     brightnessctl
@@ -25,7 +24,6 @@
     clang
     cmake
     curl
-    distrobox
     dua
     dunst
     eza
@@ -51,7 +49,6 @@
     hyprlang
     hyprpicker
     hyprpolkitagent
-    hyprprop
     hyprtoolkit
     hyprutils
     imagemagick
@@ -59,7 +56,6 @@
     kdePackages.qt6ct
     kdePackages.qtstyleplugin-kvantum
     kdePackages.qtwayland
-    kew
     libappindicator
     libnotify
     libsForQt5.qt5ct
@@ -86,18 +82,14 @@
     swappy
     termdown
     tree-sitter
-    ty
     umu-launcher
     unzip
-    upscayl
     usbutils
     vicinae
-    vivaldi-snapshot
-    vlc
+    vivaldi-stable
     waller
     warehouse
     wev
-    wf-recorder
     wget
     wine
     wl-clipboard
@@ -124,7 +116,6 @@
   stablePackages = with stable; [
     bitwarden-desktop
     heroic
-    modrinth-app
   ];
 in {
   nixpkgs.config.allowUnfree = true;
@@ -149,7 +140,7 @@ in {
     nano.enable = false;
     niri.enable = false;
     nix-ld.enable = true;
-    virt-manager.enable = true;
+    virt-manager.enable = false;
     waybar.enable = true;
     xwayland.enable = true;
 

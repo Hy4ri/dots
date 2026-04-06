@@ -95,9 +95,9 @@
   };
 
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd.enable = false;
     podman = {
-      enable = true;
+      enable = false;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = false;
     };
