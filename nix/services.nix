@@ -60,7 +60,7 @@
     };
 
     resolved = {
-      enable = true;
+      enable = false;
       settings.Resolve = {
         ResolveUnicastSingleLabel = true;
       };

@@ -9,12 +9,13 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     nix-alien.url = "github:thiagokokada/nix-alien";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-    waller.url = "github:hy4ri/waller";
     frame.url = "github:hy4ri/Frame";
-    nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     vivaldi-snapshot.url = "github:hy4ri/vivaldi-snapshot-flake";
     vivaldi-stable.url = "github:hy4ri/vivaldi-snapshot-flake/stable";
     hyprland.url = "github:hyprwm/hyprland";
+    quickshell.url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+    dms.url = "github:AvengeMedia/DankMaterialShell";
+    dms-plugin-registry.url = "github:AvengeMedia/dms-plugin-registry";
   };
 
   outputs = {
@@ -22,13 +23,14 @@
     nixpkgs,
     nix-index-database,
     nix-flatpak,
-    nix-alien,
     determinate,
-    waller,
     frame,
     vivaldi-stable,
     vivaldi-snapshot,
     hyprland,
+    quickshell,
+    dms,
+    dms-plugin-registry,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -44,9 +46,7 @@
           ({self, ...}: {
             nixpkgs.overlays = [
               self.inputs.nix-alien.overlays.default #alien
-              self.inputs.waller.overlays.default #Waller
               self.inputs.frame.overlays.default #frame
-              self.inputs.nvim-nightly.overlays.default #nvim
               self.inputs.vivaldi-stable.overlays.default #vivaldi
               self.inputs.vivaldi-snapshot.overlays.default #vivaldi-snapshot
             ];

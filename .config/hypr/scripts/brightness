@@ -42,8 +42,8 @@ notify_user() {
     title="Keyboard Brightness"
   fi
 
-  notify-send -e -h string:x-canonical-private-synchronous:brightness_notif \
-    -h "int:value:$current" -u low -i "$icon" "$title : ${current}%"
+   notify-send -e -h string:x-canonical-private-synchronous:brightness_notif \
+     -h "int:value:$current" -u low -i "$icon" "$title : ${current}%"
 }
 
 # Change brightness for main monitor only
@@ -58,7 +58,7 @@ change_backlight() {
   current=$(get_backlight)
   local icon
   icon=$(get_icon "$current")
-  notify_user "$current" "$icon"
+   notify_user "$current" "$icon"
 }
 
 # Change brightness for keyboard

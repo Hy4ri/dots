@@ -1,0 +1,65 @@
+{
+  "dankLauncherKeys": {
+    "enabled": true
+  },
+  "dankNotepadModule": {
+    "enabled": true
+  },
+  "dankPomodoroTimer": {
+    "enabled": true,
+    "workDuration": "50",
+    "shortBreakDuration": "10",
+    "autoStartBreaks": true,
+    "autoStartPomodoros": true,
+    "autoSetDND": true
+  },
+  "dankActions": {
+    "enabled": true
+  },
+  "dankHooks": {
+    "enabled": true
+  },
+  "dankBatteryAlerts": {
+    "enabled": true,
+    "criticalThreshold": 10
+  },
+  "usbManager": {
+    "enabled": true
+  },
+  "sshConnections": {
+    "enabled": true,
+    "server_list": [
+      {
+        "server": "192.168.1.48",
+        "options": "-p 8022"
+      }
+    ],
+    "history": [
+      "ssh"
+    ]
+  },
+  "gitmojiLauncher": {
+    "enabled": true
+  },
+  "emojiLauncher": {
+    "enabled": true
+  },
+  "prayerTimes": {
+    "enabled": true,
+    "method": "23",
+    "lon": "35.923844",
+    "use12H": true,
+    "lat": "31.9461222",
+    "tuneSunrise": "-4",
+    "tuneDhuhr": "1",
+    "tuneMaghrib": "2",
+    "tuneAsr": "2",
+    "tuneIsha": "1"
+  },
+  "imageConverter": {
+    "enabled": true
+  },
+  "alarmClock": {
+    "enabled": true
+  }
+}

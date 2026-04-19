@@ -26,6 +26,7 @@
     curl
     dua
     dunst
+    emacs-pgtk
     eza
     fastfetch
     fd
@@ -85,15 +86,12 @@
     umu-launcher
     unzip
     usbutils
-    vicinae
     vivaldi-stable
-    waller
     warehouse
     wev
     wget
     wine
     wl-clipboard
-    wlsunset
     xdg-desktop-portal-hyprland
     xdg-user-dirs
     xdg-utils
@@ -128,6 +126,7 @@ in {
       nerd-fonts.jetbrains-mono
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
+      emacs-all-the-icons-fonts
     ];
   };
 
@@ -136,12 +135,11 @@ in {
     fuse.userAllowOther = true;
     gamemode.enable = true;
     git.enable = true;
-    hyprlock.enable = true;
     nano.enable = false;
     niri.enable = false;
     nix-ld.enable = true;
     virt-manager.enable = false;
-    waybar.enable = true;
+    waybar.enable = false;
     xwayland.enable = true;
 
     appimage = {
@@ -160,6 +158,19 @@ in {
       extraPackages = with pkgs.bat-extras; [
         prettybat
       ];
+    };
+
+    dms-shell = {
+      enable = true;
+      package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
+
+      enableSystemMonitoring = true; # System monitoring widgets (dgop)
+      enableVPN = false; # VPN management widget
+      enableDynamicTheming = true; # Wallpaper-based theming (matugen)
+      enableAudioWavelength = false; # Audio visualizer (cava)
+      enableCalendarEvents = true; # Calendar integration (khal)
+      enableClipboardPaste = true; # Pasting from the clipboard history (wtype)
     };
 
     direnv = {

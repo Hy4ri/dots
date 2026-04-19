@@ -1,25 +1,25 @@
 local opt = vim.opt
-opt.arabicshape = true -- Correctly displays Arabic characters' shapes.
-opt.autowrite = false -- Automatically writes changes to a file when switching buffers or exiting Neovim
-opt.breakindent = true -- Indents wrapped lines to match code indentation
-opt.clipboard = "unnamedplus" -- Uses the system clipboard (+) for all copy/paste operations.
-opt.cmdheight = 0 -- Hides the command line area (set to 0 lines).
-opt.colorcolumn = "+1" -- Draw column on the right of maximum width
-opt.copyindent = true -- When auto-indenting, copies the indentation structure from the previous line.
-opt.cursorline = true -- Highlights the entire line your cursor is currently on.
+opt.arabicshape = true                   -- Correctly displays Arabic characters' shapes.
+opt.autowrite = false                    -- Automatically writes changes to a file when switching buffers or exiting Neovim
+opt.breakindent = true                   -- Indents wrapped lines to match code indentation
+opt.clipboard = "unnamedplus"            -- Uses the system clipboard (+) for all copy/paste operations.
+opt.cmdheight = 0                        -- Hides the command line area (set to 0 lines).
+opt.colorcolumn = "+1"                   -- Draw column on the right of maximum width
+opt.copyindent = true                    -- When auto-indenting, copies the indentation structure from the previous line.
+opt.cursorline = true                    -- Highlights the entire line your cursor is currently on.
 opt.diffopt:append("algorithm:patience") -- Uses the "patience" algorithm for better diffs
-opt.diffopt:append("linematch:60") -- Improves diff algorithm for better diffs
-opt.diffopt:append("vertical") -- Opens diffs in vertical splits
-opt.errorbells = false -- remove all errors
-opt.expandtab = true -- Converts all <Tab> key presses into spaces.
+opt.diffopt:append("linematch:60")       -- Improves diff algorithm for better diffs
+opt.diffopt:append("vertical")           -- Opens diffs in vertical splits
+opt.errorbells = false                   -- remove all errors
+opt.expandtab = true                     -- Converts all <Tab> key presses into spaces.
 opt.fillchars = {
-	eob = " ",
-	fold = " ",
-	foldclose = "",
-	foldopen = "",
-	foldsep = " ",
-	foldinner = " ",
-	msgsep = "─",
+  eob = " ",
+  fold = " ",
+  foldclose = "",
+  foldopen = "",
+  foldsep = " ",
+  foldinner = " ",
+  msgsep = "─",
 }
 opt.foldlevel = 999 -- Fold nothing by default; set to 0 or 1 to fold
 opt.foldmethod = "expr" -- Fold method used (expr for treesitter)

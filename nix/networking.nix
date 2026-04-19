@@ -4,8 +4,6 @@
     networkmanager = {
       enable = true;
     };
-    nameservers = [
-    ];
     firewall = {
       enable = true;
     };
