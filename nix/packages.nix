@@ -25,8 +25,6 @@
     cmake
     curl
     dua
-    dunst
-    emacs-pgtk
     eza
     fastfetch
     fd
@@ -45,11 +43,8 @@
     grim
     groff
     hyprcursor
-    hypridle
     hyprland-qt-support
     hyprlang
-    hyprpicker
-    hyprpolkitagent
     hyprtoolkit
     hyprutils
     imagemagick
@@ -69,6 +64,7 @@
     nix-alien
     nixd
     nodejs_25
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     nwg-look
     opencode
     pavucontrol
@@ -158,19 +154,6 @@ in {
       extraPackages = with pkgs.bat-extras; [
         prettybat
       ];
-    };
-
-    dms-shell = {
-      enable = true;
-      package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.quickshell;
-
-      enableSystemMonitoring = true; # System monitoring widgets (dgop)
-      enableVPN = false; # VPN management widget
-      enableDynamicTheming = true; # Wallpaper-based theming (matugen)
-      enableAudioWavelength = false; # Audio visualizer (cava)
-      enableCalendarEvents = true; # Calendar integration (khal)
-      enableClipboardPaste = true; # Pasting from the clipboard history (wtype)
     };
 
     direnv = {

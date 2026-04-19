@@ -14,8 +14,7 @@
     vivaldi-stable.url = "github:hy4ri/vivaldi-snapshot-flake/stable";
     hyprland.url = "github:hyprwm/hyprland";
     quickshell.url = "git+https://git.outfoxxed.me/quickshell/quickshell";
-    dms.url = "github:AvengeMedia/DankMaterialShell";
-    dms-plugin-registry.url = "github:AvengeMedia/dms-plugin-registry";
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
   };
 
   outputs = {
@@ -24,13 +23,6 @@
     nix-index-database,
     nix-flatpak,
     determinate,
-    frame,
-    vivaldi-stable,
-    vivaldi-snapshot,
-    hyprland,
-    quickshell,
-    dms,
-    dms-plugin-registry,
     ...
   } @ inputs: {
     nixosConfigurations = {
