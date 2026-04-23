@@ -1,6 +1,6 @@
 [flavor]
- # dark = "flexoki-dark"
- # dark = "ashen"
+light = "noctalia"
+dark  = "noctalia"
 
 [indicator]
 current = { fg = "#ffffff", bg = "#990000", bold = true }

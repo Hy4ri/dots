@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+prompt=""
+timeout="${BMENU_TIMEOUT:-0}"
+input_file=""
+clean_input_file=""
+result_file=""
+
+cleanup() {
+  if [[ -n "$result_file" ]]; then
+    rm -f "$result_file" "${result_file}.tmp"
+  fi
+  [[ -n "$input_file" ]] && rm -f "$input_file"
+  [[ -n "$clean_input_file" ]] && rm -f "$clean_input_file"
+}
+
+trap cleanup EXIT
+
+json_escape() {
+  local s="${1-}"
+  s=${s//\\/\\\\}
+  s=${s//\"/\\\"}
+  s=${s//$'\n'/\\n}
+  s=${s//$'\r'/\\r}
+  s=${s//$'\t'/\\t}
+  printf '%s' "$s"
+}
+
+wait_for_result() {
+  local wait_timeout="$1"
+  local file="$2"
+
+  if command -v inotifywait >/dev/null 2>&1; then
+    local dir
+    local base
+    dir=$(dirname "$file")
+    base=$(basename "$file")
+
+    if [[ "$wait_timeout" -gt 0 ]]; then
+      inotifywait -qq -t "$wait_timeout" -e moved_to "$dir" --include "^${base}$" 2>/dev/null
+    else
+      inotifywait -qq -e moved_to "$dir" --include "^${base}$" 2>/dev/null
+    fi
+    return $?
+  fi
+
+  local elapsed=0
+  local timeout_ms=$((wait_timeout * 1000))
+  while true; do
+    [[ -f "$file" ]] && return 0
+    if [[ "$wait_timeout" -gt 0 && "$elapsed" -ge "$timeout_ms" ]]; then
+      return 2
+    fi
+    sleep 0.1
+    elapsed=$((elapsed + 100))
+  done
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -p|--prompt)
+      prompt="${2-}"
+      shift 2
+      ;;
+    --prompt=*)
+      prompt="${1#*=}"
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*)
+      shift
+      ;;
+    *)
+      if [[ -z "$prompt" ]]; then
+        prompt="$1"
+      fi
+      shift
+      ;;
+  esac
+done
+
+if [[ ! "$timeout" =~ ^[0-9]+$ ]]; then
+  timeout=0
+fi
+
+if [[ ! -t 0 ]]; then
+  input_file=$(mktemp "/tmp/noctalia-bmenu-in-XXXXXX")
+  clean_input_file=$(mktemp "/tmp/noctalia-bmenu-clean-XXXXXX")
+  cat >"$input_file"
+
+  python - "$input_file" "$clean_input_file" <<'PY'
+import sys
+
+src_path, dst_path = sys.argv[1], sys.argv[2]
+
+with open(src_path, "rb") as src:
+    raw = src.read().splitlines()
+
+clean_lines = []
+for line in raw:
+    line = line.split(b"\x00", 1)[0]
+    clean_lines.append(line.decode("utf-8", "replace"))
+
+with open(dst_path, "w", encoding="utf-8") as dst:
+    dst.write("\n".join(clean_lines))
+PY
+fi
+
+allow_custom=false
+if [[ "${BMENU_ALLOW_CUSTOM:-0}" == "1" ]]; then
+  allow_custom=true
+elif [[ -z "$clean_input_file" || ! -s "$clean_input_file" ]]; then
+  allow_custom=true
+fi
+
+result_file="/tmp/noctalia-bmenu-$PPID-$RANDOM-$RANDOM"
+
+options='{"separator":"\n","prompt":"'"$(json_escape "$prompt")"'","resultFile":"'"$(json_escape "$result_file")"'","resultFormat":"plain","allowCustomInput":'"$allow_custom"'}'
+
+if [[ -n "$clean_input_file" && -s "$clean_input_file" ]]; then
+  noctalia-shell ipc call plugin:dmenu showFromFile "$clean_input_file" "$options" >/dev/null
+else
+  noctalia-shell ipc call plugin:dmenu showItems "" "$options" >/dev/null
+fi
+
+if wait_for_result "$timeout" "$result_file"; then
+  if [[ -f "$result_file" ]]; then
+    cat "$result_file"
+    exit 0
+  fi
+fi
+
+exit 1

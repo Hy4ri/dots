@@ -289,49 +289,6 @@ elif command -v fzf &>/dev/null; then
 fi
 # }}}
 
-# vi {{{
-
-bindkey -v
-export KEYTIMEOUT=20
-
-bindkey -M viins '^r' fzf-history-widget
-bindkey -M vicmd '^r' fzf-history-widget
-
-# Cursor shape
-function zle-keymap-select {
-    if [[ ${KEYMAP} == vicmd ]]; then
-        print -n '\e[2 q' # Block
-    else
-        print -n '\e[5 q' # Blinking bar
-    fi
-}
-zle -N zle-keymap-select
-
-function zle-line-init {
-    zle -K viins
-    print -n '\e[5 q'
-}
-zle -N zle-line-init
-
-# Fix backspace in insert mode
-bindkey -M viins '^?' backward-delete-char
-bindkey -M viins '^H' backward-delete-char
-
-# Yank to system clipboard
-function vi-yank-xclip {
-    zle vi-yank
-    echo "$CUTBUFFER" | wl-copy
-}
-zle -N vi-yank-xclip
-bindkey -M vicmd 'y' vi-yank-xclip
-
-# Edit line in vim
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
-# }}}
-
 # Prompt {{{
 
 parse_git_dirty() {

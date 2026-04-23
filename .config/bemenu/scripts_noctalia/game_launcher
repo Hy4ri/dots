@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SELF_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+export PATH="$SELF_DIR:$PATH"
+
+HEROIC_INSTALLED_JSON="$HOME/.config/heroic/legendaryConfig/legendary/installed.json"
+ICON_CACHE="$HOME/.cache/game_launcher_icons"
+
+mkdir -p "$ICON_CACHE"
+
+declare -A GAME_MAP
+entries=()
+
+find_steam_dirs() {
+  local steam_dirs=()
+
+  local common_paths=(
+    "$HOME/.steam/steam"
+    "/opt/steam"
+  )
+
+  for path in "${common_paths[@]}"; do
+    if [[ -d "$path/steamapps" ]]; then
+      steam_dirs+=("$path")
+    fi
+  done
+
+  while IFS= read -r mount_point; do
+    [[ -z "$mount_point" ]] && continue
+    [[ "$mount_point" =~ ^/(proc|sys|dev|run|tmp) ]] && continue
+
+    local potential_paths=(
+      "$mount_point/Steam"
+      "$mount_point/steam"
+      "$mount_point/SteamLibrary"
+      "$mount_point/Games/Steam"
+      "$mount_point/Program Files (x86)/Steam"
+      "$mount_point/Program Files/Steam"
+    )
+
+    for steam_path in "${potential_paths[@]}"; do
+      if [[ -d "$steam_path/steamapps" ]]; then
+        steam_dirs+=("$steam_path")
+      fi
+    done
+
+    if command -v find &>/dev/null; then
+      while IFS= read -r steamapps_dir; do
+        local parent_dir
+        parent_dir=$(dirname "$steamapps_dir")
+        if [[ -d "$steamapps_dir" && ! " ${steam_dirs[*]} " =~ " ${parent_dir} " ]]; then
+          steam_dirs+=("$parent_dir")
+        fi
+      done < <(find "$mount_point" -maxdepth 3 -type d -name "steamapps" 2>/dev/null | head -10)
+    fi
+  done < <(findmnt -rno TARGET 2>/dev/null | grep -v "^/$" | sort -u)
+
+  printf '%s\n' "${steam_dirs[@]}" | sort -u
+}
+
+echo "Scanning for Steam installations..."
+
+while IFS= read -r steam_dir; do
+  echo "Found Steam installation: $steam_dir"
+
+  [[ ! -d "$steam_dir/steamapps" ]] && continue
+
+  mapfile -t steam_names < <(grep -h '"name"' "$steam_dir/steamapps"/appmanifest_*.acf 2>/dev/null | sed 's/.*"name"\s*"\(.*\)"/\1/')
+  mapfile -t steam_ids < <(basename -s .acf "$steam_dir/steamapps"/appmanifest_*.acf 2>/dev/null | sed 's/appmanifest_//')
+
+  for i in "${!steam_names[@]}"; do
+    name="${steam_names[$i]}"
+    id="${steam_ids[$i]}"
+
+    if [[ "$name" =~ [Pp]roton|[Ss]team|[Rr]untime|[Cc]ompatibility|[Tt]ool ]]; then
+      continue
+    fi
+
+    icon_path="$steam_dir/appcache/librarycache/${id}_library_600x900.jpg"
+    fallback_icon="/usr/share/icons/hicolor/48x48/apps/steam.png"
+
+    if [[ -f "$icon_path" ]]; then
+      if command -v convert &>/dev/null; then
+        convert "$icon_path" -resize 48x48 "$ICON_CACHE/$id.png" 2>/dev/null
+        icon="$ICON_CACHE/$id.png"
+      else
+        icon="$icon_path"
+      fi
+    else
+      icon="$fallback_icon"
+    fi
+
+    steam_location=$(basename "$(dirname "$steam_dir")")
+    if [[ "$steam_location" == "steam" ]]; then
+      steam_location=$(basename "$(dirname "$(dirname "$steam_dir")")")
+    fi
+
+    label="Steam ($steam_location): $name"
+    GAME_MAP["$label"]="steam -applaunch $id"
+    entries+=("$label")
+  done
+done < <(find_steam_dirs)
+
+if [[ -f "$HEROIC_INSTALLED_JSON" ]]; then
+  echo "Processing Heroic games..."
+  while read -r key; do
+    title=$(jq -r --arg key "$key" '.[$key].title' "$HEROIC_INSTALLED_JSON")
+    if [[ "$title" != "null" ]]; then
+      label="Heroic: $title"
+      GAME_MAP["$label"]="heroic --launch $key"
+      entries+=("$label")
+    fi
+  done < <(jq -r 'keys[]' "$HEROIC_INSTALLED_JSON")
+fi
+
+if command -v lutris &>/dev/null; then
+  echo "Processing Lutris games..."
+  while read -r _ _ name _; do
+    [[ -z "$name" ]] && continue
+    label="Lutris: $name"
+    GAME_MAP["$label"]="lutris lutris:rungame/$name"
+    entries+=("$label")
+  done < <(lutris -l 2>/dev/null)
+fi
+
+if [[ ${#entries[@]} -eq 0 ]]; then
+  echo "No games found!"
+  exit 1
+fi
+
+echo "Found ${#entries[@]} games total."
+
+choice=$(printf '%s\n' "${entries[@]}" | sort | bmenu "Games")
+
+if [[ -n "$choice" ]]; then
+  if [[ -n "${GAME_MAP["$choice"]-}" ]]; then
+    echo "Launching: $choice"
+    eval "${GAME_MAP["$choice"]}" &
+  else
+    echo "Error: No command found for '$choice'"
+    exit 1
+  fi
+fi

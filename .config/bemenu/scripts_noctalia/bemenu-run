@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+prompt="${TITLE:-Run:}"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -p|--prompt)
+      prompt="${2-}"
+      shift 2
+      ;;
+    --prompt=*)
+      prompt="${1#*=}"
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+choice=$(compgen -c | sort -u | BMENU_ALLOW_CUSTOM=1 bmenu -p "$prompt") || exit 1
+[[ -z "$choice" ]] && exit 1
+
+sh -c "$choice" >/dev/null 2>&1 &
+disown || true
+
+exit 0

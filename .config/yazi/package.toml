@@ -47,18 +47,3 @@ hash = "e6e98d12b1648d1894c2b560d85eeaa7"
 use = "llanosrocas/yaziline"
 rev = "cc0314c"
 hash = "b937c5c8e2d9fa314d4532489176814e"
-
-[[flavor.deps]]
-use = "dangooddd/kanagawa"
-rev = "04985d1"
-hash = "c69a63981e254a3a06a11c2bf0e6af1d"
-
-[[flavor.deps]]
-use = "gosxrgxx/flexoki-dark"
-rev = "25d28ce"
-hash = "8e6dd7e42a127173e4535993d3e0e393"
-
-[[flavor.deps]]
-use = "ficd0/ashen:ashen"
-rev = "7d18c13"
-hash = "65b56e9ee65dd33eec62d6ca4209611b"

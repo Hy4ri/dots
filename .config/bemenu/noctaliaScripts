@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPTS="$HOME/.config/bemenu/scripts_noctalia"
+export PATH="$SCRIPTS:$PATH"
+
+MENU_ITEMS=(
+  "⏸️ Powermenu|$SCRIPTS/powermenu"
+  "📝 Notes|$SCRIPTS/notes"
+  "  HyprEdit|$SCRIPTS/hypredit"
+  "󱄅  NixEdit|$SCRIPTS/nixedit"
+  "  Filemanager|$SCRIPTS/filemanager"
+  "⌚ Timer|$SCRIPTS/timer"
+  "  Tasks|$SCRIPTS/task"
+  "🎥 Screen Recorder|$SCRIPTS/screenrecord"
+  "🔍 Quick Search|$SCRIPTS/quicksearch"
+  "👾 Games|$SCRIPTS/game_launcher"
+  "⚙️ Hyprsettings|$SCRIPTS/hyprsettings"
+  "🛜 wifi|$SCRIPTS/wifi"
+  "📃 Mans|$SCRIPTS/man"
+  "🔧 Yad|$SCRIPTS/yad"
+  "💡 Brightness|$SCRIPTS/brightness"
+  "🔆 Weather|$SCRIPTS/weather"
+  "🌡️ Temprature|$SCRIPTS/temps"
+  "💻 Pc Stats|$SCRIPTS/system"
+  "🎨 Waybar Settings|$SCRIPTS/waybarManager"
+  "🟥🟩🟦 RGB Profiles|$SCRIPTS/rgb_profiles"
+  "󰜎 Run|$SCRIPTS/run"
+)
+
+CHOICE=$(
+  for item in "${MENU_ITEMS[@]}"; do
+    IFS="|" read -r label _ <<<"$item"
+    echo "$label"
+  done | bmenu "Scripts"
+)
+
+for item in "${MENU_ITEMS[@]}"; do
+  IFS="|" read -r label cmd <<<"$item"
+  if [[ "$CHOICE" == "$label" ]]; then
+    "$cmd"
+    exit 0
+  fi
+done
+
+exit 1

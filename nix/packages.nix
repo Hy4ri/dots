@@ -37,6 +37,7 @@
     gcc
     gdb
     ghostty
+    gifski
     gimp3-with-plugins
     gnumake
     go
@@ -78,7 +79,10 @@
     socat
     swappy
     termdown
-    tree-sitter
+    translate-shell
+    (tesseract.override {
+      enableLanguages = ["eng" "ara"];
+    })
     umu-launcher
     unzip
     usbutils
@@ -88,6 +92,7 @@
     wget
     wine
     wl-clipboard
+    wl-screenrec
     xdg-desktop-portal-hyprland
     xdg-user-dirs
     xdg-utils
@@ -98,6 +103,7 @@
     zathuraPkgs.zathura_cb
     zathuraPkgs.zathura_djvu
     zathuraPkgs.zathura_pdf_mupdf
+    zbar
   ];
 
   # nixos-unstable-small

@@ -7,10 +7,6 @@
         }
     ],
     "states": {
-        "color-scheme-creator": {
-            "enabled": true,
-            "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
-        },
         "dmenu": {
             "enabled": true,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
