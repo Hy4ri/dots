@@ -36,9 +36,10 @@
     fzf
     gcc
     gdb
+    gemini-cli
     ghostty
     gifski
-    gimp3-with-plugins
+    gimp3
     gnumake
     go
     grim
@@ -59,7 +60,6 @@
     libsForQt5.qtstyleplugin-kvantum
     lua51Packages.lua
     luarocks
-    lutris
     man-pages
     mpv
     nix-alien
@@ -86,7 +86,8 @@
     umu-launcher
     unzip
     usbutils
-    vivaldi-stable
+    vesktop
+    vivaldi-snapshot
     warehouse
     wev
     wget
@@ -109,7 +110,6 @@
   # nixos-unstable-small
   unstableSmallPackages = with unstable-small; [
     antigravity-fhs
-    vesktop
   ];
 
   # nixos-stable

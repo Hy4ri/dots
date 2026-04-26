@@ -2,10 +2,10 @@
   imports = [
     ./boot.nix
     ./graphics.nix
-    ./hardware-configuration.nix
+    ./hardware.nix
     ./mimeapps.nix
     ./networking.nix
-    ./packages.nix
+    ./programs.nix
     ./services.nix
     ./theme.nix
   ];
@@ -43,7 +43,7 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "hyari";
-    extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "libvirt" "kvm"];
+    extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "kvm"];
   };
 
   nix = {

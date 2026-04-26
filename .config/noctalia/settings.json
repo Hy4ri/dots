@@ -18,6 +18,15 @@
         "ignoreMouseInput": false,
         "overviewLayer": true,
         "pinnedApps": [
+            "antigravity",
+            "com.heroicgameslauncher.hgl",
+            "vesktop",
+            "it.mijorus.gearlever",
+            "gimp",
+            "nwg-look",
+            "LocalSend",
+            "steam",
+            "bitwarden"
         ],
         "position": "center",
         "screenshotAnnotationTool": "",
@@ -158,13 +167,10 @@
                     "id": "plugin:screen-toolkit"
                 },
                 {
-                    "deviceNativePath": "ps-controller-battery-1c:a0:b8:d5:cf:a0",
-                    "displayMode": "graphic",
-                    "hideIfIdle": false,
-                    "hideIfNotDetected": true,
-                    "id": "Battery",
-                    "showNoctaliaPerformance": false,
-                    "showPowerProfiles": false
+                    "defaultSettings": {
+                        "color": "#0000ff"
+                    },
+                    "id": "plugin:ds4-colors"
                 },
                 {
                     "deviceNativePath": "__default__",
@@ -338,7 +344,7 @@
     "desktopWidgets": {
         "enabled": true,
         "gridSnap": true,
-        "gridSnapScale": true,
+        "gridSnapScale": false,
         "monitorWidgets": [
             {
                 "name": "eDP-1",
@@ -353,8 +359,8 @@
                         "scale": 1.8296719565922157,
                         "showBackground": true,
                         "useCustomFont": false,
-                        "x": 1674,
-                        "y": 44
+                        "x": 1640,
+                        "y": 40
                     }
                 ]
             },
@@ -362,58 +368,36 @@
                 "name": "HDMI-A-3",
                 "widgets": [
                     {
-                        "diskPath": "/",
-                        "id": "SystemStat",
-                        "layout": "bottom",
+                        "id": "Weather",
                         "roundedCorners": true,
-                        "scale": 0.9905719095841794,
+                        "scale": 1.56564171028271,
                         "showBackground": true,
-                        "statType": "CPU",
-                        "x": 1100,
+                        "x": 920,
                         "y": 220
                     },
                     {
-                        "id": "Weather",
-                        "roundedCorners": true,
-                        "scale": 0.8680067341785112,
-                        "showBackground": true,
-                        "x": 1100,
-                        "y": 140
-                    },
-                    {
                         "diskPath": "/",
                         "id": "SystemStat",
                         "layout": "bottom",
                         "roundedCorners": true,
-                        "scale": 1,
-                        "showBackground": true,
-                        "statType": "Memory",
-                        "x": 1100,
-                        "y": 340
-                    },
-                    {
-                        "diskPath": "/",
-                        "id": "SystemStat",
-                        "layout": "bottom",
-                        "roundedCorners": true,
-                        "scale": 1,
+                        "scale": 1.7813232320655665,
                         "showBackground": true,
                         "statType": "Network",
-                        "x": 1100,
-                        "y": 460
+                        "x": 920,
+                        "y": 540
                     },
                     {
                         "clockColor": "none",
                         "clockStyle": "minimal",
                         "customFont": "",
-                        "format": "MM/dd/yyyy",
+                        "format": "hh:mm ap",
                         "id": "Clock",
                         "roundedCorners": true,
-                        "scale": 1.411764705882353,
+                        "scale": 3.054107627927465,
                         "showBackground": true,
                         "useCustomFont": false,
-                        "x": 1100,
-                        "y": 60
+                        "x": 920,
+                        "y": 40
                     }
                 ]
             }
@@ -568,7 +552,7 @@
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
         "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "grid"
+        "wifiDetailsViewMode": "list"
     },
     "nightLight": {
         "autoSchedule": true,
@@ -770,7 +754,7 @@
         "panelBackgroundOpacity": 0.93,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": false,
-        "settingsPanelMode": "window",
+        "settingsPanelMode": "attached",
         "settingsPanelSideBarCardStyle": false,
         "tooltipsEnabled": true,
         "translucentWidgets": true

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   boot = {
     tmp.cleanOnBoot = true;
-    tmp.useTmpfs = true;
+    tmp.useTmpfs = false;
     loader = {
       timeout = 5;
       systemd-boot.enable = true;

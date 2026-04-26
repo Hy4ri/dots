@@ -45,7 +45,6 @@ setopt share_history
 alias nrs='nh os switch ~/Documents/Projects/dots/nix'
 alias nr='nh os boot ~/Documents/Projects/dots/nix'
 alias ncln='sudo nix-collect-garbage --delete-older-than 1d'
-alias nup='sudo nixos-rebuild switch --flake ~/Documents/Projects/dots/nix'
 alias alien='nix-alien-ld -- '
 # }}}}
 

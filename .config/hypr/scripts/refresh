@@ -1,22 +1,19 @@
 #!/usr/bin/env bash
 
 # Kill already running processes
-_ps=(.quickshell-wra rofi)
+_ps=(.quickshell-wra)
 for _prs in "${_ps[@]}"; do
-  if pidof "${_prs}" >/dev/null; then
     pkill "${_prs}"
-  fi
 done
 
-sleep 0.3
+sleep 1
+
+#Relunch
+noctalia-shell &
 
 #Refresh hyprland
-
 hyprctl reload
 hyprctl dispacth forcerendererreload
 
-#Relunch
-
-noctalia-shell &
 
 exit 0

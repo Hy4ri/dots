@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
 
+# How to use:
+# 1. Active an input field and run this script
+# 2. write something in the floating vim window
+# 3. save and quit :wq
+
 # env
 file=/tmp/vimwere
 id="float_vim_capture"
 
 # window rules
-hyprctl keyword windowrule "match:class ${id},float 1" >/dev/null
-hyprctl keyword windowrule "match:class ${id},size 1000 500" >/dev/null
-hyprctl keyword windowrule "match:class ${id},move 500 60" >/dev/null
+hyprctl -q eval 'hl.window_rule({ match = { class = "float_vim_capture" }, float = 1 })' 
+hyprctl -q eval 'hl.window_rule({ match = { class = "float_vim_capture" }, size = { 1000, 500 } })'
+hyprctl -q eval 'hl.window_rule({ match = { class = "float_vim_capture" }, move = { 500, 60 } })'
 
 # copy the text in the input field
-hyprctl -q --batch \
-  "dispatch sendkeystate CTRL,a,down,activewindow; \
-    dispatch sendkeystate CTRL,a,up,activewindow; \
-    dispatch sendkeystate CTRL,c,down,activewindow; \
-    dispatch sendkeystate CTRL,c,up,activewindow"
+hyprctl -q dispatch 'hl.dsp.send_shortcut({mods= "CTRL", key = "a", window = "active"})'
+hyprctl -q dispatch 'hl.dsp.send_shortcut({mods= "CTRL", key = "c", window = "active"})'
 
 # window
 foot --app-id="$id" nvim "$file"
@@ -23,9 +25,7 @@ if [[ -f "$file" ]]; then
   # copy
   wl-copy <"$file"
   # paste
-  hyprctl -q --batch \
-    "dispatch sendkeystate CTRL+SHIFT,v,down,activewindow; \
-  dispatch sendkeystate CTRL+SHIFT,v,up,activewindow"
+  hyprctl -q dispatch 'hl.dsp.send_shortcut({mods= "CTRL", key = "v", window = "active"})'
   # clean
   rm "$file"
 fi
