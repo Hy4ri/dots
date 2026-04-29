@@ -26,11 +26,11 @@
     curl
     dua
     eza
-    fastfetch
     fd
     ffmpeg
     file
     findutils
+    fish
     foot
     frame
     fzf
