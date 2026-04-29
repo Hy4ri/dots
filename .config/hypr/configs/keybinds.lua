@@ -2,15 +2,30 @@ local Mod = "SUPER"
 local scripts = os.getenv("HOME") .. "/.config/hypr/scripts"
 
 -- System/Session
-hl.bind("SUPER + SHIFT + P", hl.dsp.dpms("toggle"), { description = "Toggle DPMS" })
+hl.bind("SUPER + SHIFT + P", hl.dsp.dpms("toggle"), { locked = true, description = "Toggle DPMS" })
 hl.bind("CTRL + ALT + Delete", hl.dsp.exit(), { description = "Exit Hyprland session" })
 hl.bind("xf86Sleep", hl.dsp.exec_cmd("systemctl suspend"), { locked = true, description = "Suspend the system" })
 hl.bind(Mod .. " + SHIFT + R", hl.dsp.exec_cmd(scripts .. "/refresh"),
   { locked = true, description = "Refresh/Reload Hyprland and components" })
 
+-- Switch
+hl.bind("switch:Lid Switch", hl.dsp.exec_cmd("noctalia-shell ipc call lockScreen lock"), { locked = true })
+hl.bind("switch:on:Lid Switch", function()
+  hl.dispatch(hl.dsp.dpms("toggle"))
+end, { locked = true })
+hl.bind("switch:off:Lid Switch", function()
+  hl.dispatch(hl.dsp.dpms("toggle"))
+end, { locked = true })
+
+
 -- Window Management
 hl.bind(Mod .. " + Q", hl.dsp.window.close(), { repeating = true, description = "Kill the active window" })
-hl.bind(Mod .. " + SHIFT + Q", hl.dsp.window.kill(), { description = "Kill the process of the active window" })
+hl.bind(Mod .. " + SHIFT + Q", function()
+  local w = hl.get_active_window()
+  if w ~= nil and w.pid ~= nil then
+    hl.exec_cmd("kill -9 " .. w.pid)
+  end
+end, { description = "Kill the process of the active window" })
 hl.bind(Mod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }),
   { description = "Toggle fullscreen for the active window" })
 hl.bind(Mod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized" }),

@@ -12,4 +12,9 @@ hl.on("hyprland.start", function()
 
   -- Plugins
   hl.exec_cmd("hyprmp reload -n")
+
+  -- Timers
+  -- hl.timer(function()
+  --   hl.exec_cmd(scripts .. "/battery-notify")
+  -- end, { timeout = 60000, type = "repeat" })
 end)

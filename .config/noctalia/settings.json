@@ -18,7 +18,6 @@
         "ignoreMouseInput": false,
         "overviewLayer": true,
         "pinnedApps": [
-            "antigravity",
             "com.heroicgameslauncher.hgl",
             "vesktop",
             "it.mijorus.gearlever",
@@ -65,7 +64,7 @@
         "hideOnOverview": false,
         "marginHorizontal": 4,
         "marginVertical": 4,
-        "middleClickAction": "none",
+        "middleClickAction": "settings",
         "middleClickCommand": "",
         "middleClickFollowMouse": false,
         "monitors": [
@@ -79,6 +78,10 @@
         "rightClickCommand": "",
         "rightClickFollowMouse": true,
         "screenOverrides": [
+            {
+                "enabled": false,
+                "name": "HDMI-A-3"
+            }
         ],
         "showCapsule": true,
         "showOnWorkspaceSwitch": true,
@@ -343,7 +346,7 @@
     },
     "desktopWidgets": {
         "enabled": true,
-        "gridSnap": true,
+        "gridSnap": false,
         "gridSnapScale": false,
         "monitorWidgets": [
             {
@@ -353,13 +356,13 @@
                         "clockColor": "none",
                         "clockStyle": "minimal",
                         "customFont": "",
-                        "format": "h:mm AP\\nMM/dd/yyyy",
+                        "format": "hh:mm AP\\nMM/dd/yyyy",
                         "id": "Clock",
                         "roundedCorners": true,
                         "scale": 1.8296719565922157,
                         "showBackground": true,
                         "useCustomFont": false,
-                        "x": 1640,
+                        "x": 1650,
                         "y": 40
                     }
                 ]

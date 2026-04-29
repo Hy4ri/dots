@@ -2,7 +2,7 @@
 hl.config({
   layout = {
     single_window_aspect_ratio = "0 0",
-    single_window_aspect_ratio_tolerance = 0.1
+    single_window_aspect_ratio_tolerance = 0
   },
 
   dwindle = {
@@ -34,9 +34,9 @@ hl.config({
   --: General Settings {{{
   general = {
     border_size = 1,
-    gaps_in = 0,
-    gaps_out = 0,
-    float_gaps = 1,
+    gaps_in = { top = 0, left = 0, right = 0, bottom = 0 },
+    gaps_out = { top = 1, left = 0, right = 0, bottom = 0 },
+    float_gaps = { top = 0, left = 0, right = 0, bottom = 0 },
     gaps_workspaces = 1,
     ["col.inactive_border"] = "rgb(000000)",
     ["col.active_border"] = "rgb(990000)",
@@ -74,7 +74,10 @@ hl.config({
     },
     shadow = {
       enabled = false
-    }
+    },
+    glow = {
+      enabled = false,
+    },
   },
   --: }}}
 
@@ -173,30 +176,26 @@ hl.config({
     force_zero_scaling = true
   },
 
-  opengl = {
-    nvidia_anti_flicker = true
-  },
-
   render = {
-    direct_scanout = true
+    direct_scanout = 2,
   },
 
   cursor = {
     sync_gsettings_theme = true,
-    no_hardware_cursors = 1,
-    no_break_fs_vrr = 2,
-    hotspot_padding = 0,
     persistent_warps = true,
     warp_on_change_workspace = 1,
     warp_on_toggle_special = 1,
     zoom_factor = 1.0,
     enable_hyprcursor = true,
-    zoom_detached_camera = true
   },
 
   ecosystem = {
     no_update_news = true,
     no_donation_nag = true
+  },
+
+  debug = {
+    overlay = false,
   },
 
   --: Plugins {{{

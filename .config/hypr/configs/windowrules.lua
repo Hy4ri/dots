@@ -463,20 +463,9 @@ hl.window_rule({
   border_size = 3
 })
 hl.window_rule({
-  name = "smart-borders",
-  match = {
-    float = false,
-    workspace = "w[tv1]"
-  },
-  border_size = 0
-})
-hl.window_rule({
-  name = "smart-borders-2",
-  match = {
-    float = false,
-    workspace = "f[1]"
-  },
-  border_size = 0
+  name = "floating-border",
+  match = { float = true },
+  border_size = 1
 })
 
 --: }}}

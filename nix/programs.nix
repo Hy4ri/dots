@@ -37,6 +37,7 @@
     gcc
     gdb
     gemini-cli
+    gh
     ghostty
     gifski
     gimp3
