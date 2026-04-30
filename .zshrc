@@ -38,8 +38,8 @@ setopt AUTOCD AUTO_LIST bang_hist COMPLETE_IN_WORD extended_history \
 # aliases {{{
 
 #nix {{{{
-alias nrs='nh os switch ~/Documents/Projects/dots/nix'
-alias nr='nh os boot ~/Documents/Projects/dots/nix'
+alias nrs='nh os switch ~/Projects/dots/nix'
+alias nr='nh os boot ~/Projects/dots/nix'
 alias ncln='sudo nix-collect-garbage --delete-older-than 1d'
 alien() { nix-alien-ld -- "$@"; }
 # }}}}
@@ -138,7 +138,7 @@ alias bios='sudo systemctl reboot --firmware-setup'
 ff() { fastfetch --logo nixos_small --logo-color-1 red --logo-color-2 red --logo-color-3 red --logo-color-4 red --logo-color-5 red --logo-color-6 red --color-keys red "$@"; }
 alias kew='foot -akew kew'
 alias bmenu='~/.local/bin/bmenu'
-grant_time() { /home/m57/Documents/Projects/micro-saftey/venv/bin/python3 /home/m57/Documents/Projects/micro-saftey/ms_safety.py --grant 10800 "$@"; }
+grant_time() { /home/m57/Projects/micro-saftey/venv/bin/python3 /home/m57/Projects/micro-saftey/ms_safety.py --grant 10800 "$@"; }
 # }}}}
 
 # }}}
@@ -149,6 +149,16 @@ plugin-load() {
     local repo plugdir initfile initfiles=()
     : "${ZPLUGINDIR:=$PLUGINS_DIR}"
     for repo in "$@"; do
+      ZSH_CUSTOM="$HOME/.zsh"
+      plugins_dir="$ZSH_CUSTOM/plugins"
+
+      # Example: load plugins from the custom plugins directory
+      for plugin in "$plugins_dir"/*; do
+        if [ -d "$plugin" ]; then
+          f="$plugin/$plugin.zsh"
+          [ -f "$f" ] && source "$f"
+        fi
+      done
         plugdir="$ZPLUGINDIR/${repo:t}"
         initfile="$plugdir/${repo:t}.plugin.zsh"
         if [[ ! -d "$plugdir" ]]; then
@@ -202,7 +212,7 @@ gitup() {
 }
 
 dup() {
-    cd "$HOME/Documents/Projects/dots/" || return 1
+    cd "$HOME/Projects/dots/" || return 1
     git add -A
     git commit -m "$1"
     git push
@@ -214,7 +224,7 @@ dngl() (
 )
 
 up() {
-    nh os switch -u ~/Documents/Projects/dots/nix
+    nh os switch -u ~/Projects/dots/nix
     flatpak update
 }
 
@@ -301,5 +311,3 @@ RPROMPT='%F{blue}] %F{green}%D{%L:%M} %F{yellow}%D{%p}%f'
 # }}}
 
 # vim: fdm=marker fdl=0
-
-

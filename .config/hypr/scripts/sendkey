@@ -1,60 +1,139 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# sendkey — send keyboard/mouse events to Hyprland windows
+#
+# A bash library that wraps hyprctl dispatch to programmatically send
+# keystrokes, mouse clicks, cursor movement, and scrolling to specific
+# windows in Hyprland. Designed to be sourced from automation scripts.
+#
+# ── How it works ──────────────────────────────────────────────────────
+#
+# Internally, every action calls hyprctl dispatch with the appropriate
+# hl.dsp.* Lua expression. For example, key("foot", "ctrl+c") runs:
+#
+#   hyprctl dispatch 'hl.dsp.send_key_state({mods="CTRL",key="c", \
+#     state="down",window="foot"})'
+#   hyprctl dispatch 'hl.dsp.send_key_state({mods="CTRL",key="c", \
+#     state="up",window="foot"})'
+#
+# The window parameter accepts the same selectors hyprctl uses:
+#   - "class:foot"           Match by window class
+#   - "title:Firefox"        Match by window title
+#   - "address:0x1337"       Match by window address
+#   - "foot"                 Shorthand for class:foot
+#
+# For repeat and hold, a background subshell is spawned and its PID is
+# tracked in SK_PID_DIR/SK_NAMESPACE_{name}.pid. Calling the same
+# function again toggles it off by killing the tracked PID. Each caller
+# gets its own PID namespace via SK_NAMESPACE (defaults to $$), so
+# multiple scripts never conflict.
+#
+# Notifications use Hyprland's built-in system (hyprctl notify) rather
+# than notify-send, keeping everything inside the compositor.
+#
+# ── Usage ─────────────────────────────────────────────────────────────
+#
+#   source ~/.config/hypr/scripts/sendkey
+#
+#   # Single keypress
+#   key "foot" "ctrl+c"               # Send Ctrl+C to foot terminal
+#   key "title:Firefox" "f5"          # Send F5 to Firefox
+#   key "class:Code" "ctrl+shift+p"   # Open command palette in VSCode
+#
+#   # Repeat a key (toggle on/off, or N times)
+#   repeat_key "foot" "y"             # Hold down 'y' (toggle)
+#   repeat_key "foot" "ctrl+v" 5      # Paste 5 times
+#
+#   # Hold a key down (toggle on/off)
+#   hold "foot" "w"                   # Hold 'w' (walk forward)
+#   hold "firefox" "ctrl+tab"         # Hold tab-forward
+#
+#   # Mouse actions
+#   click "firefox" "left" 500 300    # Left-click at x=500 y=300
+#   click "class:Code" "ctrl+left" 100 200  # Ctrl+left-click
+#   mouse 800 600                     # Move cursor
+#
+#   # Scrolling (page up/down)
+#   scroll "foot" "down" 3            # Page-down 3 times
+#   scroll "firefox" "up"             # Page-up once
+#
+#   # Cleanup background processes at exit
+#   cleanup
+#
+# ── Environment variables ─────────────────────────────────────────────
+#
+#   SK_PID_DIR    PID file directory              (default: $XDG_RUNTIME_DIR/hypr_sendkey)
+#   SK_NAMESPACE  Unique namespace for PID files  (default: $$, the sourcing script's PID)
+#   SK_NO_NOTIFY  Set to 1 to suppress notifications
+#   SK_VERBOSE    Set to 1 to log hyprctl errors to stderr
+#
+# Each sourcing script gets an isolated PID namespace by default, so
+# repeat/hold in one script won't interfere with another. Override
+# SK_NAMESPACE to share state across scripts.
+#
+# Examples with env overrides:
+#   SK_NAMESPACE=my_game source sendkey && hold "foot" "w"
+#   SK_NO_NOTIFY=1 SK_VERBOSE=1 source sendkey
 
-PID_DIR=/tmp/hypr_sendkey
-mkdir -p "$PID_DIR"
+SK_PID_DIR="${SK_PID_DIR:-${XDG_RUNTIME_DIR:-/tmp}/hypr_sendkey}"
+SK_NAMESPACE="${SK_NAMESPACE:-$$}"
 
-# Modifiers: CTRL, SHIFT, ALT, SUPER (joined with +)
-# 0 = no modifier
-parse_key() {
-  local input="$1"
-  MOD=""
-  KEY=""
+# ── Internal helpers ──────────────────────────────────────────────────
+
+_sk_pid_file() {
+  echo "${SK_PID_DIR}/${SK_NAMESPACE}_${1}.pid"
+}
+
+# Parse key string like "ctrl+shift+l" into mods and key
+# Sets: _sk_mod, _sk_key
+_sk_parse_key() {
+  local input="$1" mods="" key=""
 
   if [[ "$input" == *"+"* ]]; then
-    KEY="${input##*+}"
-    local mods="${input%+*}"
+    key="${input##*+}"
+    local mod_part="${input%+*}"
     local mod_list=()
-    IFS='+' read -ra mod_arr <<<"$mods"
+    IFS='+' read -ra mod_arr <<<"$mod_part"
     for m in "${mod_arr[@]}"; do
       case "$m" in
-      ctrl) mod_list+=("CTRL") ;;
-      shift) mod_list+=("SHIFT") ;;
-      alt) mod_list+=("ALT") ;;
-      super) mod_list+=("SUPER") ;;
+      ctrl)   mod_list+=("CTRL") ;;
+      shift)  mod_list+=("SHIFT") ;;
+      alt)    mod_list+=("ALT") ;;
+      super)  mod_list+=("SUPER") ;;
       esac
     done
     if [[ ${#mod_list[@]} -gt 0 ]]; then
-      MOD=$(
+      mods=$(
         IFS='+'
         echo "${mod_list[*]}"
       )
     else
-      MOD="0"
+      mods="0"
     fi
   else
-    MOD="0"
-    KEY="$input"
+    mods="0"
+    key="$input"
   fi
+
+  _sk_mod="$mods"
+  _sk_key="$key"
 }
 
-# Parse mouse button names to key codes
-# left=mouse:272, middle=mouse:274, right=mouse:273
-parse_mouse_button() {
-  local input="$1"
-  case "$input" in
-  left) echo "mouse:272" ;;
-  right) echo "mouse:273" ;;
+# Convert mouse button name to key code
+_sk_parse_mouse() {
+  case "${1}" in
+  left)   echo "mouse:272" ;;
+  right)  echo "mouse:273" ;;
   middle) echo "mouse:274" ;;
-  *) echo "$input" ;;
+  *)      echo "${1}" ;;
   esac
 }
 
-stop_process() {
+# Stop a background process by PID file
+_sk_stop_process() {
   local pid_file="$1"
   if [[ -f "$pid_file" ]]; then
     local pid
-    pid=$(cat "$pid_file")
+    pid=$(<"$pid_file")
     if ps -p "$pid" >/dev/null 2>&1; then
       kill "$pid" 2>/dev/null || true
     fi
@@ -64,97 +143,128 @@ stop_process() {
   return 1
 }
 
+# Send a notification via hyprctl built-in system
+_sk_notify() {
+  [[ -n "${SK_NO_NOTIFY:-}" ]] && return
+  hyprctl -q notify -1 2000 "rgb(66ee66)" "$*" 2>/dev/null || true
+}
+
+# Wrapper around hyprctl dispatch with optional error logging
+_sk_dispatch() {
+  hyprctl -q dispatch "$@" 2>/dev/null
+  local rc=$?
+  if [[ $rc -ne 0 && -n "${SK_VERBOSE:-}" ]]; then
+    echo "sk: dispatch failed ($rc): $*" >&2
+  fi
+}
+
+# ── Public API ─────────────────────────────────────────────────────────
+
+# Move cursor to absolute coordinates
 mouse() {
   local cord_x="${1:?Missing X coordinate}"
   local cord_y="${2:?Missing Y coordinate}"
-  hyprctl -q dispatch movecursor "$cord_x" "$cord_y"
+  _sk_dispatch 'hl.dsp.cursor.move({x='"$cord_x"',y='"$cord_y"'})'
 }
 
+# Click a mouse button at coordinates on a window class
+# Button: left, right, middle, or raw key code. Modifiers supported (e.g. ctrl+left)
 click() {
   local class="${1:?Missing window class}"
   local key_input="${2:?Missing key/button}"
   local cord_x="${3:?Missing X coordinate}"
   local cord_y="${4:?Missing Y coordinate}"
 
-  # Parse mouse button names
-  key_input=$(parse_mouse_button "$key_input")
-  parse_key "$key_input"
+  _sk_parse_key "$key_input"
+  local mod="$_sk_mod"
+  local key_parsed
+  key_parsed=$(_sk_parse_mouse "$_sk_key")
 
-  hyprctl -q --batch \
-    "dispatch movecursor $cord_x $cord_y; \
-    dispatch sendkeystate $MOD,$KEY,down,class:$class; \
-    dispatch sendkeystate $MOD,$KEY,up,class:$class"
+  _sk_dispatch 'hl.dsp.cursor.move({x='"$cord_x"',y='"$cord_y"'})'
+  _sk_dispatch 'hl.dsp.send_key_state({mods="'"$mod"'",key="'"$key_parsed"'",state="down",window="'"$class"'"})'
+  _sk_dispatch 'hl.dsp.send_key_state({mods="'"$mod"'",key="'"$key_parsed"'",state="up",window="'"$class"'"})'
 }
 
+# Send a single key press (down + up) to a window class
 key() {
   local class="${1:?Missing window class}"
   local key_input="${2:?Missing key}"
 
-  parse_key "$key_input"
-  hyprctl -q --batch \
-    "dispatch sendkeystate $MOD,$KEY,down,class:$class; \
-    dispatch sendkeystate $MOD,$KEY,up,class:$class"
+  _sk_parse_key "$key_input"
+  local mod="$_sk_mod"
+  local key="$_sk_key"
+
+  _sk_dispatch 'hl.dsp.send_key_state({mods="'"$mod"'",key="'"$key"'",state="down",window="'"$class"'"})'
+  _sk_dispatch 'hl.dsp.send_key_state({mods="'"$mod"'",key="'"$key"'",state="up",window="'"$class"'"})'
 }
 
-repeat() {
-  local pid_file="${PID_DIR}/repeat.pid"
+# Toggle key repeat, or repeat N times
+# Without count: toggles infinite repeat on/off
+# With count: repeats N times and stops
+repeat_key() {
+  local pid_file
+  pid_file=$(_sk_pid_file "repeat")
   local class="${1:?Missing window class}"
   local key_input="${2:?Missing key}"
   local count="${3:-0}"
   local i=0
 
-  parse_key "$key_input"
+  _sk_parse_key "$key_input"
+  local mod="$_sk_mod"
+  local key="$_sk_key"
 
-  if stop_process "$pid_file"; then
-    # Release key with no modifier (0) to ensure clean state
-    hyprctl -q dispatch sendkeystate "0,$KEY,up,class:$class"
-    notify-send "Key $KEY repeating OFF"
+  if _sk_stop_process "$pid_file"; then
+    _sk_dispatch 'hl.dsp.send_key_state({mods="'"$mod"'",key="'"$key"'",state="up",window="'"$class"'"})'
+    _sk_notify "Key $key repeating OFF"
   else
     (
       trap 'rm -f "$pid_file"' EXIT
       while [[ "$count" -eq 0 ]] || [[ "$i" -lt "$count" ]]; do
-        hyprctl -q --batch \
-          "dispatch sendkeystate $MOD,$KEY,down,class:$class; \
-           dispatch sendkeystate $MOD,$KEY,up,class:$class"
-        # Delay between key presses
+        _sk_dispatch 'hl.dsp.send_key_state({mods="'"$mod"'",key="'"$key"'",state="down",window="'"$class"'"})'
+        _sk_dispatch 'hl.dsp.send_key_state({mods="'"$mod"'",key="'"$key"'",state="up",window="'"$class"'"})'
         sleep 0.005
         ((i++))
       done
-      [[ "$count" -gt 0 ]] && notify-send "Key $KEY repeated $count times"
+      [[ "$count" -gt 0 ]] && _sk_notify "Key $key repeated $count times"
     ) &
 
     echo $! >"$pid_file"
     if [[ "$count" -eq 0 ]]; then
-      notify-send "Key $KEY is repeating on $class"
+      _sk_notify "Key $key is repeating on $class"
     else
-      notify-send "Key $KEY repeating $count times on $class"
+      _sk_notify "Key $key repeating $count times on $class"
     fi
   fi
 }
 
+# Toggle holding a key down (press on, press again to release)
 hold() {
-  local pid_file="${PID_DIR}/hold.pid"
+  local pid_file
+  pid_file=$(_sk_pid_file "hold")
   local class="${1:?Missing window class}"
   local key_input="${2:?Missing key}"
 
-  parse_key "$key_input"
+  _sk_parse_key "$key_input"
+  local mod="$_sk_mod"
+  local key="$_sk_key"
 
-  if stop_process "$pid_file"; then
-    # Release key with no modifier (0) to ensure clean state
-    hyprctl -q dispatch sendkeystate "0,$KEY,up,class:$class"
-    notify-send "Holding key $KEY OFF"
+  if _sk_stop_process "$pid_file"; then
+    _sk_dispatch 'hl.dsp.send_key_state({mods="0",key="'"$key"'",state="up",window="'"$class"'"})'
+    _sk_notify "Holding key $key OFF"
   else
     (
       trap 'rm -f "$pid_file"' EXIT
-      hyprctl -q dispatch sendkeystate "$MOD,$KEY,down,class:$class"
+      _sk_dispatch 'hl.dsp.send_key_state({mods="'"$mod"'",key="'"$key"'",state="down",window="'"$class"'"})'
       while sleep 1; do :; done
     ) &
 
     echo $! >"$pid_file"
-    notify-send "Holding key $KEY ON"
+    _sk_notify "Holding key $key ON"
   fi
 }
 
+# Scroll (page up/down) N times in a window
+# Direction: up, down, or a raw key name
 scroll() {
   local class="${1:?Missing window class}"
   local direction="${2:?Missing direction (up/down)}"
@@ -162,64 +272,24 @@ scroll() {
 
   local scroll_key
   case "$direction" in
-  up) scroll_key="Prior" ;;     # Page Up
-  down) scroll_key="Next" ;;    # Page Down
-  *) scroll_key="$direction" ;; # Allow raw key names
+  up)   scroll_key="Prior" ;;
+  down) scroll_key="Next" ;;
+  *)    scroll_key="$direction" ;;
   esac
 
+  local i
   for ((i = 0; i < amount; i++)); do
-    hyprctl -q --batch \
-      "dispatch sendkeystate 0,$scroll_key,down,class:$class; \
-       dispatch sendkeystate 0,$scroll_key,up,class:$class"
+    _sk_dispatch 'hl.dsp.send_key_state({mods="0",key="'"$scroll_key"'",state="down",window="'"$class"'"})'
+    _sk_dispatch 'hl.dsp.send_key_state({mods="0",key="'"$scroll_key"'",state="up",window="'"$class"'"})'
   done
 }
 
-# Usage: script function class key [args...]
-# Key format: "key" or "mod+key" (e.g., "l", "ctrl+l", "ctrl+shift+l")
-# Modifiers: ctrl, shift, alt, super
-#
-# Commands:
-#   key <class> <key>               - Send a single key press
-#   repeat <class> <key> [count]    - Repeat key (toggle, or N times)
-#   hold <class> <key>              - Hold key down (toggle)
-#   click <class> <button> <x> <y>  - Click at coordinates
-#   scroll <class> <dir> [amount]   - Page scroll (up/down)
-#   mouse <x> <y>                   - Move cursor to coordinates
-#
-# Mouse buttons: left (272), right (273), middle (274)
-#
-# Examples:
-#   ./sendkey key foot ctrl+c
-#   ./sendkey repeat foot y 10
-#   ./sendkey hold foot w
-#   ./sendkey click firefox left 100 200
-#   ./sendkey scroll firefox down 5
-#   ./sendkey mouse 500 300
-
-# Only run if executed directly, not sourced
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-  case "${1:-}" in
-  repeat)
-    repeat "${2:-}" "${3:-}" "${4:-}"
-    ;;
-  hold)
-    hold "${2:-}" "${3:-}"
-    ;;
-  click)
-    click "${2:-}" "${3:-}" "${4:-}" "${5:-}"
-    ;;
-  key)
-    key "${2:-}" "${3:-}"
-    ;;
-  scroll)
-    scroll "${2:-}" "${3:-}" "${4:-}"
-    ;;
-  mouse)
-    mouse "${2:-}" "${3:-}"
-    ;;
-  *)
-    echo "Usage: $0 {key|repeat|hold|click|scroll|mouse} [args...]"
-    exit 1
-    ;;
-  esac
-fi
+# Stop all background processes and remove PID directory
+cleanup() {
+  local pid_file name
+  for name in "repeat" "hold"; do
+    pid_file=$(_sk_pid_file "$name")
+    _sk_stop_process "$pid_file"
+  done
+  rm -rf "$SK_PID_DIR" 2>/dev/null || true
+}

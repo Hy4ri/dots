@@ -26,14 +26,6 @@
 
     flatpak = {
       enable = true;
-      overrides = {
-        global = {
-          Context.sockets = ["wayland" "!x11" "!fallback-x11"];
-          Environment = {
-            GTK_THEME = "theme";
-          };
-        };
-      };
     };
 
     fstrim = {

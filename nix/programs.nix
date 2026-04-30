@@ -194,7 +194,7 @@ in {
 
     nh = {
       enable = true;
-      flake = "$HOME/Documents/Projects/dots/nix/";
+      flake = "$HOME/Projects/dots/nix/";
     };
 
     steam = {
@@ -227,9 +227,4 @@ in {
       xdg-desktop-portal-gtk
     ];
   };
-
-  services.flatpak.packages = [
-    "com.github.tchx84.Flatseal"
-    "com.obsproject.Studio"
-  ];
 }

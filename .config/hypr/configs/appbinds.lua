@@ -1,6 +1,5 @@
 local Mod = "SUPER"
 local home = os.getenv("HOME")
-local scripts = home .. "/.config/hypr/scripts"
 
 -- App Definitions
 local apps = {

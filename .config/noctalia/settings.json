@@ -162,12 +162,6 @@
                     "id": "plugin:screen-toolkit"
                 },
                 {
-                    "defaultSettings": {
-                        "color": "#0000ff"
-                    },
-                    "id": "plugin:ds4-colors"
-                },
-                {
                     "deviceNativePath": "__default__",
                     "displayMode": "graphic",
                     "hideIfIdle": false,
@@ -221,6 +215,16 @@
                     "icon": "noctalia",
                     "id": "ControlCenter",
                     "useDistroLogo": true
+                },
+                {
+                    "defaultSettings": {
+                        "color": "#0064ff",
+                        "colorIcon": false,
+                        "hideOnEmpty": false,
+                        "recentColors": [
+                        ]
+                    },
+                    "id": "plugin:ds4-colors"
                 }
             ]
         }
