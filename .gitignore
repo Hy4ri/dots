@@ -1,3 +1,4 @@
 gha-creds-*.json
 .config/mpv/cache/*
 ./.config/mpv/cache/*
+./.config/noctalia/plugins/*

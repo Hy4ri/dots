@@ -1,0 +1,31 @@
+{
+  "maxHistoryLength": 100,
+  "panelDetached": true,
+  "panelPosition": "right",
+  "panelHeightRatio": 0.8999999999999999,
+  "panelWidth": 651,
+  "scale": 1,
+  "ai": {
+    "provider": "google",
+    "model": "gemma-4-31b-it",
+    "apiKeys": {
+      "google": "AIzaSyC7UD8SuXNV1k49OL00pB8zNMCx6O2hKjk"
+    },
+    "temperature": 0.7,
+    "systemPrompt": "You are a helpful assistant integrated into a Linux Nixos desktop shell. Be concise and helpful.",
+    "maxHistoryLength": 100,
+    "openaiLocal": false,
+    "openaiBaseUrl": "https://api.openai.com/v1/chat/completions",
+    "models": {
+      "google": "gemma-4-31b-it"
+    }
+  },
+  "translator": {
+    "backend": "google",
+    "sourceLanguage": "auto",
+    "targetLanguage": "en",
+    "realTimeTranslation": true,
+    "deeplApiKey": ""
+  },
+  "attachmentStyle": "connected"
+}

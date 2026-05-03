@@ -39,11 +39,13 @@
 
   security.rtkit.enable = true;
 
-  users.users.m57 = {
-    shell = pkgs.zsh;
-    isNormalUser = true;
-    description = "hyari";
-    extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "kvm"];
+  users = {
+    users.m57 = {
+      shell = pkgs.zsh;
+      isNormalUser = true;
+      description = "hyari";
+      extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "kvm" "wireshark"];
+    };
   };
 
   nix = {

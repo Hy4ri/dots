@@ -13,6 +13,7 @@
     hyprland.url = "github:hyprwm/hyprland";
     quickshell.url = "git+https://git.outfoxxed.me/quickshell/quickshell";
     noctalia.url = "github:noctalia-dev/noctalia-shell";
+    helium.url = "github:schembriaiden/helium-browser-nix-flake";
   };
 
   outputs = {
@@ -35,6 +36,7 @@
               self.inputs.frame.overlays.default #frame
               self.inputs.vivaldi-stable.overlays.default #vivaldi
               self.inputs.vivaldi-snapshot.overlays.default #vivaldi-snapshot
+              self.inputs.helium.overlays.default #helium
             ];
           })
         ];

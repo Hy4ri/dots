@@ -41,13 +41,13 @@ hl.bind(Mod .. " + K", hl.dsp.focus({ direction = "up" }), { description = "Move
 hl.bind(Mod .. " + J", hl.dsp.focus({ direction = "down" }), { description = "Move focus to the lower window" })
 
 -- Manipulation (Move, Resize)
-hl.bind(Mod .. " + SHIFT + H", hl.dsp.window.resize({ x = -50, y = 1 }),
+hl.bind(Mod .. " + SHIFT + H", hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
   { repeating = true, description = "Resize window: decrease width" })
-hl.bind(Mod .. " + SHIFT + L", hl.dsp.window.resize({ x = 50, y = 0 }),
+hl.bind(Mod .. " + SHIFT + L", hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
   { repeating = true, description = "Resize window: increase width" })
-hl.bind(Mod .. " + SHIFT + K", hl.dsp.window.resize({ x = 0, y = -50 }),
+hl.bind(Mod .. " + SHIFT + K", hl.dsp.window.resize({ x = 0, y = -50, relative = true }),
   { repeating = true, description = "Resize window: decrease height" })
-hl.bind(Mod .. " + SHIFT + J", hl.dsp.window.resize({ x = 0, y = 50 }),
+hl.bind(Mod .. " + SHIFT + J", hl.dsp.window.resize({ x = 0, y = 50, relative = true }),
   { repeating = true, description = "Resize window: increase height" })
 
 hl.bind(Mod .. " + CTRL + H", hl.dsp.window.move({ direction = "left" }), { description = "Move window to the left" })
@@ -158,6 +158,7 @@ hl.bind(Mod .. " + SHIFT + i", hl.dsp.exec_cmd(scripts .. "/info"), { descriptio
 hl.bind(Mod .. " + Menu", hl.dsp.exec_cmd(scripts .. "/touchPad"), { description = "Toggle touchpad on/off" })
 hl.bind(Mod .. " + i", hl.dsp.exec_cmd(scripts .. "/vimwere"),
   { description = "Launch floating terminal with vim (clipboard saver)" })
+hl.bind(Mod .. " + y", hl.dsp.exec_cmd(scripts .. "/test"))
 
 -- Submaps
 hl.bind(Mod .. " + HOME", hl.dsp.submap("clean"), { description = "Enter clean submap (disable most binds)" })

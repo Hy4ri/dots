@@ -19,6 +19,7 @@
     bc
     bemenu
     brightnessctl
+    brush
     btop
     cargo
     clang
@@ -45,6 +46,7 @@
     go
     grim
     groff
+    helium
     hyprcursor
     hyprland-qt-support
     hyprlang
@@ -180,6 +182,12 @@ in {
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
+    };
+
+    wireshark = {
+      enable = true;
+      dumpcap.enable = true;
+      package = stable.wireshark;
     };
 
     localsend = {

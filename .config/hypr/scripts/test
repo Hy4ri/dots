@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+source ~/.config/hypr/scripts/sendkey
+
+mouse 100 1000
+click "com.mitchellh.ghostty" left 800 1000
+
+repeat_key "com.mitchellh.ghostty" "h"
+sleep 2
+repeat_key "com.mitchellh.ghostty" "h"

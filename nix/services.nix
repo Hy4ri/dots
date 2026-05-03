@@ -59,18 +59,22 @@
       };
     };
 
-    xserver = {
-      enable = false;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
+    tailscale = {
+      enable = true;
     };
 
     udev = {
       packages = with pkgs; [
         game-devices-udev-rules
       ];
+    };
+
+    xserver = {
+      enable = false;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
   };
 }

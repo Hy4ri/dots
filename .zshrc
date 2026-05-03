@@ -108,7 +108,6 @@ alias snvim='sudoedit'
 alias nano='nvim'
 alias nivm='nvim'
 alias vim='nvim'
-cvim() { NVIM_APPNAME=cvim nvim "$@"; }
 # }}}}
 
 #waydroid {{{{
