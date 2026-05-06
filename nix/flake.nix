@@ -7,7 +7,6 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-alien.url = "github:thiagokokada/nix-alien";
-    frame.url = "github:hy4ri/Frame";
     vivaldi-snapshot.url = "github:hy4ri/vivaldi-snapshot-flake";
     vivaldi-stable.url = "github:hy4ri/vivaldi-snapshot-flake/stable";
     hyprland.url = "github:hyprwm/hyprland";
@@ -33,7 +32,6 @@
           ({self, ...}: {
             nixpkgs.overlays = [
               self.inputs.nix-alien.overlays.default #alien
-              self.inputs.frame.overlays.default #frame
               self.inputs.vivaldi-stable.overlays.default #vivaldi
               self.inputs.vivaldi-snapshot.overlays.default #vivaldi-snapshot
               self.inputs.helium.overlays.default #helium

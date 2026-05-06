@@ -19,7 +19,6 @@
     bc
     bemenu
     brightnessctl
-    brush
     btop
     cargo
     clang
@@ -33,7 +32,6 @@
     findutils
     fish
     foot
-    frame
     fzf
     gcc
     gdb

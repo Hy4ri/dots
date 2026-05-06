@@ -15,49 +15,51 @@ MENU_ITEMS=(
 )
 
 blur() {
-  hyprctl dispatch setprop active no_blur toggle
+  state=$(hyprctl getprop activewindow no_blur)
+  if [ "$state" = "false" ]; then
+    hyprctl dispatch 'hl.dsp.window.set_prop({prop="no_blur",value="1",window="activewindow"})'
+  else
+    hyprctl dispatch 'hl.dsp.window.set_prop({prop="no_blur",value="0",window="activewindow"})'
+  fi
 }
 
 decoration() {
-  hyprctl dispatch setprop active decorate toggle
+  state=$(hyprctl getprop activewindow decorate)
+  if [ "$state" = "false" ]; then
+    hyprctl dispatch 'hl.dsp.window.set_prop({prop="decorate",value="1",window="activewindow"})'
+  else
+    hyprctl dispatch 'hl.dsp.window.set_prop({prop="decorate",value="0",window="activewindow"})'
+  fi
 }
 
 fullscreen() {
-  classes=$(hyprctl clients -j | jq -r '.[].class' | sort -u)
-  selected_class=$(echo "$classes" | bmenu -p "Select Class:")
-
-  if [ -z "$selected_class" ]; then
-    return
-  fi
-
-  hyprctl dispatch focuswindow "class:^(${selected_class})$"
-  hyprctl dispatch fullscreen 0
+  hyprctl dispatch 'hl.dsp.window.fullscreen({mode="fullscreen",window="activewindow"})'
 }
 
 master() {
-  hyprctl keyword general:layout master
+  hyprctl eval 'hl.config({general = {layout="master"}})'
 }
 
 dwindle() {
-  hyprctl keyword general:layout dwindle
+  hyprctl eval 'hl.config({general = {layout="dwindle"}})'
 }
 
 scrolling() {
-  hyprctl keyword general:layout scrolling
+  hyprctl eval 'hl.config({general = {layout="scrolling"}})'
 }
 
 monocle() {
-  hyprctl keyword general:layout monocle
+  hyprctl eval 'hl.config({general = {layout="monocle"}})'
 }
 
 opacity_10() {
-  hyprctl dispatch setprop active opacity 1
+  hyprctl dispatch 'hl.dsp.window.set_prop({prop="opacity",value="1",window="activewindow"})'
 }
 opacity_9() {
-  hyprctl dispatch setprop active opacity 0.95
+  hyprctl dispatch 'hl.dsp.window.set_prop({prop="opacity",value="0.95",window="activewindow"})'
 }
 opacity_1() {
-  hyprctl dispatch setprop active opacity 0.1
+  hyprctl dispatch 'hl.dsp.window.set_prop({prop="opacity",value="0.1",window="activewindow"})'
 }
 
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do

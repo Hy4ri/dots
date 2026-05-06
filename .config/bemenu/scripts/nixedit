@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-Configs="$HOME/Documents/Projects/dots/nix/"
+Configs="$HOME/Projects/dots/nix/"
 term="foot"
 
 # Define menu items as "Label|Function Name"

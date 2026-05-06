@@ -78,10 +78,30 @@ hl.bind(Mod .. " + ALT + 2", hl.dsp.workspace.move({ monitor = "HDMI-A-3" }),
   { description = "Move current workspace to HDMI-A-3 monitor" })
 
 -- Layouts & Groups
-hl.bind(Mod .. " + ALT + S", hl.dsp.layout("togglesplit"), { description = "Toggle split direction (Dwindle)" })
-hl.bind(Mod .. " + ALT + S", hl.dsp.layout("orientationcycle top left"),
-  { description = "Cycle orientation (Master)" })
-hl.bind(Mod .. " + ALT + F", hl.dsp.layout("fitactive"), { description = "Fit active window to layout" })
+hl.bind(Mod .. " + ALT + S", function()
+  local layout = hl.get_config("general.layout")
+
+  if layout == "dwindle" then
+    hl.dispatch(hl.dsp.layout("togglesplit"))
+  elseif layout == "master" then
+    hl.dispatch(hl.dsp.layout("orientationcycle top left"))
+  elseif layout == "scrolling" then
+    local direc = hl.get_config("scrolling.direction")
+    if direc == "right" or direc == "left" then
+      hl.config({
+        scrolling = { direction = "down" }
+      })
+      hl.dispatch(hl.dsp.layout("fit all"))
+    else
+      hl.config({
+        scrolling = { direction = "right" }
+
+      })
+      hl.dispatch(hl.dsp.layout("fit active"))
+    end
+  end
+end)
+
 hl.bind(Mod .. " + G", hl.dsp.group.toggle(), { description = "Toggle window group" })
 hl.bind("ALT + grave", hl.dsp.group.next(), { description = "Focus next window in group" })
 
@@ -116,9 +136,9 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("noctalia-shell ipc call media previous
   { locked = true, description = "Previous media track" })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("noctalia-shell ipc call media next"),
   { locked = true, description = "Next media track" })
-hl.bind("xf86MonBrightnessDown", hl.dsp.exec_cmd(scripts .. "/brightness --dec"),
+hl.bind("xf86MonBrightnessDown", hl.dsp.exec_cmd("noctalia-shell ipc call brightness decrease"),
   { repeating = true, locked = true, description = "Decrease monitor brightness" })
-hl.bind("xf86MonBrightnessUp", hl.dsp.exec_cmd(scripts .. "/brightness --inc"),
+hl.bind("xf86MonBrightnessUp", hl.dsp.exec_cmd("noctalia-shell ipc call brightness increase"),
   { repeating = true, locked = true, description = "Increase monitor brightness" })
 
 -- System Tools (Screenshots, Launcher, etc.)

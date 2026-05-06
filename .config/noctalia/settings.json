@@ -120,6 +120,16 @@
             "right": [
                 {
                     "defaultSettings": {
+                        "color": "#0064ff",
+                        "colorIcon": false,
+                        "hideOnEmpty": false,
+                        "recentColors": [
+                        ]
+                    },
+                    "id": "plugin:ds4-colors"
+                },
+                {
+                    "defaultSettings": {
                         "activeColor": "primary",
                         "camFilterRegex": "",
                         "enableToast": true,
@@ -130,17 +140,6 @@
                         "removeMargins": false
                     },
                     "id": "plugin:privacy-indicator"
-                },
-                {
-                    "blacklist": [
-                    ],
-                    "chevronColor": "none",
-                    "colorizeIcons": true,
-                    "drawerEnabled": false,
-                    "hidePassive": false,
-                    "id": "Tray",
-                    "pinned": [
-                    ]
                 },
                 {
                     "defaultSettings": {
@@ -162,6 +161,17 @@
                     "id": "plugin:screen-toolkit"
                 },
                 {
+                    "blacklist": [
+                    ],
+                    "chevronColor": "none",
+                    "colorizeIcons": true,
+                    "drawerEnabled": false,
+                    "hidePassive": false,
+                    "id": "Tray",
+                    "pinned": [
+                    ]
+                },
+                {
                     "defaultSettings": {
                         "compactMode": false,
                         "defaultPeerAction": "copy-ip",
@@ -179,16 +189,6 @@
                         "terminalCommand": ""
                     },
                     "id": "plugin:tailscale"
-                },
-                {
-                    "defaultSettings": {
-                        "color": "#0064ff",
-                        "colorIcon": false,
-                        "hideOnEmpty": false,
-                        "recentColors": [
-                        ]
-                    },
-                    "id": "plugin:ds4-colors"
                 },
                 {
                     "deviceNativePath": "__default__",
@@ -281,8 +281,8 @@
         "backlightDeviceMappings": [
         ],
         "brightnessStep": 5,
-        "enableDdcSupport": false,
-        "enforceMinimum": true
+        "enableDdcSupport": true,
+        "enforceMinimum": false
     },
     "calendar": {
         "cards": [
@@ -364,15 +364,6 @@
                 },
                 {
                     "id": "Notifications"
-                },
-                {
-                    "defaultSettings": {
-                        "compactMode": false,
-                        "defaultDuration": 0,
-                        "iconColor": "none",
-                        "textColor": "none"
-                    },
-                    "id": "plugin:timer"
                 },
                 {
                     "enableOnStateLogic": false,
@@ -577,11 +568,11 @@
     },
     "location": {
         "analogClockInCalendar": false,
-        "autoLocate": true,
+        "autoLocate": false,
         "firstDayOfWeek": 0,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Amman",
+        "name": "Al-Salt",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
@@ -611,7 +602,7 @@
         "nightTemp": "3036"
     },
     "noctaliaPerformance": {
-        "disableDesktopWidgets": true,
+        "disableDesktopWidgets": false,
         "disableWallpaper": true
     },
     "notifications": {

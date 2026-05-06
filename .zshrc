@@ -17,7 +17,7 @@ export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30
 export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview"
 
 # PATH
-export PATH="$HOME/.local/bin:$HOME/.spicetify:$PATH"
+export PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 # }}}
 
 # options {{{
@@ -224,6 +224,7 @@ dngl() (
 
 up() {
     nh os switch -u ~/Projects/dots/nix
+    echo "Flatpak updates:"
     flatpak update
 }
 

@@ -3,17 +3,12 @@ hl.monitor({
   mode     = "1920x1080@120.02",
   position = "0x0",
   scale    = "1",
-}, {
-  output   = "HDMI-A-3",
-  mode     = "1366x768@60.02",
-  position = "1920x0",
-  scale    = "1",
 }
 )
 
--- hl.monitor({
---   output   = "HDMI-A-3",
---   mode     = "1366x768@60.02",
---   position = "1920x0",
---   scale    = "1",
--- })
+hl.monitor({
+  output   = "HDMI-A-3",
+  mode     = "1360x768@60.02",
+  position = "1920x0",
+  scale    = "1",
+})

@@ -7,6 +7,5 @@ require("configs.monitors")
 require("configs.devices")
 require("configs.settings")
 require("configs.windowrules")
-require("configs.hooks")
 
 -- source = /home/m57/.config/hypr/noctalia/noctalia-colors.conf
