@@ -37,7 +37,7 @@
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
         "volumeOverdrive": false,
-        "volumeStep": 5
+        "volumeStep": 2
     },
     "bar": {
         "autoHideDelay": 500,
@@ -750,10 +750,6 @@
         "activeTemplates": [
             {
                 "enabled": true,
-                "id": "hyprland"
-            },
-            {
-                "enabled": true,
                 "id": "discord"
             },
             {
@@ -779,6 +775,14 @@
             {
                 "enabled": true,
                 "id": "cava"
+            },
+            {
+                "enabled": true,
+                "id": "code"
+            },
+            {
+                "enabled": true,
+                "id": "hyprtoolkit"
             }
         ],
         "enableUserTheming": true
@@ -828,10 +832,10 @@
         "useSolidColor": false,
         "useWallhaven": false,
         "viewMode": "single",
-        "wallhavenApiKey": "",
+        "wallhavenApiKey": "6xzw8CF4cfznHvQB6soYydtC6Scr2IU2",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
-        "wallhavenPurity": "100",
+        "wallhavenPurity": "111",
         "wallhavenQuery": "",
         "wallhavenRatios": "",
         "wallhavenResolutionHeight": "",

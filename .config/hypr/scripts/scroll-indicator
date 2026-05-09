@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Scroll Indicator — set active border gradient based on neighbors
+# Called by scrolling_indicator.lua on focus/open/close events.
+# Runs entirely in background — no compositor blocking.
+set -euo pipefail
+
+INDICATOR='rgba(ff2222ff)'
+BASE='rgba(12121200)'
+SOLO='rgb(990000)'
+
+# Wait for scroll repositioning to settle
+sleep 0.5
+
+# Get active window info
+ACTIVE=$(hyprctl activewindow -j 2>/dev/null) || exit 0
+ADDR=$(echo "$ACTIVE" | jq -r '.address // empty') || exit 0
+WS_ID=$(echo "$ACTIVE" | jq -r '.workspace.id // empty') || exit 0
+MY_X=$(echo "$ACTIVE" | jq -r '.at[0] // empty') || exit 0
+
+[[ -z "$ADDR" || -z "$WS_ID" || -z "$MY_X" ]] && exit 0
+
+# Get all tiled clients on the same workspace
+HAS_LEFT=false
+HAS_RIGHT=false
+COUNT=0
+
+while IFS=$'\t' read -r addr x; do
+  COUNT=$((COUNT + 1))
+  [[ "$addr" == "$ADDR" ]] && continue
+  (( x < MY_X )) 2>/dev/null && HAS_LEFT=true
+  (( x > MY_X )) 2>/dev/null && HAS_RIGHT=true
+done < <(
+  hyprctl clients -j 2>/dev/null \
+    | jq -r --argjson ws "$WS_ID" \
+        '.[] | select(.workspace.id == $ws and .floating == false) | [.address, .at[0]] | @tsv'
+)
+
+# Debug: show positions (* = active)
+POS=$(hyprctl clients -j 2>/dev/null \
+  | jq -r --argjson ws "$WS_ID" --arg me "$ADDR" \
+    '.[] | select(.workspace.id == $ws and .floating == false) |
+    (if .address == $me then "*" else "" end) + (.at[0] | tostring)' \
+  | tr '\n' ' ')
+hyprctl notify 1 3000 "rgb(00ff00)" "fontsize:14 $POS" >/dev/null 2>&1
+
+# Build hl.config() call and apply via hyprctl eval
+if (( COUNT <= 1 )); then
+  hyprctl eval "hl.config({ general = { [\"col.active_border\"] = \"$SOLO\" } })" >/dev/null 2>&1
+else
+  RIGHT=$( $HAS_LEFT  && echo "$INDICATOR" || echo "$BASE" )
+  LEFT=$(  $HAS_RIGHT && echo "$INDICATOR" || echo "$BASE" )
+  hyprctl eval "hl.config({ general = { [\"col.active_border\"] = { colors = { \"$LEFT\", \"$RIGHT\" }, angle = 0 } } })" >/dev/null 2>&1
+fi

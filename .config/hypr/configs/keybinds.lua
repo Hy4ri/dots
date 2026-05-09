@@ -2,20 +2,23 @@ local Mod = "SUPER"
 local scripts = os.getenv("HOME") .. "/.config/hypr/scripts"
 
 -- System/Session
-hl.bind("SUPER + SHIFT + P", hl.dsp.dpms("toggle"), { locked = true, description = "Toggle DPMS" })
 hl.bind("CTRL + ALT + Delete", hl.dsp.exit(), { description = "Exit Hyprland session" })
 hl.bind("xf86Sleep", hl.dsp.exec_cmd("systemctl suspend"), { locked = true, description = "Suspend the system" })
-hl.bind(Mod .. " + SHIFT + R", hl.dsp.exec_cmd(scripts .. "/refresh"),
-  { locked = true, description = "Refresh/Reload Hyprland and components" })
+hl.bind(Mod .. " + SHIFT + R", hl.dsp.exec_cmd(scripts .. "/refresh"), { locked = true, description = "Refresh session" })
 
--- Switch
-hl.bind("switch:Lid Switch", hl.dsp.exec_cmd("noctalia-shell ipc call lockScreen lock"), { locked = true })
-hl.bind("switch:on:Lid Switch", function()
-  hl.dispatch(hl.dsp.dpms("toggle"))
-end, { locked = true })
-hl.bind("switch:off:Lid Switch", function()
-  hl.dispatch(hl.dsp.dpms("toggle"))
-end, { locked = true })
+-- Turn off screen and lock with a keybind
+local lock = false
+hl.bind("SUPER + SHIFT + P", function()
+    if lock == false then
+      hl.dispatch(hl.dsp.exec_cmd("noctalia-shell ipc call lockscreen lock"))
+      hl.dispatch(hl.dsp.dpms("toggle"))
+      lock = true
+    elseif lock == true then
+      hl.dispatch(hl.dsp.dpms("toggle"))
+      lock = false
+    end
+  end,
+  { locked = true, description = "Toggle DPMS" })
 
 
 -- Window Management
@@ -100,7 +103,7 @@ hl.bind(Mod .. " + ALT + S", function()
       hl.dispatch(hl.dsp.layout("fit active"))
     end
   end
-end)
+end, { description = "Change layout (cycle or toggle)" })
 
 hl.bind(Mod .. " + G", hl.dsp.group.toggle(), { description = "Toggle window group" })
 hl.bind("ALT + grave", hl.dsp.group.next(), { description = "Focus next window in group" })
@@ -163,28 +166,39 @@ hl.bind(Mod .. " + Prior", hl.dsp.exec_cmd(scripts .. "/power --toggle"),
   { description = "Toggle system performance mode" })
 hl.bind(Mod .. " + Next", hl.dsp.exec_cmd(scripts .. "/power --powersaver"),
   { description = "Enable system powersaving mode" })
-hl.bind(Mod .. " + equal", hl.dsp.exec_cmd(scripts .. "/zoom --in"),
-  { repeating = true, description = "Zoom in screen (Keyboard)" })
-hl.bind(Mod .. " + minus", hl.dsp.exec_cmd(scripts .. "/zoom --out"),
-  { repeating = true, description = "Zoom out screen (Keyboard)" })
-hl.bind(Mod .. " + mouse_down", hl.dsp.exec_cmd(scripts .. "/zoom --in"), { description = "Zoom in screen (Mouse)" })
-hl.bind(Mod .. " + mouse_up", hl.dsp.exec_cmd(scripts .. "/zoom --out"), { description = "Zoom out screen (Mouse)" })
+-- zoom
+hl.bind(Mod .. " + equal", function()
+  local zoom = hl.get_config("cursor.zoom_factor")
+  hl.config({
+    cursor = { zoom_factor = math.min(5.0, zoom + 0.1) }
+  })
+end, { repeating = true, description = "Zoom in screen" })
+
+hl.bind(Mod .. " + minus", function()
+  local zoom = hl.get_config("cursor.zoom_factor")
+  hl.config({
+    cursor = { zoom_factor = math.max(1.0, zoom - 0.1) }
+  })
+end, { repeating = true, description = "Zoom out screen" })
 
 -- Misc
-hl.bind(Mod .. " + F7", hl.dsp.exec_cmd("ytmpv"), { description = "Launch URL in clipboard in mpv" })
-hl.bind(Mod .. " + SHIFT + D", hl.dsp.exec_cmd("dunstctl history-pop"),
-  { description = "Show last notification from history" })
 hl.bind(Mod .. " + SHIFT + i", hl.dsp.exec_cmd(scripts .. "/info"), { description = "Display system information" })
-hl.bind(Mod .. " + Menu", hl.dsp.exec_cmd(scripts .. "/touchPad"), { description = "Toggle touchpad on/off" })
-hl.bind(Mod .. " + i", hl.dsp.exec_cmd(scripts .. "/vimwere"),
-  { description = "Launch floating terminal with vim (clipboard saver)" })
-hl.bind(Mod .. " + y", hl.dsp.exec_cmd(scripts .. "/test"))
+hl.bind(Mod .. " + i", hl.dsp.exec_cmd(scripts .. "/vimwere"), { description = "vim everywhere" })
 
--- Submaps
-hl.bind(Mod .. " + HOME", hl.dsp.submap("clean"), { description = "Enter clean submap (disable most binds)" })
-
-hl.define_submap("clean", function()
-  -- Use Mod + HOME or Escape to go back to the global submap
-  hl.bind(Mod .. " + HOME", hl.dsp.submap("reset"), { description = "Exit clean submap" })
-  hl.bind("escape", hl.dsp.submap("reset"), { description = "Exit clean submap" })
-end)
+local touch = true
+local touchpad_name = "dell09e1:00-04f3:30cb-touchpad"
+hl.bind(Mod .. " + Menu", function()
+  if touch == true then
+    hl.device({
+      name = touchpad_name,
+      enabled = false,
+    })
+    touch = false
+  else
+    hl.device({
+      name = touchpad_name,
+      enabled = true,
+    })
+    touch = true
+  end
+end, { description = "Toggle touchpad" })

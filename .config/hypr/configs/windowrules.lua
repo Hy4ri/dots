@@ -23,6 +23,11 @@ hl.window_rule({
   float = true
 })
 hl.window_rule({
+  name = "portal-share-screen-float",
+  match = { title = "(Select what to share)$" },
+  float = true
+})
+hl.window_rule({
   name = "nemo-properties-float",
   match = {
     class = "(nemo)",

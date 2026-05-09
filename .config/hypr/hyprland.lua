@@ -7,5 +7,7 @@ require("configs.monitors")
 require("configs.devices")
 require("configs.settings")
 require("configs.windowrules")
+require("configs.layouts")
+-- require("configs.scrolling_indicator")
 
 -- source = /home/m57/.config/hypr/noctalia/noctalia-colors.conf

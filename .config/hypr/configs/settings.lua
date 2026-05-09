@@ -24,6 +24,7 @@ hl.config({
     column_width = 0.99,
     focus_fit_method = 0, -- 0 = center, 1 = fit
     follow_focus = true,
+    follow_min_visible = 0.005,
     direction = "right"
   },
 

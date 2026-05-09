@@ -204,6 +204,49 @@ extract() {
 
 compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
 
+img2png() {
+    local file lower frame_count base out i rc=0
+    if (( $# == 0 )); then
+        echo "Usage: img2png <file> [file...]" >&2
+        return 1
+    fi
+    command -v ffmpeg >/dev/null 2>&1 || { echo "img2png: ffmpeg not found" >&2; return 1; }
+    command -v ffprobe >/dev/null 2>&1 || { echo "img2png: ffprobe not found" >&2; return 1; }
+    for file in "$@"; do
+        if [[ ! -f "$file" ]]; then
+            echo "img2png: '$file' is not a file" >&2
+            rc=1
+            continue
+        fi
+        lower="${file:l}"
+        if [[ "$lower" == *.png ]]; then
+            echo "img2png: '$file' already png, skip" >&2
+            continue
+        fi
+        frame_count="$(ffprobe -v error -select_streams v:0 -count_frames \
+            -show_entries stream=nb_read_frames -of default=noprint_wrappers=1:nokey=1 -- "$file" 2>/dev/null)"
+        if [[ -n "$frame_count" && "$frame_count" == <-> && "$frame_count" -gt 1 ]]; then
+            echo "img2png: '$file' is animated, skip" >&2
+            rc=1
+            continue
+        fi
+        base="${file%.*}"
+        out="${base}.png"
+        if [[ -e "$out" ]]; then
+            i=1
+            while [[ -e "${base}-${i}.png" ]]; do
+                (( i++ ))
+            done
+            out="${base}-${i}.png"
+        fi
+        if ! ffmpeg -hide_banner -loglevel error -i "$file" -frames:v 1 "$out"; then
+            echo "img2png: convert failed for '$file'" >&2
+            rc=1
+        fi
+    done
+    return $rc
+}
+
 gitup() {
     git add -A
     git commit -m "$1"

@@ -181,6 +181,49 @@ extract() {
 
 compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
 
+img2png() {
+  local file lower frame_count base out i status=0
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: img2png <file> [file...]" >&2
+    return 1
+  fi
+  command -v ffmpeg >/dev/null 2>&1 || { echo "img2png: ffmpeg not found" >&2; return 1; }
+  command -v ffprobe >/dev/null 2>&1 || { echo "img2png: ffprobe not found" >&2; return 1; }
+  for file in "$@"; do
+    if [[ ! -f "$file" ]]; then
+      echo "img2png: '$file' is not a file" >&2
+      status=1
+      continue
+    fi
+    lower="${file,,}"
+    if [[ "$lower" == *.png ]]; then
+      echo "img2png: '$file' already png, skip" >&2
+      continue
+    fi
+    frame_count="$(ffprobe -v error -select_streams v:0 -count_frames \
+      -show_entries stream=nb_read_frames -of default=noprint_wrappers=1:nokey=1 -- "$file" 2>/dev/null)"
+    if [[ -n "$frame_count" && "$frame_count" =~ ^[0-9]+$ && "$frame_count" -gt 1 ]]; then
+      echo "img2png: '$file' is animated, skip" >&2
+      status=1
+      continue
+    fi
+    base="${file%.*}"
+    out="${base}.png"
+    if [[ -e "$out" ]]; then
+      i=1
+      while [[ -e "${base}-${i}.png" ]]; do
+        ((i++))
+      done
+      out="${base}-${i}.png"
+    fi
+    if ! ffmpeg -hide_banner -loglevel error -i "$file" -frames:v 1 "$out"; then
+      echo "img2png: convert failed for '$file'" >&2
+      status=1
+    fi
+  done
+  return $status
+}
+
 gitup() {
   git add -A
   git commit -m "$1"
@@ -246,29 +289,69 @@ eval "$(zoxide init bash)"
 # Ensure Bash updates COLUMNS after each command
 shopt -s checkwinsize
 
+_prompt_pwd_2() {
+  local dir path rest out count start i
+  dir="$PWD"
+  if [[ "$dir" == "$HOME" ]]; then
+    path="~"
+  elif [[ "$dir" == "$HOME/"* ]]; then
+    path="~/${dir#$HOME/}"
+  else
+    path="$dir"
+  fi
+
+  if [[ "$path" == "/" ]]; then
+    printf "/"
+    return
+  fi
+
+  local -a parts
+  if [[ "$path" == "~" ]]; then
+    parts=("~")
+  elif [[ "$path" == "~/"* ]]; then
+    rest="${path#~/}"
+    IFS='/' read -r -a parts <<< "$rest"
+    parts=("~" "${parts[@]}")
+  else
+    rest="${path#/}"
+    IFS='/' read -r -a parts <<< "$rest"
+  fi
+
+  count=${#parts[@]}
+  start=0
+  if ((count > 2)); then
+    start=$((count - 2))
+  fi
+
+  out=""
+  for ((i = start; i < count; i++)); do
+    if [[ -z "$out" ]]; then
+      out="${parts[i]}"
+    else
+      out="${out}/${parts[i]}"
+    fi
+  done
+  printf "%s" "$out"
+}
+
 _build_prompt() {
-  local clock_time meridian
+  local clock_time meridian path right_text right_len col
+  path="$(_prompt_pwd_2)"
   clock_time=$(date "+%l:%M")
+  clock_time="${clock_time# }"
   meridian=$(date "+%p")
 
-  # 1. Start of terminal: Path (Green) and Opening Bracket (Blue)
-  PS1="\[\e[32m\]\w \[\e[34m\][\[\e[0m\] "
+  right_text="] ${clock_time} ${meridian} "
+  right_len=${#right_text}
 
-  # 2. Save cursor position so you can type inside the brackets
-  PS1+="\[\e[s\]"
+  PS1="\[\e[32m\]${path}\[\e[34m\] [\[\e[0m\] "
 
-  # 3. Move to the right side
-  # Math: ] (1) + space (1) + HH:MM (5) + space (1) + AM (2) = 10 chars
-  PS1+="\[\e[$((COLUMNS - 10))G\]"
+  col=$((COLUMNS - right_len + 1))
+  if ((col < 1)); then
+    col=1
+  fi
 
-  # 4. Closing Bracket (Blue)
-  PS1+="\[\e[34m\]] \[\e[0m\]"
-
-  # 5. Clock (Green) and AM/PM (Yellow)
-  PS1+="\[\e[32m\]${clock_time}\[\e[33m\] ${meridian}\[\e[0m\]"
-
-  # 6. Restore cursor position to the typing area
-  PS1+="\[\e[u\]"
+  PS1+="\[\e[s\]\[\e[1B\]\[\e[${col}G\]\[\e[34m\]] \[\e[32m\]${clock_time}\[\e[33m\] ${meridian} \[\e[0m\]\[\e[u\]"
 }
 
 # Combine hooks: Directory listing + Prompt building

@@ -4,16 +4,10 @@ local scripts = os.getenv("HOME") .. "/.config/hypr/scripts"
 
 hl.gesture({
   fingers = 2,
-  direction = "pinchin",
-  action = "cursorZoom",
-  zoom_level = 3.5
-})
-
-hl.gesture({
-  fingers = 2,
-  direction = "pinchout",
-  action = "cursorZoom",
-  zoom_level = 1 -- Reset zoom
+  direction = "pinch",
+  action = "cursor_zoom",
+  zoom_level = 1,
+  mode = "live"
 })
 
 hl.gesture({
@@ -48,12 +42,6 @@ hl.gesture({
 
 hl.gesture({
   fingers = 4,
-  direction = "right",
-  action = "move"
-})
-
-hl.gesture({
-  fingers = 4,
-  direction = "left",
-  action = "move"
+  direction = "horizontal",
+  action = "scroll_move"
 })
