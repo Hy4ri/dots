@@ -33,6 +33,9 @@ setopt AUTOCD AUTO_LIST bang_hist COMPLETE_IN_WORD extended_history \
 
 # Only in TTY
 [[ -t 0 ]] && stty stop undef 2>/dev/null
+
+# Use emacs keybindings (default) instead of vi mode
+bindkey -e
 # }}}
 
 # aliases {{{
@@ -98,8 +101,9 @@ alias ....='../../..'
 alias .....='../../../..'
 # }}}}
 
-#zsh {{{{
+#shell {{{{
 sz() { source "$HOME/.zshrc"; }
+bz() { source "$HOME/.bashrc"; }
 zrc() { ${EDITOR} ~/.zshrc; }
 # }}}}
 
@@ -185,10 +189,7 @@ extract() {
         return 1
     fi
     case "$1" in
-        *.xz) unxz "$1";;
-        *.bz2) bunzip2 "$1";;
         *.rar) unrar x "$1";;
-        *.gz) gunzip "$1";;
         *.tbz2|*.tar.bz2) tar xjf "$1";;
         *.tgz|*.tar.gz) tar xzf "$1";;
         *.zip) unzip "$1";;

@@ -1,6 +1,3 @@
-# Configuration converted from .zshrc
-# vim: fdm=marker fdl=0
-
 # exports {{{
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -23,6 +20,9 @@ export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-
 # PATH
 export PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$PATH"
 # }}}
+
+# ble.sh: Syntax highlighting, auto-complete, enhanced editing
+[[ $- == *i* ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
 
 # options {{{
 HISTSIZE=10000000
@@ -100,8 +100,9 @@ alias ....='../../..'
 alias .....='../../../..'
 # }}}}
 
-#bash {{{{
+#shell {{{{
 sb() { source "$HOME/.bashrc"; }
+zb() { source "$HOME/.zshrc"; }
 brc() { ${EDITOR} ~/.bashrc; }
 # }}}}
 
@@ -162,10 +163,7 @@ extract() {
     return 1
   fi
   case "$1" in
-  *.xz) unxz "$1" ;;
-  *.bz2) bunzip2 "$1" ;;
   *.rar) unrar x "$1" ;;
-  *.gz) gunzip "$1" ;;
   *.tbz2 | *.tar.bz2) tar xjf "$1" ;;
   *.tgz | *.tar.gz) tar xzf "$1" ;;
   *.zip) unzip "$1" ;;
@@ -187,8 +185,14 @@ img2png() {
     echo "Usage: img2png <file> [file...]" >&2
     return 1
   fi
-  command -v ffmpeg >/dev/null 2>&1 || { echo "img2png: ffmpeg not found" >&2; return 1; }
-  command -v ffprobe >/dev/null 2>&1 || { echo "img2png: ffprobe not found" >&2; return 1; }
+  command -v ffmpeg >/dev/null 2>&1 || {
+    echo "img2png: ffmpeg not found" >&2
+    return 1
+  }
+  command -v ffprobe >/dev/null 2>&1 || {
+    echo "img2png: ffprobe not found" >&2
+    return 1
+  }
   for file in "$@"; do
     if [[ ! -f "$file" ]]; then
       echo "img2png: '$file' is not a file" >&2
@@ -281,10 +285,6 @@ elif command -v fzf &>/dev/null; then
 fi
 # }}}
 
-# zoxide {{{
-eval "$(zoxide init bash)"
-# }}}
-
 # Prompt {{{
 # Ensure Bash updates COLUMNS after each command
 shopt -s checkwinsize
@@ -310,11 +310,11 @@ _prompt_pwd_2() {
     parts=("~")
   elif [[ "$path" == "~/"* ]]; then
     rest="${path#~/}"
-    IFS='/' read -r -a parts <<< "$rest"
+    IFS='/' read -r -a parts <<<"$rest"
     parts=("~" "${parts[@]}")
   else
     rest="${path#/}"
-    IFS='/' read -r -a parts <<< "$rest"
+    IFS='/' read -r -a parts <<<"$rest"
   fi
 
   count=${#parts[@]}
@@ -335,27 +335,19 @@ _prompt_pwd_2() {
 }
 
 _build_prompt() {
-  local clock_time meridian path right_text right_len col
+  local path
   path="$(_prompt_pwd_2)"
-  clock_time=$(date "+%l:%M")
-  clock_time="${clock_time# }"
-  meridian=$(date "+%p")
-
-  right_text="] ${clock_time} ${meridian} "
-  right_len=${#right_text}
-
   PS1="\[\e[32m\]${path}\[\e[34m\] [\[\e[0m\] "
-
-  col=$((COLUMNS - right_len + 1))
-  if ((col < 1)); then
-    col=1
-  fi
-
-  PS1+="\[\e[s\]\[\e[1B\]\[\e[${col}G\]\[\e[34m\]] \[\e[32m\]${clock_time}\[\e[33m\] ${meridian} \[\e[0m\]\[\e[u\]"
 }
 
 # Combine hooks: Directory listing + Prompt building
 PROMPT_COMMAND="__chpwd_hook; _build_prompt"
 # }}}
+
+# zoxide
+eval "$(zoxide init bash)"
+
+# Initialize ble.sh
+[[ ! ${BLE_VERSION-} ]] || ble-attach
 
 # vim: fdm=marker fdl=0

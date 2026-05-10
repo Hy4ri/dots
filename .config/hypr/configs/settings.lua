@@ -25,7 +25,8 @@ hl.config({
     focus_fit_method = 0, -- 0 = center, 1 = fit
     follow_focus = true,
     follow_min_visible = 0.005,
-    direction = "right"
+    direction = "right",
+    -- inhibit_scroll = true
   },
 
   --: }}}
@@ -39,7 +40,7 @@ hl.config({
     gaps_workspaces = 1,
     ["col.inactive_border"] = "rgb(121212)",
     ["col.active_border"] = "rgb(990000)",
-    layout = "scrolling", --master,scrolling,monocle,dwindle
+    layout = "lua:deck", --master,scrolling,monocle,dwindle
     resize_on_border = true,
     extend_border_grab_area = 0,
     allow_tearing = false,

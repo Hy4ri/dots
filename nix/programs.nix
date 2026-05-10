@@ -219,7 +219,6 @@ in {
 
     zsh = {
       enable = true;
-      enableCompletion = true;
     };
   };
 

@@ -10,7 +10,7 @@ hl.bind(Mod .. " + SHIFT + R", hl.dsp.exec_cmd(scripts .. "/refresh"), { locked 
 local lock = false
 hl.bind("SUPER + SHIFT + P", function()
     if lock == false then
-      hl.dispatch(hl.dsp.exec_cmd("noctalia-shell ipc call lockscreen lock"))
+      hl.dispatch(hl.dsp.exec_cmd("noctalia-shell ipc call lockScreen lock"))
       hl.dispatch(hl.dsp.dpms("toggle"))
       lock = true
     elseif lock == true then
@@ -38,25 +38,36 @@ hl.bind(Mod .. " + SHIFT + P", hl.dsp.window.pin(), { description = "Pin the act
 hl.bind("ALT + Tab", hl.dsp.focus({ last = "f" }), { description = "Focus the last active window" })
 
 -- Navigation (Focus)
-hl.bind(Mod .. " + H", hl.dsp.focus({ direction = "left" }), { description = "Move focus to the left window" })
-hl.bind(Mod .. " + L", hl.dsp.focus({ direction = "right" }), { description = "Move focus to the right window" })
-hl.bind(Mod .. " + K", hl.dsp.focus({ direction = "up" }), { description = "Move focus to the upper window" })
-hl.bind(Mod .. " + J", hl.dsp.focus({ direction = "down" }), { description = "Move focus to the lower window" })
+hl.bind(Mod .. " + H", function()
+  hl.dispatch(hl.dsp.focus({ direction = "left" }))
+end, { description = "Focus left" })
+hl.bind(Mod .. " + L", function()
+  hl.dispatch(hl.dsp.focus({ direction = "right" }))
+end, { description = "Focus right" })
+hl.bind(Mod .. " + K", function()
+  hl.dispatch(hl.dsp.focus({ direction = "up" }))
+end, { description = "Focus up" })
+hl.bind(Mod .. " + J", function()
+  hl.dispatch(hl.dsp.layout("prev"))
+  hl.dispatch(hl.dsp.focus({ direction = "down" }))
+end, { description = "Focus down" })
 
 -- Manipulation (Move, Resize)
-hl.bind(Mod .. " + SHIFT + H", hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
+hl.bind(Mod .. " + CTRL + H", hl.dsp.window.resize({ x = -50, y = 0, relative = true }),
   { repeating = true, description = "Resize window: decrease width" })
-hl.bind(Mod .. " + SHIFT + L", hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
+hl.bind(Mod .. " + CTRL + L", hl.dsp.window.resize({ x = 50, y = 0, relative = true }),
   { repeating = true, description = "Resize window: increase width" })
-hl.bind(Mod .. " + SHIFT + K", hl.dsp.window.resize({ x = 0, y = -50, relative = true }),
+hl.bind(Mod .. " + CTRL + K", hl.dsp.window.resize({ x = 0, y = -50, relative = true }),
   { repeating = true, description = "Resize window: decrease height" })
-hl.bind(Mod .. " + SHIFT + J", hl.dsp.window.resize({ x = 0, y = 50, relative = true }),
+hl.bind(Mod .. " + CTRL + J", hl.dsp.window.resize({ x = 0, y = 50, relative = true }),
   { repeating = true, description = "Resize window: increase height" })
 
-hl.bind(Mod .. " + CTRL + H", hl.dsp.window.move({ direction = "left" }), { description = "Move window to the left" })
-hl.bind(Mod .. " + CTRL + L", hl.dsp.window.move({ direction = "right" }), { description = "Move window to the right" })
-hl.bind(Mod .. " + CTRL + K", hl.dsp.window.move({ direction = "up" }), { description = "Move window up" })
-hl.bind(Mod .. " + CTRL + J", hl.dsp.window.move({ direction = "down" }), { description = "Move window down" })
+hl.bind(Mod .. " + SHIFT + H", function()
+  hl.dispatch(hl.dsp.window.move({ direction = "left" }))
+end, { description = "Move window left " })
+hl.bind(Mod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }), { description = "Move window to the right" })
+hl.bind(Mod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }), { description = "Move window up" })
+hl.bind(Mod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }), { description = "Move window down" })
 
 hl.bind(Mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, description = "Move window with mouse" })
 hl.bind(Mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true, description = "Resize window with mouse" })
