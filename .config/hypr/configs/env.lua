@@ -52,4 +52,4 @@ hl.env("NVD_BACKEND", "direct")
 hl.env("GSK_RENDERER", "ngl")
 -- : }}}
 
---  vim:fileencoding=utf-8:foldmethod=marker
+--  vim:fileencoding=utf-8:foldmethod=marker:fdl=0

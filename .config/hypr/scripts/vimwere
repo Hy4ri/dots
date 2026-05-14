@@ -10,7 +10,7 @@ file=/tmp/vimwere
 id="float_vim_capture"
 
 # window rules
-hyprctl -q eval 'hl.window_rule({ match = { class = "float_vim_capture" }, float = 1 })' 
+hyprctl -q eval 'hl.window_rule({ match = { class = "float_vim_capture" }, float = 1 })'
 hyprctl -q eval 'hl.window_rule({ match = { class = "float_vim_capture" }, size = { 1000, 500 } })'
 hyprctl -q eval 'hl.window_rule({ match = { class = "float_vim_capture" }, move = { 500, 60 } })'
 

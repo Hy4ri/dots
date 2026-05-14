@@ -30,7 +30,6 @@
     ffmpeg
     file
     findutils
-    fish
     foot
     fzf
     gcc

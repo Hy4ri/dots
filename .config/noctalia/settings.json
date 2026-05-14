@@ -12,9 +12,9 @@
         "enableClipboardHistory": true,
         "enableClipboardSmartIcons": true,
         "enableSessionSearch": true,
-        "enableSettingsSearch": true,
+        "enableSettingsSearch": false,
         "enableWindowsSearch": true,
-        "iconMode": "native",
+        "iconMode": "tabler",
         "ignoreMouseInput": false,
         "overviewLayer": true,
         "pinnedApps": [
@@ -24,7 +24,7 @@
         "showCategories": true,
         "showIconBackground": false,
         "sortByMostUsed": true,
-        "terminalCommand": "foot",
+        "terminalCommand": "",
         "viewMode": "list"
     },
     "audio": {

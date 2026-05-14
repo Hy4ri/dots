@@ -1,35 +1,35 @@
-local Mod = "SUPER"
-local home = os.getenv("HOME")
+local vars = require("configs.variables")
+local home = vars.home
 
 -- App Definitions
 local apps = {
   browser  = "vivaldi-snapshot",
-  launcher = "noctalia-shell ipc call launcher toggle",
+  launcher = vars.ipc .. " launcher toggle",
   files    = "yazi",
   term     = "foot",
   term2    = "ghostty",
   browser2 = "helium",
   vc       = "vesktop",
   music    = "flatpak run com.spotify.Client",
-  emoji    = "noctalia-shell ipc call launcher emoji",
+  emoji    = vars.ipc .. " launcher emoji",
 }
 
 -- Main Application Binds
-hl.bind(Mod .. " + Z", hl.dsp.exec_cmd(apps.launcher), { release = true, description = "Toggle App Launcher" })
-hl.bind(Mod .. " + SHIFT + Z", hl.dsp.exec_cmd(home .. "/.config/bemenu/noctaliaScripts"),
+hl.bind("SUPER + Z", hl.dsp.exec_cmd(apps.launcher), { release = true, description = "Toggle App Launcher" })
+hl.bind("SUPER + SHIFT + Z", hl.dsp.exec_cmd(home .. "/.config/bemenu/noctaliaScripts"),
   { description = "Launch Scripts Menu" })
 
-hl.bind(Mod .. " + Return", hl.dsp.exec_cmd(apps.term), { description = "Launch Terminal (Foot)" })
-hl.bind(Mod .. " + SHIFT + Return", hl.dsp.exec_cmd(apps.term2), { description = "Launch Secondary Terminal (Ghostty)" })
+hl.bind("SUPER + Return", hl.dsp.exec_cmd(apps.term), { description = "Launch Terminal (Foot)" })
+hl.bind("SUPER + SHIFT + Return", hl.dsp.exec_cmd(apps.term2), { description = "Launch Secondary Terminal (Ghostty)" })
 
-hl.bind(Mod .. " + E", hl.dsp.exec_cmd(apps.term .. " --app-id=" .. apps.files .. " " .. apps.files),
+hl.bind("SUPER + E", hl.dsp.exec_cmd(apps.term .. " --app-id=" .. apps.files .. " " .. apps.files),
   { description = "Launch File Manager (Yazi)" })
 hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(apps.term .. " btop"), { description = "Launch System Monitor (Btop)" })
 
-hl.bind(Mod .. " + V", hl.dsp.exec_cmd(apps.browser), { description = "Launch Web Browser" })
-hl.bind(Mod .. " + ALT + D", hl.dsp.exec_cmd(apps.vc), { description = "Launch Voice Chat (Vesktop)" })
-hl.bind(Mod .. " + period", hl.dsp.exec_cmd(apps.emoji), { description = "Open Emoji Picker" })
-hl.bind(Mod .. " + M", hl.dsp.exec_cmd("mpv --player-operation-mode=pseudo-gui"), { description = "Launch MPV" })
+hl.bind("SUPER + V", hl.dsp.exec_cmd(apps.browser), { description = "Launch Web Browser" })
+hl.bind("SUPER + ALT + D", hl.dsp.exec_cmd(apps.vc), { description = "Launch Voice Chat (Vesktop)" })
+hl.bind("SUPER + period", hl.dsp.exec_cmd(apps.emoji), { description = "Open Emoji Picker" })
+hl.bind("SUPER + M", hl.dsp.exec_cmd("mpv --player-operation-mode=pseudo-gui"), { description = "Launch MPV" })
 
 -- Multimedia/Function Keys
 hl.bind("xf86homepage", hl.dsp.exec_cmd(apps.browser2), { description = "Fn+F1: Launch Helium Browser" })

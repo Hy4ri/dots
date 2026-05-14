@@ -22,11 +22,10 @@ hl.config({
   scrolling = {
     fullscreen_on_one_column = true,
     column_width = 0.99,
-    focus_fit_method = 0, -- 0 = center, 1 = fit
+    focus_fit_method = 0,   -- 0 = center, 1 = fit
     follow_focus = true,
     follow_min_visible = 0.005,
     direction = "right",
-    -- inhibit_scroll = true
   },
 
   --: }}}
@@ -38,9 +37,12 @@ hl.config({
     gaps_out = { top = 1, left = 0, right = 0, bottom = 0 },
     float_gaps = { top = 0, left = 0, right = 0, bottom = 0 },
     gaps_workspaces = 1,
-    ["col.inactive_border"] = "rgb(121212)",
-    ["col.active_border"] = "rgb(990000)",
-    layout = "lua:deck", --master,scrolling,monocle,dwindle
+    col = {
+      active_border = "rgb(990000)",
+      -- active_border = { colors = { "rgba(fa6982aa)", "rgba(fafa00aa)", "rgba(96f06eaa)", "rgba(6ec8faaa)", "rgba(dc6ea5aa)" } },
+      inactive_border = "rgb(121212)",
+    },
+    layout = "scrolling",     --master,scrolling,monocle,dwindle
     resize_on_border = true,
     extend_border_grab_area = 0,
     allow_tearing = false,
@@ -90,11 +92,11 @@ hl.config({
     kb_layout = "us,ara",
     kb_options = "grp:alt_shift_toggle,caps:escape",
     numlock_by_default = true,
-    repeat_rate = 35,   --30
-    repeat_delay = 200, --350
+    repeat_rate = 35,           --30
+    repeat_delay = 200,         --350
     sensitivity = 1.0,
     accel_profile = "flat",
-    scroll_method = "2fg", -- edge
+    scroll_method = "2fg",         -- edge
     follow_mouse = 1,
     float_switch_override_focus = 1,
 

@@ -17,22 +17,20 @@ MENU_ITEMS=(
   "7. view Env-variables|env"
   "8. view Hypr Folder|hypr_folder"
   "9. view Monitors|monitors"
-  "11. view Settings-wal|settings_wal"
   "12. view Main config|main_config"
 )
 
 # Define functions for each menu item
-settings() { $term nvim "$Configs/settings.conf"; }
-windowrules() { $term nvim "$Configs/windowrules.conf"; }
-keybinds() { $term nvim "$Configs/keybinds.conf"; }
-appbinds() { $term nvim "$Configs/appbinds.conf"; }
+settings() { $term nvim "$Configs/settings.lua"; }
+windowrules() { $term nvim "$Configs/windowrules.lua"; }
+keybinds() { $term nvim "$Configs/keybinds.lua"; }
+appbinds() { $term nvim "$Configs/appbinds.lua"; }
 scripts() { $term nvim "$Scripts"; }
-autostart() { $term nvim "$Configs/autostart.conf"; }
-env() { $term nvim "$Configs/env.conf"; }
+autostart() { $term nvim "$Configs/autostart.lua"; }
+env() { $term nvim "$Configs/env.lua"; }
 hypr_folder() { $term nvim "$hypr"; }
-monitors() { $term nvim "$Configs/monitors.conf"; }
-settings_wal() { $term nvim "$Configs/settings-wal.conf"; }
-main_config() { $term nvim ~/.config/hypr/hyprland.conf; }
+monitors() { $term nvim "$Configs/monitors.lua"; }
+main_config() { $term nvim ~/.config/hypr/hyprland.lua; }
 
 # Create menu
 CHOICE=$(for item in "${MENU_ITEMS[@]}"; do

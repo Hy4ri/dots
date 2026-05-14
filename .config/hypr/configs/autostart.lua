@@ -1,4 +1,4 @@
-local scripts = os.getenv("HOME") .. "/.config/hypr/scripts"
+local scripts = require("configs.variables").scripts
 
 hl.on("hyprland.start", function()
   -- Startup

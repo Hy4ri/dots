@@ -7,6 +7,7 @@ opt.cmdheight = 0                        -- Hides the command line area (set to 
 opt.colorcolumn = "+1"                   -- Draw column on the right of maximum width
 opt.copyindent = true                    -- When auto-indenting, copies the indentation structure from the previous line.
 opt.cursorline = true                    -- Highlights the entire line your cursor is currently on.
+opt.termguicolors = true                 -- Enables 24-bit RGB color support
 opt.diffopt:append("algorithm:patience") -- Uses the "patience" algorithm for better diffs
 opt.diffopt:append("linematch:60")       -- Improves diff algorithm for better diffs
 opt.diffopt:append("vertical")           -- Opens diffs in vertical splits
