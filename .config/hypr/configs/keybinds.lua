@@ -181,6 +181,11 @@ hl.bind("SUPER + minus", function() zoom_change(-0.1) end, { repeating = true, d
 -- Misc
 hl.bind("SUPER + SHIFT + i", hl.dsp.exec_cmd(scripts .. "/info"), { description = "Display system information" })
 hl.bind("SUPER + i", hl.dsp.exec_cmd(scripts .. "/vimwere"), { description = "vim everywhere" })
+hl.bind("SUPER + END", function()
+    hl.dispatch(hl.dsp.send_key_state({ mods = "", key = "HOME", state = "down", window = "activewindow" }))
+    hl.dispatch(hl.dsp.send_key_state({ mods = "", key = "HOME", state = "up", window = "activewindow" }))
+  end,
+  { description = "END HOME" })
 
 local touch = true
 local touchpad_name = "dell09e1:00-04f3:30cb-touchpad"

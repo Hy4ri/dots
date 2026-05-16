@@ -12,7 +12,7 @@ vsync = true
 wsl = false
 
 [font]
-normal = ["JetBrainsMono Nerd Font"] 
+normal = ["RecMonoSmCasualMono Nerd Font"] 
 size = 15.0
 
 [box-drawing]

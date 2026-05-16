@@ -10,7 +10,6 @@
     vivaldi-snapshot.url = "github:hy4ri/vivaldi-snapshot-flake";
     vivaldi-stable.url = "github:hy4ri/vivaldi-snapshot-flake/stable";
     hyprland.url = "github:hyprwm/hyprland";
-    quickshell.url = "git+https://git.outfoxxed.me/quickshell/quickshell";
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     helium.url = "github:schembriaiden/helium-browser-nix-flake";
   };

@@ -37,31 +37,31 @@
     <keepBorder>yes</keepBorder>
     <dropShadows>yes</dropShadows>
     <font place="ActiveWindow">
-      <name>JetBrainsMono Nerd Font</name>
+      <name>RecMonoSmCasualMono Nerd Font</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="InactiveWindow">
-      <name>JetBrainsMono Nerd Font</name>
+      <name>RecMonoSmCasualMono Nerd Font</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuHeader">
-      <name>JetBrainsMono Nerd Font</name>
+      <name>RecMonoSmCasualMono Nerd Font</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuItem">
-      <name>JetBrainsMono Nerd Font</name>
+      <name>RecMonoSmCasualMono Nerd Font</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="OnScreenDisplay">
-      <name>JetBrainsMono Nerd Font</name>
+      <name>RecMonoSmCasualMono Nerd Font</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>

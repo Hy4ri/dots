@@ -22,7 +22,7 @@ hl.config({
   scrolling = {
     fullscreen_on_one_column = true,
     column_width = 0.99,
-    focus_fit_method = 0,   -- 0 = center, 1 = fit
+    focus_fit_method = 0, -- 0 = center, 1 = fit
     follow_focus = true,
     follow_min_visible = 0.005,
     direction = "right",
@@ -42,7 +42,7 @@ hl.config({
       -- active_border = { colors = { "rgba(fa6982aa)", "rgba(fafa00aa)", "rgba(96f06eaa)", "rgba(6ec8faaa)", "rgba(dc6ea5aa)" } },
       inactive_border = "rgb(121212)",
     },
-    layout = "scrolling",     --master,scrolling,monocle,dwindle
+    layout = "scrolling", --master,scrolling,monocle,dwindle
     resize_on_border = true,
     extend_border_grab_area = 0,
     allow_tearing = false,
@@ -92,11 +92,11 @@ hl.config({
     kb_layout = "us,ara",
     kb_options = "grp:alt_shift_toggle,caps:escape",
     numlock_by_default = true,
-    repeat_rate = 35,           --30
-    repeat_delay = 200,         --350
+    repeat_rate = 35,   --30
+    repeat_delay = 200, --350
     sensitivity = 1.0,
     accel_profile = "flat",
-    scroll_method = "2fg",         -- edge
+    scroll_method = "2fg", -- edge
     follow_mouse = 1,
     float_switch_override_focus = 1,
 
@@ -132,7 +132,7 @@ hl.config({
     ["col.border_inactive"] = "rgb(000000)",
     groupbar = {
       enabled = true,
-      font_family = "JetBrainsMono Nerd Font",
+      font_family = "RecMonoSmCasualMono Nerd Font",
       font_size = 13,
       height = 12,
       indicator_gap = -15,
@@ -153,7 +153,7 @@ hl.config({
     disable_hyprland_logo = true,
     disable_splash_rendering = true,
     mouse_move_enables_dpms = true,
-    font_family = "JetBrainsMono Nerd Font",
+    font_family = "RecMonoSmCasualMono Nerd Font",
     vrr = 0,
     disable_autoreload = false,
     enable_swallow = true,

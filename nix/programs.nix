@@ -80,6 +80,7 @@
     swappy
     termdown
     translate-shell
+    ty
     (tesseract.override {
       enableLanguages = ["eng" "ara"];
     })
@@ -114,7 +115,6 @@
 
   # nixos-stable
   stablePackages = with stable; [
-    bitwarden-desktop
     heroic
   ];
 in {
@@ -125,10 +125,10 @@ in {
   #FONTS
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
+      nerd-fonts.jetbrains-mono # 'JetBrainsMono Nerd Font'
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      emacs-all-the-icons-fonts
+      nerd-fonts.recursive-mono #'RecMonoCasual Nerd Font'
     ];
   };
 
@@ -157,9 +157,6 @@ in {
       settings = {
         theme = "TwoDark";
       };
-      extraPackages = with pkgs.bat-extras; [
-        prettybat
-      ];
     };
 
     direnv = {
@@ -179,12 +176,6 @@ in {
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
-    };
-
-    wireshark = {
-      enable = true;
-      dumpcap.enable = true;
-      package = stable.wireshark;
     };
 
     localsend = {

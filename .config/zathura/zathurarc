@@ -1,4 +1,4 @@
-set font "JetBrainsMono Nerd Font 15"
+set font "RecMonoSmCasualMono Nerd Font 15"
 set default-bg "#121212"                  # Default background color
 set default-fg "#e2e2e2"                  # Default foreground color
 set statusbar-bg "#121212"                # Statusbar background color

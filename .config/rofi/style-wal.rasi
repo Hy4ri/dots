@@ -10,7 +10,7 @@ configuration {
 @import "~/.cache/wal/colors-rofi.rasi"
 
 * {
-    font: "JetBrainsMono Nerd Font 12";
+    font: "RecMonoSmCasualMono Nerd Font 12";
 }
 
 /*****----- Main Window -----*****/

@@ -11,7 +11,7 @@ bemenu-run \
   -B 1 \
   -R 2 \
   --bdr "#990000" \
-  --fn "JetBrainsMonoNF Bold 15" \
+  --fn "RecMonoSmCasualMonoNF Bold 15" \
   --tb "#121212" \
   --tf "#e2e2e2" \
   --fb "#121212" \

@@ -44,7 +44,7 @@
       shell = pkgs.zsh;
       isNormalUser = true;
       description = "hyari";
-      extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "kvm" "wireshark"];
+      extraGroups = ["input" "networkmanager" "wheel" "scanner" "lp" "video" "audio" "kvm"];
     };
   };
 

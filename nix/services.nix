@@ -3,9 +3,10 @@
     blueman.enable = true;
     dbus.enable = true;
     envfs.enable = true;
-    gvfs.enable = true;
+    gvfs.enable = false;
     power-profiles-daemon.enable = true;
     pulseaudio.enable = false;
+    speechd.enable = false;
     tumbler.enable = true;
     udisks2.enable = true;
     upower.enable = true;

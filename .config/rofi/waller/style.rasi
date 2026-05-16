@@ -1,7 +1,7 @@
 /*****----- Global Properties -----*****/
 
 * {
-    font: "JetBrainsMono Nerd Font 12";
+    font: "RecMonoSmCasualMono Nerd Font 12";
     background:     #121212FF;
     background-alt: #121212FF;
     foreground:     #e2e2e2FF;
