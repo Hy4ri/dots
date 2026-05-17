@@ -68,6 +68,7 @@
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     nwg-look
     opencode
+    opencode-desktop
     pavucontrol
     playerctl
     python3

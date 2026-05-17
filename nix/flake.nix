@@ -9,6 +9,7 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     vivaldi-snapshot.url = "github:hy4ri/vivaldi-snapshot-flake";
     vivaldi-stable.url = "github:hy4ri/vivaldi-snapshot-flake/stable";
+    opencode.url = "github:hy4ri/opencode-flake";
     hyprland.url = "github:hyprwm/hyprland";
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     helium.url = "github:schembriaiden/helium-browser-nix-flake";
@@ -28,12 +29,13 @@
           ./configuration.nix
           nix-index-database.nixosModules.default
           {programs.nix-index-database.comma.enable = true;}
-          ({self, ...}: {
+          ({inputs, ...}: {
             nixpkgs.overlays = [
-              self.inputs.nix-alien.overlays.default #alien
-              self.inputs.vivaldi-stable.overlays.default #vivaldi
-              self.inputs.vivaldi-snapshot.overlays.default #vivaldi-snapshot
-              self.inputs.helium.overlays.default #helium
+              inputs.nix-alien.overlays.default #alien
+              inputs.vivaldi-stable.overlays.default #vivaldi
+              inputs.vivaldi-snapshot.overlays.default #vivaldi-snapshot
+              inputs.helium.overlays.default #helium
+              inputs.opencode.overlays.default #opencode
             ];
           })
         ];

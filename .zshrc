@@ -1,5 +1,3 @@
-# vim: fdm=marker fdl=0
-
 # exports {{{
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -268,6 +266,7 @@ dngl() (
 
 up() {
     nh os switch -u ~/Projects/dots/nix
+    echo "================================"
     echo "Flatpak updates:"
     flatpak update
 }
